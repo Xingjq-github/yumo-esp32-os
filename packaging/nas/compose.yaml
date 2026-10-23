@@ -1,0 +1,60 @@
+# Java 8 JRE supplied by the user; no image build and no Maven on NAS.
+services:
+  vault:
+    image: ${VAULT_IMAGE:-eclipse-temurin:8-jre}
+    platform: linux/amd64
+    # Keep the image's default user, matching the UGOS container wizard.
+    working_dir: /app
+    command: ["java", "-Xms32m", "-Xmx192m", "-Xss512k", "-XX:MaxMetaspaceSize=96m", "-XX:ReservedCodeCacheSize=32m", "-XX:MaxDirectMemorySize=16m", "-XX:ActiveProcessorCount=1", "-XX:+UseSerialGC", "-XX:+ExitOnOutOfMemoryError", "-Dfile.encoding=UTF-8", "-Djava.io.tmpdir=/tmp", "-Duser.timezone=Asia/Shanghai", "-jar", "/app/joyvault.jar"]
+    init: true
+    restart: unless-stopped
+    mem_limit: 512m
+    mem_reservation: 128m
+    memswap_limit: 512m
+    cpus: "1.0"
+    pids_limit: 96
+    environment:
+      VAULT_DATA_DIR: /data
+      VAULT_KEYS_FILE: /app/deployment/local-keys.json
+      VAULT_BIND_IP: 0.0.0.0
+      VAULT_PUBLIC_URL: http://${VAULT_BIND_IP:?Set the NAS LAN IP}:${VAULT_PORT:-8443}
+      VAULT_HEALTH_URL: http://127.0.0.1:${VAULT_PORT:-8443}
+      VAULT_LOG_FILE: /data/logs/vault.log
+      TZ: Asia/Shanghai
+    ports:
+      - "${VAULT_BIND_IP:?Set the NAS LAN IP}:${VAULT_PORT:-8443}:${VAULT_PORT:-8443}"
+    volumes:
+      - type: bind
+        source: ./joyvault.jar
+        target: /app/joyvault.jar
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ./deployment
+        target: /app/deployment
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${VAULT_HOST_DATA:?Set an existing absolute NAS data directory}
+        target: /data
+        bind:
+          create_host_path: false
+    read_only: true
+    # sqlite-jdbc loads its extracted native library from executable tmpfs.
+    tmpfs:
+      - /tmp:size=32m,mode=1777,exec
+    security_opt: [no-new-privileges:true]
+    logging:
+      driver: local
+      options:
+        max-size: "1m"
+        max-file: "3"
+    healthcheck:
+      test: ["CMD", "java", "-Xms8m", "-Xmx32m", "-XX:ActiveProcessorCount=1", "-XX:+UseSerialGC", "-XX:ReservedCodeCacheSize=16m", "-jar", "/app/joyvault.jar", "healthcheck"]
+      interval: 5m
+      timeout: 8s
+      retries: 3
+      start_period: 40s
+    stop_grace_period: 30s

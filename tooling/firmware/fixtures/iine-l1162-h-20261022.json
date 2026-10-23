@@ -1,0 +1,85 @@
+{
+  "source": "User IINE-1001/L1162 in H mode, COM4 capture controller-h-3.bin",
+  "capture_sha256": "bbcbf86e9549e005f919b28a868df6f2a871cb961452e11f64d1067b06f3585d",
+  "report_map_hex": "05 01 09 06 a1 01 85 02 05 07 19 e0 29 e7 15 00 25 01 75 01 95 08 81 02 95 01 75 08 81 01 95 06 75 08 15 00 26 ff 00 05 07 19 00 2a ff 00 81 00 95 03 75 01 05 08 25 01 19 01 29 03 91 02 95 05 75 01 91 01 c0",
+  "keyboard_report_id": 2,
+  "neutral_report_hex": "00 00 00 00 00 00 00 00",
+  "pressed_key_samples_captured": true,
+  "report_references": [
+    {
+      "handle": 39,
+      "cccd": 40,
+      "id": 1,
+      "type": 1
+    },
+    {
+      "handle": 43,
+      "cccd": 44,
+      "id": 2,
+      "type": 1
+    },
+    {
+      "handle": 50,
+      "cccd": 51,
+      "id": 3,
+      "type": 1
+    },
+    {
+      "handle": 54,
+      "cccd": 55,
+      "id": 4,
+      "type": 1
+    },
+    {
+      "handle": 58,
+      "cccd": 59,
+      "id": 5,
+      "type": 1
+    },
+    {
+      "handle": 62,
+      "cccd": 63,
+      "id": 6,
+      "type": 1
+    }
+  ],
+  "pressed_capture": {
+    "file": "controller-h-4.bin",
+    "sha256": "35ce0d8a961f960de0d55f0f5b9fcee1b5e57672a7b2fe82975e94435efaada4",
+    "procedure": "User confirmed H mode: held B then A about 1 second each, released between; diagnostic page remained open",
+    "keyboard_handle": 43,
+    "report_id": 2
+  },
+  "pressed_samples": [
+    {
+      "action": "neutral",
+      "device_ms": 267276,
+      "report_hex": "00 00 00 00 00 00 00 00",
+      "expected_fc_pad": 0
+    },
+    {
+      "action": "B",
+      "device_ms": 270551,
+      "report_hex": "00 00 2c 00 00 00 00 00",
+      "expected_fc_pad": 2
+    },
+    {
+      "action": "release B",
+      "device_ms": 271878,
+      "report_hex": "00 00 00 00 00 00 00 00",
+      "expected_fc_pad": 0
+    },
+    {
+      "action": "A",
+      "device_ms": 273078,
+      "report_hex": "00 00 28 00 00 00 00 00",
+      "expected_fc_pad": 1
+    },
+    {
+      "action": "release A",
+      "device_ms": 274480,
+      "report_hex": "00 00 00 00 00 00 00 00",
+      "expected_fc_pad": 0
+    }
+  ]
+}

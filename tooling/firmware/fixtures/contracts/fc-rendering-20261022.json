@@ -1,0 +1,64 @@
+{
+  "changed": [
+    "firmware/main/core/fc_timing.hpp",
+    "firmware/main/core/fc_video.hpp"
+  ],
+  "files": {
+    "firmware/main/core/fc_timing.hpp": {
+      "before_sha256": "6b90d73a5bb7f7e85a88ac38c95c995514996514117f596617e6207c6fe0d9ac",
+      "sha256": "fb5efdde2ee3cbf508d8a61e936ff3c34d520a6ed15f6b2eeacacd9e7dc70ff8"
+    },
+    "firmware/main/core/fc_video.hpp": {
+      "before_sha256": "a09c65006e062f6fce24be12855f08dc5fca59283e0da84bf07f2b45da4519ae",
+      "sha256": "1bf446a67ad5a1d39f0e3a4784fe24d0628257c97c1a0e8ff659335bcd8f101e"
+    },
+    "firmware/main/core/fc_emulator.cpp": {
+      "before_sha256": "5fe7da0f52befcbc9afbbdff48c4adc08bccad70798ac6a250e709642b85f503",
+      "sha256": "5fe7da0f52befcbc9afbbdff48c4adc08bccad70798ac6a250e709642b85f503"
+    },
+    "firmware/main/core/fc_emulator.hpp": {
+      "before_sha256": "79207c3541e6317290098edc85f8438fb51f767da97111fd27132673f939f062",
+      "sha256": "79207c3541e6317290098edc85f8438fb51f767da97111fd27132673f939f062"
+    },
+    "firmware/main/apps/fc_player.cpp": {
+      "before_sha256": "37ca0b227a1f7a229cd7c153acfdf22dc7b8bf240d8c781c40957bdb98bf4272",
+      "sha256": "37ca0b227a1f7a229cd7c153acfdf22dc7b8bf240d8c781c40957bdb98bf4272"
+    },
+    "firmware/main/core/fc_saves.cpp": {
+      "before_sha256": "a3572b75ac65d10ef6b2e09db69f32b5d362c9c32fbd10dfde520418372cea98",
+      "sha256": "a3572b75ac65d10ef6b2e09db69f32b5d362c9c32fbd10dfde520418372cea98"
+    },
+    "firmware/components/nofrendo/nes/ppu.c": {
+      "before_sha256": "185626d9178b9655d55caaee7605be8925e3e1312885d7cad02a0a34cf6197c9",
+      "sha256": "185626d9178b9655d55caaee7605be8925e3e1312885d7cad02a0a34cf6197c9"
+    },
+    "firmware/components/nofrendo/nes/ppu.h": {
+      "before_sha256": "1c5a5da1be6a6fe87e0f238d073af7e9a79a782f72b30ae3c7c557858e457558",
+      "sha256": "1c5a5da1be6a6fe87e0f238d073af7e9a79a782f72b30ae3c7c557858e457558"
+    },
+    "firmware/components/nofrendo/nes/nes.c": {
+      "before_sha256": "76e4a752a9fbd6b4e9261031587a9fbff15dfc950a128a85e0b7851bb251af61",
+      "sha256": "76e4a752a9fbd6b4e9261031587a9fbff15dfc950a128a85e0b7851bb251af61"
+    },
+    "firmware/components/nofrendo/nes/checkpoint.c": {
+      "before_sha256": "3c638a97cc624c65c6139e9b7cc905e8c34f145ca6ef53dc6e36e55408d70bda",
+      "sha256": "3c638a97cc624c65c6139e9b7cc905e8c34f145ca6ef53dc6e36e55408d70bda"
+    },
+    "firmware/sdkconfig": {
+      "before_sha256": "cdcd8cbea3408a7c32292c596694edd591e7687469dd11dda817ce20922a0099",
+      "sha256": "cdcd8cbea3408a7c32292c596694edd591e7687469dd11dda817ce20922a0099"
+    },
+    "firmware/sdkconfig.defaults": {
+      "before_sha256": "3a7b31a9e2d2c2be07a7ad34ce18b6d85d82ac9e9bc41ebbf3adbd6c0dbc2876",
+      "sha256": "3a7b31a9e2d2c2be07a7ad34ce18b6d85d82ac9e9bc41ebbf3adbd6c0dbc2876"
+    },
+    "firmware/partitions.csv": {
+      "before_sha256": "c6bc795a9cbe8e3167f27bbffdbd014b427180ac848bc3560b3553d766d62f86",
+      "sha256": "c6bc795a9cbe8e3167f27bbffdbd014b427180ac848bc3560b3553d766d62f86"
+    },
+    "tooling/firmware/fixtures/superseded-contracts.json": {
+      "before_sha256": "6b81a7b4d6a69883ad9f16cada5d3a40a940067c9f03020443eba8d58b385cff",
+      "sha256": "6b81a7b4d6a69883ad9f16cada5d3a40a940067c9f03020443eba8d58b385cff"
+    }
+  }
+}

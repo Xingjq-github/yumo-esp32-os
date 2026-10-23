@@ -1,0 +1,56 @@
+# Generated output, downloaded dependencies, private runtime data.
+/artifacts/
+/runtime/
+/dependencies/
+/firmware/managed_components/
+/firmware/generated/
+/firmware/sdkconfig.old
+**/__pycache__/
+*.pyc
+*.pyo
+*.log
+/.venv/
+/.idea/
+/.vscode/
+.DS_Store
+Thumbs.db
+
+# Each checkout initializes its own matching firmware/server identity.
+/firmware/vault-sync-key.properties
+/firmware/vault-connection.json
+/firmware/main/core/vault_builtin.hpp
+/server/vault-sync-key.properties
+/server/deployment/local-keys.json
+/packaging/pc/local-config.json
+/packaging/nas/.env
+
+# Local assistant memory and instructions never belong in this repository.
+/AGENTS.md
+/CLAUDE.md
+/GEMINI.md
+/MEMORY.md
+**/project-memory.md
+**/MEMORY.md
+**/memory.md
+**/memory/
+/docs/working-rules.md
+/.agents/
+/.codex/
+/.joycode/
+/.stfolder*/
+/docs/verification/
+
+# Private credentials and device data.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.sqlite
+*.sqlite3
+*.db
+*.db-wal
+*.db-shm
+*.sav

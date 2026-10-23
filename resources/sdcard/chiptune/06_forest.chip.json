@@ -1,0 +1,24 @@
+{
+  "format": "chip-score",
+  "version": 1,
+  "title": "雨墨·森林散步",
+  "tempo": 88,
+  "loop": true,
+  "tracks": [
+    {
+      "id": "lead",
+      "wave": "pulse",
+      "duty": 0.5,
+      "volume": 0.62,
+      "gate": 0.88,
+      "notes": "O5 L8 E G A G E D C D E G B A G E D4 D F A G F D C D F A O6 C O5 B A G F4 C E G E D E A G E C D E G E C4 D G B G E G O6 C O5 A G E D B O4 G2 O5 L8 E G A G E D C D E G B A G E D4 D F A G F D C D F A O6 C O5 B A G F4 C E G E D E A G E C D E G E C4 D G B G E G O6 C O5 A G E D B O4 G2"
+    },
+    {
+      "id": "bass",
+      "wave": "triangle",
+      "volume": 0.55,
+      "gate": 0.85,
+      "notes": "O3 L2 C G C G D A D A F C F C G D G C O3 L2 C G C G D A D A F C F C G D G C"
+    }
+  ]
+}

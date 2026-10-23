@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "keys": {
+    "a": "Z",
+    "b": "X",
+    "select": "Tab",
+    "start": "Enter",
+    "up": "Up",
+    "down": "Down",
+    "left": "Left",
+    "right": "Right",
+    "pause": "Space",
+    "exit": "Escape"
+  }
+}

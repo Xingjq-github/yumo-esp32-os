@@ -1,0 +1,7 @@
+#pragma once
+// Generated. Edit firmware/vault-sync-key.properties, not this header.
+#include <cstdint>
+namespace vault::builtin {
+inline constexpr uint8_t DeployKey[] = {@YUMO_SYNC_KEY_BYTES@};
+static_assert(sizeof(DeployKey) == 32, "Sync key must be 32 bytes");
+}

@@ -1,0 +1,30 @@
+{
+  "format": "chip-score",
+  "version": 1,
+  "title": "欢乐颂·方波",
+  "tempo": 112,
+  "loop": true,
+  "tracks": [
+    {
+      "id": "lead",
+      "wave": "pulse",
+      "duty": 0.5,
+      "volume": 0.62,
+      "gate": 0.88,
+      "notes": "O5 L4 E E F G G F E D C C D E E4 D8 D8 D2 E E F G G F E D C C D E D4 C8 C8 C2 O5 L4 E E F G G F E D C C D E E4 D8 D8 D2 E E F G G F E D C C D E D4 C8 C8 C2"
+    },
+    {
+      "id": "bass",
+      "wave": "triangle",
+      "volume": 0.55,
+      "gate": 0.85,
+      "notes": "O3 L2 C G C G F C G G C G C G F G C C O3 L2 C G C G F C G G C G C G F G C C"
+    },
+    {
+      "id": "drums",
+      "wave": "percussion",
+      "volume": 0.22,
+      "notes": "L8 K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H"
+    }
+  ]
+}

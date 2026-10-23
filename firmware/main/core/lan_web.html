@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>雨墨 · 局域网</title>
+<style>
+:root{color-scheme:light;--ink:#203332;--muted:#647976;--green:#167562;--line:#dbe7e1}*{box-sizing:border-box}body{margin:0;background:#f2f6f2;color:var(--ink);font:15px/1.6 system-ui,sans-serif}main{max-width:960px;margin:auto;padding:30px 20px 60px}header{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}h1{font-size:28px;letter-spacing:2px;margin:0}h2{font-size:20px;margin:0 0 8px}p{margin:8px 0;color:var(--muted)}.tag{background:#dfede3;color:var(--green);padding:5px 13px;border-radius:25px;font-size:12px}.tabs{display:flex;gap:8px;margin:20px 0}.tabs button{flex:1;padding:13px}.tabs .selected,button.primary{background:var(--green);color:white;border-color:var(--green)}button,.link{cursor:pointer;border:1px solid var(--line);border-radius:10px;background:white;color:var(--ink);padding:9px 15px;font:inherit;text-decoration:none;display:inline-block}button:hover,.link:hover{filter:brightness(.97)}button:disabled{opacity:.5;cursor:wait}button.danger{color:#a23c3c}input,select{border:1px solid var(--line);border-radius:9px;background:white;padding:11px;font:inherit;min-width:0}input:focus,select:focus{outline:2px solid #9bd2ba}input[type=password]{letter-spacing:5px;width:100%}.panel{background:white;border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 5px 25px #264c3906}.toolbar,.pager,.row,.filters{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.toolbar{margin:18px 0}.grow{flex:1}.path{font-family:ui-monospace,monospace;word-break:break-all;margin:12px 0}.muted,small{color:var(--muted)}#status{min-height:30px;color:var(--green);white-space:pre-wrap}#status.error{color:#a23c3c}.file{display:flex;gap:12px;align-items:center;padding:14px 0;border-top:1px solid var(--line)}.file .name{flex:1;min-width:0;overflow-wrap:anywhere}.file .name button{padding:0;border:0;text-align:left;color:var(--green)}.file .actions{display:flex;gap:6px;flex-wrap:wrap}.file .actions button,.file .actions a{padding:5px 10px;font-size:13px}.file .icon{font-size:24px;width:32px;text-align:center}.file small{display:block}.pager{justify-content:space-between;border-top:1px solid var(--line);padding-top:14px}.login{max-width:410px;margin:20px auto;padding:15px}.login button{width:100%;margin-top:16px}.filters{margin:16px 0}.filters select{flex:1}.filters input{flex:2;width:100%}.group{font-size:15px;margin:24px 0 10px;color:var(--green)}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px}.card{border:1px solid var(--line);border-radius:13px;padding:17px;background:#fbfdfb;overflow:hidden}.card h3{font-size:17px;margin:0 0 12px;overflow-wrap:anywhere}.field{margin:9px 0}.field .value{font-family:ui-monospace,monospace;white-space:pre-wrap;overflow-wrap:anywhere}.field button{padding:2px 9px;font-size:12px;margin-left:8px}.note{white-space:pre-wrap;overflow-wrap:anywhere}.copy-all{margin-top:12px;font-size:13px}progress{width:100%;height:10px;accent-color:var(--green)}[hidden]{display:none!important}.empty{text-align:center;padding:30px;color:var(--muted)}footer{font-size:12px;color:var(--muted);margin-top:20px;text-align:center}@media(max-width:600px){main{padding:20px 12px}.panel{padding:17px}.file{align-items:flex-start;flex-wrap:wrap}.file .actions{margin-left:44px}.cards{grid-template-columns:1fr}.tag{max-width:155px;text-align:center}h1{font-size:24px}}
+.icon{display:inline-flex;align-items:center;justify-content:center;flex:none;width:42px;height:42px;border-radius:12px;background:#edf4ef;color:var(--green)}.icon svg{display:block;width:25px;height:25px}.file .icon{width:42px}.icon-folder,.icon-archive{background:#fbf2df;color:#977024}.icon-image{background:#e6f1e8;color:#48845f}.icon-audio{background:#faebe7;color:#ad6b57}.icon-video,.icon-web{background:#e8eff7;color:#54799b}.icon-code,.icon-app{background:#eeebf8;color:#7965a3}button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offset:3px}.vault-nav{display:flex;gap:10px;align-items:center;margin:20px 0 15px;min-width:0}.vault-nav nav{display:flex;gap:7px;align-items:center;flex-wrap:wrap;min-width:0}.crumb{padding:3px 0;border:0;color:var(--green);border-radius:3px;text-align:left;overflow-wrap:anywhere}.crumb-current{min-width:0;overflow-wrap:anywhere;color:var(--muted)}.vault-heading{display:flex;gap:12px;align-items:baseline;justify-content:space-between;margin:12px 0 16px}.vault-heading h3{font-size:19px;margin:0;overflow-wrap:anywhere;min-width:0}.vault-heading small{flex-shrink:0}.navigation-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.category-button,.group-button{text-align:left;min-width:0;display:flex;align-items:center;gap:13px;padding:18px;border-radius:14px;background:#fbfdfb}.category-button{flex-direction:column;align-items:flex-start;gap:14px}.nav-copy{display:block;min-width:0;flex:1}.nav-copy strong{display:block;font-weight:600;font-size:17px;overflow-wrap:anywhere}.nav-copy small{display:block;margin-top:3px;overflow-wrap:anywhere}.chevron{color:var(--muted);flex:none;width:18px;height:18px}.filters input{flex:1}.group-button .icon{width:36px;height:36px;border-radius:10px}.group-button .icon svg{width:21px;height:21px}.cards{grid-template-columns:repeat(auto-fit,minmax(min(270px,100%),1fr))}@media(min-width:760px){.category-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}@media(max-width:600px){.file{display:grid;grid-template-columns:42px minmax(0,1fr);gap:9px 12px}.file .actions{grid-column:2;margin-left:0}.category-button{padding:16px}.group-grid{grid-template-columns:1fr}.vault-heading{align-items:flex-start}.vault-heading small{padding-top:4px}.vault-nav>button{padding:7px 12px;flex-shrink:0}}
+.category-top{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%}.category-count{white-space:nowrap;font-size:12px;font-variant-numeric:tabular-nums}.category-button .nav-copy small{font-size:12px}
+</style>
+<main>
+<header><div><h1>雨墨</h1><p>身边的文件与密码</p></div><span class="tag">设备热点 · 本地访问</span></header>
+<nav class="tabs"><button id="diskTab" class="selected">Wi-Fi 硬盘</button><button id="vaultTab">密码查看</button></nav>
+<div id="status" role="status" aria-live="polite"></div>
+<section id="disk" class="panel"><div class="row"><h2 class="grow">SD 卡文件</h2><button id="refresh">刷新</button></div><div id="path" class="path">/</div>
+<div class="toolbar"><button id="up">上一级</button><button id="mkdir">新建文件夹</button><button id="choose" class="primary">上传文件</button><input type="file" id="upload" multiple hidden></div>
+<progress id="progress" max="100" value="0" hidden></progress><small>单文件最大 256 MiB。同名文件请重命名后上传。</small><div id="files"></div>
+<div class="pager"><button id="prev">上一页</button><small id="page"></small><button id="next">下一页</button></div></section>
+<section id="vault" class="panel" hidden><div class="row"><h2 class="grow">密码查看</h2><button id="lock" hidden>锁定</button></div>
+<form id="login" class="login"><p>输入设备密码本的管理密码</p><input id="pin" type="password" inputmode="numeric" pattern="[0-9]{4,12}" minlength="4" maxlength="12" autocomplete="off" aria-label="设备管理密码" required><button class="primary">解锁查看</button><p><small>明文会话最长 5 分钟，离开此页自动锁定。</small></p></form>
+<div id="unlocked" hidden>
+<div id="vaultNav" class="vault-nav" hidden><button id="vaultBack" type="button">返回</button><nav id="vaultCrumbs" aria-label="密码分类路径"></nav></div>
+<div class="vault-heading"><h3 id="vaultTitle"></h3><small id="vaultCount"></small></div>
+<div id="vaultSearch" class="filters" hidden><input id="search" type="search" placeholder="搜索名称、账号或用途" aria-label="搜索当前分类"></div>
+<div id="vaultChoices"></div><div id="entries"></div></div></section>
+<footer>保持设备局域网 APP 开启 · 退出应用或深睡后停止服务</footer></main>
+<script>
+'use strict';
+const $=id=>document.getElementById(id),headers={'X-Yumo-Request':'1'};
+let current='/',offset=0,more=false,busy=false,records=[],generation=0,expiry;
+let vaultCategory=null,vaultGroup=null;
+const categories=[
+  {key:'work',name:'工作',detail:'单位 / 系统',icon:'work'},
+  {key:'app',name:'应用',detail:'应用名称 / 平台',icon:'app'},
+  {key:'web',name:'网页',detail:'网页账号',icon:'web'},
+  {key:'other',name:'其他',detail:'用途 / 码值',icon:'other'}
+];
+// Self-contained vector artwork: no platform glyphs, external fonts or network resources.
+const iconPaths={
+  folder:['M3 7V5a1 1 0 0 1 1-1h5l2 3h9a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7Z','M3 9h18'],
+  file:['M14 3H5v18h14V8l-5-5Z','M14 3v5h5'],
+  text:['M14 3H5v18h14V8l-5-5Z','M14 3v5h5M8 12h8M8 16h6'],
+  image:['M4 3h16v18H4Z','M4 16l5-5 4 4 3-3 4 4','M15 7h.01'],
+  audio:['M9 17V5l11-2v12M9 8l11-2','M9 17a3 2 0 1 1-3-2c2 0 3 1 3 2ZM20 15a3 2 0 1 1-3-2c2 0 3 1 3 2Z'],
+  video:['M3 5h18v14H3Z','m10 9 5 3-5 3Z'],
+  archive:['M4 4h16v17H4ZM3 4V2h18v2M12 4v10M9 14h6v4H9Z','M10 7h4M10 10h4'],
+  code:['m8 7-5 5 5 5m8-10 5 5-5 5m-3-14-2 18'],
+  work:['M3 7h18v14H3ZM8 7V3h8v4M3 12l9 3 9-3M12 12v5'],
+  app:['M3 3h7v7H3ZM14 3h7v7h-7ZM3 14h7v7H3ZM14 14h7v7h-7Z'],
+  web:['M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM3 12h18','M12 3c-5 5-5 13 0 18 5-5 5-13 0-18Z'],
+  other:['M4 4h8l9 9-8 8-9-9Z','M8 8h.01'],
+  account:['M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0ZM4 21v-2a8 6 0 0 1 16 0v2'],
+  chevron:['m9 5 7 7-7 7']
+};
+function vector(kind){const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');for(const [key,value]of Object.entries({viewBox:'0 0 24 24',fill:'none',stroke:'currentColor','stroke-width':'1.7','stroke-linecap':'round','stroke-linejoin':'round','aria-hidden':'true',focusable:'false'}))svg.setAttribute(key,value);for(const d of iconPaths[kind]||iconPaths.file){const path=document.createElementNS(svg.namespaceURI,'path');path.setAttribute('d',d);svg.append(path)}return svg}
+function icon(kind){const node=el('span',undefined,'icon icon-'+kind);node.dataset.icon=kind;node.append(vector(kind));return node}
+function fileKind(file){if(file.directory)return 'folder';const ext=file.name.split('.').pop().toLowerCase();if(['jpg','jpeg','png','gif','webp','bmp','svg','ico','heic'].includes(ext))return 'image';if(['mp3','wav','flac','aac','ogg','m4a'].includes(ext))return 'audio';if(['mp4','mov','mkv','avi','webm'].includes(ext))return 'video';if(['zip','7z','rar','tar','gz'].includes(ext))return 'archive';if(['c','cpp','h','hpp','js','ts','py','html','css','json','xml','sh'].includes(ext))return 'code';if(['txt','md','pdf','doc','docx','csv','xls','xlsx','log'].includes(ext))return 'text';return 'file'}
+function status(text,error=false){$('status').textContent=text;$('status').classList.toggle('error',error)}
+function el(tag,text,cls){const node=document.createElement(tag);if(text!==undefined)node.textContent=text;if(cls)node.className=cls;return node}
+function button(text,action,cls){const node=el('button',text,cls);node.type='button';node.onclick=action;return node}
+async function api(url,options={}){const response=await fetch(url,{...options,headers:{...headers,...options.headers},cache:'no-store'});if(!response.ok)throw new Error(await response.text()||'设备连接失败');return response.json()}
+function child(name){return(current==='/'?'':current)+'/'+name}
+function size(n){return n<1024?n+' B':n<1048576?(n/1024).toFixed(1)+' KiB':(n/1048576).toFixed(1)+' MiB'}
+function validName(name){return !!name&&name!=='.'&&name!=='..'&&!/[\\/:*?"<>|\x00-\x1f\x7f]/.test(name)&&!/[. ]$/.test(name)&&new TextEncoder().encode(name).length<=255}
+function controls(){for(const id of ['refresh','up','mkdir','choose','prev','next'])$(id).disabled=busy||(id==='up'&&current==='/')||(id==='prev'&&offset===0)||(id==='next'&&!more)}
+async function listing(){if(busy)return;busy=true;controls();try{const data=await api('/api/files?path='+encodeURIComponent(current)+'&offset='+offset);more=data.more;$('path').textContent=current;$('page').textContent='第 '+(offset/32+1)+' 页';$('files').replaceChildren();for(const file of data.entries){const path=child(file.name),row=el('div',undefined,'file'),name=el('div',undefined,'name');row.append(icon(fileKind(file)));if(file.directory)name.append(button(file.name,()=>{if(busy)return;current=path;offset=0;listing()}));else name.append(el('span',file.name));name.append(el('small',file.directory?'文件夹':size(file.bytes)));row.append(name);const actions=el('div',undefined,'actions');if(!file.directory){const link=el('a','下载','link');link.href='/api/download?path='+encodeURIComponent(path);link.download=file.name;actions.append(link)}actions.append(button('重命名',()=>rename(path,file.name)),button('删除',()=>remove(path,file.directory),'danger'));row.append(actions);$('files').append(row)}if(!data.entries.length)$('files').append(el('div','此文件夹为空','empty'));status('')}catch(error){status(error.message,true)}finally{busy=false;controls()}}
+async function mutate(url){if(busy)return;busy=true;controls();try{await api(url,{method:'POST'});busy=false;await listing()}catch(error){status(error.message,true)}finally{busy=false;controls()}}
+async function rename(path,name){const next=prompt('新的名称',name);if(next===null||next===name)return;if(!validName(next)){status('名称无效，不能包含路径分隔符或特殊字符',true);return}await mutate('/api/files?action=rename&path='+encodeURIComponent(path)+'&target='+encodeURIComponent(child(next)))}
+async function remove(path,directory){if(busy||!confirm('删除 '+path+'？'+(directory?' 文件夹内所有内容也将删除。':'')))return;busy=true;controls();try{await api('/api/files?path='+encodeURIComponent(path),{method:'DELETE'});busy=false;await listing()}catch(error){status(error.message,true)}finally{busy=false;controls()}}
+$('mkdir').onclick=()=>{const name=prompt('文件夹名称');if(name===null)return;if(!validName(name)){status('文件夹名称无效',true);return}mutate('/api/files?action=mkdir&path='+encodeURIComponent(child(name)))};
+$('up').onclick=()=>{current=current.substring(0,current.lastIndexOf('/'))||'/';offset=0;listing()};$('refresh').onclick=listing;$('prev').onclick=()=>{offset=Math.max(0,offset-32);listing()};$('next').onclick=()=>{offset+=32;listing()};$('choose').onclick=()=>$('upload').click();
+function sendFile(file){return new Promise((resolve,reject)=>{const request=new XMLHttpRequest();request.open('PUT','/api/upload?path='+encodeURIComponent(child(file.name)));request.setRequestHeader('X-Yumo-Request','1');request.timeout=30*60*1000;request.upload.onprogress=e=>{if(e.lengthComputable)$('progress').value=e.loaded/e.total*100};request.onerror=()=>reject(new Error('连接中断，文件未完整上传'));request.ontimeout=()=>reject(new Error('上传超时'));request.onload=()=>{if(request.status!==200){reject(new Error(request.responseText||'上传失败'));return}try{if(JSON.parse(request.responseText).bytes!==file.size)throw new Error('上传字节数不一致');resolve()}catch(error){reject(error)}};request.send(file)})}
+$('upload').onchange=async()=>{const files=[...$('upload').files];$('upload').value='';if(busy||!files.length)return;busy=true;controls();$('progress').hidden=false;try{for(const file of files){if(!validName(file.name)||file.size>256*1024*1024)throw new Error('文件名无效或大小超过256 MiB：'+file.name);$('progress').value=0;status('正在上传 '+file.name);await sendFile(file)}busy=false;await listing();status('已完整保存 '+files.length+' 个文件')}catch(error){status(error.message,true)}finally{busy=false;controls();$('progress').hidden=true}};
+function clearVault(){generation++;records=[];vaultCategory=null;vaultGroup=null;clearTimeout(expiry);$('pin').value='';for(const id of ['entries','vaultChoices','vaultCrumbs','vaultTitle','vaultCount'])$(id).replaceChildren();$('search').value='';$('vaultNav').hidden=true;$('vaultSearch').hidden=true;$('unlocked').hidden=true;$('login').hidden=false;$('lock').hidden=true}
+function lock(remote=true){clearVault();if(remote)fetch('/api/logout',{method:'POST',headers,keepalive:true}).catch(()=>{});}
+function tab(vault){if(!vault)lock();$('vault').hidden=!vault;$('disk').hidden=vault;$('vaultTab').classList.toggle('selected',vault);$('diskTab').classList.toggle('selected',!vault);status('');if(vault)$('pin').focus()}
+$('diskTab').onclick=()=>tab(false);$('vaultTab').onclick=()=>tab(true);$('lock').onclick=()=>lock();
+async function copy(value){try{if(navigator.clipboard&&window.isSecureContext)await navigator.clipboard.writeText(value);else{const area=el('textarea',value);area.style.position='fixed';area.style.opacity='0';document.body.append(area);area.select();const ok=document.execCommand('copy');area.value='';area.remove();if(!ok)throw new Error()}status('已复制')}catch(_){status('复制未获浏览器允许，可长按文本选择复制',true)}}
+function navigateCategory(key=null){vaultCategory=key;vaultGroup=null;$('search').value='';render()}
+function navigateGroup(key){vaultGroup=key;$('search').value='';render()}
+function groupKey(entry){return (vaultCategory==='web'?entry.username:entry.target)||''}
+function groupLabel(key){return key||(vaultCategory==='web'?'未填写账号':'未填写')}
+function choice(title,detail,kind,action,cls){const node=button(undefined,action,cls),copy=el('span',undefined,'nav-copy');copy.append(el('strong',title),el('small',detail));node.append(icon(kind),copy);if(cls==='group-button'){const arrow=vector('chevron');arrow.classList.add('chevron');node.append(arrow)}return node}
+function renderCards(entries){const cards=el('div',undefined,'cards');for(const entry of entries){const card=el('article',undefined,'card');card.append(el('h3',entry.title));for(const [label,value]of [...(vaultCategory==='other'?[]:[['账号',entry.username]]),[vaultCategory==='other'?'码值':'密码',entry.password]]){const field=el('div',undefined,'field');field.append(el('small',label),button('复制',()=>copy(value||'')),el('div',value||'—','value'));card.append(field)}if(entry.target)card.append(el('p',(vaultCategory==='work'?'单位 / 系统':vaultCategory==='app'?'应用 / 平台':'用途')+'：'+entry.target,'note'));if(entry.note)card.append(el('p','备注：'+entry.note,'note'));card.append(button('复制完整信息',()=>copy(entry.text),'copy-all'));cards.append(card)}$('entries').append(cards)}
+function render(){
+  $('entries').replaceChildren();$('vaultChoices').replaceChildren();$('vaultCrumbs').replaceChildren();
+  const category=categories.find(c=>c.key===vaultCategory);
+  $('vaultNav').hidden=!category;$('vaultSearch').hidden=!category;
+  if(!category){
+    $('vaultTitle').textContent='选择分类';$('vaultCount').textContent=records.length+' 条';
+    const grid=el('div',undefined,'navigation-grid category-grid');
+    for(const item of categories){const count=records.filter(e=>e.category===item.key).length;
+      const node=choice(item.name,item.detail,item.icon,()=>navigateCategory(item.key),'category-button');
+      const top=el('span',undefined,'category-top');top.append(node.firstElementChild,el('small',count+' 条','category-count'));node.prepend(top);
+      node.dataset.category=item.key;grid.append(node);
+    }
+    $('vaultChoices').append(grid);return;
+  }
+  const grouped=vaultCategory!=='other',inGroup=grouped&&vaultGroup!==null;
+  $('vaultCrumbs').append(button('全部分类',()=>navigateCategory(),'crumb'),el('span','/','muted'));
+  if(inGroup)$('vaultCrumbs').append(button(category.name,()=>navigateCategory(vaultCategory),'crumb'),el('span','/','muted'));
+  $('vaultCrumbs').append(el('span',inGroup?groupLabel(vaultGroup):category.name,'crumb-current'));
+  $('vaultTitle').textContent=inGroup?(vaultCategory==='web'?'用途列表':groupLabel(vaultGroup)):grouped?category.detail:category.name;
+  $('search').placeholder=grouped&&!inGroup?(vaultCategory==='web'?'搜索网页账号或用途':'搜索'+category.detail+'或名称'):'搜索名称、账号或用途';
+  const needle=$('search').value.trim().toLowerCase();
+  const filtered=records.filter(e=>e.category===vaultCategory&&(!inGroup||groupKey(e)===vaultGroup)&&[e.title,e.username,e.target,e.note].some(v=>(v||'').toLowerCase().includes(needle)));
+  if(grouped&&!inGroup){
+    const groups=new Map();for(const entry of filtered){const key=groupKey(entry);groups.set(key,(groups.get(key)||0)+1)}
+    $('vaultCount').textContent=groups.size+' 组 · '+filtered.length+' 条';
+    const grid=el('div',undefined,'navigation-grid group-grid');
+    for(const [key,count]of [...groups].sort((a,b)=>a[0].localeCompare(b[0],'zh-CN'))){
+      const detail=(key?'':'未设置'+(vaultCategory==='web'?'账号':category.detail)+' · ')+count+' 条'+(vaultCategory==='web'?'用途':'密码');
+      const node=choice(groupLabel(key),detail,vaultCategory==='web'?'account':category.icon,()=>navigateGroup(key),'group-button');
+      node.dataset.group=key;grid.append(node);
+    }
+    $('vaultChoices').append(grid);
+  }else{$('vaultCount').textContent=filtered.length+' 条';renderCards(filtered)}
+  if(!filtered.length)$('entries').append(el('div',needle?'没有符合条件的记录':'此分类暂无记录','empty'));
+}
+$('vaultBack').onclick=()=>{if(vaultGroup!==null)navigateCategory(vaultCategory);else navigateCategory()};$('search').oninput=render;
+$('login').onsubmit=async event=>{event.preventDefault();const own=++generation,pin=$('pin').value,submit=$('login').querySelector('button');$('pin').value='';submit.disabled=true;status('正在验证设备管理密码…');try{await api('/api/login',{method:'POST',body:pin});if(own!==generation)return;const entries=await api('/api/passwords');if(own!==generation)return;records=entries;$('login').hidden=true;$('unlocked').hidden=false;$('lock').hidden=false;expiry=setTimeout(()=>{lock();status('密码会话已到期，请重新登录')},290000);render();status('')}catch(error){if(own===generation){clearVault();status(error.message,true)}}finally{submit.disabled=false}};
+document.addEventListener('visibilitychange',()=>{if(document.hidden)lock()});window.addEventListener('pagehide',()=>lock());window.addEventListener('pageshow',event=>{if(event.persisted)lock()});listing();
+</script></html>

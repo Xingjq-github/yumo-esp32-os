@@ -1,0 +1,96 @@
+{
+  "source": "User IINE-1001/L1162 C-mode Xbox Wireless Controller, requested Up/Down/Left/Right/B/A; user confirmed connected and completed",
+  "capture": "controller-c-1.bin",
+  "capture_sha256": "b0712ec882953b6a95795d1124f69d95acbc89238f35f9945677ac7c3110be08",
+  "report_map_hex": "05 01 09 05 a1 01 85 01 09 01 a1 00 09 30 09 31 15 00 27 ff ff 00 00 95 02 75 10 81 02 c0 09 01 a1 00 09 32 09 35 15 00 27 ff ff 00 00 95 02 75 10 81 02 c0 05 02 09 c5 15 00 26 ff 03 95 01 75 0a 81 02 15 00 25 00 75 06 95 01 81 03 05 02 09 c4 15 00 26 ff 03 95 01 75 0a 81 02 15 00 25 00 75 06 95 01 81 03 05 01 09 39 15 01 25 08 35 00 46 3b 01 66 14 00 75 04 95 01 81 42 75 04 95 01 15 00 25 00 35 00 45 00 65 00 81 03 05 09 19 01 29 0f 15 00 25 01 75 01 95 0f 81 02 15 00 25 00 75 01 95 01 81 03 05 0c 0a b2 00 15 00 25 01 95 01 75 01 81 02 15 00 25 00 75 07 95 01 81 03 05 0f 09 21 85 03 a1 02 09 97 15 00 25 01 75 04 95 01 91 02 15 00 25 00 75 04 95 01 91 03 09 70 15 00 25 64 75 08 95 04 91 02 09 50 66 01 10 55 0e 15 00 26 ff 00 75 08 95 01 91 02 09 a7 15 00 26 ff 00 75 08 95 01 91 02 65 00 55 00 09 7c 15 00 26 ff 00 75 08 95 01 91 02 c0 c0",
+  "input_report_id": 1,
+  "input_handle": 39,
+  "reference_ids": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "samples": [
+    {
+      "action": "neutral",
+      "device_ms": 872917,
+      "report_hex": "00 80 ff 7f 00 80 ff 7f 00 00 00 00 00 00 00 00",
+      "expected_fc_pad": 0
+    },
+    {
+      "action": "Up",
+      "device_ms": 875153,
+      "report_hex": "00 80 ff 7f 00 80 ff 7f 00 00 00 00 01 00 00 00",
+      "expected_fc_pad": 16
+    },
+    {
+      "action": "release",
+      "device_ms": 875326,
+      "report_hex": "00 80 ff 7f 00 80 ff 7f 00 00 00 00 00 00 00 00",
+      "expected_fc_pad": 0
+    },
+    {
+      "action": "Down",
+      "device_ms": 875634,
+      "report_hex": "00 80 ff 7f 00 80 ff 7f 00 00 00 00 05 00 00 00",
+      "expected_fc_pad": 32
+    },
+    {
+      "action": "release",
+      "device_ms": 875798,
+      "report_hex": "00 80 ff 7f 00 80 ff 7f 00 00 00 00 00 00 00 00",
+      "expected_fc_pad": 0
+    },
+    {
+      "action": "Left",
+      "device_ms": 876038,
+      "report_hex": "00 80 ff 7f 00 80 ff 7f 00 00 00 00 07 00 00 00",
+      "expected_fc_pad": 64
+    },
+    {
+      "action": "release",
+      "device_ms": 876210,
+      "report_hex": "00 80 ff 7f 00 80 ff 7f 00 00 00 00 00 00 00 00",
+      "expected_fc_pad": 0
+    },
+    {
+      "action": "Right",
+      "device_ms": 876443,
+      "report_hex": "00 80 ff 7f 00 80 ff 7f 00 00 00 00 03 00 00 00",
+      "expected_fc_pad": 128
+    },
+    {
+      "action": "release",
+      "device_ms": 876615,
+      "report_hex": "00 80 ff 7f 00 80 ff 7f 00 00 00 00 00 00 00 00",
+      "expected_fc_pad": 0
+    },
+    {
+      "action": "B",
+      "device_ms": 876773,
+      "report_hex": "00 80 ff 7f 00 80 ff 7f 00 00 00 00 00 01 00 00",
+      "expected_fc_pad": 2
+    },
+    {
+      "action": "release",
+      "device_ms": 876975,
+      "report_hex": "00 80 ff 7f 00 80 ff 7f 00 00 00 00 00 00 00 00",
+      "expected_fc_pad": 0
+    },
+    {
+      "action": "A",
+      "device_ms": 877163,
+      "report_hex": "00 80 ff 7f 00 80 ff 7f 00 00 00 00 00 02 00 00",
+      "expected_fc_pad": 1
+    },
+    {
+      "action": "release",
+      "device_ms": 877366,
+      "report_hex": "00 80 ff 7f 00 80 ff 7f 00 00 00 00 00 00 00 00",
+      "expected_fc_pad": 0
+    }
+  ]
+}

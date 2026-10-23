@@ -1,0 +1,12 @@
+{
+  "files": {
+    "firmware/main/core/fc_video.hpp": {
+      "before_sha256": "1bf446a67ad5a1d39f0e3a4784fe24d0628257c97c1a0e8ff659335bcd8f101e",
+      "sha256": "ced704c01b8fcf446963969ff5c05d2e6baf60ed49a6897ccf5f0f4a81f5a23a"
+    },
+    "firmware/main/apps/fc_player.cpp": {
+      "before_sha256": "37ca0b227a1f7a229cd7c153acfdf22dc7b8bf240d8c781c40957bdb98bf4272",
+      "sha256": "de0117a471a2f968a8982b0e5fa10a066db7340dea7094e18e88222209731284"
+    }
+  }
+}

@@ -1,0 +1,2506 @@
+{
+  "files": {
+    "build/01_factory.bin": {
+      "sha256": "6b2c3a3cc8a5bfce62a35c7f9b02f26c9e98bffba040d27d7cadc3983c716c8f"
+    },
+    "components/app_framework/CMakeLists.txt": {
+      "sha256": "c999a8a2cc46c979cf379a7ed99bd6e05d3690951a85a7082c9f3639f9d39ed9"
+    },
+    "components/app_framework/include/app_framework/app_base.hpp": {
+      "sha256": "86e45ee65a8e9d2279282edab4344da7329d23677f30f0141c9d90629f003496"
+    },
+    "components/brookesia_app_clock/CMakeLists.txt": {
+      "sha256": "e24647632f3a8e24e2c6afce9f1c68e3cd77f85e94b52060bdb75467411981e2"
+    },
+    "components/brookesia_app_clock/esp_brookesia_app_clock.cpp": {
+      "sha256": "4c0fea3ae8c33b7ffea68f0207547bc052fcc80bc253ad97ee57a328e28896c2"
+    },
+    "components/brookesia_app_clock/esp_brookesia_app_clock.hpp": {
+      "sha256": "63b0cef6ee5da1c14c6f3e3a47c7778fc49714db532e1614b7654928d0e72776"
+    },
+    "components/brookesia_app_clock/esp_brookesia_app_clock_icon.c": {
+      "sha256": "5c08176675e65a2f4b67ca77bd1193b4714595ec96ecc3035a9eed70ecaa96c5"
+    },
+    "components/brookesia_app_settings/CMakeLists.txt": {
+      "sha256": "ae8ae7fb534d53f6f1d867f762962defdbdbfc002aa03dbec2899999bdf83711"
+    },
+    "components/brookesia_app_settings/esp_brookesia_app_settings.cpp": {
+      "sha256": "daf15881f5432e7327c03424ede97b97bac083336fe0ff22a0b7168dfbd94c0f"
+    },
+    "components/brookesia_app_settings/esp_brookesia_app_settings.hpp": {
+      "sha256": "6fde6dba1de8ed1b0f215379af69c8ee6aff1d662682cc0dc8f978ee27a782e2"
+    },
+    "components/brookesia_app_settings/esp_brookesia_app_settings_icon.c": {
+      "sha256": "49db2c27b8d16863b58109f6be1a79dee8b1dc127ad43b3fcc5f796d1685a96d"
+    },
+    "components/brookesia_app_squareline_demo/assets/esp_brookesia_app_icon_launcher_squareline_112_112.c": {
+      "sha256": "4066465662de6064d59664dc7e4b3b7dd365460173fdd94921e7621e59fbfc19"
+    },
+    "components/brookesia_app_squareline_demo/assets/esp_brookesia_app_icon_launcher_squareline_112_112.png": {
+      "sha256": "9b9504ceb47fd5317c0e6ae0d8b4c8f669c54bb268b9cf56f6386564111dfff2"
+    },
+    "components/brookesia_app_squareline_demo/CMakeLists.txt": {
+      "sha256": "01ddf8991f726cccff574662e942ab049765171e4c31ac5eed5aca0db5ffac6d"
+    },
+    "components/brookesia_app_squareline_demo/esp_brookesia_app_squareline_demo.cpp": {
+      "sha256": "502682d27b5c772788fe571bf0451a92ab96e42e119436c2d1f63b2ec74fb249"
+    },
+    "components/brookesia_app_squareline_demo/esp_brookesia_app_squareline_demo.hpp": {
+      "sha256": "37d21ad865dedbac16226f849631214e2e1739b07287fab0fc5ea67cb92c7273"
+    },
+    "components/brookesia_app_squareline_demo/idf_component.yml": {
+      "sha256": "b89009bb8272b7de32339878336cddfe8b0c98cafa3e302359aa5b77d9632697"
+    },
+    "components/brookesia_app_squareline_demo/ui/components/ui_comp.h": {
+      "sha256": "7c78cf7ce1fa498727201fa14b4bb428632eea2e1db53d6ab5c162fc382cb1d9"
+    },
+    "components/brookesia_app_squareline_demo/ui/components/ui_comp_alarm_comp.c": {
+      "sha256": "0b37ece801d94a97ddaf455ceb53b814d19425cbab9a106d32352ddb5ac272c6"
+    },
+    "components/brookesia_app_squareline_demo/ui/components/ui_comp_alarm_comp.h": {
+      "sha256": "9d29c9ff386be433adaea1dc8bcd4188c74cfc89b6bb43a872a26036259fcaf5"
+    },
+    "components/brookesia_app_squareline_demo/ui/components/ui_comp_clock_dot.c": {
+      "sha256": "7639b97c5944503e1a1a1dfcdf5ee1a2ef60715d0aa66df1951573c1f8a41d8c"
+    },
+    "components/brookesia_app_squareline_demo/ui/components/ui_comp_clock_dot.h": {
+      "sha256": "abf9d5a725848ae680316debb3747389ee57a88db9d48e6d90e88d9fa1828060"
+    },
+    "components/brookesia_app_squareline_demo/ui/components/ui_comp_hook.c": {
+      "sha256": "c2da859bcf7d0b4c24fbe9c2b12c6f8ca84bbddea8638d9b4e61eda4414ebec7"
+    },
+    "components/brookesia_app_squareline_demo/ui/components/ui_comp_hook.h": {
+      "sha256": "c6cdb4988db9e0805f2bc21dff3560ce2388879f30c4369fec15fcd62db79966"
+    },
+    "components/brookesia_app_squareline_demo/ui/components/ui_comp_scrolldots.c": {
+      "sha256": "8515e1317738c9443a726c73c95c747b99022eea7b15e5dda55954ffadaa4b26"
+    },
+    "components/brookesia_app_squareline_demo/ui/components/ui_comp_scrolldots.h": {
+      "sha256": "d386b19f30875c447e717022ecc10d76503536976a25c74a14366dab8fa634ed"
+    },
+    "components/brookesia_app_squareline_demo/ui/components/ui_comp_small_label.c": {
+      "sha256": "883ab9d9c4c74489e92eba12c346739b5694f09c329a57f92de110107f49ea25"
+    },
+    "components/brookesia_app_squareline_demo/ui/components/ui_comp_small_label.h": {
+      "sha256": "6e517397a3419d788e62b51f69475df95aba3ec7e40f7991fa7bd556d711e5e7"
+    },
+    "components/brookesia_app_squareline_demo/ui/fonts/ui_font_Number.c": {
+      "sha256": "26e740c36ac14abf6c5396fd02d24cc32c8c38aeff8a601c68bb9b70f5a1c682"
+    },
+    "components/brookesia_app_squareline_demo/ui/images/ui_img_album_png.c": {
+      "sha256": "145b53d24fad8ee3171bf3bbf0edde04a93564701afd2a3ad19226041b95fb4c"
+    },
+    "components/brookesia_app_squareline_demo/ui/images/ui_img_avatar_png.c": {
+      "sha256": "e89c266692c781409d88093cb9ab098cb4adb200ffa0eabea2187d89c9eaf688"
+    },
+    "components/brookesia_app_squareline_demo/ui/images/ui_img_backward_png.c": {
+      "sha256": "6e261ecbd3bd27af976b17b38ca4d08deccb450e6de3f07594fd501a8839b6ae"
+    },
+    "components/brookesia_app_squareline_demo/ui/images/ui_img_chatbox2_png.c": {
+      "sha256": "7bf85f74f15c2d1310a9586220691e69f1317fce5aafa5bcaba86fbf7a74d2e7"
+    },
+    "components/brookesia_app_squareline_demo/ui/images/ui_img_chatbox_png.c": {
+      "sha256": "7a07d0dd48cade4625abdb11cf12683ccaed55d498e1b45f0acffde5708177c8"
+    },
+    "components/brookesia_app_squareline_demo/ui/images/ui_img_clock_hour_png.c": {
+      "sha256": "c4fe33ecc89324891ab6a73b2cb8e670fb08ae510e546ee8b3ef52dd7e1494eb"
+    },
+    "components/brookesia_app_squareline_demo/ui/images/ui_img_clock_min_png.c": {
+      "sha256": "9b683b9776d55437c2301320caffc462ada24275bd6935f5d22b333dacde3dce"
+    },
+    "components/brookesia_app_squareline_demo/ui/images/ui_img_clock_sec_png.c": {
+      "sha256": "87de784ff6f9bd89eccfab4dc97132062aabf88301726f2e8c551f6349f6d868"
+    },
+    "components/brookesia_app_squareline_demo/ui/images/ui_img_cloud_png.c": {
+      "sha256": "6c29aa429239ceeba5b1a288a0f8f28479e1bea4301458c65509b813972b9c7d"
+    },
+    "components/brookesia_app_squareline_demo/ui/images/ui_img_forward_png.c": {
+      "sha256": "e5398a2597315faf5408c9c79f99bdc8b0b9880fa8665bd599530a0951d94edf"
+    },
+    "components/brookesia_app_squareline_demo/ui/images/ui_img_pattern_png.c": {
+      "sha256": "d99922d4994519bd5d124fed58637e83bb6d4689ec3f78b586b5150d9298eab2"
+    },
+    "components/brookesia_app_squareline_demo/ui/images/ui_img_phone_png.c": {
+      "sha256": "de145139cc4da976bc012d1e224467f25e9263e71c5303ec25b5018f8e25c8a5"
+    },
+    "components/brookesia_app_squareline_demo/ui/images/ui_img_play_png.c": {
+      "sha256": "3907180a04d9b6eba831cb3099b96a7d011b848b2fa1fedc9eb3f666e7c172ea"
+    },
+    "components/brookesia_app_squareline_demo/ui/images/ui_img_sls_logo_png.c": {
+      "sha256": "fbd5f8ab6a0b54984482735fdb8adc450d332847965a17c2b2b8adf5fd7d0892"
+    },
+    "components/brookesia_app_squareline_demo/ui/images/ui_img_weather_1_png.c": {
+      "sha256": "79754516c1aea6c811a0eb99060f4747864ef2aff03929c762594ab391f332d4"
+    },
+    "components/brookesia_app_squareline_demo/ui/images/ui_img_weather_2_png.c": {
+      "sha256": "b66efb38ce9910c517b38befaac796261bc213a66db700f8425b4ce34b135ef4"
+    },
+    "components/brookesia_app_squareline_demo/ui/images/ui_img_weather_3_png.c": {
+      "sha256": "647ab186587b5fbf16466cff1c5a50beb40c3eb146a45226c2ac19e3e21c60c8"
+    },
+    "components/brookesia_app_squareline_demo/ui/screens/ui_screen_alarm.c": {
+      "sha256": "8c5290143fe20120627ae9cb7b3ea3e39f70bdeeb638655417894463996052d5"
+    },
+    "components/brookesia_app_squareline_demo/ui/screens/ui_screen_call.c": {
+      "sha256": "82715969b9c1f07018e6dd4d6098f04859e88e61520ae0ecefc87426851fc48a"
+    },
+    "components/brookesia_app_squareline_demo/ui/screens/ui_screen_chat.c": {
+      "sha256": "70b0894bf8515d61f6e78b68a8a50bc3792455d4f7e81b374f1ab0d5e9d9202a"
+    },
+    "components/brookesia_app_squareline_demo/ui/screens/ui_screen_clock.c": {
+      "sha256": "5a60348bbad6a0691718cb66be8f4971ee48e8d12ba28f1b0241f31a1649b0d3"
+    },
+    "components/brookesia_app_squareline_demo/ui/screens/ui_screen_music_player.c": {
+      "sha256": "ea987589211bf07774209e70835946d7beb3fc0d5cf35faacf77a9cd3b9aca39"
+    },
+    "components/brookesia_app_squareline_demo/ui/screens/ui_screen_splash.c": {
+      "sha256": "6e3fb459ccf8f826747717c9c249fc0acb4d34d82879a5612dc8487a7bfe7178"
+    },
+    "components/brookesia_app_squareline_demo/ui/screens/ui_screen_weather.c": {
+      "sha256": "a5a6a77e3c02dc8c3d5679cdd51e64d29f36f3281874cea2875903adf3b20a60"
+    },
+    "components/brookesia_app_squareline_demo/ui/ui.c": {
+      "sha256": "95a5963905f4562c1b49e356a98f79ddcc2a84f060889b37f664142365ad4232"
+    },
+    "components/brookesia_app_squareline_demo/ui/ui.h": {
+      "sha256": "c2bb1ced8006843f22a9cd9708dbeb20257d9a4067a8fea678d44519dd4ba680"
+    },
+    "components/brookesia_core/ai_framework/agent/audio_processor.c": {
+      "sha256": "32bbf7d11f4bdc6cc65ca78bbd7029b5e480c25be665c91d6342b639a7e56618"
+    },
+    "components/brookesia_core/ai_framework/agent/audio_processor.h": {
+      "sha256": "b8b57ffcef4f0cc6036a7fb49a379a82001f8a2fc1f10bd37bdba6e711671b38"
+    },
+    "components/brookesia_core/ai_framework/agent/coze_chat_app.cpp": {
+      "sha256": "943700286b7927bcf94956786a8cf74c3c1574a418395745876efa4cf2529811"
+    },
+    "components/brookesia_core/ai_framework/agent/coze_chat_app.hpp": {
+      "sha256": "1f1bfc2456a7ab3ef0755ea683db62ce8d95afbdba37fc4c7adf418c4fa818e4"
+    },
+    "components/brookesia_core/ai_framework/agent/esp_brookesia_ai_agent.cpp": {
+      "sha256": "39cca5a871a95a2af7072a16f7431f3c5497d6960b2cec0e7f10c2dad16d03e6"
+    },
+    "components/brookesia_core/ai_framework/agent/esp_brookesia_ai_agent.hpp": {
+      "sha256": "2afa565bdfabdece49c6458c122eff56a614affcfbc42f4e6eefa18cae0346a2"
+    },
+    "components/brookesia_core/ai_framework/agent/esp_gmf_setup_peripheral.c": {
+      "sha256": "c7118a2721da8333626fe4de05969a0c0563d70beaeea18ed90dbfebd9e4f036"
+    },
+    "components/brookesia_core/ai_framework/agent/esp_gmf_setup_peripheral.h": {
+      "sha256": "ea98c376c70197d981cbca4d29979e2c7b89cbe5ae1ea3bccc4474e1e09d69b4"
+    },
+    "components/brookesia_core/ai_framework/agent/esp_gmf_setup_pool.c": {
+      "sha256": "b136ea5e43390690012241f2c154c0d4ff0914054a1f46461a40b21e964b03d6"
+    },
+    "components/brookesia_core/ai_framework/agent/esp_gmf_setup_pool.h": {
+      "sha256": "41cd5671b9b1e9c0729495cd54518fdd7614760910f6034cce9ca7d824778658"
+    },
+    "components/brookesia_core/ai_framework/agent/function_calling.cpp": {
+      "sha256": "962878c276884cd0c0c686c57e7e3232cd040132aa8b4d34dec7c49a30a9435f"
+    },
+    "components/brookesia_core/ai_framework/agent/function_calling.hpp": {
+      "sha256": "0fb0b5c5a3f9aec577eb02e5cbca98b88683c29084527df65bf8b4035fa1bf75"
+    },
+    "components/brookesia_core/ai_framework/agent/private/esp_brookesia_ai_agent_utils.hpp": {
+      "sha256": "28a784083c87afcbeab3ac59915c778bcda1c2fdcaf80c263edf9b2a6ea7ed13"
+    },
+    "components/brookesia_core/ai_framework/esp_brookesia_ai_framework_internal.h": {
+      "sha256": "9e9aeb29c227df8bd56462c604247e4ef8c671335a2c82f487a3ac9e41d07e33"
+    },
+    "components/brookesia_core/ai_framework/expression/esp_brookesia_ai_expression.cpp": {
+      "sha256": "1297bd14b497d4d4219df0a355964130f716eb8bef1f124f5eb9256e47a54949"
+    },
+    "components/brookesia_core/ai_framework/expression/esp_brookesia_ai_expression.hpp": {
+      "sha256": "2edf156132426c47e0b366a01f2a4670fdd464e61a34417137c247485ffd43dc"
+    },
+    "components/brookesia_core/ai_framework/expression/private/esp_brookesia_ai_expression_utils.hpp": {
+      "sha256": "0e5f0b5d3c46e50e0dc80c0d41be80c9c7be53523d25cd88f5d63569fad43aca"
+    },
+    "components/brookesia_core/ai_framework/Kconfig": {
+      "sha256": "94a9cd37afbfdf8e47ca61252d6d35f1c0b92ace564505f246c76f1fc46d59ff"
+    },
+    "components/brookesia_core/CHANGELOG.md": {
+      "sha256": "75e5f1f232f67fa6a1eaa7c3be83f819a561161b864ae54fb042d914f99c01a7"
+    },
+    "components/brookesia_core/CMakeLists.txt": {
+      "sha256": "d8c83902954dfb3a04432a4eafb732114555e4b7ac57d90f4e1a877c99bfd23e"
+    },
+    "components/brookesia_core/docs/_static/assets/animations/boot/boot_360_360.gif": {
+      "sha256": "3b5913daad1a45bac6c0640f44a0a2384220f43c60ad9989c513bc82f679c447"
+    },
+    "components/brookesia_core/docs/_static/assets/animations/emotion/emotion_angry_284_126.gif": {
+      "sha256": "3db01ceab157c77effb4e162529bffbd3d6684f6f64b3ce296518495c0bff798"
+    },
+    "components/brookesia_core/docs/_static/assets/animations/emotion/emotion_blink1_284_126.gif": {
+      "sha256": "b52e805c7cdbb6e7f2a82fa0392ef844dca4e7941c1d239dce20ccfa9d0a8e51"
+    },
+    "components/brookesia_core/docs/_static/assets/animations/emotion/emotion_blink_fast_284_126.gif": {
+      "sha256": "37321f68b81cccca68db76b4a3587804b095907d807a6eacc35901cc8ee12330"
+    },
+    "components/brookesia_core/docs/_static/assets/animations/emotion/emotion_blink_slow_284_126.gif": {
+      "sha256": "7fa3e0d8b24b429d3e3e3005f3d56f168786b553a2659458d3aae2789a0a92f8"
+    },
+    "components/brookesia_core/docs/_static/assets/animations/emotion/emotion_dizzy_284_126.gif": {
+      "sha256": "25c5d09b2f3467a0c41fc5d1d50df8a77e78beb63c50599073049fa714586644"
+    },
+    "components/brookesia_core/docs/_static/assets/animations/emotion/emotion_happy_284_126.gif": {
+      "sha256": "49bc2d917bbf5c725646e20eab101d8b0c1fa8ed794d7009cfd05532fb58bacd"
+    },
+    "components/brookesia_core/docs/_static/assets/animations/emotion/emotion_sad_284_126.gif": {
+      "sha256": "632d5b85515b0019dd943e21249e7c0e97a83586c034e1fc3e1193fd405c4cbb"
+    },
+    "components/brookesia_core/docs/_static/assets/animations/emotion/emotion_sleep_284_126.gif": {
+      "sha256": "e3e35a0f1c0cb21452d4b65d5307796b4ba6d4e5ab323385e65122151760a434"
+    },
+    "components/brookesia_core/docs/_static/assets/animations/icon/icon_brightness_down_64.gif": {
+      "sha256": "a4fd6526b9d0a2047c7fefb526f4705115d9ef67d4674c10d90fbc2ec9bedc9b"
+    },
+    "components/brookesia_core/docs/_static/assets/animations/icon/icon_brightness_up_64.gif": {
+      "sha256": "d760242594f9775f7123144b78ef6ce8024c888d71a81555841a5109d3ec4968"
+    },
+    "components/brookesia_core/docs/_static/assets/animations/icon/icon_emotion_confused_64.gif": {
+      "sha256": "7df030a87a579882248afd11b6c9f33e5c85a915423d76b03b7923b72671ad9f"
+    },
+    "components/brookesia_core/docs/_static/assets/animations/icon/icon_emotion_sleep_64.gif": {
+      "sha256": "43772d3bf6caceee26f1c773ff4fbf5632721b8558765d09a1dcc70a4e78e03b"
+    },
+    "components/brookesia_core/docs/_static/assets/animations/icon/icon_emotion_thinking_64.gif": {
+      "sha256": "3211eea46db14be01cf87b4cef55ce799c44b73811ba8b9800ebc7478c43c39e"
+    },
+    "components/brookesia_core/docs/_static/assets/animations/icon/icon_invalid_file_64.gif": {
+      "sha256": "e4e913fe9a7fba133df3b7baf3de8ad9e6337d87de5d181c6e5d2e6373980c6d"
+    },
+    "components/brookesia_core/docs/_static/assets/animations/icon/icon_server_connected_64.gif": {
+      "sha256": "286b37d454e7c5216a61916cfd50d21d359d14b85407a8c6979b185c372cb163"
+    },
+    "components/brookesia_core/docs/_static/assets/animations/icon/icon_server_connecting_64.gif": {
+      "sha256": "4bde678d41f570c74adf551a12becc23a42dd16725dc474eb5c4ace33220150f"
+    },
+    "components/brookesia_core/docs/_static/assets/animations/icon/icon_volume_down_64.gif": {
+      "sha256": "dd0a215c7b4b2186c52b84b9271ec13a827336fa330d971866d18bf2f018b594"
+    },
+    "components/brookesia_core/docs/_static/assets/animations/icon/icon_volume_mute_64.gif": {
+      "sha256": "9843360edd14316811733c3ba1d2bb4e350db524cb02b87804e5f7d6b9dc7ba4"
+    },
+    "components/brookesia_core/docs/_static/assets/animations/icon/icon_volume_up_64.gif": {
+      "sha256": "c7b1789532a2007f59606505cee58d65fee9b654d0e249e8faae9f40eff55cf0"
+    },
+    "components/brookesia_core/docs/_static/assets/animations/icon/icon_wifi_disconnect_64.gif": {
+      "sha256": "728feded59051138e74ef08b13c5f7ceb30a92e2c498ee1f71cb0de6fdd0e106"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/large/esp_brookesia_image_large_app_launcher_default_112_112.png": {
+      "sha256": "6dcdf142f332685357e417ec779ba6831321b7fd7320ccfe21cbf87d88d55715"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/large/esp_brookesia_image_large_navigation_bar_back_36_36.png": {
+      "sha256": "40ca4075d94a0fafff199b7165d5538d9f405d068fab760c5331dbb78a5e0520"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/large/esp_brookesia_image_large_navigation_bar_home_36_36.png": {
+      "sha256": "5cf7f233ad0aa3c136f0fe373dc383a60fbb97ef9e7404a44941b44ea017a87c"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/large/esp_brookesia_image_large_navigation_bar_recents_screen_36_36.png": {
+      "sha256": "17077e8ad3a65cdcf49ca876f65324d42fb1b03e21da44e4763e83f81dd8d1c5"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/large/esp_brookesia_image_large_recents_screen_trash_64_64.png": {
+      "sha256": "6e37e7f0d6333fd083a577eea3fbfea598ca2bcc1f9ae00a4216cfe47c1a9902"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/large/esp_brookesia_image_large_status_bar_battery_charge_36_36.png": {
+      "sha256": "98e427336a709a523fe58225d4202201d2ab2a401ea3de553005ad9ccd25cbc2"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/large/esp_brookesia_image_large_status_bar_battery_level1_36_36.png": {
+      "sha256": "db2d9cd52d42b3391cfc62f6ea0c58ad9632a0b67e2d479329d221b5b0089f7e"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/large/esp_brookesia_image_large_status_bar_battery_level2_36_36.png": {
+      "sha256": "f515dda3939acbb4e0acb48fd586a5e09dbba9015a1d0729a12fd84b9174a331"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/large/esp_brookesia_image_large_status_bar_battery_level3_36_36.png": {
+      "sha256": "c7157700ed203f26c86cc3f32ef5bb4e2b26658e25a13fb5ec367f1f45f1216d"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/large/esp_brookesia_image_large_status_bar_battery_level4_36_36.png": {
+      "sha256": "1a38c2d1600c3d698ff15d23e7123ae1ffd3872953e02ef0471d3687b55040ff"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/large/esp_brookesia_image_large_status_bar_wifi_close_36_36.png": {
+      "sha256": "400dd20f551291ac4b3850878dc3dd90904c277b18d5000365d2b2755513fd17"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/large/esp_brookesia_image_large_status_bar_wifi_level1_36_36.png": {
+      "sha256": "44a823786a889ab033491fa108bc80566345051741f7713a6a34a5d16c011cbf"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/large/esp_brookesia_image_large_status_bar_wifi_level2_36_36.png": {
+      "sha256": "81c3c57592e94de4490ef6a9e15a345cd8ed0c095c050d428a1d2639bcc051e5"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/large/esp_brookesia_image_large_status_bar_wifi_level3_36_36.png": {
+      "sha256": "f4412beae6e66dc2102b166d42434f934886183992f12781205010745c98b54e"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/large/esp_brookesia_image_large_wallpaper_dark_720_720.png": {
+      "sha256": "ae2d1b815befdc670d5bced9387cd18994ac75d3fb811e31a681ce6583f9f802"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/large/esp_brookesia_image_large_wallpaper_dark_720_720_opa.png": {
+      "sha256": "da275bf8991536b038d65a7068710134056f6c4042bb9ec188c7eecc8380cf7f"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/middle/esp_brookesia_image_middle_app_launcher_default_112_112.png": {
+      "sha256": "6dcdf142f332685357e417ec779ba6831321b7fd7320ccfe21cbf87d88d55715"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/middle/esp_brookesia_image_middle_navigation_bar_back_32_32.png": {
+      "sha256": "97c34f37c229b30fccb2a18749b59baae461e8312675e15d11e8b1608df830bd"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/middle/esp_brookesia_image_middle_navigation_bar_home_32_32.png": {
+      "sha256": "cb3d8d637675a3e4d7cee4c02f08241bcdb975e74e5e0b352380fda8749ee43e"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/middle/esp_brookesia_image_middle_navigation_bar_recents_screen_32_32.png": {
+      "sha256": "69e089f64424cab10a909be2f4868812bdf593096ddd4445416a99386e3a5421"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/middle/esp_brookesia_image_middle_recents_screen_trash_48_48.png": {
+      "sha256": "f63b2ec2a105639508495033fac6750e953b836d71bb411d86fce1e24e824dd6"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/middle/esp_brookesia_image_middle_status_bar_battery_charge_24_24.png": {
+      "sha256": "0f6676d8ad40a0eacd2eebc23462e705f2b6fb8adf08a3ccd28df66d780c35b1"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/middle/esp_brookesia_image_middle_status_bar_battery_level1_24_24.png": {
+      "sha256": "af57dfd552254968f5c67804ef3158339df26ee0df71039d5b1c13f776bf9d42"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/middle/esp_brookesia_image_middle_status_bar_battery_level2_24_24.png": {
+      "sha256": "4d3d10b257e69e1e935025aa7848a65b5d80df290559bf078f57b2f098e8ccdc"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/middle/esp_brookesia_image_middle_status_bar_battery_level3_24_24.png": {
+      "sha256": "df037cfe4d9f28470aa36a205dc93b74e0179b4d4d9076ba7c6cdc057ff5f00d"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/middle/esp_brookesia_image_middle_status_bar_battery_level4_24_24.png": {
+      "sha256": "92a2307e1d4a083093779ab8eaec794c4c0add5cfa343d6f7c3bf05c6963c773"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/middle/esp_brookesia_image_middle_status_bar_wifi_close_24_24.png": {
+      "sha256": "f7af6e72c5fd39d0fa98cd1ef79d80bbc77942a9a091536ba6ee8d3550e706a4"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/middle/esp_brookesia_image_middle_status_bar_wifi_level1_24_24.png": {
+      "sha256": "415d1d3f1ae71d1e6cabc4a0c77b92448af11bdc6675981eec51cbed8fc1696f"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/middle/esp_brookesia_image_middle_status_bar_wifi_level2_24_24.png": {
+      "sha256": "11c8b0588e6d2976335371925eb8cb539ef0ae47d7897bcf54a30906ed57b1fc"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/middle/esp_brookesia_image_middle_status_bar_wifi_level3_24_24.png": {
+      "sha256": "55645ff03670e20c6e3c15a4105abd12d8d185078de5d6d82f6dfda49c04d72d"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/middle/esp_brookesia_image_middle_wallpaper_dark_480_480.png": {
+      "sha256": "575a5d0f653aa59c5a1d56df53fdbbbb373782047c2e1c4825c43509773c3bc1"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/middle/esp_brookesia_image_middle_wallpaper_dark_480_480_opa.png": {
+      "sha256": "c19bc6e6710ada19e895d24f38de0d8378ddeabc3e81e20deb403db217489de8"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/small/esp_brookesia_image_small_app_launcher_default_98_98.png": {
+      "sha256": "eb019a211e53320b443b9b78ceaace228d52f76ad19a99d491eaf9726c6d5ca2"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/small/esp_brookesia_image_small_navigation_bar_back_24_24.png": {
+      "sha256": "4c6688eec83d70ec22a75d5aee4b88c26d5046de242697a607f857db09bc0689"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/small/esp_brookesia_image_small_navigation_bar_home_24_24.png": {
+      "sha256": "8da61641a89cc59fce07bbe39ff48718a3597dc722b2260d28f2a4034b42c29b"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/small/esp_brookesia_image_small_navigation_bar_recents_screen_24_24.png": {
+      "sha256": "d0fe2e4c2312d640dce14cfe8646d2253feb0a209d9b260747db48aaf321338d"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/small/esp_brookesia_image_small_recents_screen_trash_38_38.png": {
+      "sha256": "93be79a7a33957a9cea2ccd78955dd7a098b2ff6fd23e25dc1576c07296a0992"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/small/esp_brookesia_image_small_status_bar_battery_charge_20_20.png": {
+      "sha256": "f50cc599c2cb9f44b14e7097a60c075ee46ac325c0c8efbff82497449d34a7ae"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/small/esp_brookesia_image_small_status_bar_battery_level1_20_20.png": {
+      "sha256": "149ec019d68c7c60cc80ec2cfb757ef352239c9f663efbac63ab29011a748b5b"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/small/esp_brookesia_image_small_status_bar_battery_level2_20_20.png": {
+      "sha256": "3f810365c3034180c605126f4af0308e539d1f4c92e306d90518fc5dea4518ef"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/small/esp_brookesia_image_small_status_bar_battery_level3_20_20.png": {
+      "sha256": "acac38dff9bcd654d8b347e28dc240d8e1472315d2bd6282f07c749f163c9901"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/small/esp_brookesia_image_small_status_bar_battery_level4_20_20.png": {
+      "sha256": "9dfa64481b3680ce155aa931882696e3e3b11716976744518f833d31e17e7f40"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/small/esp_brookesia_image_small_status_bar_wifi_close_20_20.png": {
+      "sha256": "80e5a26a15b3fa2aa5ca9da26f133a8f2775acbd9bc63f8393cb871b8b0d0828"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/small/esp_brookesia_image_small_status_bar_wifi_level1_20_20.png": {
+      "sha256": "30c6b3a6e1aa10aafbe69022646428b9263b949e2f07e708fa05a74b00feae5a"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/small/esp_brookesia_image_small_status_bar_wifi_level2_20_20.png": {
+      "sha256": "fdf4bf29bd7bf052e71f98c5b9ab4a1fd7f7f38729df85803ffecf8e67931396"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/small/esp_brookesia_image_small_status_bar_wifi_level3_20_20.png": {
+      "sha256": "a5ac8e363b86e1179fc9b37b57082f41901dec87ba430cf3ea72da731ab9b7a2"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/small/esp_brookesia_image_small_wallpaper_dark_240_240.png": {
+      "sha256": "ce5f67bea320ca534aa831669e156c67d1e1ed89af963268846d18ed2759da4e"
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/small/esp_brookesia_image_small_wallpaper_dark_240_240_opa.png": {
+      "sha256": "b04e3ca45344d429e03cf57ecd5c5170813d888b31fe4f02f72f848d5f7ac746"
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_battery_charge_20_20.png": {
+      "sha256": "f50cc599c2cb9f44b14e7097a60c075ee46ac325c0c8efbff82497449d34a7ae"
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_battery_level1_20_20.png": {
+      "sha256": "149ec019d68c7c60cc80ec2cfb757ef352239c9f663efbac63ab29011a748b5b"
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_battery_level2_20_20.png": {
+      "sha256": "3f810365c3034180c605126f4af0308e539d1f4c92e306d90518fc5dea4518ef"
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_battery_level3_20_20.png": {
+      "sha256": "acac38dff9bcd654d8b347e28dc240d8e1472315d2bd6282f07c749f163c9901"
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_battery_level4_20_20.png": {
+      "sha256": "9dfa64481b3680ce155aa931882696e3e3b11716976744518f833d31e17e7f40"
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_bluetooth_48_48.png": {
+      "sha256": "1f17fd4c17576e8cad1a3fd9e160223011153675102f6465964e952afcf3f1d7"
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_brightness_auto_48_48.png": {
+      "sha256": "c34dfb93f51cadfc9d960e92f9a4a3a6c62d0c8fe730a9dc04e03ed70dadf111"
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_brightness_high_48_48.png": {
+      "sha256": "ecfcab3e0051d66e8332e6e01fc111164ce988bf1c6d32c6032926255a108ce0"
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_brightness_low_48_48.png": {
+      "sha256": "b95b56423f7d94933bd0fa4b027dee51796aec7e2756f6173c2c6603de1d652d"
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_brightness_medium_48_48.png": {
+      "sha256": "9d549c3575dee54624e55dfe9daaae532c1ac9b58d124ec02f6076bbd8bc7579"
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_lock_48_48.png": {
+      "sha256": "95fbb8516ee1f89c69a50b812b82ed82fac83714f701a2428a0c2e5235f3aaea"
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_settings_48_48.png": {
+      "sha256": "1e290444cfc73eb7cecd91bab86d25189874d872098a14ab09ff5bf7ad88a163"
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_volume_high_48_48.png": {
+      "sha256": "49be26de1b088e021f533c62cf8e06e18e270c706c5c1aea1b3515dbce550476"
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_volume_low_48_48.png": {
+      "sha256": "7c608a2f6c447cb96961594932b1a5462179cd574d82192904db5bca35c33d53"
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_volume_medium_48_48.png": {
+      "sha256": "9bd035bf23d556c39ee62af2f4383b548f9678f3144d74a21abf9ac77e20ab3f"
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_volume_off_48_48.png": {
+      "sha256": "972bc58cd4945c53c367e0ee6e956384436dbd5a62e5023d2248a23af4f92a76"
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_wifi_48_48.png": {
+      "sha256": "57261d6d5edae86be341adfeaf531f9b95e66bc65731944b8b22d6e09e4ca062"
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_wifi_close_20_20.png": {
+      "sha256": "80e5a26a15b3fa2aa5ca9da26f133a8f2775acbd9bc63f8393cb871b8b0d0828"
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_wifi_level1_20_20.png": {
+      "sha256": "30c6b3a6e1aa10aafbe69022646428b9263b949e2f07e708fa05a74b00feae5a"
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_wifi_level2_20_20.png": {
+      "sha256": "fdf4bf29bd7bf052e71f98c5b9ab4a1fd7f7f38729df85803ffecf8e67931396"
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_wifi_level3_20_20.png": {
+      "sha256": "a5ac8e363b86e1179fc9b37b57082f41901dec87ba430cf3ea72da731ab9b7a2"
+    },
+    "components/brookesia_core/docs/_static/readme/app_launcher_demo.png": {
+      "sha256": "88435e7a9fab8bcc076bdc0e1df8b736bd821cfbcf8c96ed7194a48c3c1b1d94"
+    },
+    "components/brookesia_core/docs/_static/readme/navigation_bar_demo.png": {
+      "sha256": "5eba83da831678cf338d0356e213691cdab2c3392f4f7201095eb3a20f780666"
+    },
+    "components/brookesia_core/docs/_static/readme/recents_screen_demo.png": {
+      "sha256": "98ea0b11862dbfec6e11ce5825eb12ec33faa52b1371cece0a70b53e2adef1c4"
+    },
+    "components/brookesia_core/docs/_static/readme/status_bar_demo.png": {
+      "sha256": "178768aa99ff48c0c908620f5def806712bb0414471918bcdffc1d668adea9e3"
+    },
+    "components/brookesia_core/docs/_static/tools/stylesheet_calculator.xlsx": {
+      "sha256": "28ae8962fcb7985d5d2599990fc3bf4a2ae4b613e53970634ad4687bbccdb2fd"
+    },
+    "components/brookesia_core/docs/how_to_use.md": {
+      "sha256": "38a0c3803518869383a3ef8a7c7977ff40342684f13ca2e14f15027db78db2bc"
+    },
+    "components/brookesia_core/docs/how_to_use_CN.md": {
+      "sha256": "78befc3ffa4f8080d75d33d8641b4f64bd239fcd28cfd025a10d96f6d4898782"
+    },
+    "components/brookesia_core/docs/system_ui_phone.md": {
+      "sha256": "9ce17fcd3625e6868e0fa0929230bda3d28d79694e019af98953bd9eae44c9b9"
+    },
+    "components/brookesia_core/docs/system_ui_phone_CN.md": {
+      "sha256": "7af1c3911fbe410693c11bdc908c27647d99ea24924d5b4c5251d6a5cf15795a"
+    },
+    "components/brookesia_core/esp_brookesia.h": {
+      "sha256": "84f48df4a73daba36c89287e86224057bd9d5a5e9b608cfc2c12b4e1800035ec"
+    },
+    "components/brookesia_core/esp_brookesia.hpp": {
+      "sha256": "7e95c1dbf3fdf5a418531c450ade6adb0100241b9491ef458e56c030877e2a07"
+    },
+    "components/brookesia_core/esp_brookesia_internal.h": {
+      "sha256": "1a2a01d3ca47b450784c6fd0b78b35fccadbab6c069b60ae78a55157cd93a840"
+    },
+    "components/brookesia_core/gui/anim_player/esp_brookesia_anim_player.cpp": {
+      "sha256": "7910def8e99d22d18739662c559d2bd4354b6e7b15e432628541fc54fd54781d"
+    },
+    "components/brookesia_core/gui/anim_player/esp_brookesia_anim_player.hpp": {
+      "sha256": "e636edf9b128326604ce8ed727be7b2b343a6ee147a0dd7e6c5c6ee5b3908a60"
+    },
+    "components/brookesia_core/gui/anim_player/private/esp_brookesia_anim_player_utils.hpp": {
+      "sha256": "252d02535a206a6b6d5129ff31470db822a771bf861355367b7df53ebe08fd73"
+    },
+    "components/brookesia_core/gui/esp_brookesia_gui_internal.h": {
+      "sha256": "34540d932e62b2a82fb3014702ae0597e5f16288807d892c0dc03588b19a1b27"
+    },
+    "components/brookesia_core/gui/Kconfig": {
+      "sha256": "3e674acd775869357d6f4968f4ea8d930c751997f925c999021e6a9c6276fe3d"
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv.hpp": {
+      "sha256": "430e22955bb98c3f93da07c2cdb2999fa31c31c9d63888461537e3bc16d8634a"
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv_animation.cpp": {
+      "sha256": "1bf240fb5f129214326b0d117a7d148bf9c46c1a334f25b4f4245d04e618ed37"
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv_animation.hpp": {
+      "sha256": "7fd15e847dc6686e8a4945bd20e3f43dbcd4c04af2ef0c887ec65a067cc477a7"
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv_canvas.cpp": {
+      "sha256": "7a05dc9c094acb8dd43f1198ccde2ff10bcece995e012de708963b0b1553d85b"
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv_canvas.hpp": {
+      "sha256": "f970034793a36147d63a63cf685d5338629588389fddbde61b42cdc17d26992c"
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv_container.cpp": {
+      "sha256": "d1c1ff85b5476595b5f7292d57b5167c84c2088516400828278642832fcfbe4f"
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv_container.hpp": {
+      "sha256": "79e1a5184af16de28779cf06c0bad2b61c3f293e13d836708c99c704cfe4d6c0"
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv_display.cpp": {
+      "sha256": "d7e0cc1a534c66ede0dec8e60a93c349bb0ba2f73cfa088cf615e5595e4c31ad"
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv_display.hpp": {
+      "sha256": "b9aed2f605d0f055b16e8534c7763efa6e463dc17a3b394199b9bd4c3491f5dd"
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv_helper.cpp": {
+      "sha256": "c42e7266b6d56efa59a8f26acca1baaade1608158104f8f2abe922e2cd5bf1cd"
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv_helper.hpp": {
+      "sha256": "7bc87cb4fc3f71029511449927e0a9302bcec36336294140e7bbdc65c60a780e"
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv_lock.cpp": {
+      "sha256": "4576b17242171d68e5f608e278686b8d0214ab3af6d1bc902d4ebe15b660d582"
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv_lock.hpp": {
+      "sha256": "03c2ff5bc49805f909f4699858f17b627905c7b8f5e01229f6d52b6d33efed33"
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv_object.cpp": {
+      "sha256": "1b7ff4b7141d0a92a4b58763dfb9f927a2b169b6db4e04f407173d6b5e2d9262"
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv_object.hpp": {
+      "sha256": "7d521c1416144f5bef4529c29451aa310c6e05ddbc0f549fd64988a6098626ca"
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv_screen.cpp": {
+      "sha256": "b2429a31b5210f068f971742bc6989bc2fa98bbfc7fa37aaeb6ca60fa7c6f009"
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv_screen.hpp": {
+      "sha256": "13b994ab8ce22b9a92c8fd1d36e09ef736f9d055a2f4edf65abfa6b318c23669"
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv_timer.cpp": {
+      "sha256": "7042ff9097f9e26537c1e8a9c3d46e74217bdb94fbbbd33689bc0d667c073f0b"
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv_timer.hpp": {
+      "sha256": "6dbdf003135f2e96dd62ea9ebe115459cababd2bcafe12086c9c5b4424743f6f"
+    },
+    "components/brookesia_core/gui/lvgl/private/esp_brookesia_lv_utils.hpp": {
+      "sha256": "1bec58adf20fe21ff8b36ff58f8bf04cc31a9316638e6f331dbcf0440840b483"
+    },
+    "components/brookesia_core/gui/squareline/ui_comp/ui_comp.c": {
+      "sha256": "b7a6c53315d65424fa89fadf6ec3853aa4bb3aa9635229fc38cfd537a6d2c9fd"
+    },
+    "components/brookesia_core/gui/squareline/ui_comp/ui_comp.h": {
+      "sha256": "27fa8597e95bc0a8269ee9f7d7b4de5e874759fbdd053fd919a9a788097640d6"
+    },
+    "components/brookesia_core/gui/squareline/ui_helpers/ui_helpers.c": {
+      "sha256": "04c5c1d54bc09f7bf913e3374e0f4209202d3ff002a0b14d718d504c4969966f"
+    },
+    "components/brookesia_core/gui/squareline/ui_helpers/ui_helpers.h": {
+      "sha256": "147924a3bd468fb152a73d0b7f02efb8d95d6637588fbc6dd09b8bdd7eabd889"
+    },
+    "components/brookesia_core/gui/style/esp_brookesia_gui_style.cpp": {
+      "sha256": "b35e8d150dbbd9b9567b6bfad770bc9dddcdbaf01e575c1dccf5eec47699602e"
+    },
+    "components/brookesia_core/gui/style/esp_brookesia_gui_style.hpp": {
+      "sha256": "c99aa1c0dacaf116f1790ad7951682676e317baeeba78137f32b79a2f6048488"
+    },
+    "components/brookesia_core/gui/style/esp_brookesia_gui_stylesheet_manager.hpp": {
+      "sha256": "95e8002210ebaf98db96caff43c089ff8b995114b1011f71b45b1be40b25d278"
+    },
+    "components/brookesia_core/gui/style/private/esp_brookesia_gui_style_utils.hpp": {
+      "sha256": "b0f2392bc15f531ce104ec4cd9bbed000d5e95d860e8a794a4f5ea655550e600"
+    },
+    "components/brookesia_core/idf_component.yml": {
+      "sha256": "594d47a059dccacdd22ff46ea97b2e7288a64cf60d4aa9875263582919aab6a3"
+    },
+    "components/brookesia_core/Kconfig": {
+      "sha256": "f65d9b37e5a0c67aa88a0b12457bd8f8c3b2b38ec44e4d54b7a59cbd0bdc9850"
+    },
+    "components/brookesia_core/license.txt": {
+      "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5"
+    },
+    "components/brookesia_core/README.md": {
+      "sha256": "db1ed253efac421c36d0df8eb608b4c21ece512ad842982024367ef35a703383"
+    },
+    "components/brookesia_core/README_CN.md": {
+      "sha256": "52ef914eaa3224a97cc618921c7197801d68c25ec05ab9b9d99bab123992e6bd"
+    },
+    "components/brookesia_core/services/esp_brookesia_services_internal.h": {
+      "sha256": "5d52cc37aad294c9fab043438eddf7b9bb178385f30fed15d723b711c7abc477"
+    },
+    "components/brookesia_core/services/Kconfig": {
+      "sha256": "079079a3ecaf9571f0cfc080544c171582f0fc280dba525e555a78fcf9a2fcb4"
+    },
+    "components/brookesia_core/services/storage_nvs/esp_brookesia_service_storage_nvs.cpp": {
+      "sha256": "2cdde23c9592b63cbc892908b393deb70a5a1020c0b45ba6422d01c1a53a7d4d"
+    },
+    "components/brookesia_core/services/storage_nvs/esp_brookesia_service_storage_nvs.hpp": {
+      "sha256": "c3d860759fb01a4ee1cb08c94050bc814c7310d53a1ed4b93fa7d36607229239"
+    },
+    "components/brookesia_core/services/storage_nvs/private/esp_brookesia_service_storage_nvs_utils.hpp": {
+      "sha256": "8aced8beec4b2aa969c5cec82af59a65fc0e6d2fa023b9d87c5d7282845b5485"
+    },
+    "components/brookesia_core/systems/base/assets/esp_brookesia_base_assets.h": {
+      "sha256": "20f61fef5750891be055c2cacfb0824117fdd41eefd3062c40f8709752655267"
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_10.c": {
+      "sha256": "6d9b330f82e0d91820510eda42ab4edc10044cf974f8f66c2730c369dc91c28e"
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_12.c": {
+      "sha256": "ab752660e3eda44d6b0743d937f1ab1529a8cb693a9e47ea8910f226fee11d4b"
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_14.c": {
+      "sha256": "2139131f7e8cb8d4a87589712bca02feeb66495511d9300513fa113df58b27d8"
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_16.c": {
+      "sha256": "50794c4dcd0ec3fd01d408de41d910446f52c4b92e466b96f22a19a0dcd611b0"
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_18.c": {
+      "sha256": "54f8fd60fdb910bc769bb30aa9bea7dc9fb4ae6057fdec26a5b90649f389425a"
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_20.c": {
+      "sha256": "ac57e0a3b9c4049ba3b080161ab879c45be34eb68a6760e5f34acaf641679c31"
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_22.c": {
+      "sha256": "792bdf8db72635c6f48eae7eeba5a66bcfee2aa7885f5db5d05d0c46504141a5"
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_24.c": {
+      "sha256": "16f99e6870f2884729e450a3658cf571fe87eebcf7e2abdbbd92bbfd1db70e3b"
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_26.c": {
+      "sha256": "0bd5491794ebec662354f6aa162fcdff89bc1aeccebe2ce704d7fe0d29f84b28"
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_28.c": {
+      "sha256": "f8435b7345a13a3f2f9b58bd7cb317df5cba72f1895e063afd6f9c403d8ad360"
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_30.c": {
+      "sha256": "4f3e11031e036ecedbfa1e175d658540e957f653b07d855b1f67e275c64a4e31"
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_32.c": {
+      "sha256": "08196bbfcca12cce81266469298d962f7d56ab68f8722e3ca6503e79c0574077"
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_34.c": {
+      "sha256": "a94872f29e1a57350c828ea6b6297e59a88fa6dbb28c733ec588d1bb5091d923"
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_36.c": {
+      "sha256": "6ddfc4a5b75389e20c5dc5ca8ecb8df435ba28d1fd7a22673f1f7ae9f39a70d8"
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_38.c": {
+      "sha256": "62ed2a09e76280bd1ba4a37f604e25128d7f666e3ffee4def75291d94ae3f2e5"
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_40.c": {
+      "sha256": "b6de47e3ba30a82c3bfe2afe31532f05397f3feb19cef2be9f467b66c1904d38"
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_42.c": {
+      "sha256": "ed01c66bfd12186688469713cfe4c427d1897efd1fe7b2aa6dc0d14ba0161b4e"
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_44.c": {
+      "sha256": "199a761bc22b58847d2b9c40628641112cf845bd7d629265f6e917cc5c14ec5e"
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_46.c": {
+      "sha256": "0efd8dff9a0e316a1f23cbbce9f1a99f4876f634b26f981a426ee52527568898"
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_48.c": {
+      "sha256": "33e7839db3d2f5e773c1e49530a9dc9bbbf58686b2ba4eef631bc1909a014ab4"
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_8.c": {
+      "sha256": "5dc1191a4ade4399a5aba24530bd4bd38d541a01192f6ca3d2995654c5bee625"
+    },
+    "components/brookesia_core/systems/base/esp_brookesia_base_app.cpp": {
+      "sha256": "62f5263c101b269afbc6437151cb46ea478ec10967f815e5d4a06597b8b9948f"
+    },
+    "components/brookesia_core/systems/base/esp_brookesia_base_app.hpp": {
+      "sha256": "a4bce226183d523e82804aeaea06b54c926d5b97a340a6d99602fa18362103d2"
+    },
+    "components/brookesia_core/systems/base/esp_brookesia_base_context.cpp": {
+      "sha256": "a137bc298584f48c2a383f31ff69f2adf671930bbce041f9d6d7d97632aca653"
+    },
+    "components/brookesia_core/systems/base/esp_brookesia_base_context.hpp": {
+      "sha256": "ad4e1032ee85280b7bb2b1b00e74754ab325f6baadbcb9734e5d3af24fbe989b"
+    },
+    "components/brookesia_core/systems/base/esp_brookesia_base_display.cpp": {
+      "sha256": "1163d4524c730fd86538f37abd861604c955a9781fdf03ad7575cfe4cb337695"
+    },
+    "components/brookesia_core/systems/base/esp_brookesia_base_display.hpp": {
+      "sha256": "3e07efbd0bdb9af2d726d87aaa888cf942fd906a2f81233a0dc4111e64362dd1"
+    },
+    "components/brookesia_core/systems/base/esp_brookesia_base_event.cpp": {
+      "sha256": "27318c6ed8fc3fe807b57e7637d04a4488b585fa719851c812a0721edef1fcf8"
+    },
+    "components/brookesia_core/systems/base/esp_brookesia_base_event.hpp": {
+      "sha256": "a30a6c2a40f65c9f52fe4bcbddc5d69acff1cda815be9d9f7671dc931c140960"
+    },
+    "components/brookesia_core/systems/base/esp_brookesia_base_manager.cpp": {
+      "sha256": "57b2b020c3a697a26e7c62a23443102954da807dcba1ae43c6e8822243d87e73"
+    },
+    "components/brookesia_core/systems/base/esp_brookesia_base_manager.hpp": {
+      "sha256": "98e12970db56a1e9a33af54f2605fb4b4740ca545f5eb069aa0f6f7fe5bab6fa"
+    },
+    "components/brookesia_core/systems/base/private/esp_brookesia_base_utils.hpp": {
+      "sha256": "599e3377b8e6925429963146cb33877627f93b71e03889ecce92e2ff1f49d3e1"
+    },
+    "components/brookesia_core/systems/esp_brookesia_systems_internal.h": {
+      "sha256": "792e9798a22c9e1446dd81e256c3ff30bec8c43303a53dbe5f8d4112a1fb4132"
+    },
+    "components/brookesia_core/systems/Kconfig": {
+      "sha256": "3837a1bc6e99d5d1528383a3a5558d5b4d730e6f417e0cd1207de284ced2f3f6"
+    },
+    "components/brookesia_core/systems/phone/assets/esp_brookesia_phone_assets.h": {
+      "sha256": "a3aadcc023b62d1b0abe512f1e9932622e93afbb0af8809013b2aa243b6a47e5"
+    },
+    "components/brookesia_core/systems/phone/assets/images/large/esp_brookesia_image_large_app_launcher_default_112_112.c": {
+      "sha256": "eaa36e711c71908da0a8f47fceb90b3e9094a70c9ea004800a230653f914bfc0"
+    },
+    "components/brookesia_core/systems/phone/assets/images/large/esp_brookesia_image_large_navigation_bar_back_36_36.c": {
+      "sha256": "d4281ee80f7aa471cf67f2b3dffc0b0bf74f0077f4aed64d698f108f830780a3"
+    },
+    "components/brookesia_core/systems/phone/assets/images/large/esp_brookesia_image_large_navigation_bar_home_36_36.c": {
+      "sha256": "80ec7f2dd04d11f28c3af4188604985013469fcbe521904b76b7e16e691e7aea"
+    },
+    "components/brookesia_core/systems/phone/assets/images/large/esp_brookesia_image_large_navigation_bar_recents_screen_36_36.c": {
+      "sha256": "dda43c49fae7e80ac298c3ddce1768e02f8dcf0e4a57797b5bcdf35f592a8d81"
+    },
+    "components/brookesia_core/systems/phone/assets/images/large/esp_brookesia_image_large_recents_screen_trash_64_64.c": {
+      "sha256": "3b5e36806a9ff506f1b763a219f12f9bd5a3bba5f4fa750c5d520a2826bb91dc"
+    },
+    "components/brookesia_core/systems/phone/assets/images/large/esp_brookesia_image_large_status_bar_battery_charge_36_36.c": {
+      "sha256": "2254a79a53e2ee7792b4b5f58904b4b058968216e0fb840b2db280b2fd9f5fa8"
+    },
+    "components/brookesia_core/systems/phone/assets/images/large/esp_brookesia_image_large_status_bar_battery_level1_36_36.c": {
+      "sha256": "9b172bdf7593329b915a1f7c4a6d5dc817c296185997a75e309adcf71e465591"
+    },
+    "components/brookesia_core/systems/phone/assets/images/large/esp_brookesia_image_large_status_bar_battery_level2_36_36.c": {
+      "sha256": "50622250fd2eeacfd3431f6293edbc4b2a59204d60be52f5e1c8ab8b534251e0"
+    },
+    "components/brookesia_core/systems/phone/assets/images/large/esp_brookesia_image_large_status_bar_battery_level3_36_36.c": {
+      "sha256": "1f7f3372414c1780b678469c4d589318dbb44d67a89b5d785475e4b9c991720d"
+    },
+    "components/brookesia_core/systems/phone/assets/images/large/esp_brookesia_image_large_status_bar_battery_level4_36_36.c": {
+      "sha256": "ad699278743684cb6e0e3034fa6c778b7a6d11c5843419d9ffba28e6c074f16b"
+    },
+    "components/brookesia_core/systems/phone/assets/images/large/esp_brookesia_image_large_status_bar_wifi_close_36_36.c": {
+      "sha256": "672aa400132aeb4065f5b575f31d8237de3f9c93f48c313285b048705c8b10b2"
+    },
+    "components/brookesia_core/systems/phone/assets/images/large/esp_brookesia_image_large_status_bar_wifi_level1_36_36.c": {
+      "sha256": "5caed99f9353ee613e19df3d02ef71a00259a963f40ef48c42c890d71f087d30"
+    },
+    "components/brookesia_core/systems/phone/assets/images/large/esp_brookesia_image_large_status_bar_wifi_level2_36_36.c": {
+      "sha256": "8d2dbcd0ca210af7f9a1d08dbcb3cda0c7f8eed5a440dc70b27d8d567c53eada"
+    },
+    "components/brookesia_core/systems/phone/assets/images/large/esp_brookesia_image_large_status_bar_wifi_level3_36_36.c": {
+      "sha256": "34615349982f9a1d30f569be2f45ce63571f1a4c36bb003cd240d58d98746158"
+    },
+    "components/brookesia_core/systems/phone/assets/images/large/esp_brookesia_image_large_wallpaper_dark_720_720.c": {
+      "sha256": "97bee32d15b09d55157be77e7526919febf147dd748f29641d1776311804031e"
+    },
+    "components/brookesia_core/systems/phone/assets/images/middle/esp_brookesia_image_middle_app_launcher_default_112_112.c": {
+      "sha256": "b36b385bb3792fa7e885e1bde5bd80bc8fbf26c6ee1464a6aa39d32018f37f02"
+    },
+    "components/brookesia_core/systems/phone/assets/images/middle/esp_brookesia_image_middle_navigation_bar_back_32_32.c": {
+      "sha256": "5ef1459f8b19810adcfbe37f500884c672138dbd16ee68b1c26c22976fab9907"
+    },
+    "components/brookesia_core/systems/phone/assets/images/middle/esp_brookesia_image_middle_navigation_bar_home_32_32.c": {
+      "sha256": "424960f1859771b5dfcf84b94bd0523fc48afed331ee2e50555ad896c1ac6adb"
+    },
+    "components/brookesia_core/systems/phone/assets/images/middle/esp_brookesia_image_middle_navigation_bar_recents_screen_32_32.c": {
+      "sha256": "a0c2ab876a42a1c94c14348da79c1676f11872f47b25efb67440b0abe2966a95"
+    },
+    "components/brookesia_core/systems/phone/assets/images/middle/esp_brookesia_image_middle_recents_screen_trash_48_48.c": {
+      "sha256": "6ba8344625457778b8e7eeb22a3370efcda2dfb408fc2ae82004468e54503f62"
+    },
+    "components/brookesia_core/systems/phone/assets/images/middle/esp_brookesia_image_middle_status_bar_battery_charge_24_24.c": {
+      "sha256": "bab29afbe6f754dac4189b638ce55b25b5b61960f25a1200bec21405528b80f3"
+    },
+    "components/brookesia_core/systems/phone/assets/images/middle/esp_brookesia_image_middle_status_bar_battery_level1_24_24.c": {
+      "sha256": "d62462c1d92a9e572f3c87d468ecfb83752a6cfc43c1be16c1577205a77404c5"
+    },
+    "components/brookesia_core/systems/phone/assets/images/middle/esp_brookesia_image_middle_status_bar_battery_level2_24_24.c": {
+      "sha256": "69b71e8978df6e01e38849cc3db8ceacac2e944c4ce579d48d0a6ae234517a48"
+    },
+    "components/brookesia_core/systems/phone/assets/images/middle/esp_brookesia_image_middle_status_bar_battery_level3_24_24.c": {
+      "sha256": "85e4be9f63fca6c51045bfed5cf9b767edd987b3e6975fd341231edfc1131527"
+    },
+    "components/brookesia_core/systems/phone/assets/images/middle/esp_brookesia_image_middle_status_bar_battery_level4_24_24.c": {
+      "sha256": "2cc3fa76ef00e9957acfc9f7b99abb5b5f0993c6bc65c6e805c69855bdf4856f"
+    },
+    "components/brookesia_core/systems/phone/assets/images/middle/esp_brookesia_image_middle_status_bar_wifi_close_24_24.c": {
+      "sha256": "feb93abbed449cecf39f2c47fe4d96cd6c6c9efb217ec34006bccaa725a30cc6"
+    },
+    "components/brookesia_core/systems/phone/assets/images/middle/esp_brookesia_image_middle_status_bar_wifi_level1_24_24.c": {
+      "sha256": "ba43f7233dea37b9e3f92eaad0e8b00eb2555229d7e795f4fb56792a429e2dc8"
+    },
+    "components/brookesia_core/systems/phone/assets/images/middle/esp_brookesia_image_middle_status_bar_wifi_level2_24_24.c": {
+      "sha256": "638a55833943e6b0cc4eea6fe98a3ab952d5c8e9a570a9eb010ac344628b6d9b"
+    },
+    "components/brookesia_core/systems/phone/assets/images/middle/esp_brookesia_image_middle_status_bar_wifi_level3_24_24.c": {
+      "sha256": "ebe6e12eb67a586e552374532e3cb4e925241567bee93a6631ad4c9bfd136fd3"
+    },
+    "components/brookesia_core/systems/phone/assets/images/middle/esp_brookesia_image_middle_wallpaper_dark_480_480.c": {
+      "sha256": "d2d935342cb3c519cc7611338f2c4c66ff0991eb488b52d9923288c65c068c4a"
+    },
+    "components/brookesia_core/systems/phone/assets/images/small/esp_brookesia_image_small_app_launcher_default_98_98.c": {
+      "sha256": "89dd07259e1c2c1e610c2e2580c275e8082bc95313480e60b502640762d21bdd"
+    },
+    "components/brookesia_core/systems/phone/assets/images/small/esp_brookesia_image_small_navigation_bar_back_24_24.c": {
+      "sha256": "86559e4583ca6e75f5d99e1c05dc680f5406b5fdde3eeae96668ef85c42f34ee"
+    },
+    "components/brookesia_core/systems/phone/assets/images/small/esp_brookesia_image_small_navigation_bar_home_24_24.c": {
+      "sha256": "fa6266953ace1d61773d5c0cc95f6b66c1c4d788925f7c4bc80a61130dac4923"
+    },
+    "components/brookesia_core/systems/phone/assets/images/small/esp_brookesia_image_small_navigation_bar_recents_screen_24_24.c": {
+      "sha256": "93576810b5fef2db8935a9649ae5340c41da67a781de64f4866a14b0c0b9f5df"
+    },
+    "components/brookesia_core/systems/phone/assets/images/small/esp_brookesia_image_small_recents_screen_trash_38_38.c": {
+      "sha256": "94cf37a460be167f17841de3073871ea51cba36520df84e68628068cef059d6e"
+    },
+    "components/brookesia_core/systems/phone/assets/images/small/esp_brookesia_image_small_status_bar_battery_charge_20_20.c": {
+      "sha256": "79d5ff93e5d30a815aab2948c80c485ece92fe1d5aeb91caffa325ef6a940839"
+    },
+    "components/brookesia_core/systems/phone/assets/images/small/esp_brookesia_image_small_status_bar_battery_level1_20_20.c": {
+      "sha256": "6ceebdd46f97ed1b2e76044010d283af22562f7d294a2451766e11411193a9c1"
+    },
+    "components/brookesia_core/systems/phone/assets/images/small/esp_brookesia_image_small_status_bar_battery_level2_20_20.c": {
+      "sha256": "0abbff98ec85cd3a8574a147425dba16c1a684f56328bc424560e74c6d07d7b0"
+    },
+    "components/brookesia_core/systems/phone/assets/images/small/esp_brookesia_image_small_status_bar_battery_level3_20_20.c": {
+      "sha256": "f86f2a66291f8910cbb3c0513b453010bde071ed23b5ac6f6a411be135b3f765"
+    },
+    "components/brookesia_core/systems/phone/assets/images/small/esp_brookesia_image_small_status_bar_battery_level4_20_20.c": {
+      "sha256": "ef8e10b510bb557661ac7181113f82d0592d0c365901d37b684af68c8e4510a4"
+    },
+    "components/brookesia_core/systems/phone/assets/images/small/esp_brookesia_image_small_status_bar_wifi_close_20_20.c": {
+      "sha256": "2423f29ee08e90314a7eede06354814313a3582a4c8098ae95c3d3e37e4e099f"
+    },
+    "components/brookesia_core/systems/phone/assets/images/small/esp_brookesia_image_small_status_bar_wifi_level1_20_20.c": {
+      "sha256": "f34c911eef1da40b8b820676c633335d70e0aa85a707137385fa52e8c0c79d9b"
+    },
+    "components/brookesia_core/systems/phone/assets/images/small/esp_brookesia_image_small_status_bar_wifi_level2_20_20.c": {
+      "sha256": "9d91d6a3c9d41b14006e3bd09964fe1cb1c514b0ad49fff3395eb6edb535a1be"
+    },
+    "components/brookesia_core/systems/phone/assets/images/small/esp_brookesia_image_small_status_bar_wifi_level3_20_20.c": {
+      "sha256": "403252c037d903dc3ae155a734b48c754c7001f08cc6a122d34c6e457bc935b6"
+    },
+    "components/brookesia_core/systems/phone/assets/images/small/esp_brookesia_image_small_wallpaper_dark_240_240.c": {
+      "sha256": "4e6c7c5220185d4af7a740fc6fdbfe07b5f2c9bebbe4b128b6cfd535849f172d"
+    },
+    "components/brookesia_core/systems/phone/esp_brookesia_phone.cpp": {
+      "sha256": "0d6b51fee6d459805369db50703bca0a2653680f018c4872b69fdc6b47344f53"
+    },
+    "components/brookesia_core/systems/phone/esp_brookesia_phone.hpp": {
+      "sha256": "5f02bf0a8231474909ea9825eaff1998591071a4db19fa40d50488ae6637116c"
+    },
+    "components/brookesia_core/systems/phone/esp_brookesia_phone_app.cpp": {
+      "sha256": "584f230167b98a14ebba284fe7fb8730a3f7d125152232c75d52aad9062d4b3b"
+    },
+    "components/brookesia_core/systems/phone/esp_brookesia_phone_app.hpp": {
+      "sha256": "e821e1efda74954bbbab858e6c5c3543c0e511a10c585cd2823ec1509ed2c3f1"
+    },
+    "components/brookesia_core/systems/phone/esp_brookesia_phone_display.cpp": {
+      "sha256": "db94100f609a9f42a4db15e068a4cd47149cd208818f0f3498e014939d6131fb"
+    },
+    "components/brookesia_core/systems/phone/esp_brookesia_phone_display.hpp": {
+      "sha256": "b2d1d9a97bdb1fd0a3a16eb2713c4cc1add662a1fdedc1d3933a9d59e383805e"
+    },
+    "components/brookesia_core/systems/phone/esp_brookesia_phone_manager.cpp": {
+      "sha256": "fbae688c04db6a9e994cc7f63377d43236c830c1ffaef77a70835fcac1691ac3"
+    },
+    "components/brookesia_core/systems/phone/esp_brookesia_phone_manager.hpp": {
+      "sha256": "d7c8b2c4e93bf76eb1c04547a5b833905c584c427dee91a5ed836d39438d5861"
+    },
+    "components/brookesia_core/systems/phone/private/esp_brookesia_phone_utils.hpp": {
+      "sha256": "7489fd320096f941149dc7b503fb22c6d26351c9220301fc9799b46d59101009"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/1024_600/dark/app_launcher_data.hpp": {
+      "sha256": "a879ec7f2cdb78cddde37a4d17bb6e8f2f53b22f280074fd44b259d72f8a4e1f"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/1024_600/dark/core_data.hpp": {
+      "sha256": "810a035864afbc062757a4c39e241418450b58d776eb9ccb2930761d747aefd4"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/1024_600/dark/gesture_data.hpp": {
+      "sha256": "5fef742212b670fb5e0177ac81d221b06b5b9467f67f98f31557bc145af3fc42"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/1024_600/dark/navigation_bar_data.hpp": {
+      "sha256": "e22a3ec91c50d47d5c30dfd1ff0926508042570f43d4618e84136268a2998ece"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/1024_600/dark/recents_screen_data.hpp": {
+      "sha256": "6b5e6c6a0ab33b125e8a1f3fbd1b18a6702ffea693defe7cd37fa704c1fa7810"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/1024_600/dark/status_bar_data.hpp": {
+      "sha256": "f03263bc70a1f364e4ad3bcc5aa3013105c9f9b6640f2bff04a0f94c686f189b"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/1024_600/dark/stylesheet.hpp": {
+      "sha256": "d844d092eee769b5f7bc98ccb87d1a0e30361c36e9670236e79dfbb555be8df6"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/1280_800/dark/app_launcher_data.hpp": {
+      "sha256": "12075810040710a428ea65cffad6af00c18b7581f32745f0b83abddb2b723c4a"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/1280_800/dark/core_data.hpp": {
+      "sha256": "fc095ad01b88e88e26b23c8606f578f090ef5da997ca8085af80f3db4b06871c"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/1280_800/dark/gesture_data.hpp": {
+      "sha256": "a4a828ed80b78bda7c42be87d146a4b8573dbf10ea429adb43cc7adcc0e7f718"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/1280_800/dark/navigation_bar_data.hpp": {
+      "sha256": "960c0a835ca9858ac44d4676c061a5e6e55567afdb44d7dcbd38ee479a843b2c"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/1280_800/dark/recents_screen_data.hpp": {
+      "sha256": "d0a03407110218e05993060bae6f3e99222dd3f0c300d6d24412d3641ca9b665"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/1280_800/dark/status_bar_data.hpp": {
+      "sha256": "19b1e4b8c5f69345d232387a86335e6799a4852b8cfda36aee26aad963bf66b9"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/1280_800/dark/stylesheet.hpp": {
+      "sha256": "e15e8070e12c310a227f9ccf4f84df6123ff57f4569925b838639b45902a2ba5"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/320_240/dark/app_launcher_data.hpp": {
+      "sha256": "88ac16849fb80d429d2261cd9bf51396e847594d437144646532f69da0d1266c"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/320_240/dark/core_data.hpp": {
+      "sha256": "6c69329fc379a916a2327d5bb9fef8a1776575e47b3947a9b0203859ffdcad48"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/320_240/dark/gesture_data.hpp": {
+      "sha256": "e0becfde3a396c1503b5098feaff3f3ebe8e8f0456bc545aad89d8afefe0b499"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/320_240/dark/navigation_bar_data.hpp": {
+      "sha256": "1d5f5cc5e6caeabd6fb9c83c20b1d42acf95d36551b003a176dc611e90341778"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/320_240/dark/recents_screen_data.hpp": {
+      "sha256": "e61fefe18b7c50a8c5ff65b9dbd21e14acb44d675454eed3a55296112b4af3b3"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/320_240/dark/status_bar_data.hpp": {
+      "sha256": "f1dc3efae53bdfd100649d75b58edde60d94576a2f08548784b344f46f202585"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/320_240/dark/stylesheet.hpp": {
+      "sha256": "7f4cdbf3c8a73c98e943f64b75286658bfc2430993581eda7cf4b523278d95ad"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/320_480/dark/app_launcher_data.hpp": {
+      "sha256": "ae440d0b0ba9348ccd34b26eabe155316428f3aefa2ba1731903ca76cef56a84"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/320_480/dark/core_data.hpp": {
+      "sha256": "0d04838b22a88d144362087520c801c80d3db1747895f6c8fb88c591ae03845c"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/320_480/dark/gesture_data.hpp": {
+      "sha256": "c674627593af0ebd3acace940b712b357070f08fbae55ff9df37a1d49a25815f"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/320_480/dark/navigation_bar_data.hpp": {
+      "sha256": "8ff557445e70a30dbd246ae22eb2f690ff3d6f967a257a6947aeb30e8ebdc1e6"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/320_480/dark/recents_screen_data.hpp": {
+      "sha256": "1b93393ceaccf0e0a1de92d10111300f8ff54f5c8e1a3883caa820cf6c3c143f"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/320_480/dark/status_bar_data.hpp": {
+      "sha256": "9d3717d25063f06973cc793c32fa7b8464deaea581ce4e91ace89027ae6e5ca7"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/320_480/dark/stylesheet.hpp": {
+      "sha256": "e33ebf3a6eb7fea0ecd6baf94679746c2beaadb4c041e655514b62ddc8ff3e2f"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/480_480/dark/app_launcher_data.hpp": {
+      "sha256": "1bc7f90baa29a660bae331dcb2788a2a6f1fcf2eea0d1e8aa834a9dea372a20a"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/480_480/dark/core_data.hpp": {
+      "sha256": "b3c09f88b472212330be237a19c8496f35f3365e504a6e79dca780bd1cadad0d"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/480_480/dark/gesture_data.hpp": {
+      "sha256": "759873337ab1cec5dabd575a566fa7133aabdc33e0534d6794571e2847405b6b"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/480_480/dark/navigation_bar_data.hpp": {
+      "sha256": "d16db38148154fc5d2171e6e668bb10312eb4cf38d244feffeebc851129a4f32"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/480_480/dark/recents_screen_data.hpp": {
+      "sha256": "91fcf4673e01cb01c087b3f6bef392a97bb76878ff1d089696fd79480e2a90e0"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/480_480/dark/status_bar_data.hpp": {
+      "sha256": "ce64988880fcc1bfa7f85a5f62cb9e9806d62d401fbaade980826f090f59844a"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/480_480/dark/stylesheet.hpp": {
+      "sha256": "d1dfff6e2ba634d17168930c61cf1bf511d1fa166df7cef127cc92239365d3b7"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/480_800/dark/app_launcher_data.hpp": {
+      "sha256": "1f5f3ef6d783dd2eb4e7bcb1de8d64ad634d01b94d8ab40318dd9a822c0f7779"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/480_800/dark/core_data.hpp": {
+      "sha256": "7546996e2a46ef2798fd9af9df0c4788590f8e6a4d0ac404c50719de950ba82e"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/480_800/dark/gesture_data.hpp": {
+      "sha256": "17dc1ef9efddba2508583226658a1f71bd0d41314170036f73c95f8c811ac4dd"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/480_800/dark/navigation_bar_data.hpp": {
+      "sha256": "ee4efa03a1c79a08dc14820c4a00143c325e6314d305196c19531c2fc56ed533"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/480_800/dark/recents_screen_data.hpp": {
+      "sha256": "6c8bfe2dc4245a47a24586e0e2897e4bbd3159bad12398facbca5db6ae4028e7"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/480_800/dark/status_bar_data.hpp": {
+      "sha256": "985f6df35838c67ce0db5e036293b71bcd555dbde5e0b3e9f22bcfc15d1566af"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/480_800/dark/stylesheet.hpp": {
+      "sha256": "a26e6b787d4a3f2505d4b14da61a2da14a2e60dbcb9c1c661adb522716c14aaa"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/720_1280/dark/app_launcher_data.hpp": {
+      "sha256": "bb10aa778b58f33381b6c471f2ff3f5f5b42a87315874bb0489d7d94530b50ea"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/720_1280/dark/core_data.hpp": {
+      "sha256": "036e36305ab2c250cf04a960017c74f5730bf79ebaab4c18e00b06012b162e98"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/720_1280/dark/gesture_data.hpp": {
+      "sha256": "2ec87429d472c23c8170f11e083768be14293f64bfa1d0c8c2debc1dc941ed49"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/720_1280/dark/navigation_bar_data.hpp": {
+      "sha256": "0ea1d3b466a3485b3f4d65a24c9f6ab245709bb6e2d2afa3d767597bb3470e1d"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/720_1280/dark/recents_screen_data.hpp": {
+      "sha256": "f1396934b2cfb1bd0968eb00b3f2c1196239d5bf8afa77f35b7ef9453034a01f"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/720_1280/dark/status_bar_data.hpp": {
+      "sha256": "42bd1326a6255574f73229d71a4d3d92e1b8f2b39e8887d34db29275e8be42a7"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/720_1280/dark/stylesheet.hpp": {
+      "sha256": "15da797671df80f84b252b2a89436c3e790a47cb10faff45290307a655bbae7a"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/800_1280/dark/app_launcher_data.hpp": {
+      "sha256": "5f2648980a52fe9b142284896f4dfab7cb885419318bba76b3a776598ad384a5"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/800_1280/dark/core_data.hpp": {
+      "sha256": "3b3b95c424c39b87911030211bd83537c64125ba248d03ca9063bdbeb828d148"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/800_1280/dark/gesture_data.hpp": {
+      "sha256": "7a49f2908e44359f8687e06b8a38a925a04cbaa791593ee906b6ef6c19d4da8c"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/800_1280/dark/navigation_bar_data.hpp": {
+      "sha256": "42302311b068ff6fa3492c8e404b38e7a1f66455253e787c48b84fa4613e453f"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/800_1280/dark/recents_screen_data.hpp": {
+      "sha256": "91a9901edbcee118f6acd23130f8bc04063575b77fb883bee2e6305ec4b94b45"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/800_1280/dark/status_bar_data.hpp": {
+      "sha256": "ef4617075fdaec4086a720aab8849836d99e064ea63a9eb2229cceb83d48f1ef"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/800_1280/dark/stylesheet.hpp": {
+      "sha256": "109c55aea48c135416c281a7a550e9dcad26523df68a41911a97bc98a6e0d794"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/800_480/dark/app_launcher_data.hpp": {
+      "sha256": "1d7d18c7ed3809fc27501e1d5cbc339dfb7982a1303b29ca769d960a6d4b7047"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/800_480/dark/core_data.hpp": {
+      "sha256": "6d969b2ea643f24bebb916c4ea8f044978358af713b3da6c8d4d3c903fd1046a"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/800_480/dark/gesture_data.hpp": {
+      "sha256": "eb2cd256861b087122b7e460c84bea22cdeed44b01a6dc2f7b41eb4ef16a6cc4"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/800_480/dark/navigation_bar_data.hpp": {
+      "sha256": "912cfc2da8832c71ab58f305b6b06718d0a7e7d31b48d93488c135e17da9f46b"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/800_480/dark/recents_screen_data.hpp": {
+      "sha256": "8012177735c8a9fc181de60b5606a33e461d2871ebf29bf3f9ac93887e409bf2"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/800_480/dark/status_bar_data.hpp": {
+      "sha256": "276338735ff574564382a9edc35fa68a2d79915301ad03855a4d6a940cc3d015"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/800_480/dark/stylesheet.hpp": {
+      "sha256": "9496a69107670e52f8cdf3bfcc08413c025e8f13ef5fa03b44910a190b1c43b4"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/default/dark/app_launcher_data.hpp": {
+      "sha256": "040ae485a9a56b6b2bb20ee3e4c916982822bafc881099e7b52565887071d0eb"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/default/dark/core_data.hpp": {
+      "sha256": "8cd5fd79392e4b4b2b8beb9ec7a969a98016917ab983ecf436c1c994360661c0"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/default/dark/gesture_data.hpp": {
+      "sha256": "2a62fefe0f6cc000b8796a8b5f854f00d666a2a15aa7cf542090f75232614483"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/default/dark/navigation_bar_data.hpp": {
+      "sha256": "5e30bbbd2edba5f88facbed70b63aca71fb900302fec5654b45c35483926f74e"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/default/dark/recents_screen_data.hpp": {
+      "sha256": "2b9b1b6638e59acae538163bbd83a1c38fff70ee519e3d34f177e4fba3b78fe0"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/default/dark/status_bar_data.hpp": {
+      "sha256": "e44a4e2df7c0f1fa402e07bbe648940c228fb204e84c76ccc36d413b4f6ea543"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/default/dark/stylesheet.hpp": {
+      "sha256": "142290d7282985a167f1bdb08db1db3ee2bd65d65bb63e07485a798f26397d97"
+    },
+    "components/brookesia_core/systems/phone/stylesheets/esp_brookesia_phone_stylesheets.hpp": {
+      "sha256": "77af9e453f3d01ea8c8ae9d786a57929b26d70f670f21aecdde3536da8a36c22"
+    },
+    "components/brookesia_core/systems/phone/widgets/app_launcher/esp_brookesia_app_launcher.cpp": {
+      "sha256": "9abe8b053ac83141e13e86bd3af2a456414ff01bf78dc4ff8b1cc5a38e220b74"
+    },
+    "components/brookesia_core/systems/phone/widgets/app_launcher/esp_brookesia_app_launcher.hpp": {
+      "sha256": "e575522eff66ad65e443cab72e3ce89cec0c9c1c7a229f2f3c4f662c2d86c092"
+    },
+    "components/brookesia_core/systems/phone/widgets/app_launcher/esp_brookesia_app_launcher_icon.cpp": {
+      "sha256": "9675f0e0bd16b081572979b456b0a8a385b909fec816a88f3c53c10a90df95bb"
+    },
+    "components/brookesia_core/systems/phone/widgets/app_launcher/esp_brookesia_app_launcher_icon.hpp": {
+      "sha256": "3c27fac60cee5db95c747d0527c2db7b54daa2362d7a1c4e9974cf14b8f38c4b"
+    },
+    "components/brookesia_core/systems/phone/widgets/gesture/esp_brookesia_gesture.cpp": {
+      "sha256": "5fcf2a7cc99072a2d178932482fdb803b5994d47247bb7e27f4e127ef91164fa"
+    },
+    "components/brookesia_core/systems/phone/widgets/gesture/esp_brookesia_gesture.hpp": {
+      "sha256": "cd92a77d5a61f96b52695cef13f00843e514ff746eaac493951e9b565efa9bb6"
+    },
+    "components/brookesia_core/systems/phone/widgets/navigation_bar/esp_brookesia_navigation_bar.cpp": {
+      "sha256": "1d803374a90b41d4c1f53ba33350af1172afba0cc5802c5a91cc9fed244faca5"
+    },
+    "components/brookesia_core/systems/phone/widgets/navigation_bar/esp_brookesia_navigation_bar.hpp": {
+      "sha256": "e39b5b4f06c47881907bf482ae09d651dee401c5604b959dd79a5aa001769640"
+    },
+    "components/brookesia_core/systems/phone/widgets/recents_screen/esp_brookesia_recents_screen.cpp": {
+      "sha256": "fa045a9cfb65dbeaf77d1a3500ddd6520d170667a0e5a7e21c5f0e6c11104c4c"
+    },
+    "components/brookesia_core/systems/phone/widgets/recents_screen/esp_brookesia_recents_screen.hpp": {
+      "sha256": "017ca32feb8ceb4fb66cfc16dde467841e3381b86ce9e14e956d11f4943f1bc3"
+    },
+    "components/brookesia_core/systems/phone/widgets/recents_screen/esp_brookesia_recents_screen_snapshot.cpp": {
+      "sha256": "d279569822bd2b4225c81cd525de21be666a6e3ee0467671beebc415fa8e76ce"
+    },
+    "components/brookesia_core/systems/phone/widgets/recents_screen/esp_brookesia_recents_screen_snapshot.hpp": {
+      "sha256": "9e62b1d66e4e0914156f46516d2215cad66bc6693a820fa8db66b4eff9c1179f"
+    },
+    "components/brookesia_core/systems/phone/widgets/status_bar/esp_brookesia_status_bar.cpp": {
+      "sha256": "7af6364ac79bfa5c8fb31576f0e88b75f4c02e45a17668e1b80c56628bfecc88"
+    },
+    "components/brookesia_core/systems/phone/widgets/status_bar/esp_brookesia_status_bar.hpp": {
+      "sha256": "4a64b1fa0fb5cdf23e89392fcb06b728fa12dd56e47b3fe9b26ca04f431cbde9"
+    },
+    "components/brookesia_core/systems/phone/widgets/status_bar/esp_brookesia_status_bar_icon.cpp": {
+      "sha256": "0e0928e0070ad3fb23b42dc73d76afc2c0d2ea11bbde91dde780f0c7ad3f42ca"
+    },
+    "components/brookesia_core/systems/phone/widgets/status_bar/esp_brookesia_status_bar_icon.hpp": {
+      "sha256": "7603dc060d5f354c13bf52e4a9edbf838caa67e9f2a2340ede44dfb9b0004974"
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/boot/boot_animation_360_360.aaf": {
+      "sha256": "360e6b9ba5986b11b04f4dba1c185348c61789ecfe0fa0d354852156bcc972b8"
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/emotion/emotion_angry_284_126.aaf": {
+      "sha256": "f4a6ab190c592762d220f9aaa14f14203b886dfbd18e094239b869cd5c632314"
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/emotion/emotion_blink1_284_126.aaf": {
+      "sha256": "aafdb404605114479346b98aba24880350905e4dfc2b7aa05a77bf11a2cfc843"
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/emotion/emotion_blink_fast_284_126.aaf": {
+      "sha256": "65a9164db49f3cfbec1426031843cc2584be43c184772581e510590b79bada00"
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/emotion/emotion_blink_slow_284_126.aaf": {
+      "sha256": "7ea7b322ee1dc859dbbc90e40eeb90dbfde036c5acbf6d794d90b7bcc546713a"
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/emotion/emotion_dizzy_284_126.aaf": {
+      "sha256": "4ede200f33ad894afb65d5f20822040e18249d25151973a72e42ff09b444d294"
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/emotion/emotion_happy_284_126.aaf": {
+      "sha256": "e7f38a2970a1b6ecfddb5b847b07a57503dfed05f6ed36c0311b2d750c5d487a"
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/emotion/emotion_sad_284_126.aaf": {
+      "sha256": "4352279e0e925b60a4f7ca4bb5935516f69b438112115e1231aa727e28c19488"
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/emotion/emotion_sleep_284_126.aaf": {
+      "sha256": "920424e4fc1e265fb033482121997f979581747eb622dfff7ffcb933bf262cfd"
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/icon/icon_brightness_down_64.aaf": {
+      "sha256": "0d7fca63b8ee04067d0cbf94dcc7ce4947819c1efc0bde06c7d7ba04c10d0cf1"
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/icon/icon_brightness_up_64.aaf": {
+      "sha256": "94946ead503feb7b589b8c30f31ecbd1d1e97273ea0c229210477fa00e6129f3"
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/icon/icon_emotion_confused_64.aaf": {
+      "sha256": "b57b755a9c39057ede0afb8d6e4e442519b04ad6b64d6cd64551a3368531bf15"
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/icon/icon_emotion_sleep_64.aaf": {
+      "sha256": "f4b38981e05baadb55656f27bbbd19e7656a1ff8f8a82b03e357ceedb19f54ed"
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/icon/icon_emotion_thinking_64.aaf": {
+      "sha256": "77d0efb50a1ca26c2afcc0384563ba3f1f896001fc7574030bc9a35adb3b23ce"
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/icon/icon_invalid_file_64.aaf": {
+      "sha256": "db2aac932835941c1c30d9d00e536f457c58c8ee3d19c27b28f5fcf0a59551e5"
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/icon/icon_server_connected_64.aaf": {
+      "sha256": "b164b3b872b08a8d61980eeb1fab300a796f26a8dfe854707454c3c7c283210f"
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/icon/icon_server_connecting_64.aaf": {
+      "sha256": "8c9f765ffaf8f97faf57a7d57aea01297f9165ebc0997dc944aab5e59f8a2095"
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/icon/icon_volume_down_64.aaf": {
+      "sha256": "08ef045a5d4cb79aeeec672ce08914d244120d81d47d0700202a7bce70d3a0e1"
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/icon/icon_volume_mute_64.aaf": {
+      "sha256": "43e9afedec7652d2d194dded6197fb592e74711771f8029430351fe3bb7be783"
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/icon/icon_volume_up_64.aaf": {
+      "sha256": "e0841fe6b130b80f6614d91cef1e8f0be69b050dae9a3e0929fa9f342f0796dd"
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/icon/icon_wifi_disconnect_64.aaf": {
+      "sha256": "a9e08c56c5f942b2f3073f777c99b18ceccc2390e478ed6f57e193d2d1f7f099"
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/mmap_generate_anim_boot.h": {
+      "sha256": "c15b3e6fdc69b6d5eeb7cf166e836fcb1b0f6e56f75f63db958ee084d609e46d"
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/mmap_generate_anim_emotion.h": {
+      "sha256": "963edaa54d3c216ef951014fdb44e369c75474f22f520ed4aa872020b741ab02"
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/mmap_generate_anim_icon.h": {
+      "sha256": "bda3beb05d8a96a8cecd3212f989f252a4c6717ad30e1fec19cde83482d6309f"
+    },
+    "components/brookesia_core/systems/speaker/assets/esp_brookesia_speaker_assets.h": {
+      "sha256": "9939ea8a82a9de41a4f0b461a04962756e28dcaa3c428de0887c3343159341a6"
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_app_launcher_default_112_112.c": {
+      "sha256": "d3394954dbeb10e93e65035e6fe03b8999ef48490fa8fbfb10ceb4280d52dfe4"
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_battery_charge_20_20.c": {
+      "sha256": "810c6067dfbfea752d0b9ba78c244940c5c7c165a88b4a6d9e83fd4321a9ba8a"
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_battery_level1_20_20.c": {
+      "sha256": "4a92e6e194f6ea4a3a7a86db91551371fc5387b7d3e004637b6180edda63cd3e"
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_battery_level2_20_20.c": {
+      "sha256": "6d7b8f62802f60ede7f2a2a2f30e5224180c7634d6cce96640f7520852aa708b"
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_battery_level3_20_20.c": {
+      "sha256": "109605bc4606550b9c13edd5f72ddfe8c1424e357d565abedda45405e214eced"
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_battery_level4_20_20.c": {
+      "sha256": "cfc15e42dfce6e34644a7e8daabb63d63ba10be9644023beb0bbd6b0bf6e23fd"
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_bluetooth_48_48.c": {
+      "sha256": "8412a253d3c87f10f48ef54be11c2b7649b62eeda3aebe80efecb391cbe3b648"
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_brightness_auto_48_48.c": {
+      "sha256": "23dba4ee5e21e4e91227a7fb1bb12b6fc1775ae1d138eabfe716d5103744e673"
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_brightness_high_48_48.c": {
+      "sha256": "6df4d4de58ac9431c634ab10b6c7feddf77f67deba6a8e8c76a711d3d9ac78bb"
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_brightness_low_48_48.c": {
+      "sha256": "e3b2f6e7ce241c94eacbd8e2b813544ed54ae0789f10d0b926c8e9de66374bac"
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_brightness_medium_48_48.c": {
+      "sha256": "6df600d850f79e24cde526bed24b17244b856c09eb474602030ca064b53b091e"
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_lock_48_48.c": {
+      "sha256": "e5c5d11d470a3655073ad57e532d970fb0f2c421d7468aa195dc43e9613abcde"
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_settings_48_48.c": {
+      "sha256": "57a3d9ebdec917990e8057f54f05fab3f78d15fb4265c25003d644fe960a4304"
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_volume_high_48_48.c": {
+      "sha256": "2cb57cec8687b2420963f65f220cf1276043e698a514c3478be268d158fff1e2"
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_volume_low_48_48.c": {
+      "sha256": "d55be081687bf923c84646bfbedf55f343df09c28e3555cf80ab9bda124b1c9b"
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_volume_medium_48_48.c": {
+      "sha256": "323512213b53b83442307131a573e91c43d5cd3421df5ff0fcfab21494f3a3a4"
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_volume_off_48_48.c": {
+      "sha256": "72977e3b46394228582bfec8e1739ba5c7272c73f0fb51d862426c027763f62c"
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_wifi_48_48.c": {
+      "sha256": "0acd8b557023d134048b707ecedaf32e506b4157026ee61452635267758dd943"
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_wifi_close_20_20.c": {
+      "sha256": "0cba4080f5249c10e4b55357a8a1c27528612f26e2314a59cddf5b7e1eee05ae"
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_wifi_level1_20_20.c": {
+      "sha256": "1d02f74b9f1a482c9085721771cee26fe6f46e02cef9dcfd2ff2ae0ca81ddc6a"
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_wifi_level2_20_20.c": {
+      "sha256": "4145d4c392f124d27439fcfe693732cdbb9f6bd8b14e54f70c0f6274b43cdaab"
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_wifi_level3_20_20.c": {
+      "sha256": "1a9decd1382614881bb68dc2a1c6e3ce6568021ab8dc9b267c6b9e57961f6f1b"
+    },
+    "components/brookesia_core/systems/speaker/CMakeLists.txt": {
+      "sha256": "1f8dded18fa1fb086424ecd3922600f5def11ff6e1d26eeac310792c1129cc65"
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/backup/emotion_confuse_284_212.gif": {
+      "sha256": "c0843a423c7a2b9a2ccf2f123fe6b93ffa405623c385d307f4cca0788531e045"
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/backup/emotion_cry_284_212.gif": {
+      "sha256": "ce4a80cb4e6759055134c31972e8d08b1232b6f08c02cfb6600c44251a323d72"
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/backup/emotion_laugh_284_212.gif": {
+      "sha256": "b48789eacf021c0c0892081b2aafad9f364caf456afe8c642cdc6626cbfcac39"
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/backup/emotion_look_around_284_212.gif": {
+      "sha256": "cc897cf4d5ebd026b628ef46d1f64d6a1f5453ba36523a635b344b8747593369"
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/backup/emotion_question_284_212.gif": {
+      "sha256": "187d9c1b7456830038610cd17a0d741c638a05607cc688cdee93320d0fb6de78"
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/backup/emotion_speak_284_212.gif": {
+      "sha256": "4a36df4ed2c0b7d878351c68847399f88f20cac26828deaf244a34a2fd81abcc"
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/backup/emotion_think_284_212.gif": {
+      "sha256": "b008978e2e6e4b3632488f8f0c571d4c8ec27cad5c2e91fcd9e3e5da4e99f6c8"
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/boot/boot_animation_360_360.gif": {
+      "sha256": "3b5913daad1a45bac6c0640f44a0a2384220f43c60ad9989c513bc82f679c447"
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/emotion/emotion_angry_284_126.gif": {
+      "sha256": "3db01ceab157c77effb4e162529bffbd3d6684f6f64b3ce296518495c0bff798"
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/emotion/emotion_blink_fast_284_126.gif": {
+      "sha256": "37321f68b81cccca68db76b4a3587804b095907d807a6eacc35901cc8ee12330"
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/emotion/emotion_blink_slow_284_126.gif": {
+      "sha256": "7fa3e0d8b24b429d3e3e3005f3d56f168786b553a2659458d3aae2789a0a92f8"
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/emotion/emotion_happy_284_126.gif": {
+      "sha256": "49bc2d917bbf5c725646e20eab101d8b0c1fa8ed794d7009cfd05532fb58bacd"
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/emotion/emotion_sad_284_126.gif": {
+      "sha256": "632d5b85515b0019dd943e21249e7c0e97a83586c034e1fc3e1193fd405c4cbb"
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/emotion/emotion_sleep_284_126.gif": {
+      "sha256": "e3e35a0f1c0cb21452d4b65d5307796b4ba6d4e5ab323385e65122151760a434"
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/icon/icon_brightness_down_64.gif": {
+      "sha256": "a4fd6526b9d0a2047c7fefb526f4705115d9ef67d4674c10d90fbc2ec9bedc9b"
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/icon/icon_brightness_up_64.gif": {
+      "sha256": "d760242594f9775f7123144b78ef6ce8024c888d71a81555841a5109d3ec4968"
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/icon/icon_emotion_confused_64.gif": {
+      "sha256": "7df030a87a579882248afd11b6c9f33e5c85a915423d76b03b7923b72671ad9f"
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/icon/icon_emotion_sleep_64.gif": {
+      "sha256": "43772d3bf6caceee26f1c773ff4fbf5632721b8558765d09a1dcc70a4e78e03b"
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/icon/icon_emotion_thinking_64.gif": {
+      "sha256": "3211eea46db14be01cf87b4cef55ce799c44b73811ba8b9800ebc7478c43c39e"
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/icon/icon_volume_down_64.gif": {
+      "sha256": "dd0a215c7b4b2186c52b84b9271ec13a827336fa330d971866d18bf2f018b594"
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/icon/icon_volume_mute_64.gif": {
+      "sha256": "9843360edd14316811733c3ba1d2bb4e350db524cb02b87804e5f7d6b9dc7ba4"
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/icon/icon_volume_up_64.gif": {
+      "sha256": "c7b1789532a2007f59606505cee58d65fee9b654d0e249e8faae9f40eff55cf0"
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/icon/icon_wifi_connected_64.gif": {
+      "sha256": "286b37d454e7c5216a61916cfd50d21d359d14b85407a8c6979b185c372cb163"
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/icon/icon_wifi_connecting_64.gif": {
+      "sha256": "4bde678d41f570c74adf551a12becc23a42dd16725dc474eb5c4ace33220150f"
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/icon/icon_wifi_disconnect_64.gif": {
+      "sha256": "728feded59051138e74ef08b13c5f7ceb30a92e2c498ee1f71cb0de6fdd0e106"
+    },
+    "components/brookesia_core/systems/speaker/esp_brookesia_speaker.cpp": {
+      "sha256": "4de2b10aa3f4764d107b521feca486cf2e28c56f60f1fe398ecb733691638f00"
+    },
+    "components/brookesia_core/systems/speaker/esp_brookesia_speaker.hpp": {
+      "sha256": "6cba4f251b5faf57711eff97cab52e7e3e858c5c7c64274b6fc6d32312c091a9"
+    },
+    "components/brookesia_core/systems/speaker/esp_brookesia_speaker_ai_buddy.cpp": {
+      "sha256": "ee35e39144708b557c3661c901f077a2d15b1902d3e3fdeab1507746a09cea0c"
+    },
+    "components/brookesia_core/systems/speaker/esp_brookesia_speaker_ai_buddy.hpp": {
+      "sha256": "e972d108c5f7784429375d7b5642bcd38cfc16e670f99166edc525e858a744e4"
+    },
+    "components/brookesia_core/systems/speaker/esp_brookesia_speaker_app.cpp": {
+      "sha256": "f490d9f76d6cc9220dee69f39a6ee89f2e6323f44c779a90d43ad4019af52969"
+    },
+    "components/brookesia_core/systems/speaker/esp_brookesia_speaker_app.hpp": {
+      "sha256": "8764e5a7913950f0e0cdf6641336d3a51f717b620965453bc0274ae014210f2c"
+    },
+    "components/brookesia_core/systems/speaker/esp_brookesia_speaker_display.cpp": {
+      "sha256": "fad5a61f07b7a63bc493e642ae3f7f3d620931e2775bc0d34ad8c1f113dd56ff"
+    },
+    "components/brookesia_core/systems/speaker/esp_brookesia_speaker_display.hpp": {
+      "sha256": "233fc519b526521d2e0c48db1048602c90b7f4c699463dda35b40acf02fe7009"
+    },
+    "components/brookesia_core/systems/speaker/esp_brookesia_speaker_manager.cpp": {
+      "sha256": "7e05895fd40b72cce0c70ca85ea317665c64a2ff6751f55ec70169c4a070eb52"
+    },
+    "components/brookesia_core/systems/speaker/esp_brookesia_speaker_manager.hpp": {
+      "sha256": "ebd011d5ba432f6f32080ebbed7651a13b39f1d0ea2287bbb97e25285e53cdbc"
+    },
+    "components/brookesia_core/systems/speaker/idf_component.yml": {
+      "sha256": "f8065c7f9abecd068d408a8ae106bbf688cec6b8aaf215f10923a2207bff8d19"
+    },
+    "components/brookesia_core/systems/speaker/private/esp_brookesia_speaker_utils.hpp": {
+      "sha256": "9cdfce3ec857de93c92f7229ac1a308e83f16b5a117d0fda0d2918faea02e38a"
+    },
+    "components/brookesia_core/systems/speaker/stylesheets/360x360/dark/app_launcher_data.hpp": {
+      "sha256": "c9930ddb6aba8034723336a4d53e45f4dabdc854a49809df88c8072498f800ab"
+    },
+    "components/brookesia_core/systems/speaker/stylesheets/360x360/dark/core_data.hpp": {
+      "sha256": "38b3eb4fd85080f073325aad1e8a7b3701f860fa6da0a3809e13c804fc6c38d9"
+    },
+    "components/brookesia_core/systems/speaker/stylesheets/360x360/dark/gesture_data.hpp": {
+      "sha256": "a4ca492b8f15cbcd9472bd75c50f2d54983a8746cb73f8557a7cd397ed2d7fe4"
+    },
+    "components/brookesia_core/systems/speaker/stylesheets/360x360/dark/keyboard.hpp": {
+      "sha256": "87aed957070b2cde10e3c7a1f191804891367c54123c8baa42dc4c06ef6407d0"
+    },
+    "components/brookesia_core/systems/speaker/stylesheets/360x360/dark/quick_settings.hpp": {
+      "sha256": "962bfaef6f6089e97280cee23b5ef6c4718cc3d26e89686a6ac490373360d2fb"
+    },
+    "components/brookesia_core/systems/speaker/stylesheets/360x360/dark/stylesheet.hpp": {
+      "sha256": "c3decd79d6aa75efe041c95f8d9b261cad2dec7ece98170c41657921ba0f0b35"
+    },
+    "components/brookesia_core/systems/speaker/stylesheets/esp_brookesia_speaker_stylesheets.hpp": {
+      "sha256": "37adec0c984b8628eba9c7613ebe7c7d73be7b6817923352560283763d659be2"
+    },
+    "components/brookesia_core/systems/speaker/widgets/app_launcher/esp_brookesia_app_launcher.cpp": {
+      "sha256": "0f26a64ab223f2222d90a53400c2522cfe39812e0a57dd18ce29ffa9b9b0e5cb"
+    },
+    "components/brookesia_core/systems/speaker/widgets/app_launcher/esp_brookesia_app_launcher.hpp": {
+      "sha256": "33bb151d0381fb453258dba2cbad023aa24745c97f6accc655bf219472684cf7"
+    },
+    "components/brookesia_core/systems/speaker/widgets/app_launcher/esp_brookesia_app_launcher_icon.cpp": {
+      "sha256": "e727d13b0f17633b3d7e9f2700885f6465342bd978fb4282fcb44107e9103c14"
+    },
+    "components/brookesia_core/systems/speaker/widgets/app_launcher/esp_brookesia_app_launcher_icon.hpp": {
+      "sha256": "f6890e2c2f71cc195c0060ad4c39de99c4e280910aebb2b1295c09a3d0936d52"
+    },
+    "components/brookesia_core/systems/speaker/widgets/gesture/esp_brookesia_gesture.cpp": {
+      "sha256": "f5205d252403f09c5499ed8cb2620d809185e99dbc8dbdd5ecd41ac8cbb524f2"
+    },
+    "components/brookesia_core/systems/speaker/widgets/gesture/esp_brookesia_gesture.hpp": {
+      "sha256": "4b9407e2b057f247fc38c5852364a224ded70c18872a1a79a84fd8c7cd3d4031"
+    },
+    "components/brookesia_core/systems/speaker/widgets/keyboard/esp_brookesia_keyboard.cpp": {
+      "sha256": "1c459e8b6ee1920a20786a129375c0285b7f78ebdad799a502c93b6e64172055"
+    },
+    "components/brookesia_core/systems/speaker/widgets/keyboard/esp_brookesia_keyboard.hpp": {
+      "sha256": "9913ff24f790d805af755ab9db62f37cc5a3dff7d1451dd8f478e47cabc550c7"
+    },
+    "components/brookesia_core/systems/speaker/widgets/quick_settings/esp_brookesia_speaker_quick_settings.cpp": {
+      "sha256": "7e286f9b365342ee4bc08c738a4ea5d00f02fe6c48a9eb2cb4a3d8d8d5a67c19"
+    },
+    "components/brookesia_core/systems/speaker/widgets/quick_settings/esp_brookesia_speaker_quick_settings.hpp": {
+      "sha256": "440ff3dde312617bf785b2e90dbd0d947c66b3860e99a92095b8d7047832a044"
+    },
+    "components/brookesia_core/systems/speaker/widgets/quick_settings/ui/ui_comp_quicksettings.c": {
+      "sha256": "00162b79cfc388170ad4fea2c2fcaf42b33d6ecbdbe1f0c98e907e434318d6ed"
+    },
+    "components/brookesia_core/systems/speaker/widgets/quick_settings/ui/ui_comp_quicksettings.h": {
+      "sha256": "c7caccf6571064d3be10a7fc90cb1291e755877517476447bc2007bfb83c73e6"
+    },
+    "components/brookesia_core/systems/speaker/widgets/quick_settings/ui_comp_quicksettings.h": {
+      "sha256": "1a398ff870778369a2780441260e16a55767c5c7eb5d8885583a434cb4dd58f1"
+    },
+    "components/brookesia_core/systems/speaker/widgets/quick_settings/ui_img_esp_brookesia_image_small_status_bar_battery_charge_20_20_png.c": {
+      "sha256": "7fcf1588190b01ad431a8b89fb6909fc1c8b9d1f5b959ef883d2491190ea23e8"
+    },
+    "components/brookesia_core/systems/speaker/widgets/quick_settings/ui_img_esp_brookesia_image_small_status_bar_battery_level1_20_20_png.c": {
+      "sha256": "b46496901c93ad4aa936421e32899d9640cab6589b41287837b677bfc902139d"
+    },
+    "components/brookesia_core/systems/speaker/widgets/quick_settings/ui_img_esp_brookesia_image_small_status_bar_battery_level2_20_20_png.c": {
+      "sha256": "f7f229237523a464fc9e0611a33d95cd670cccdeef6fb2c01fe4afd3f8482538"
+    },
+    "components/brookesia_core/systems/speaker/widgets/quick_settings/ui_img_esp_brookesia_image_small_status_bar_battery_level3_20_20_png.c": {
+      "sha256": "2be0c0259fb82283fce2b701a2ea510ed692a301c3d6e75b5aa703c6614ba020"
+    },
+    "components/brookesia_core/systems/speaker/widgets/quick_settings/ui_img_esp_brookesia_image_small_status_bar_battery_level4_20_20_png.c": {
+      "sha256": "f9d821ad462dee5588df07891832eec2199e84e03fe20ec9c7b097a004cc928c"
+    },
+    "components/brookesia_core/test_apps/CMakeLists.txt": {
+      "sha256": "c911d64fe926ac4fd080ef0fef4993a7e335212c93f7b4d80e6bcdb7e97f0fe1"
+    },
+    "components/brookesia_core/test_apps/main/CMakeLists.txt": {
+      "sha256": "a1784473731d82226035e65b6b346e5248e8ac86678a665c6d7c95312dc3e4ef"
+    },
+    "components/brookesia_core/test_apps/main/idf_component.yml": {
+      "sha256": "34e04ad6a512fb13576292e912b8b9df00ffe946fd0fa8839915abe6c8a835a4"
+    },
+    "components/brookesia_core/test_apps/main/Kconfig.projbuild": {
+      "sha256": "d24630598a84a955dfab08100ff1cdca680b93fff0126fb0e8113dfd78ae29db"
+    },
+    "components/brookesia_core/test_apps/main/test_app_main.cpp": {
+      "sha256": "69493d572422d378fbb282caf432e1919d12c9c64d89782203084193ca6592ab"
+    },
+    "components/brookesia_core/test_apps/main/test_esp_brookesia.cpp": {
+      "sha256": "36d8387c8c8ed552858fb3904a52061afbca00e515742b88f1a081633f061afe"
+    },
+    "components/brookesia_core/test_apps/partitions.csv": {
+      "sha256": "4f1c31ea58be21398f3eeb3f5dc3e605da29d8f91c6898e730cf1f6387075194"
+    },
+    "components/brookesia_core/test_apps/pytest_esp_brookesia.py": {
+      "sha256": "f0300b22f3f2b600b30d7aa64e17784b716cc28153422fdd68f281be595543bf"
+    },
+    "components/brookesia_core/test_apps/sdkconfig.ci.1024_600": {
+      "sha256": "5c4546e6eca775009951c7d286ea629c4feb34e09ec830abedb7c55c0be1d5af"
+    },
+    "components/brookesia_core/test_apps/sdkconfig.ci.1280_800": {
+      "sha256": "ef3f1e4b0bdfed8e363510e5f76239b0343b6ad0b7f4daecce0bed754a356a0c"
+    },
+    "components/brookesia_core/test_apps/sdkconfig.ci.320_240": {
+      "sha256": "5720a172a076e1b2c5983c97b5cce49afa379e1de71b20148944ae3439899399"
+    },
+    "components/brookesia_core/test_apps/sdkconfig.ci.320_480": {
+      "sha256": "13dddaa4bbcd7ed25d4e4cfe078472a98ec009a5a34d8457f98b4eb1902e4659"
+    },
+    "components/brookesia_core/test_apps/sdkconfig.ci.480_480": {
+      "sha256": "3262376abc4dc7f6983c51a76169c84e697ef48e035e2091e9ba33267f56ce2e"
+    },
+    "components/brookesia_core/test_apps/sdkconfig.ci.720_1280": {
+      "sha256": "c0cfb9e17ec9cf1df88b2eff83814ea03bf0fa6a6327780a2a981fa7630ddeff"
+    },
+    "components/brookesia_core/test_apps/sdkconfig.ci.800_1280": {
+      "sha256": "4ee6e567055e6298597271c7b7352eacf38a72a84baa1ee45c64f147eea1a073"
+    },
+    "components/brookesia_core/test_apps/sdkconfig.ci.800_480": {
+      "sha256": "e144eb62a85fc86f366b67a8f7bf051dd60aff8eadbe640ea196e804eec79957"
+    },
+    "components/brookesia_core/test_apps/sdkconfig.ci.default": {
+      "sha256": "6ca529d04b0d4225146c66bc18481d8257f57c363ad727c364bfd73dee3b950a"
+    },
+    "components/brookesia_core/test_apps/sdkconfig.defaults": {
+      "sha256": "09b4390f7397e9d94f5097b5ca6976b80becf36818921ecc0d7ef06f5f1bba7c"
+    },
+    "components/brookesia_core/test_apps/sdkconfig.defaults.esp32p4": {
+      "sha256": "4651730dedcd29736f8f63bea45112f673b00311853c5a5a5e1c27155822921a"
+    },
+    "components/brookesia_core/test_apps/sdkconfig.defaults.esp32s3": {
+      "sha256": "fe0440ed553bba2819682441fcb82e35ff2e6db54904c6f2156ecc45090e29de"
+    },
+    "components/esp32_s3_touch_lcd_1_54/CHECKSUMS.json": {
+      "sha256": "3e23f7008cc8ddf34df9df696499fc1723f5134399c50b2d542abc1ea56073e9"
+    },
+    "components/esp32_s3_touch_lcd_1_54/CMakeLists.txt": {
+      "sha256": "e31ab885b2346fd378f2dd4dfea1a11c4f8592046f73dc4639997547c5379e8b"
+    },
+    "components/esp32_s3_touch_lcd_1_54/esp32_s3_touch_lcd_1_54.c": {
+      "sha256": "bd6a2d70ce52d857b9868c36d255f1ab5c880d9357fd312ab46308077e93a527"
+    },
+    "components/esp32_s3_touch_lcd_1_54/esp32_s3_touch_lcd_1_54.c.bak_touch": {
+      "sha256": "e50ac514ff38ad8cc8f13e94604a6f71b922e4c534f0cfda8f01231815ae7c15"
+    },
+    "components/esp32_s3_touch_lcd_1_54/idf_component.yml": {
+      "sha256": "3e55d34c934ec8e2768f0bce1e2a192a6c744856838a624b1c8117ca492a5638"
+    },
+    "components/esp32_s3_touch_lcd_1_54/include/bsp/config.h": {
+      "sha256": "d1abc2eefac059b153a9a7d521ec87597be1d0bdacf56d9fe734d27305dfd7ee"
+    },
+    "components/esp32_s3_touch_lcd_1_54/include/bsp/display.h": {
+      "sha256": "de176e23d25953e7e348a7724f7bd5f33b7e9eb425e559911fbb25250324c54f"
+    },
+    "components/esp32_s3_touch_lcd_1_54/include/bsp/esp-bsp.h": {
+      "sha256": "2a66f94771cbdbcf0fba1da97b48a72facf8b4bf152d9b790394d428e5ba4a8d"
+    },
+    "components/esp32_s3_touch_lcd_1_54/include/bsp/esp32_s3_touch_lcd_1_54.h": {
+      "sha256": "4578c5d5a7631aa9898d4c3a2a92a5b75de31d349725cf3cb4de24c142dd7421"
+    },
+    "components/esp32_s3_touch_lcd_1_54/include/bsp/touch.h": {
+      "sha256": "4c7628052ddcb97c1ed7c1a67f4a1f967c1dabbf5e28976730c42924ca2eea7b"
+    },
+    "components/esp32_s3_touch_lcd_1_54/include/bsp/touch_observer.h": {
+      "sha256": "acd692df4af9e7e301f5bd47e60349488738fd675d3d4421063630f7e90175fd"
+    },
+    "components/esp32_s3_touch_lcd_1_54/Kconfig": {
+      "sha256": "8d3828ef9bdd9dd41b4e703bddaf9a9af66eb65f2353fcd5b9faf4d126edd498"
+    },
+    "components/esp32_s3_touch_lcd_1_54/LICENSE": {
+      "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5"
+    },
+    "components/esp32_s3_touch_lcd_1_54/priv_include/bsp_err_check.h": {
+      "sha256": "6cd5c12994dcf3221810b71adf7796e029522fca474f5ddcfd6b72f72ae5f4f8"
+    },
+    "components/esp32_s3_touch_lcd_1_54/README.md": {
+      "sha256": "742836cc176af6ff9f40f01efe7fdc8e7001ad012809530baf6642ce92c74c9a"
+    },
+    "components/json/CMakeLists.txt": {
+      "sha256": "3184b92fe616245d907939429a6c18f29ec3daee2931a4e8643eaeb4714b9f1c"
+    },
+    "components/nofrendo/CMakeLists.txt": {
+      "sha256": "29b017caa58d16cef7f414bf4ccd2e5d2bb95efc28cb402eef8bb1f040fb3fc5"
+    },
+    "components/nofrendo/config.h": {
+      "sha256": "02cd2c8d7bff668a3e1369aef06dd2cc11b25d02d18dd1268fdcee2e90e1e7b1"
+    },
+    "components/nofrendo/COPYING": {
+      "sha256": "91df39d1816bfb17a4dda2d3d2c83b1f6f2d38d53e53e41e8f97ad5ac46a0cad"
+    },
+    "components/nofrendo/CREDITS": {
+      "sha256": "417c70bf212afed18a2022d7e1b43bc93d9abcdeea6dbdf8d6746fb32fef7ace"
+    },
+    "components/nofrendo/fc_port.c": {
+      "sha256": "931fa17981b44b98d20b2a37ed4123ce195bb2acc7d5d3e866b34945ca9dfcd1"
+    },
+    "components/nofrendo/fc_port.h": {
+      "sha256": "7dfc378414a4fd254867c0395376ff01d05cf71197c2aa4c9a5fcc7318d25a5d"
+    },
+    "components/nofrendo/mappers/map000.c": {
+      "sha256": "c9bf2de88b6fa758bebf5b64c4e8501629a52a794a2204954fd956f0f7569206"
+    },
+    "components/nofrendo/mappers/map001.c": {
+      "sha256": "5af2615e2d982f1782c48818540235e619843501e5daf3a288025cdd6657af04"
+    },
+    "components/nofrendo/mappers/map002.c": {
+      "sha256": "37311a1c80eebaca1ee763fe4f4e4e15741fca9b61d9cd392fef8bbe525fe7a8"
+    },
+    "components/nofrendo/mappers/map003.c": {
+      "sha256": "52bb36aefc8b0f8465857f14998ed7ea3af20e79a8928b245796d7a79ab57a5f"
+    },
+    "components/nofrendo/mappers/map004.c": {
+      "sha256": "0c5de1630367020f1e0817deda1d5f9c715c739607adb7cb263982998d63a5ec"
+    },
+    "components/nofrendo/mappers/map007.c": {
+      "sha256": "c44417fdd4c03093e27032cc463e6e622152b74e8d211d6b95b65a5be493256b"
+    },
+    "components/nofrendo/mappers/map009.c": {
+      "sha256": "051688ee6bc3507599f22ef6d9d448fb7830eb7ca2be1a349b9f426346494b41"
+    },
+    "components/nofrendo/mappers/map010.c": {
+      "sha256": "4742bc3086f22e471034f4008f83366d343fc29e4435a2f064792aef17bdaac3"
+    },
+    "components/nofrendo/mappers/map011.c": {
+      "sha256": "498f738e0ff4dac2fa5b559e8b3762bc4c4d3a74d176c53282c8afc8657fd10b"
+    },
+    "components/nofrendo/mappers/map066.c": {
+      "sha256": "c14c5de7b92d085cec3f430da98932ac19281594bb7b6599289ecb4378513db7"
+    },
+    "components/nofrendo/mappers/map071.c": {
+      "sha256": "59f42f6aa8af41984e2db2215c4c80cd60dbd67437aaad9ae858875db0259c7d"
+    },
+    "components/nofrendo/mappers/mappers.h": {
+      "sha256": "52646012dc1419539b74e81f4b186af1409876ad1c52bf7fbb3114b1cc4bedb3"
+    },
+    "components/nofrendo/nes/apu.c": {
+      "sha256": "9806ebddf0671bacc31d57c7668bebac2978c1ae1890cfb52613e9abab46178b"
+    },
+    "components/nofrendo/nes/apu.h": {
+      "sha256": "0e76fd07da2bcc9ff2e98ac5647a29d642799f799b6270e03683e2e14dca3c48"
+    },
+    "components/nofrendo/nes/cpu.c": {
+      "sha256": "cac1d5c254e6441f779312f74aeb174266c0fcbf288bc8a5dcde2bce271449b4"
+    },
+    "components/nofrendo/nes/cpu.h": {
+      "sha256": "d803df5349721922a3de6a80559f0b0f1e297d15f1db97bd0aa24fee6b9ac447"
+    },
+    "components/nofrendo/nes/dis.h": {
+      "sha256": "d547cfe830103bdf0f66eb94a610bd909481107f7da5e101b692a8a67cd9abb6"
+    },
+    "components/nofrendo/nes/input.c": {
+      "sha256": "4cb444ce08cd269aa721ab40ff0a484ed11cdb752b2ad89cbfbf13e7b5525086"
+    },
+    "components/nofrendo/nes/input.h": {
+      "sha256": "9397514162505c3c3b2e6e323f8f4b3097743244762b8f6463369d36f7622228"
+    },
+    "components/nofrendo/nes/mem.c": {
+      "sha256": "8c2da76bfa2f39585c4c05a8bb17713676c3170852046a2ee09d3cea12648912"
+    },
+    "components/nofrendo/nes/mem.h": {
+      "sha256": "d8cd89754d090d0bc1d59def450245519681b3e8242f61504f2ae9c4cb3abcb9"
+    },
+    "components/nofrendo/nes/mmc.c": {
+      "sha256": "3c8b4f03f6706f1b8f416c3a02374625ce9e52634afb242bf34816bf8e4a131e"
+    },
+    "components/nofrendo/nes/mmc.h": {
+      "sha256": "f39651430e19e683fbb6cd3d35345ecec8e2febdf5d22bcc3bc7909e8c81887a"
+    },
+    "components/nofrendo/nes/nes.c": {
+      "sha256": "76e4a752a9fbd6b4e9261031587a9fbff15dfc950a128a85e0b7851bb251af61"
+    },
+    "components/nofrendo/nes/nes.h": {
+      "sha256": "08f95e1560a20e2748eebbd525be5d511da345b35e97141350695a7b00c7775e"
+    },
+    "components/nofrendo/nes/ppu.c": {
+      "sha256": "1b8586f2f436c8ca25cc6234a90162a6178cf74807ae21e9a07f4d7c84203ace"
+    },
+    "components/nofrendo/nes/ppu.h": {
+      "sha256": "e722f37650f69f060a710575e40b33c83d0fbc3226d467b301d658a9a2a8e2d1"
+    },
+    "components/nofrendo/nes/rom.c": {
+      "sha256": "22c8e03d7546d3b551c890de65d90e72dadfb3739e57381d93b037608862b760"
+    },
+    "components/nofrendo/nes/rom.h": {
+      "sha256": "a7065a14d3b3465db5ffc43279de81d018a34e2e4232dd73a83bc69118bcc740"
+    },
+    "components/nofrendo/nes/state.h": {
+      "sha256": "42fd98f5abb324c393f19cc8a37554688b6f542b1d551b8d865f6a7edddea88e"
+    },
+    "components/nofrendo/nes/utils.h": {
+      "sha256": "527ecf6abca7d86604cf2b9c49874e1da7b35b77d2f046e18279893bbb151bf1"
+    },
+    "components/nofrendo/palettes.h": {
+      "sha256": "912c9535d1253e1204eeb15543e66548896a0e131494d3907b45795594f25446"
+    },
+    "components/nofrendo/PORT.md": {
+      "sha256": "e99905de2b4c16c1af7fcabd98c2918e179906712614939c25dd358baaa122e1"
+    },
+    "components/recorder_dsp/CMakeLists.txt": {
+      "sha256": "82a2eacdbc76e20b31f88b350885435d58b47a6d6c9a3802c3a28698409dcefb"
+    },
+    "components/recorder_dsp/include/recorder_denoise.h": {
+      "sha256": "173681ae60f36f9f46d0030ee810ac5c1a0db0850fbbfcd40247926d2ae55ac7"
+    },
+    "components/recorder_dsp/PORT.md": {
+      "sha256": "ac7f7902d08d980e08face9f24d9df2037a70644a675d275216f8ccc754a9ef1"
+    },
+    "components/recorder_dsp/private/os_support_custom.h": {
+      "sha256": "2a5f651480aa24a1062872b109e4f7ccaf026783539c1ce5aa905c7e1443f436"
+    },
+    "components/recorder_dsp/private/speexdsp_config_types.h": {
+      "sha256": "26865a25e437fa1daf4e616b7a9590b411e3e3199c0926db0e28d0b702990a34"
+    },
+    "components/recorder_dsp/recorder_denoise.c": {
+      "sha256": "0dfcd4b1a05dbc00ab60f8c3daea97d28e5064c791340b68adb67248e544b201"
+    },
+    "components/recorder_dsp/upstream/COPYING": {
+      "sha256": "2654a4264b2bfe298dedc508748d140111840c315cc8eb646a3a68c13fa75b01"
+    },
+    "components/recorder_dsp/upstream/include/speex/speex_echo.h": {
+      "sha256": "ab18db97564a241c9e06d723351c2155bf04a23ac30e0c27a3d86dcc04de3426"
+    },
+    "components/recorder_dsp/upstream/include/speex/speex_preprocess.h": {
+      "sha256": "87066ed01639bbc8d3297bb58dbd55bfe1b9cd6e26fc68a1b7f87aa9b61fa9c3"
+    },
+    "components/recorder_dsp/upstream/include/speex/speexdsp_types.h": {
+      "sha256": "4f97187c057fd8493c787f2526752859cf57007d50fef8d2e03c9b79b2fed490"
+    },
+    "components/recorder_dsp/upstream/libspeexdsp/arch.h": {
+      "sha256": "102f6a14a95f8ae0bcfc69270f3a9e3fbba08b63bba688ca524f71e3faa48c23"
+    },
+    "components/recorder_dsp/upstream/libspeexdsp/fftwrap.c": {
+      "sha256": "a59ec583e5660207da9cf3c1ddd6a7ff1ed91382eb40df2a4e77d5cddfe14c52"
+    },
+    "components/recorder_dsp/upstream/libspeexdsp/fftwrap.h": {
+      "sha256": "fd289dcc47b9ddb2b33039c1990c4644bb279c9413ede6e74fdb2742c3888ee5"
+    },
+    "components/recorder_dsp/upstream/libspeexdsp/filterbank.c": {
+      "sha256": "da21ffc079092566fc3a7297611cc86b9d08a8f5a91ae81e3427f0b14ad98463"
+    },
+    "components/recorder_dsp/upstream/libspeexdsp/filterbank.h": {
+      "sha256": "8b86cc1f52c52abe5685c751e30c91b2e24a5a60d30893027445886c30d0d249"
+    },
+    "components/recorder_dsp/upstream/libspeexdsp/math_approx.h": {
+      "sha256": "a024693b0d29dc4e904021a1b442908c1fa726b18f5d31b0935e38646f2701ff"
+    },
+    "components/recorder_dsp/upstream/libspeexdsp/os_support.h": {
+      "sha256": "5ab9c979e8ac1f72c7441d24e39e7840828dd9356aac49a31eabeddb808bf1d3"
+    },
+    "components/recorder_dsp/upstream/libspeexdsp/preprocess.c": {
+      "sha256": "18c9641e73c4fadc1d3ada755a7d89fcda82cc51df3132d0a447d2b0a9436c38"
+    },
+    "components/recorder_dsp/upstream/libspeexdsp/smallft.c": {
+      "sha256": "25bcc6e38baeca23e828bfcbbb1cc0a0d3f6f898d9e02c95cbb4b4c0fb4b3df7"
+    },
+    "components/recorder_dsp/upstream/libspeexdsp/smallft.h": {
+      "sha256": "715352e7efe55cb671f37fa341610ce7df893016625506e22175d9f1b1b817e9"
+    },
+    "dependencies.lock": {
+      "sha256": "f28503392dca25b58dfca66d5ed88162786d3f13ff863d2268bbf8bcdaea7f64"
+    },
+    "docs/battery_91_investigation_20260917.md": {
+      "sha256": "f8c1c7ae81dafee224658a3369c971ea0af1b1133c1e79c84e694be8b82e33e1"
+    },
+    "docs/battery_diagnostics_build_flash_20260917.md": {
+      "sha256": "30bee4b2c2b93e3863ecc4ffe253a90a99a53e1903cb95642fb0bef64b68f194"
+    },
+    "docs/battery_full91_20260917.md": {
+      "sha256": "24fd37b77ac3a44235d716a9b30265b2144518d9c47d8430eac2ccde793b9b3c"
+    },
+    "docs/battery_power_20260916.md": {
+      "sha256": "63d78fb02396d73400de81e031471b39c9247f82cdbb787553fbfbccf44fca5f"
+    },
+    "docs/battery_power_build_flash_20260916.md": {
+      "sha256": "14fd8f363529359aaa8cb7bc1d15a2d70876453df3c56b58878d2b03c630eabc"
+    },
+    "docs/ble_standby_20260916.md": {
+      "sha256": "7fb4bfdefc0c6984de73e6f35c3d5e13b4b01f50e01ffba565ac05cd4f4b6330"
+    },
+    "docs/ble_standby_flash_20260916.md": {
+      "sha256": "588d42cff2564190e83b5217d5fe7b4136f1ffb9d0ae8357d007f82b15a57c7e"
+    },
+    "docs/build_flash_20260916.md": {
+      "sha256": "eb0ad92130cdc90db37ecf183d84104ec5347d3e6e5e021f1bb38e8bc7107576"
+    },
+    "docs/clock_hid_ble_20260917.md": {
+      "sha256": "abf3e85dfb951ba2df37836a41ba61fa39794a9605444f02d82a2c14c9fab681"
+    },
+    "docs/firmware_architecture.md": {
+      "sha256": "a789a504f91ef61ea5cd1ba046ecadff3177395552ca6c4c0ad96a7f4717ba84"
+    },
+    "docs/gravity_battery_20260917.md": {
+      "sha256": "760e6b26ea54116b689ef1eb7e54a67295f198af14a1d4b3d4070db28448982d"
+    },
+    "docs/hid_ui_flash_20260917.md": {
+      "sha256": "68834f563650373007472da12000b8ef1d39ce1e05e6ebc2c5ebeb45c953b360"
+    },
+    "docs/hid_ui_refactor_20260917.md": {
+      "sha256": "74f0d61a9a52e4f9bb22524dfc656914d6792621d0c6e32cefbe293ac64a4fd7"
+    },
+    "docs/keyboard_battery_ui_20260917.md": {
+      "sha256": "90489e809b165498ca7d8b283a4be02d109ea8f4d0127855c2976c1bcf628e7e"
+    },
+    "docs/mac_hid_fix_20260918.md": {
+      "sha256": "fbd69dd27d4fac27aa32f028ad21308797957bbd7f62e609037f5e15ebf87a80"
+    },
+    "docs/mac_hid_flash_20260918.md": {
+      "sha256": "585aa2286fb75e5d3aabef751deeff9bc63e931a499e02a3b0529d1218f47198"
+    },
+    "docs/manual_lifecycle_20260917.md": {
+      "sha256": "cdd48047b54b96abac85722b68b7b2113252b5accac707b76f8e6154744f7576"
+    },
+    "docs/netdisk_build_flash_20260917.md": {
+      "sha256": "051d12ef0f95efb39c585554847e69dda604f2a7ed7bc7f73e80c19cae66bfff"
+    },
+    "docs/netdisk_diagnostics_cleanup_20260917.md": {
+      "sha256": "b37ce80570e01d87c0b0f7ad416b0e9d0175053a82f9f37310ffc7410b920e16"
+    },
+    "docs/password_vault.md": {
+      "sha256": "87e41b52490945c6debe65c137744819fd508e687e65b824f9e9d036a02c2357"
+    },
+    "docs/password_vault_build_20260917.md": {
+      "sha256": "de325ea1bb6556c5de20f251eda20d2c8ac51485d13600b8498986162fc82caf"
+    },
+    "docs/password_vault_flash_authorization.md": {
+      "sha256": "b6d22e3ccf9a5df9fe83514d483551ca8cf32473ff48224c5e358a2a4819af22"
+    },
+    "docs/password_vault_flash_authorization_build_20260917.md": {
+      "sha256": "238ed0647f9a4d52dff41e7becf43d32e031c8413cdad146e96c65035b84d491"
+    },
+    "docs/password_vault_interaction_20260918.md": {
+      "sha256": "8bcf75c50731be8bc6ad14843c0d15e56be1a1f950496aec77bef28251179fb9"
+    },
+    "docs/password_vault_load_fix_20260918.md": {
+      "sha256": "e11070bf4c5a69510bae0a2fe5cfae4630fdb03221cd3858996595c069c4391c"
+    },
+    "docs/password_vault_load_flash_20260918.md": {
+      "sha256": "d94f9b0b6fffb4381980fbd2af1a2230e0db1a5edfaef78535f850e5320a5248"
+    },
+    "docs/password_vault_local_docker_20260917.md": {
+      "sha256": "9a73f3de3bfeb8c0cf7848e5fe02ce819003f9654b74a48ca34d597cf5aaacc6"
+    },
+    "docs/password_vault_native_deploy_20260918.md": {
+      "sha256": "966eb4c7e2f1d4d2d4f9e2bf202df3d84d415c2e19be472dd698554e460e8416"
+    },
+    "docs/password_vault_simple_20260918.md": {
+      "sha256": "1eaf6104daf986c323aeb4eec2733dc5e83a2c7c1230edbb32dd65e59963fdf3"
+    },
+    "docs/password_vault_springboot_20260920.md": {
+      "sha256": "3b23574802681bd8ea5dba684bacbd82070f52414f00cf85b50aeb1577d4da51"
+    },
+    "docs/radio_storage_fix_20260916.md": {
+      "sha256": "8b0b8a5b33b29db7812909991f9f0e11af58e264c7820b07c402880aa96faada"
+    },
+    "docs/recorder_icons_fc_20260919.md": {
+      "sha256": "ac8316d65407338ad4c315fb5bc031b1d31c6a75b35f4429b2b900de62ff1540"
+    },
+    "docs/recorder_layout_20260919.md": {
+      "sha256": "555e6bbc06aefb59628bbae804ed2629c114ff79b362589dd0175ed65ab1bfcf"
+    },
+    "docs/recorder_ui_dsp_20260919.md": {
+      "sha256": "750c2b1409e850058247b5ce3f36fa5e02f43157fda98315d33ead4839435c93"
+    },
+    "docs/sd_media_fc_20260918.md": {
+      "sha256": "b50d1fcd6831838308f226cf8ff90c2b83b0c653a4198b4506f3ed83e5d0fedc"
+    },
+    "docs/sd_root_audio_20260919.md": {
+      "sha256": "c2d2d2d46d8c7195f2cfb70ab1726c5ba71a326ef25a828e088290681bda3428"
+    },
+    "docs/ugreen_dx4600pro_vault_deploy.md": {
+      "sha256": "ab97d26a077fbdf81d6578d20c9fc14173c6b90a774c97271ab7e640fa7def0d"
+    },
+    "docs/ui_power_refactor_20260916.md": {
+      "sha256": "2039373a72ca63342a3f33527a5b80e1f45bf52ab2528f1a3a2eb3bd9e82cfa0"
+    },
+    "docs/vault_archive_20260918.md": {
+      "sha256": "71df1c24a4259c859c666f336aa408b7e343d0f70d3d463ed175f1bb83097f07"
+    },
+    "docs/vault_change_password_20260918.md": {
+      "sha256": "f2304ae9b31f585f6ea032d1d2b5d8278e55e0be7b1af6d717dfaa07b7838c4f"
+    },
+    "docs/vault_csv_import_20260918.md": {
+      "sha256": "c38da7563834c38358ce445b4048a2aa87bb09ee9232013d95bb4d8b8d080d21"
+    },
+    "docs/vault_enter_flash_20260918.md": {
+      "sha256": "05a9ef45dc73a2c421ceb30c09ad74d9a122f790dc722bb3543a245af4a9b515"
+    },
+    "docs/vault_fullscreen_enter_20260918.md": {
+      "sha256": "94991b3d6ecbf957c6bbb69a7e20512629428bb29597ca88f2212bd9bf2b03be"
+    },
+    "docs/vault_pin_ble_reconnect_20260918.md": {
+      "sha256": "550ec948fc4607939e3925a820ee74ca0a70c1beda1d25ac8fb89e72bbcfea0f"
+    },
+    "docs/vault_pin_flash_20260918.md": {
+      "sha256": "7dd57236de7875f52251598a39ee04e2f2c920dcd2255fef5c9b77d08c4bf2ec"
+    },
+    "docs/vault_reveal_return_20260918.md": {
+      "sha256": "3d5e9b4567b0d2db2b7fc0a91b4385cc0e83cd717cf97e910c78250a4fd9416d"
+    },
+    "docs/wifi_input_flash_20260918.md": {
+      "sha256": "7aff2730d11601124e1f0ff48f2ffb93ee07e2eff4e8ef37ba5df439ceec9914"
+    },
+    "main/apps/.gitkeep": {
+      "sha256": "511ebc4598890e68e4722fe99fd2c61075cd0bff094dbf4dc4fc37479d7b555b"
+    },
+    "main/apps/bt_keyboard_mouse.cpp": {
+      "sha256": "9cffe7e25d37c840486b909c12db7170103fd183f88b7f8bd16cd8e776009641"
+    },
+    "main/apps/bt_keyboard_mouse.hpp": {
+      "sha256": "5f29af7ba2952b94fb57ed47d66810b250fd79758891aa6eb27b9946e2f162ac"
+    },
+    "main/apps/bt_music.cpp": {
+      "sha256": "d5209c1d14537f3dc5abbb6d23808f97707703f2d70272ea12bf78755131b8b8"
+    },
+    "main/apps/bt_music.hpp": {
+      "sha256": "e7eeee27e8fe1ec01408392b796d6efb8ba103b9ca4fb033d160fa4ede025fea"
+    },
+    "main/apps/fc_player.cpp": {
+      "sha256": "e53a5f70fe0d962e4e1bdbf94d7ad1af7110f37b70d844d17bc51f462abf4d53"
+    },
+    "main/apps/fc_player.hpp": {
+      "sha256": "a0ab40a0689ab3be3f155245813ef2e3ee49eae47b16a7fcd3bab36b5f159035"
+    },
+    "main/apps/flashlight.cpp": {
+      "sha256": "7725773369aba9a9f5b35f24f1a79132b9ddf5a3964825ca8a4177e7b77ec584"
+    },
+    "main/apps/flashlight.hpp": {
+      "sha256": "4e79db4d427b1db8ddb924207683d4fbd2deabaf4c8a922cbadf1c08289c1347"
+    },
+    "main/apps/flashlight_signal.hpp": {
+      "sha256": "c00f5e0f93a7a9b48a9fdd9b8577e2fe2bfe2c73415a360a0c61fcb0e96bf20c"
+    },
+    "main/apps/gravity_ball.cpp": {
+      "sha256": "c72adc881cabd4b2bbb71f9405f36932a13b664ac9de6627749af5d369fdcdc2"
+    },
+    "main/apps/gravity_ball.hpp": {
+      "sha256": "3a690f5a996f1d196eb6de019267fcac9af348e87bb2c6a516d1980f9b045afc"
+    },
+    "main/apps/hid_keyboard_model.hpp": {
+      "sha256": "9306e8a3e9120fbb3e76dca0fc6877a645239663ee6b30effdf1b577f53aa0b3"
+    },
+    "main/apps/password_vault.cpp": {
+      "sha256": "31e451184e173f33d9ae9abf3fa7f1fda540f61f6a0e06270019c98a8e2f14ed"
+    },
+    "main/apps/password_vault.hpp": {
+      "sha256": "807577c0194d32aa1a98c6a949b38a15559fd69e2928d14bc4f7fc33a738b95e"
+    },
+    "main/apps/photo_viewer.cpp": {
+      "sha256": "39dbdd3e51488ebc54ff6633b84089d2d2ff3bcd6fa294d3ff62ef1a14b72869"
+    },
+    "main/apps/photo_viewer.hpp": {
+      "sha256": "6fab4aa92608e024dafc767cbfde42352b138a0ff1c4d01ff8e6fc97de094e06"
+    },
+    "main/apps/recorder.cpp": {
+      "sha256": "7abadec70b1c671ab4e9e7484af5d9259f1d33bebdbb12b66d3adf60f482986c"
+    },
+    "main/apps/recorder.hpp": {
+      "sha256": "6cbaaaa8e6db9dc074e3dd0c3f11b703a4c12e04c8e417ccaf9414bce7c5fb3c"
+    },
+    "main/apps/settings.cpp": {
+      "sha256": "ad67a1d88fdd05d2031e31a094eeb5cf330630e259d43efde377e38a57e91f96"
+    },
+    "main/apps/settings.hpp": {
+      "sha256": "a78878ce3065450ab1a46e6f7dbe62975dafad976eabef7356d0e6c77d9d631e"
+    },
+    "main/apps/settings_bluetooth.cpp": {
+      "sha256": "0b76e90c7bef9c3cc4c311f84f156a394a3bf320752c3cf598de79f0f3188b9b"
+    },
+    "main/apps/settings_system.cpp": {
+      "sha256": "a9cd286a418b68189e744acfac18aa0deeca472e0b9a51394cbf4eaed6758ae1"
+    },
+    "main/apps/settings_wifi.cpp": {
+      "sha256": "1f97f9e65590d6ccfc674020ad1c10c0799cf92dd947afae956bc42b74aa12d3"
+    },
+    "main/apps/text_reader.cpp": {
+      "sha256": "f34b0d178d3f6d22a57b8e3a42ab8a426eca0f9310c152c431322ba3a807cdc4"
+    },
+    "main/apps/text_reader.hpp": {
+      "sha256": "8dc40f365349c290d19a37264ce8640c9ede3d8806325beaf9b57101223f1f7d"
+    },
+    "main/apps/touch_scope.cpp": {
+      "sha256": "980689c99fd175fafd664039c54ee6bae02bb8f68f17805ba828b8a5aca0f7b3"
+    },
+    "main/apps/touch_scope.hpp": {
+      "sha256": "7dabc2452fda4bcba2828ce3c73a78a34abd6bae1b5e6393276ca603a81a001a"
+    },
+    "main/apps/watchface.cpp": {
+      "sha256": "99f4a2a524f274644925e80fe99ae02ec81d1b11d17b893fa17dcdcb694e279a"
+    },
+    "main/apps/watchface.hpp": {
+      "sha256": "29928742ae2b212d7c733c3c9ccfd511c4113ac510effd334bf24755f7d65873"
+    },
+    "main/CMakeLists.txt": {
+      "sha256": "d4cab0ee5853c0c27369c16ef752888b9f7016631361dd753db48ce44319af49"
+    },
+    "main/core/audio_mgr.cpp": {
+      "sha256": "687aabca4a8edfc967eabb118d9f14c174440d7b6b781ba9fc5dd103c5853b65"
+    },
+    "main/core/audio_mgr.hpp": {
+      "sha256": "3200d4bbc91c2f55bdbce3b807ec10a49c96f4d3fda07893b94639fbb33ee9b1"
+    },
+    "main/core/audio_recorder.cpp": {
+      "sha256": "6a54e9a9a66d81c826218cd41849a5d3c00a556582ffc4429ed377a350a60260"
+    },
+    "main/core/audio_recorder.hpp": {
+      "sha256": "4425f0fa37ecbd48bd580dc05ff719435b163c654dfae6a6648ff4653f33e6bd"
+    },
+    "main/core/battery_estimator.hpp": {
+      "sha256": "749f94ba7289023d2548d24b52a469363fa7d7d648f39b41ce665cce679e98dc"
+    },
+    "main/core/battery_mgr.cpp": {
+      "sha256": "01c074850dbdea84c6023f5132c17cd52c21937e544d8a53428c5324433cd9b4"
+    },
+    "main/core/battery_mgr.hpp": {
+      "sha256": "4915fad2d6be2a60565ed608a59c383b1adf94c219eb0698df95b3c1bb8ae33c"
+    },
+    "main/core/ble_hid.cpp": {
+      "sha256": "aebbe76e43787495475bc5eb85399666ddf43c1922cae62b4900b8e4d70265ba"
+    },
+    "main/core/ble_hid.hpp": {
+      "sha256": "9cfd27db2d0c0a692f13e80fb41f330fc1e6e9897711ba83820bab6532707d92"
+    },
+    "main/core/ble_keyboard_client.cpp": {
+      "sha256": "3b5f58f95bb2b4046d30d8c46ce8869c511ccef02d8a08cab9a81f9667b03dc2"
+    },
+    "main/core/ble_keyboard_client.hpp": {
+      "sha256": "5c93c04f3743caff8db7c108b820dc3f1769b70957b3588ac6d9c03b05418682"
+    },
+    "main/core/ble_peer_store.cpp": {
+      "sha256": "afe7dc517d4a1f405988b243e1baae2992ad1d2de196b83e3887213e42d10696"
+    },
+    "main/core/ble_peer_store.hpp": {
+      "sha256": "fad853a79362afb49b93b8b326dce8d3c3b1e5adac2f8628ae2795d7a377db70"
+    },
+    "main/core/button_mgr.cpp": {
+      "sha256": "6dae9f87b07cd91e8ec5373593d834c2b3766201e43c402e9523e99b9ab56046"
+    },
+    "main/core/button_mgr.hpp": {
+      "sha256": "62a50b058d0b10c996e791118ad15e7bda7f023b767a7c782eb355fb5c978c62"
+    },
+    "main/core/charset_conv.cpp": {
+      "sha256": "e4b2367ca26ab0e3b7b5eb01811533abe62b09f5998ea7166c6a381c1644366b"
+    },
+    "main/core/charset_conv.hpp": {
+      "sha256": "929c849938a8fb7eab24a55bf3c919ed248d10b63b0fa4969e0e6fc846140ef6"
+    },
+    "main/core/connectivity.cpp": {
+      "sha256": "8df71ecb51d498d95b158b5fa917bfea3e4110e5997e094993451536fd5a1ebb"
+    },
+    "main/core/connectivity.hpp": {
+      "sha256": "6a9d2cb5c3c6fd26ccee8325af015dbe20e53ee5d9f5b4f16fc1cb2605a33867"
+    },
+    "main/core/dual_mic_input.hpp": {
+      "sha256": "68ec4701f588732a2ec7213b03ea9afbee2ffcdc5f85fd65182c7f54a6df3f3a"
+    },
+    "main/core/event_bus.cpp": {
+      "sha256": "614167e2ba35b455381bc8ba1499b5d6211a7e23ddb5ea06174c018c5d0bbac5"
+    },
+    "main/core/event_bus.hpp": {
+      "sha256": "843997906d360945f037bdffa5430292911cb31ebea41626bd566182fae83482"
+    },
+    "main/core/fc_emulator.cpp": {
+      "sha256": "a8f7c3c0157c9dcf2788ab886ffa1dd8afe4baf0de3834fdbb28161aa3da123e"
+    },
+    "main/core/fc_emulator.hpp": {
+      "sha256": "8eb2fce473b2a54c9547cbf3ee3a4746abcf8bc73e6d6b44f7b6176639be12b9"
+    },
+    "main/core/fc_model.hpp": {
+      "sha256": "7c37e9263848b7a2a5a678d2bd6462b126b6a1161cdc0c73b1f9453a6262b507"
+    },
+    "main/core/fc_timing.hpp": {
+      "sha256": "6b90d73a5bb7f7e85a88ac38c95c995514996514117f596617e6207c6fe0d9ac"
+    },
+    "main/core/fc_video.hpp": {
+      "sha256": "a09c65006e062f6fce24be12855f08dc5fca59283e0da84bf07f2b45da4519ae"
+    },
+    "main/core/gbk_table.c": {
+      "sha256": "2b7d07d9fd03297b6cfec6696168af2617d91fce8fd5beadac82904751762689"
+    },
+    "main/core/hid_input_report.hpp": {
+      "sha256": "0dc3e237d4abf72ed8133ac44296745620ace223fe435e815ff9f8c6a835f07b"
+    },
+    "main/core/hid_key_sequence.hpp": {
+      "sha256": "3aa5c48dc4f5b2ef7d439c0fe6799bc6c62253dd1985f0a5c5747df5746ef631"
+    },
+    "main/core/keyboard_input.cpp": {
+      "sha256": "a6734e2292dcad0bd7e0120e8bfc1b139e6c0a09a028c9b927ff427ccb25b8a4"
+    },
+    "main/core/keyboard_input.hpp": {
+      "sha256": "05895f0102fb6f0f500c3696edb926785dbde94744d4c71638870142fb6bbb93"
+    },
+    "main/core/password_vault.cpp": {
+      "sha256": "965c8802570622db673af7481d85fb87ed0397ae045bf9c82c22e4b44b316efe"
+    },
+    "main/core/password_vault.hpp": {
+      "sha256": "d9a2056a1f78ed6d406a44b42a1702e320a94d1f7a8ca941c4cc689803cabdcd"
+    },
+    "main/core/power_mgr.cpp": {
+      "sha256": "1ee4bc3342df6d00719a30dedf6b3e45c42fec16a1bdd8e4428698abaab3cde1"
+    },
+    "main/core/power_mgr.hpp": {
+      "sha256": "29f9b259b335196ff1eceb5645d6af063217e89bb0814b0b10f164db4ae78c9f"
+    },
+    "main/core/qmi8658.cpp": {
+      "sha256": "538dca34da7641450d24484f341ce2c69c2fd0f6889672907c828fc1507b46fd"
+    },
+    "main/core/qmi8658.hpp": {
+      "sha256": "37bb2e49fcd5683f04c86b881a5709d02d86194f4ff7d67070b413eb943b57ae"
+    },
+    "main/core/recorder_transport.hpp": {
+      "sha256": "51bf8a9ff55d9b2f80a1bc8b7109cdd83ee6512f6c65a9dc884e068ead56929a"
+    },
+    "main/core/recording_denoise.hpp": {
+      "sha256": "298b2489dc8125a82a9da6eb3ace55d9e5c319aab97eeb0000a6b762c7686efb"
+    },
+    "main/core/recording_latency.hpp": {
+      "sha256": "f7771e08098bda54efb70f8cb861d45c161ba293b54106dca636f0d8eff6bf0a"
+    },
+    "main/core/recording_level.hpp": {
+      "sha256": "b1fa3891ea3a0d7b18f208cad8ffa041a0175a3779c1a62f007f3474b818a5d9"
+    },
+    "main/core/sd_media.cpp": {
+      "sha256": "a467866c2f357e9fd290b930a5dfb4abcd2057066950843a6393c79d5b6cbf65"
+    },
+    "main/core/sd_media.hpp": {
+      "sha256": "9f2f2ed00c37cf46f8c85a7ab7b26c51bf73cab3b7118660f8101b4173c51703"
+    },
+    "main/core/settings_store.cpp": {
+      "sha256": "d1c197f6ad44adb87ef1d7bcf3b5516afec535fd7701bf33f5d75503c245e462"
+    },
+    "main/core/settings_store.hpp": {
+      "sha256": "81e6f2d3ceac0310f86d9d418916d046169a936990ad11a19d472229d5b16cc5"
+    },
+    "main/core/storage_browser.cpp": {
+      "sha256": "1a3db4c2505b5aa09d41ede2ed78767a2796c38a7de0895e9245124677f473e1"
+    },
+    "main/core/storage_browser.hpp": {
+      "sha256": "7a50aeee854d79e076ad6cf32bb0c60244c5af8f892801c7035d7597c049452f"
+    },
+    "main/core/system_service.cpp": {
+      "sha256": "69ab93963c35662c3c213a3da0e9ca1749410cb8d46e2261d5d4a8ced7e75b3c"
+    },
+    "main/core/system_service.hpp": {
+      "sha256": "055726847226f3e13116ce73a1b6b39351bfdccf13c31d017744df8cce87f249"
+    },
+    "main/core/vault_builtin.hpp": {
+      "sha256": "61e94eb2b9b0183f5f3d17c1665fa99e5fd3bffebc09c3e49705664405b8171c"
+    },
+    "main/core/vault_connection.cpp": {
+      "sha256": "6f17057e93dbeecaa95eba644390ae5c56b513b3c7369c0397e6ec5cc67d8847"
+    },
+    "main/core/vault_connection.hpp": {
+      "sha256": "7eabf8ddf6b8e4184b54c7d2343fbbfbde32f8e76e6b9830af330b50ff8039fe"
+    },
+    "main/core/vault_crypto.cpp": {
+      "sha256": "23f8a552fb3069996f2cf69c508549ced2a4af9e412ab0359eec63e4a999799d"
+    },
+    "main/core/vault_crypto.hpp": {
+      "sha256": "af87f904836b1ea82cc85a971640688a1634e55df4253aad7dedee0dd1285bba"
+    },
+    "main/core/vault_format.hpp": {
+      "sha256": "79447a18585d2fd905f3b92ab9b4b37139eddd2c01cd768ddcd40faf5d09d9c8"
+    },
+    "main/core/vault_interaction.hpp": {
+      "sha256": "8b9dca839e5f0e00e7f409e87148d51714100e09877d60f116732b4270f07e60"
+    },
+    "main/core/vault_json.cpp": {
+      "sha256": "c38f1aee14174d2fc7a727ed41b4a935a7f5d2257068806e6d68db1e793defde"
+    },
+    "main/core/vault_json.hpp": {
+      "sha256": "a71bc7875d9e24efb3945d3d4f6ad21777a8fdb6fcf8abaee808f7726a7c95bf"
+    },
+    "main/core/vault_load_state.hpp": {
+      "sha256": "63fb6cbe699e5ae95bf202a150eed24e5f20e3c4bd3152dac487058ae09ddd1f"
+    },
+    "main/core/vault_storage.cpp": {
+      "sha256": "ef470026964d49a07bb1b2495ff75c4de471b8075bc377178261f9a4a447ef81"
+    },
+    "main/core/vault_storage.hpp": {
+      "sha256": "7f0e11046e96779b6ab4cf5cc38504af472383d705d7e26680f169ec30479a83"
+    },
+    "main/core/vault_sync.cpp": {
+      "sha256": "42724fb5378642ad81a8ffe8b50ffea093ec3111f64832e16047476ddd9cadd6"
+    },
+    "main/core/vault_sync.hpp": {
+      "sha256": "48b82f097a385ccdafaec63c949ac3bf24d0280693a219431647015baa511b96"
+    },
+    "main/core/wav_format.hpp": {
+      "sha256": "f8a0e29a2262ddb0120f9c4fbd6890a0b6ee399e4aa848473efde3216168b31b"
+    },
+    "main/idf_component.yml": {
+      "sha256": "06c3d4f87f031e8056375ed0fe06eaa9769ec9c9a2a8340998082948b5effc8c"
+    },
+    "main/main.cpp": {
+      "sha256": "7152719053cb9bc8e55da815b91cd7d1a402e92cb06b50e23a29ae0edfeb684d"
+    },
+    "main/ui/app.hpp": {
+      "sha256": "8690ac8be1d97821d858c334d01a71fdfab37b3723458932043799f3b09b5412"
+    },
+    "main/ui/bluetooth_identity.hpp": {
+      "sha256": "13c76ee934d956fc6d35f7a3311f2f5248a8998a677f4b4a98588c54577d250c"
+    },
+    "main/ui/bluetooth_pairing.cpp": {
+      "sha256": "820819861d4f8721fa06c4fc55684ce7b89ae39425c63ab81e7e76576126fe71"
+    },
+    "main/ui/bluetooth_pairing.hpp": {
+      "sha256": "87eaea53304a66128fa91474fb0a3e786bb7ec80d97368f44ae043047aa18cb6"
+    },
+    "main/ui/boot_animation.cpp": {
+      "sha256": "ccdda132db62cbd3c5128806c9f722faa484f18175dc8612c02e5f70cfd8697f"
+    },
+    "main/ui/boot_animation.hpp": {
+      "sha256": "1dcd6d8f0e013af27818196500fbd845f70972cb7a13647627870157e6151adf"
+    },
+    "main/ui/compact_ui.cpp": {
+      "sha256": "2ebe33e75e6fdadbe9619dfbcb5a59e5e6191dedf163a4e8e0a2b9875f6246e1"
+    },
+    "main/ui/compact_ui.hpp": {
+      "sha256": "6755feeb1d14fea9b1dafcf101907f3735392a396b0e9acecec39e1deca7e3c6"
+    },
+    "main/ui/external_keyboard.cpp": {
+      "sha256": "99c3bdd4c5fc8e96b3ce619dff800c1ec084bd8237619c397b1078e867dbdbee"
+    },
+    "main/ui/external_keyboard.hpp": {
+      "sha256": "5c4aad4ee2e00b31de8306abf54816f3cbe87b12e07243c36360c6d591c37226"
+    },
+    "main/ui/gesture.cpp": {
+      "sha256": "4c54779b66483bf5fdac8556029fc75914f74dfde5d22496ed045058aa8acef3"
+    },
+    "main/ui/gesture.hpp": {
+      "sha256": "8ebd1c53932cc3d0114729979a905233f52591499cb83f6dcf87fcc8033e64ce"
+    },
+    "main/ui/hid_controls.hpp": {
+      "sha256": "7c37ce7be076d7fee5185922ed45c0ae24f1a252935c8d020f48cb4830fae32b"
+    },
+    "main/ui/home_screen.cpp": {
+      "sha256": "52f0dffd0308a8f9c58acdc3617fd7b070bbfcb08852f566b622d6899950f956"
+    },
+    "main/ui/home_screen.hpp": {
+      "sha256": "0ad276c7935ab897e1490637a9d150cf9e55f6f11bcd9c6b5b1e33a449703ae0"
+    },
+    "main/ui/lv_font_cjk_16.c": {
+      "sha256": "e4cf58aa0b3813f066056abba45cb366b2c26e1731f89e063f2e6604cbc73bed"
+    },
+    "main/ui/lv_font_clock_84.c": {
+      "sha256": "f22e8f5a7daff5d2ba27a5ee78683d1fe30d79855198d646a1c4164f5fe661b5"
+    },
+    "main/ui/lv_font_menu_14.c": {
+      "sha256": "a9f865703e8329b9e76b6343cee724162c718ded0e6ec2bc5c5777d7d65af308"
+    },
+    "main/ui/recorder_layout.hpp": {
+      "sha256": "71d222737ee347e00db8b15722df83494772ab96c3678441e022bc256dc5ce8d"
+    },
+    "main/ui/sysinfo_overlay.cpp": {
+      "sha256": "56fcde8e6ff8a1afb8d6deef49e7966577cabb4f5179017198e0672d510faa10"
+    },
+    "main/ui/sysinfo_overlay.hpp": {
+      "sha256": "6c7b312a1f9cbb7fd36e25cb911b4d33b7e5990b02960ee3b1720bfb2fa1f721"
+    },
+    "main/ui/text_input.cpp": {
+      "sha256": "dde6cb525478c8e7c96d454baf813b2f6cb6ed93c19f9b492ebdf0d067c1dfe9"
+    },
+    "main/ui/text_input.hpp": {
+      "sha256": "05797981b3e9bedc02b4c570f4a6dfcc4301c4b70e34b6641fd1dbbd2cecedaa"
+    },
+    "main/ui/text_input_layout.hpp": {
+      "sha256": "8c5f10104643bfb478ec1f61687971e5d60f3b4fb91c170d30ce9bd3a083afb7"
+    },
+    "main/ui/theme.cpp": {
+      "sha256": "576455ecc1f822a9722685ed8a6913dfc43f3f5aae921d10de070f6a396828ca"
+    },
+    "main/ui/theme.hpp": {
+      "sha256": "110d32267f96a2a2dce1c412fc7eca28800827b46535d6c8311a037a7c3a8370"
+    },
+    "main/ui/window_mgr.cpp": {
+      "sha256": "94be20c6a39df12dcebcaaf2564fe0dbd4bbef14907e9e63f9e84a1603134f57"
+    },
+    "main/ui/window_mgr.hpp": {
+      "sha256": "59b2b18d6c537d064f8a60353625e75b2e5d1c23981c507c785acdeec5cbb86e"
+    },
+    "partitions.csv": {
+      "sha256": "843a27c5ad82ef3e993251603ce0125c5d7efe067d2500f0c5655d99448a5678"
+    },
+    "sdcard/config/nes-keys.json": {
+      "sha256": "a054a676f931ed196ee63f7fbae39a2ccd291d3b311047b27633dac6eac74de4"
+    },
+    "sdcard/config/vault.json": {
+      "sha256": "9fdb880fbe9e4069cfcaa73ec2e7709c1d8b551e0a0b7d9405c357d66078b7cd"
+    },
+    "sdcard/joycode-sd-template.zip": {
+      "sha256": "0fede7881e2c3b5757b20bf78d6d7cc0d6816f794d7880ca9513422d9f073a28"
+    },
+    "sdkconfig": {
+      "sha256": "046b4d24b525d8257120e05ed22ab0a1504c89b877fd626de839431aab67b466"
+    },
+    "sdkconfig.defaults": {
+      "sha256": "e70f2eb2b91f4e0e40ef94f6f6622b258b7710956097d779da9ebba818150215"
+    },
+    "server/password-vault/deployment/local-keys.json": {
+      "sha256": "a699aba29a17ffff73834e33cbf361593e263f234fe7a4aa9fb227bac2b0da81"
+    },
+    "tools/check_battery_diagnostics_cleanup.py": {
+      "sha256": "a1181bf9c90ac9239e23620ccb961fd27e42afc47a35d6dd73250fc2f372f71e"
+    },
+    "tools/check_battery_full91.py": {
+      "sha256": "3e8fa3be476d048e94368e171f869927fad65a20804c352ace32fe0be8a9edf7"
+    },
+    "tools/check_battery_power.py": {
+      "sha256": "cecb97a0e9ec55ee2ef77f8e2f228d85a42322284ed9db2a030bb0c0989f3def"
+    },
+    "tools/check_clock_hid_ble.py": {
+      "sha256": "f662682459051b4247f41f450bb3c1ebf7daee868681367e2c92fb4d43c14a2f"
+    },
+    "tools/check_firmware_refactor.py": {
+      "sha256": "93f7cbc14791f9ccfa3705153aa863e405eb410e4596014340c97afaa1759a71"
+    },
+    "tools/check_gravity_battery.py": {
+      "sha256": "25f2781e3421bf6a855fc6f7260ca284530e239ac6a01676cb9ca19a6a48d0a5"
+    },
+    "tools/check_hid_ui.py": {
+      "sha256": "0547ac02034d4bfc042b8909bca0f03da8325cc69b16ef75f1338f3b5ed4ff0d"
+    },
+    "tools/check_keyboard_battery.py": {
+      "sha256": "f8c4a304d1da08b27d402272043c51f47b4906dc71e87cf156c11941edcc8ffe"
+    },
+    "tools/check_mac_hid.py": {
+      "sha256": "5feb9412b7e6ba5776337b6847cfd88e8253dbb98034b63323d748a48ef723e5"
+    },
+    "tools/check_manual_lifecycle.py": {
+      "sha256": "7c7a2d99b7642dacb889fcab0193668b587de947bc679358b3dd2118bb7f02a8"
+    },
+    "tools/check_netdisk_cleanup.py": {
+      "sha256": "3febc6f0ac5ede3201f73c74b0c27cdcc844e510936f1b9b1eab26e04dd5d031"
+    },
+    "tools/check_password_vault.py": {
+      "sha256": "1932ed48fb7ec23b73469b50647a8b1a63998f29f5b37e30dd7f2333522cea2a"
+    },
+    "tools/check_radio_storage.py": {
+      "sha256": "9e2749ae14cb37cad57aac57e5cc5ce197bdbb617e3107aaadd92b8ba0323396"
+    },
+    "tools/check_recorder_alignment.py": {
+      "sha256": "76cce524221d3855baef0875cbea519b1c6c56701f8e51b1ffd9c347b4cdaa32"
+    },
+    "tools/check_recorder_fc.py": {
+      "sha256": "e40a35d032ffcf3dfc526a684d464a5808960087e99114cf822f9f91b72273f4"
+    },
+    "tools/check_recorder_ui_dsp.py": {
+      "sha256": "d9be10d3024b9e3a27bf2fbd287b3bb545f31ef5e4d9c1b2378d482ea74b03ef"
+    },
+    "tools/check_sd_media.py": {
+      "sha256": "a18752a15b52b71cad1f02127ecdc6ce621087f404114da6641b423e09d01e06"
+    },
+    "tools/check_sd_root_audio.py": {
+      "sha256": "ac1f93a7a2941f0e1a77b84cb1850531542825732e91ddae4fc3b2dd8b3970f7"
+    },
+    "tools/check_ui_power.py": {
+      "sha256": "ee437035810d9c6d31755398a0b36bc213e5dcc52a36b0f7bc55bb169d7a9dc9"
+    },
+    "tools/check_vault_change_password.py": {
+      "sha256": "a5e08c7c2f7b493593627b566beba9240e35377da3e77f5c827509f86b9484ee"
+    },
+    "tools/check_vault_flash_auth.py": {
+      "sha256": "680d1b4b7724374de89cbf44fc8a95a1ef5952254ada3f56d4e4353e2efe4bba"
+    },
+    "tools/check_vault_fullscreen_enter.py": {
+      "sha256": "4c810b04a068f1a25632bbf6319ecdff62747dcae1aa79bf26a787771a6807e9"
+    },
+    "tools/check_vault_interaction.py": {
+      "sha256": "c4c5e385848a344c5d40dbf2e72d3ad62f5995c52fb1fdda7d57fae56fe352a2"
+    },
+    "tools/check_vault_loading.py": {
+      "sha256": "9955fa164834f92170e318c44d971c6aa67b396eef1c90e5fa21273d753736bb"
+    },
+    "tools/check_vault_pin_ble.py": {
+      "sha256": "82034af5505585b2e9997dc61785a4158aef98772e101164d407a5c94f176230"
+    },
+    "tools/check_vault_reveal_return.py": {
+      "sha256": "c6ff01b93626b448583deb39801fa71bb146a1ebe4a6df12cb173b3e95f21566"
+    },
+    "tools/check_wifi_input_layout.py": {
+      "sha256": "43f207f5bed7d335b21ffbfe9a6b1c2a2460f2773f76765a34efb5926956f8dc"
+    },
+    "tools/configure_vault.py": {
+      "sha256": "6ca8be90e3737667eb8932c32a748b1c998e0e132221796b337f5b8aed7d8451"
+    },
+    "tools/dual_mic_input_model_test.cpp": {
+      "sha256": "ae8d0c4eab910762e4c390b28d36d40422361eca070952d44dae05c988dbe213"
+    },
+    "tools/fc_hot_memory_test.c": {
+      "sha256": "ef019f3e66ecfb4296e278b759320b5e659866867505604309b0f007a0b162dc"
+    },
+    "tools/fc_performance_model_test.cpp": {
+      "sha256": "d8ff2398a5de18855da64797846bb37c3cd44d123875af0941b9902324549679"
+    },
+    "tools/gen_gbk_table.py": {
+      "sha256": "e4a1df4ef00109e752767e227c1e4dd86a0f6d003668ede88bebbe93d6a40eab"
+    },
+    "tools/hid_key_sequence_test.cpp": {
+      "sha256": "bef396c30adb7af01d9b09f497bae77f0fe0d71ebd3668a6bf36014beb918130"
+    },
+    "tools/hid_keyboard_model_test.cpp": {
+      "sha256": "368908a59f0f2bd706985316aae520bce882e90ec7292ede8cc087c8c8e37f94"
+    },
+    "tools/keyboard_battery_model_test.cpp": {
+      "sha256": "bb0a988abf9c1e1235306f370f3127ca5e111144581b6821d27f4732696b54ce"
+    },
+    "tools/ninja_utf8/ninja.exe": {
+      "sha256": "95a04c43b6049e579dca7ecd4def96b4cac7a7a5005be5c7990b081de63a4c2f"
+    },
+    "tools/prepare_ninja_utf8.py": {
+      "sha256": "eaf2edb90b7488cc204b89401542e5032be6dae9a20b110c219102627c8abc20"
+    },
+    "tools/prepare_vault_flash.py": {
+      "sha256": "75fc039aa2fb1c9884c17bdea27a40b53ef3b8596c6640b0e9d35b6dc01cdb62"
+    },
+    "tools/recorder_controls_model_test.cpp": {
+      "sha256": "a6ca4a92b43b6029ba43f67523482dc429f6b3713605dd5e135202e38d6f9128"
+    },
+    "tools/recording_level_model_test.cpp": {
+      "sha256": "28409a11382bc79dc3c5890def6f195700b49a3e78b580f0651f8e80fcb33604"
+    },
+    "tools/repair_ninja_deps_utf8.py": {
+      "sha256": "fe1d6f9e370654e5a784b596aeae9dfe5f563253bf2440360a0322dd4bb23a01"
+    },
+    "tools/sd_media_model_test.cpp": {
+      "sha256": "9e227a12fefb06d56c8aa5890fa67c0453c82f88381776249b88f9cfa3e55cb8"
+    },
+    "tools/subset_cjk_font.py": {
+      "sha256": "8ba4441596ed50c56fe0e186cb50630a07c6cdd73525f6b4432d41b21f26605b"
+    },
+    "tools/test_repair_ninja_deps_utf8.py": {
+      "sha256": "eb1407c1274c8c0dd5d2a4ccb61e46ec128da7aea08145f9a95397fa1fd0edfe"
+    },
+    "tools/text_input_layout_test.cpp": {
+      "sha256": "c6ba0ab552050c5fca4500db4c2919c5c09a4e49697f1023df0620063f5f6dcb"
+    },
+    "tools/ttf2lvgl.py": {
+      "sha256": "f7cf37451af32ac6ccc0a07068ec455868eb86a70abdb1cdf89e39ac19e943bf"
+    },
+    "tools/ttf2lvgl_emit.py": {
+      "sha256": "5a5d96f5b94648a74b914f5124158edb4f9eb41acfc916815790c124abba68c8"
+    },
+    "tools/vault_interaction_test.cpp": {
+      "sha256": "aaafc075d6ca17286f7db048b60fc7c6c14bc3a838d593c99c4bbb1ca19771eb"
+    },
+    "tools/vault_load_state_test.cpp": {
+      "sha256": "6b8cf2c136c1e125f69e090bca1866e7ca8420fde67acf9dc94270bca03e082b"
+    },
+    "tools/vault_release_contract.py": {
+      "sha256": "40f9e948a6c5e87a610f8beae5e9aad9626415ef3242a38f617878fff1e0e21a"
+    },
+    "tools/vault_simple_test.cpp": {
+      "sha256": "1fafcfaeb389d8de614adb6f7bc2bc855a2237a501689a2689a641ab7011c21b"
+    }
+  }
+}

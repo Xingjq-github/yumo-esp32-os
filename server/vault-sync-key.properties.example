@@ -1,0 +1,3 @@
+# Run python tooling/init_config.py to generate the same random key on both ends.
+# Manual replacement: use 64 hexadecimal characters; update both files and rebuild.
+sync.key.hex=REPLACE_WITH_64_HEXADECIMAL_CHARACTERS

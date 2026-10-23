@@ -1,0 +1,4 @@
+I (93244) battery: estimate=92% voltage=4115mV charge=inactive aI (1675974) battery: estimate=92% voltage=4116mV charge=inactive adc=6dB valid_samples=16
+I (1706481) battery: estimate=92% voltage=4116mV charge=inactive adc=6dB valid_samples=16
+I (1737087) battery: estimate=92% voltage=4115mV charge=inactive adc=6dB valid_samples=16
+I (1767497) battery: estimate=92% voltage=4115mV charge=inactive adc=6dB valid_samples=16

@@ -1,0 +1,30 @@
+{
+  "format": "chip-score",
+  "version": 1,
+  "title": "雨墨·像素冒险",
+  "tempo": 138,
+  "loop": true,
+  "tracks": [
+    {
+      "id": "lead",
+      "wave": "pulse",
+      "duty": 0.5,
+      "volume": 0.62,
+      "gate": 0.88,
+      "notes": "O5 L8 C E G C E G A G E C D E G E D C D F A D F A B A F D E F A F E D E G B E G B O6 C O5 B G E F G B G F E O5 D G B O6 D C O5 A F D E G C E D B O4 G B O5 L8 C E G C E G A G E C D E G E D C D F A D F A B A F D E F A F E D E G B E G B O6 C O5 B G E F G B G F E O5 D G B O6 D C O5 A F D E G C E D B O4 G B"
+    },
+    {
+      "id": "bass",
+      "wave": "triangle",
+      "volume": 0.55,
+      "gate": 0.85,
+      "notes": "O3 L2 C G C G D A D A E B E B G D F G O3 L2 C G C G D A D A E B E B G D F G"
+    },
+    {
+      "id": "drums",
+      "wave": "percussion",
+      "volume": 0.22,
+      "notes": "L8 K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H"
+    }
+  ]
+}

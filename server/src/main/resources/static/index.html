@@ -1,0 +1,39 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>密码本</title><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head><body>
+<header><h1>密码本</h1><span id="summary">局域网 · 单人使用</span><button id="changeAdmin" hidden>修改管理员密码</button><button id="superMode" aria-pressed="false" hidden>超管模式</button><button id="logout" hidden>锁定</button></header>
+<p id="superStatus" hidden>超管模式 · 密码明文展示，退出或锁定后隐藏</p><p id="notice" role="status"></p>
+<main>
+<section id="gate"><h2 id="gateTitle">登录</h2><form id="loginForm"><label>管理员密码<input id="admin" type="password" minlength="4" maxlength="128" required autocomplete="current-password"></label><label id="confirmLabel" hidden>再次输入<input id="confirm" type="password" minlength="4" maxlength="128" autocomplete="new-password"></label><button id="loginButton" class="primary">进入</button></form><small>首次使用设置密码，至少4位。设备数字密码独立设置。</small></section>
+<section id="vault" hidden><nav id="crumb"></nav><div class="toolbar"><input id="search" type="search" placeholder="搜索名称、账号或用途" aria-label="搜索"><button id="add" class="primary">＋ 新建</button><button id="importOpen">导入 CSV</button><button id="refresh">刷新</button></div><div id="content"></div><div class="transfer-actions"><button id="archiveExport">全部加密导出</button><button id="archiveOpen">加密文件导入</button></div></section>
+<section id="editor" hidden><h2 id="editTitle">新建密码</h2><form id="editForm"><label><span data-field-label="category">分类</span><select id="category"><option value="work">工作</option><option value="app">应用</option><option value="web">网页</option><option value="other">其他</option></select></label><label><span data-field-label="title">名称</span><input id="title" required maxlength="96" placeholder="例如：工作邮箱"></label><label><span id="targetLabel" data-field-label="target">单位 / 系统</span><input id="target" maxlength="192" autocomplete="off"><datalist id="targetOptions"></datalist></label><label><span data-field-label="username">账号</span><input id="username" maxlength="128" autocomplete="off" placeholder="英文、数字或符号，可空"></label><label><span data-field-label="password">密码</span><span class="password-field"><input id="password" type="password" maxlength="128" autocomplete="new-password" placeholder="英文、数字或符号"><button id="generatePassword" type="button">填入强密码</button></span></label><div class="gen-options"><span class="gen-title">强密码选项</span><label>位数<input id="genLength" type="number" min="4" max="64" step="1" value="16" inputmode="numeric" aria-label="推荐密码位数"></label><div class="gen-sets"><label><input id="genUpper" type="checkbox" checked>大写</label><label><input id="genLower" type="checkbox" checked>小写</label><label><input id="genDigit" type="checkbox" checked>数字</label><label><input id="genSymbol" type="checkbox" checked>符号</label></div></div><small id="keepHint">保存后即可在设备同步</small><label><span data-field-label="note">备注</span><input id="note" maxlength="256" placeholder="可选"></label><div class="actions"><button class="primary">保存</button><button id="editCancel" type="button">取消</button></div></form></section>
+<section id="importer" hidden>
+<h2>导入浏览器密码</h2>
+<p class="import-help">仅导入到网页分类，先预览再确认。相同账号和密码合并，名称取账号名；保留第一条完整URL，其余主机域名各保留前10个字符，去重后用逗号写入备注。普通模式隐藏密码，超管模式显示明文。</p>
+<form id="importForm">
+<div class="import-fields"><p>导入分类：网页</p>
+<label>Edge 导出的 CSV<input id="importFile" type="file" accept=".csv,text/csv" required></label></div>
+<small>UTF-8，最大128 KiB。跳过无账号或含蓝牙键盘不支持字符的记录，预览列出不兼容行号。导入后按账号排序。只合并网页分类中的相同账号和密码；保留已有URL，备注依次合并，同账号不同密码分别保存。单条备注最多256字节，超出部分直接丢弃，不截断中文字符；其他检查失败时整批不写入。</small>
+<div class="actions import-actions"><button id="importPreviewButton" class="primary">预览导入</button><button id="importCancel" type="button">返回</button></div>
+</form>
+<div id="importPreview" hidden><p id="importSummary" aria-live="polite"></p><ul id="importSkipped" aria-label="跳过的不兼容记录"></ul><ul id="importErrors"></ul><div id="importRows"></div><button id="importCommit" type="button" class="primary" disabled>确认导入</button></div>
+<p id="importError" role="alert"></p>
+<small>导入成功并核对后，请自行删除明文CSV。服务端不保留原始CSV文件。</small>
+</section>
+<section id="archivePanel" hidden>
+<h2>加密文件导入</h2>
+<p class="import-help">恢复全部分类，按“分类＋账号＋密码”去重。保留现有名称和用途，补齐空用途；额外名称、用途和备注合并到备注。同账号不同密码分别保留，不覆盖或删除现有条目。</p>
+<form id="archiveForm"><label>加密密码文件<input id="archiveFile" type="file" accept=".jyvault,application/octet-stream" required></label>
+<small>最大256 KiB、总库最多256条。仅支持相同部署密钥的JYVAULT2文件；不导入管理员密码、设备PIN或密钥。其他分类的码值直接展示，其余密码普通模式隐藏、超管模式显示；检查失败整批不写入。</small>
+<div class="actions import-actions"><button id="archivePreview" class="primary">解密并预览</button><button id="archiveCancel" type="button">返回</button></div></form>
+<div id="archiveResult" hidden><p id="archiveSummary" aria-live="polite"></p><div id="archiveRows"></div><button id="archiveCommit" class="primary" type="button" disabled>确认去重导入</button></div>
+<p id="archiveError" role="alert"></p></section>
+</main><dialog id="revealDialog"><form id="revealForm"><h3>验证后展示密码</h3><label>管理员密码<input id="revealAdmin" type="password" maxlength="128" required autocomplete="off"></label><p id="revealError" role="alert"></p><div class="actions"><button class="primary">展示密码</button><button type="button" id="revealCancel">取消</button></div></form></dialog>
+<dialog id="changeDialog"><form id="changeForm"><h3>修改管理员密码</h3>
+<label>原密码<input id="changeOld" type="password" required maxlength="128" autocomplete="current-password"></label>
+<label>新密码<input id="changeNew" type="password" required minlength="4" maxlength="128" autocomplete="new-password" placeholder="至少4位"></label>
+<label>再次输入新密码<input id="changeConfirm" type="password" required minlength="4" maxlength="128" autocomplete="new-password"></label>
+<p id="changeError" role="alert"></p><div class="actions"><button id="changeSubmit" class="primary">确认修改</button><button id="changeCancel" type="button">取消</button></div>
+<small>只修改服务端管理员密码，不改变设备数字密码或已保存的条目。</small></form></dialog>
+<dialog id="superDialog"><form id="superForm"><h3>开启超管模式</h3>
+<label>管理员密码<input id="superAdmin" type="password" required maxlength="128" autocomplete="current-password"></label>
+<p id="superError" role="alert"></p><div class="actions"><button id="superSubmit" class="primary">开启超管</button><button id="superCancel" type="button">取消</button></div>
+<small>本次登录期间明文展示所有密码，退出超管或锁定后失效。</small></form></dialog><footer>只用于可信局域网。保存在服务器硬盘，设备手动同步。</footer></body></html>

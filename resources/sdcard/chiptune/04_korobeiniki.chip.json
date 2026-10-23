@@ -1,0 +1,30 @@
+{
+  "format": "chip-score",
+  "version": 1,
+  "title": "货郎·民谣主题",
+  "tempo": 132,
+  "loop": true,
+  "tracks": [
+    {
+      "id": "lead",
+      "wave": "pulse",
+      "duty": 0.5,
+      "volume": 0.62,
+      "gate": 0.88,
+      "notes": "O5 L8 E4 O4 B O5 C D4 C O4 B A4 A O5 C E4 D C O4 B4 B O5 C D4 E4 C4 O4 A4 A2 O5 D4 F A4 G F E4 C E4 D C O4 B4 B O5 C D4 E4 C4 O4 A4 A2 O5 L8 E4 O4 B O5 C D4 C O4 B A4 A O5 C E4 D C O4 B4 B O5 C D4 E4 C4 O4 A4 A2 O5 D4 F A4 G F E4 C E4 D C O4 B4 B O5 C D4 E4 C4 O4 A4 A2"
+    },
+    {
+      "id": "bass",
+      "wave": "triangle",
+      "volume": 0.55,
+      "gate": 0.85,
+      "notes": "O3 L2 A E A E A E A E D A C G E B A A O3 L2 A E A E A E A E D A C G E B A A"
+    },
+    {
+      "id": "drums",
+      "wave": "percussion",
+      "volume": 0.22,
+      "notes": "L8 K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H"
+    }
+  ]
+}

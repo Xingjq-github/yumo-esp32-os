@@ -1,0 +1,30 @@
+{
+  "format": "chip-score",
+  "version": 1,
+  "title": "雨墨·街机冲刺",
+  "tempo": 156,
+  "loop": true,
+  "tracks": [
+    {
+      "id": "lead",
+      "wave": "pulse",
+      "duty": 0.5,
+      "volume": 0.62,
+      "gate": 0.88,
+      "notes": "O5 L8 A C O6 E O5 A C O6 E D C O5 B G D B G D F G A C O6 E O5 A C O6 E G E D O5 B G D E G A4 O5 L8 A B O6 C E G E C O5 B A G E C D E G A B O6 D F D O5 B A G F E D C O4 B O5 E4 A4 O5 L8 A C O6 E O5 A C O6 E D C O5 B G D B G D F G A C O6 E O5 A C O6 E G E D O5 B G D E G A4 O5 L8 A B O6 C E G E C O5 B A G E C D E G A B O6 D F D O5 B A G F E D C O4 B O5 E4 A4"
+    },
+    {
+      "id": "bass",
+      "wave": "triangle",
+      "volume": 0.55,
+      "gate": 0.85,
+      "notes": "O3 L2 A E G D A E G A F C D A G D E A O3 L2 A E G D A E G A F C D A G D E A"
+    },
+    {
+      "id": "drums",
+      "wave": "percussion",
+      "volume": 0.22,
+      "notes": "L8 K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H K H S H"
+    }
+  ]
+}

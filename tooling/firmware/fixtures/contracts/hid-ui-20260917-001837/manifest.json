@@ -1,0 +1,3257 @@
+{
+  "root": "<local-path>",
+  "run": "<local-path>",
+  "backup": "<local-path>",
+  "started": "2026-09-17T00:18:44",
+  "source_before": {
+    "main/CMakeLists.txt": {
+      "sha256": "feff8d39d7a23c70ce962b04df21fea9b594065029b64e5e17d71b00c4e783b5",
+      "bytes": 1865,
+      "mtime_ns": 1789547630798239500
+    },
+    "main/idf_component.yml": {
+      "sha256": "06c3d4f87f031e8056375ed0fe06eaa9769ec9c9a2a8340998082948b5effc8c",
+      "bytes": 287,
+      "mtime_ns": 1788927709665697600
+    },
+    "main/main.cpp": {
+      "sha256": "87cf7bfc0bc44542fdfdc05f0e793e94a0185237627be8f578764bdf83612d06",
+      "bytes": 11769,
+      "mtime_ns": 1789550810756475200
+    },
+    "main/apps/.gitkeep": {
+      "sha256": "511ebc4598890e68e4722fe99fd2c61075cd0bff094dbf4dc4fc37479d7b555b",
+      "bytes": 61,
+      "mtime_ns": 1789526155391708800
+    },
+    "main/apps/bt_keyboard.cpp": {
+      "sha256": "db973c810e0d43f16062b4902eb1301d775209ed38473955f57629d8229d1910",
+      "bytes": 4653,
+      "mtime_ns": 1789553036286226000
+    },
+    "main/apps/bt_keyboard.hpp": {
+      "sha256": "519d6dcd680426f1f72c32f9d63d8493768018dbaff3dc5c78f946079ac57673",
+      "bytes": 588,
+      "mtime_ns": 1788800324560999500
+    },
+    "main/apps/bt_mouse.cpp": {
+      "sha256": "129f967677f89a311e0d99ce6160aa5c996e039083074ad0e19f71fd48530150",
+      "bytes": 16008,
+      "mtime_ns": 1789395820103264600
+    },
+    "main/apps/bt_mouse.hpp": {
+      "sha256": "f933ad9fb62b5473853efcf2acbc55dca70f9d06db37969e9dd79b865c3be8dc",
+      "bytes": 2579,
+      "mtime_ns": 1789318253653001700
+    },
+    "main/apps/bt_music.cpp": {
+      "sha256": "1549b4a6b67973cb6865b1faa38b84dc03c39c196a9c39cf63062d5ae0c4ded0",
+      "bytes": 4428,
+      "mtime_ns": 1789553036289974900
+    },
+    "main/apps/bt_music.hpp": {
+      "sha256": "ccdf635585aab2b8b452b8f51e4f0b167ab167d3f37d23712c502496acf7477e",
+      "bytes": 582,
+      "mtime_ns": 1788800591737903900
+    },
+    "main/apps/flashlight.cpp": {
+      "sha256": "4b8b9370f7619200788dece8e23de25018955970f88476a8deea3663fd0e474c",
+      "bytes": 5117,
+      "mtime_ns": 1789539781742041200
+    },
+    "main/apps/flashlight.hpp": {
+      "sha256": "bf69a8d91a4f4ca238e6bb50230a243c2ae1342b90b85d37c66e1dedc3a6c7c0",
+      "bytes": 955,
+      "mtime_ns": 1789539781736476500
+    },
+    "main/apps/flashlight_signal.hpp": {
+      "sha256": "c00f5e0f93a7a9b48a9fdd9b8577e2fe2bfe2c73415a360a0c61fcb0e96bf20c",
+      "bytes": 958,
+      "mtime_ns": 1789539781732377800
+    },
+    "main/apps/gravity_ball.cpp": {
+      "sha256": "7bd36af9f7b89d261bbe09eb1090160d7ab785172a44ccd18c50f3a511ba19ad",
+      "bytes": 3501,
+      "mtime_ns": 1789550929078561200
+    },
+    "main/apps/gravity_ball.hpp": {
+      "sha256": "7e743780831dee5cbf7b055721f91e68ab677689f86cec93720e52b1b7b2085c",
+      "bytes": 739,
+      "mtime_ns": 1788756649392840200
+    },
+    "main/apps/photo_viewer.cpp": {
+      "sha256": "dfdb49da820cda13765511556bde00305a6e33c7fbbfb9f7b3355ffc90ccfb8e",
+      "bytes": 20672,
+      "mtime_ns": 1789553130090050900
+    },
+    "main/apps/photo_viewer.hpp": {
+      "sha256": "6fab4aa92608e024dafc767cbfde42352b138a0ff1c4d01ff8e6fc97de094e06",
+      "bytes": 3016,
+      "mtime_ns": 1789547845813613900
+    },
+    "main/apps/settings.cpp": {
+      "sha256": "9d0d6e1f33968426ea68782679facbd305c35ffc09bf922e8c52545157a21d58",
+      "bytes": 11633,
+      "mtime_ns": 1789550810702708300
+    },
+    "main/apps/settings.hpp": {
+      "sha256": "32d191d98d47d29a35c16af17ec5453aa9d6b7b10ec579d03b699544c71b4557",
+      "bytes": 4023,
+      "mtime_ns": 1789550810743272200
+    },
+    "main/apps/settings_bluetooth.cpp": {
+      "sha256": "0bc9da3a6468aab55f9a542186848ac16b21e3013451e5d754cc952891e52f51",
+      "bytes": 10530,
+      "mtime_ns": 1789548817445113600
+    },
+    "main/apps/settings_system.cpp": {
+      "sha256": "cd808b636dece8a8b67ceae6316ad72102b392f3c676225eff7401469863c9e5",
+      "bytes": 7394,
+      "mtime_ns": 1789550810745474800
+    },
+    "main/apps/settings_wifi.cpp": {
+      "sha256": "17cc5a2cb7657b17f2a9699cc2a33ce00774e0952525325e104e1d41e110322c",
+      "bytes": 9585,
+      "mtime_ns": 1789548154349692600
+    },
+    "main/apps/stopwatch.cpp": {
+      "sha256": "8e7e5a30cb4fd11938f5a341259cda78fcbee1bf21fc0b08af8524f271a65f68",
+      "bytes": 4065,
+      "mtime_ns": 1789550929068747800
+    },
+    "main/apps/stopwatch.hpp": {
+      "sha256": "2e82d2a786e399c9689115fe7a32eb519370bb01cd0739e79f324737687ed2ae",
+      "bytes": 1285,
+      "mtime_ns": 1788675756173924700
+    },
+    "main/apps/text_reader.cpp": {
+      "sha256": "f34b0d178d3f6d22a57b8e3a42ab8a426eca0f9310c152c431322ba3a807cdc4",
+      "bytes": 10171,
+      "mtime_ns": 1789550929137053100
+    },
+    "main/apps/text_reader.hpp": {
+      "sha256": "8dc40f365349c290d19a37264ce8640c9ede3d8806325beaf9b57101223f1f7d",
+      "bytes": 1557,
+      "mtime_ns": 1789547630801239900
+    },
+    "main/apps/watchface.cpp": {
+      "sha256": "22fe72714613cf7de4788f7509f83e75534df6e41048f5366978d1a6e43e6dfe",
+      "bytes": 14774,
+      "mtime_ns": 1789550929053962400
+    },
+    "main/apps/watchface.hpp": {
+      "sha256": "c93dfc740712752097051825cf4ae5afeeb6c2692c5cd03302c2441503fc5fb1",
+      "bytes": 1818,
+      "mtime_ns": 1788954003267077900
+    },
+    "main/core/audio_mgr.cpp": {
+      "sha256": "d649c86662586fd2cb880fff8ee8c8b6b43af4d6a4bb7c9cfd5474ac34f6d940",
+      "bytes": 2505,
+      "mtime_ns": 1789542090560941100
+    },
+    "main/core/audio_mgr.hpp": {
+      "sha256": "7f5030b7e1c4454b3418941926322fbb69e43c2d90d4807040370d1d5dbdf916",
+      "bytes": 865,
+      "mtime_ns": 1789541615260871200
+    },
+    "main/core/battery_estimator.hpp": {
+      "sha256": "293a5fcc0012ac205836ba2deaf5f0d36516b98bc4b0d33cc5be6f5191650c39",
+      "bytes": 4837,
+      "mtime_ns": 1789550929127050100
+    },
+    "main/core/battery_mgr.cpp": {
+      "sha256": "d902b125e1075d184e2f6415a6315961d757d5f86c7b27b5849470235ef94f59",
+      "bytes": 4428,
+      "mtime_ns": 1789550810698711400
+    },
+    "main/core/battery_mgr.hpp": {
+      "sha256": "4915fad2d6be2a60565ed608a59c383b1adf94c219eb0698df95b3c1bb8ae33c",
+      "bytes": 590,
+      "mtime_ns": 1789550810689068400
+    },
+    "main/core/ble_hid.cpp": {
+      "sha256": "f2be1d9c53cf8a754436c7210cfe953c4d83a165829da765951a02fe5bc79859",
+      "bytes": 39488,
+      "mtime_ns": 1789549045269106800
+    },
+    "main/core/ble_hid.hpp": {
+      "sha256": "1abd7af7209712b093bf91216b1f9bb03991e3f128946f1999493e0a30a1d743",
+      "bytes": 4087,
+      "mtime_ns": 1789548154317450800
+    },
+    "main/core/button_mgr.cpp": {
+      "sha256": "253d3b2b2f69ec4929d34553d675bf190bb36366492cd041dd3852183f4ced9b",
+      "bytes": 5421,
+      "mtime_ns": 1789547336385004200
+    },
+    "main/core/button_mgr.hpp": {
+      "sha256": "62a50b058d0b10c996e791118ad15e7bda7f023b767a7c782eb355fb5c978c62",
+      "bytes": 532,
+      "mtime_ns": 1789540234223950400
+    },
+    "main/core/charset_conv.cpp": {
+      "sha256": "e4b2367ca26ab0e3b7b5eb01811533abe62b09f5998ea7166c6a381c1644366b",
+      "bytes": 6949,
+      "mtime_ns": 1789549045265192300
+    },
+    "main/core/charset_conv.hpp": {
+      "sha256": "929c849938a8fb7eab24a55bf3c919ed248d10b63b0fa4969e0e6fc846140ef6",
+      "bytes": 938,
+      "mtime_ns": 1789547630785295800
+    },
+    "main/core/connectivity.cpp": {
+      "sha256": "770362ac4e177af3a677626b330118c8b9571914f049c04a2765b4d461386289",
+      "bytes": 21424,
+      "mtime_ns": 1789548705071765300
+    },
+    "main/core/connectivity.hpp": {
+      "sha256": "8d5842dd862374bc10526fd00dd6ac4d720014ddb191a9d489a3c5b896d007bb",
+      "bytes": 1620,
+      "mtime_ns": 1789547257599364300
+    },
+    "main/core/event_bus.cpp": {
+      "sha256": "614167e2ba35b455381bc8ba1499b5d6211a7e23ddb5ea06174c018c5d0bbac5",
+      "bytes": 2658,
+      "mtime_ns": 1789527476493105800
+    },
+    "main/core/event_bus.hpp": {
+      "sha256": "843997906d360945f037bdffa5430292911cb31ebea41626bd566182fae83482",
+      "bytes": 931,
+      "mtime_ns": 1789529483044190800
+    },
+    "main/core/file_server.cpp": {
+      "sha256": "0a53d00b80ea45c05f1fa50e8054b1c9d3d7ea635d84c7cefb572a3c8dd7af49",
+      "bytes": 21334,
+      "mtime_ns": 1789550929005205800
+    },
+    "main/core/file_server.hpp": {
+      "sha256": "335a56010d01ce3abf1cfe2ec56282c7badbad402e5ec5ff3eac3fb56360faa0",
+      "bytes": 1239,
+      "mtime_ns": 1789549451625169400
+    },
+    "main/core/gbk_table.c": {
+      "sha256": "2b7d07d9fd03297b6cfec6696168af2617d91fce8fd5beadac82904751762689",
+      "bytes": 175352,
+      "mtime_ns": 1789039363604913900
+    },
+    "main/core/power_mgr.cpp": {
+      "sha256": "018137d6c981d38e0089f0040da1b5cbc4801efb8ab0825f27f3dfa04bd3a11f",
+      "bytes": 14822,
+      "mtime_ns": 1789550928961645500
+    },
+    "main/core/power_mgr.hpp": {
+      "sha256": "29f9b259b335196ff1eceb5645d6af063217e89bb0814b0b10f164db4ae78c9f",
+      "bytes": 1668,
+      "mtime_ns": 1789550928955584600
+    },
+    "main/core/qmi8658.cpp": {
+      "sha256": "4f1c1fe182f1ad5891e924d851c97364ca73f8c1a34cceb33d7683d7f230871a",
+      "bytes": 4659,
+      "mtime_ns": 1789550929037889000
+    },
+    "main/core/qmi8658.hpp": {
+      "sha256": "2df31a2a36d9cc875f88d3a42b4665fa46458c522d10a3c8fa20bc91e8d94693",
+      "bytes": 513,
+      "mtime_ns": 1789541615252313700
+    },
+    "main/core/settings_store.cpp": {
+      "sha256": "441d1782b222ac4f8cd5dc846efe1ba1fa43afb882ebb37589a1133d9d3c85e8",
+      "bytes": 9347,
+      "mtime_ns": 1789529483038862300
+    },
+    "main/core/settings_store.hpp": {
+      "sha256": "d59035479b9e191d042325e0f53cb11613df592a5c7e75ef7a302c8ada6292fa",
+      "bytes": 3638,
+      "mtime_ns": 1789529868180994300
+    },
+    "main/core/storage_browser.cpp": {
+      "sha256": "d00d677af6a5bcc3dba8d9f830feb992a2dd16b13f04816bcfe57e9dc42a45d3",
+      "bytes": 4765,
+      "mtime_ns": 1789550929027534700
+    },
+    "main/core/storage_browser.hpp": {
+      "sha256": "915c758d6b98726b752ccad4f8407c07606143eb4d41b2aed70bfbbba9129f4f",
+      "bytes": 896,
+      "mtime_ns": 1789549451629166800
+    },
+    "main/core/system_service.cpp": {
+      "sha256": "af023df2b13ae3bd491f512a7cfcee1b9b3db79a2115fb1744adf3cf7af9e797",
+      "bytes": 14237,
+      "mtime_ns": 1789551083648754200
+    },
+    "main/core/system_service.hpp": {
+      "sha256": "0acdefb8f97a753cfd3eec9987b480a18e368ad4cd370538df710f21bf848579",
+      "bytes": 2261,
+      "mtime_ns": 1789548705099185500
+    },
+    "main/ui/app.hpp": {
+      "sha256": "0c5811b1132b2a0109b7e14a1fd83da3b4f57d8e5150e2e2ff0fe1c8d2fbd1cd",
+      "bytes": 1825,
+      "mtime_ns": 1789527839888985100
+    },
+    "main/ui/boot_animation.cpp": {
+      "sha256": "ccdda132db62cbd3c5128806c9f722faa484f18175dc8612c02e5f70cfd8697f",
+      "bytes": 1603,
+      "mtime_ns": 1789539386727039300
+    },
+    "main/ui/boot_animation.hpp": {
+      "sha256": "1dcd6d8f0e013af27818196500fbd845f70972cb7a13647627870157e6151adf",
+      "bytes": 144,
+      "mtime_ns": 1789539386725030400
+    },
+    "main/ui/compact_ui.cpp": {
+      "sha256": "2ebe33e75e6fdadbe9619dfbcb5a59e5e6191dedf163a4e8e0a2b9875f6246e1",
+      "bytes": 6151,
+      "mtime_ns": 1789539386762056200
+    },
+    "main/ui/compact_ui.hpp": {
+      "sha256": "b712de39a6cf975e8cde2ba79af5ea9d31605a7e0ac689061dc564f3a546d6a2",
+      "bytes": 1042,
+      "mtime_ns": 1789528054554878400
+    },
+    "main/ui/gesture.cpp": {
+      "sha256": "4c54779b66483bf5fdac8556029fc75914f74dfde5d22496ed045058aa8acef3",
+      "bytes": 775,
+      "mtime_ns": 1788756226873969900
+    },
+    "main/ui/gesture.hpp": {
+      "sha256": "8ebd1c53932cc3d0114729979a905233f52591499cb83f6dcf87fcc8033e64ce",
+      "bytes": 666,
+      "mtime_ns": 1788671709144779400
+    },
+    "main/ui/home_screen.cpp": {
+      "sha256": "52f0dffd0308a8f9c58acdc3617fd7b070bbfcb08852f566b622d6899950f956",
+      "bytes": 2997,
+      "mtime_ns": 1789547336417219500
+    },
+    "main/ui/home_screen.hpp": {
+      "sha256": "0ad276c7935ab897e1490637a9d150cf9e55f6f11bcd9c6b5b1e33a449703ae0",
+      "bytes": 617,
+      "mtime_ns": 1788672035004408500
+    },
+    "main/ui/lv_font_cjk_16.c": {
+      "sha256": "e4cf58aa0b3813f066056abba45cb366b2c26e1731f89e063f2e6604cbc73bed",
+      "bytes": 3529560,
+      "mtime_ns": 1789391366382019900
+    },
+    "main/ui/lv_font_menu_14.c": {
+      "sha256": "51bbf8cbd4df18479a1df850ff682bb07f556ee7b6101288ad21ab26db662d42",
+      "bytes": 15705,
+      "mtime_ns": 1789539576012507800
+    },
+    "main/ui/sysinfo_overlay.cpp": {
+      "sha256": "ed6978ad7feba31fa761b9ac4fad0cde37dc718abfe5f6b1945573bfd81e0d0f",
+      "bytes": 7428,
+      "mtime_ns": 1789550929101867900
+    },
+    "main/ui/sysinfo_overlay.hpp": {
+      "sha256": "6c7b312a1f9cbb7fd36e25cb911b4d33b7e5990b02960ee3b1720bfb2fa1f721",
+      "bytes": 590,
+      "mtime_ns": 1788947579096445800
+    },
+    "main/ui/text_input.cpp": {
+      "sha256": "9b6891afd3ef4ee1cc8d45a5096d3d83d3b5db629bd68187c5708ac48c131500",
+      "bytes": 4765,
+      "mtime_ns": 1789539386715360500
+    },
+    "main/ui/text_input.hpp": {
+      "sha256": "05797981b3e9bedc02b4c570f4a6dfcc4301c4b70e34b6641fd1dbbd2cecedaa",
+      "bytes": 345,
+      "mtime_ns": 1789539386715360500
+    },
+    "main/ui/theme.cpp": {
+      "sha256": "e79f06099cc955e029025aadf579b15e358d1a6b035d98bec97df9d8e1f45ee5",
+      "bytes": 4486,
+      "mtime_ns": 1789551083630848200
+    },
+    "main/ui/theme.hpp": {
+      "sha256": "110d32267f96a2a2dce1c412fc7eca28800827b46535d6c8311a037a7c3a8370",
+      "bytes": 3370,
+      "mtime_ns": 1789539386848849200
+    },
+    "main/ui/window_mgr.cpp": {
+      "sha256": "d3b7f467675bbbe23a9c9a66bd51940685753b2263f3cfdf451cc0891d9e202b",
+      "bytes": 7828,
+      "mtime_ns": 1789550810736707200
+    },
+    "main/ui/window_mgr.hpp": {
+      "sha256": "6e60dd90c220bd69f531d03d675c90cb38f3b8ddc21d3827d3e0c9019b1b418b",
+      "bytes": 2039,
+      "mtime_ns": 1788844275431235700
+    },
+    "components/app_framework/CMakeLists.txt": {
+      "sha256": "c999a8a2cc46c979cf379a7ed99bd6e05d3690951a85a7082c9f3639f9d39ed9",
+      "bytes": 73,
+      "mtime_ns": 1788598485150993600
+    },
+    "components/app_framework/include/app_framework/app_base.hpp": {
+      "sha256": "86e45ee65a8e9d2279282edab4344da7329d23677f30f0141c9d90629f003496",
+      "bytes": 3496,
+      "mtime_ns": 1788599722638936200
+    },
+    "components/brookesia_app_clock/CMakeLists.txt": {
+      "sha256": "e24647632f3a8e24e2c6afce9f1c68e3cd77f85e94b52060bdb75467411981e2",
+      "bytes": 197,
+      "mtime_ns": 1788598927876170500
+    },
+    "components/brookesia_app_clock/esp_brookesia_app_clock.cpp": {
+      "sha256": "4c0fea3ae8c33b7ffea68f0207547bc052fcc80bc253ad97ee57a328e28896c2",
+      "bytes": 10262,
+      "mtime_ns": 1788598916723174600
+    },
+    "components/brookesia_app_clock/esp_brookesia_app_clock.hpp": {
+      "sha256": "63b0cef6ee5da1c14c6f3e3a47c7778fc49714db532e1614b7654928d0e72776",
+      "bytes": 1399,
+      "mtime_ns": 1788598765718372000
+    },
+    "components/brookesia_app_clock/esp_brookesia_app_clock_icon.c": {
+      "sha256": "5c08176675e65a2f4b67ca77bd1193b4714595ec96ecc3035a9eed70ecaa96c5",
+      "bytes": 2025,
+      "mtime_ns": 1788594039097702900
+    },
+    "components/brookesia_app_settings/CMakeLists.txt": {
+      "sha256": "ae8ae7fb534d53f6f1d867f762962defdbdbfc002aa03dbec2899999bdf83711",
+      "bytes": 356,
+      "mtime_ns": 1788599334441179400
+    },
+    "components/brookesia_app_settings/esp_brookesia_app_settings.cpp": {
+      "sha256": "daf15881f5432e7327c03424ede97b97bac083336fe0ff22a0b7168dfbd94c0f",
+      "bytes": 17869,
+      "mtime_ns": 1788599324294968000
+    },
+    "components/brookesia_app_settings/esp_brookesia_app_settings.hpp": {
+      "sha256": "6fde6dba1de8ed1b0f215379af69c8ee6aff1d662682cc0dc8f978ee27a782e2",
+      "bytes": 2173,
+      "mtime_ns": 1788599312873901400
+    },
+    "components/brookesia_app_settings/esp_brookesia_app_settings_icon.c": {
+      "sha256": "49db2c27b8d16863b58109f6be1a79dee8b1dc127ad43b3fcc5f796d1685a96d",
+      "bytes": 1844,
+      "mtime_ns": 1788594057660871300
+    },
+    "components/brookesia_app_squareline_demo/CMakeLists.txt": {
+      "sha256": "01ddf8991f726cccff574662e942ab049765171e4c31ac5eed5aca0db5ffac6d",
+      "bytes": 434,
+      "mtime_ns": 1788599492696124400
+    },
+    "components/brookesia_app_squareline_demo/esp_brookesia_app_squareline_demo.cpp": {
+      "sha256": "502682d27b5c772788fe571bf0451a92ab96e42e119436c2d1f63b2ec74fb249",
+      "bytes": 17263,
+      "mtime_ns": 1788599848234186600
+    },
+    "components/brookesia_app_squareline_demo/esp_brookesia_app_squareline_demo.hpp": {
+      "sha256": "37d21ad865dedbac16226f849631214e2e1739b07287fab0fc5ea67cb92c7273",
+      "bytes": 6823,
+      "mtime_ns": 1788599765461708500
+    },
+    "components/brookesia_app_squareline_demo/idf_component.yml": {
+      "sha256": "b89009bb8272b7de32339878336cddfe8b0c98cafa3e302359aa5b77d9632697",
+      "bytes": 75,
+      "mtime_ns": 1788599501675902000
+    },
+    "components/brookesia_app_squareline_demo/assets/esp_brookesia_app_icon_launcher_squareline_112_112.c": {
+      "sha256": "4066465662de6064d59664dc7e4b3b7dd365460173fdd94921e7621e59fbfc19",
+      "bytes": 382775,
+      "mtime_ns": 1788513832234112200
+    },
+    "components/brookesia_app_squareline_demo/assets/esp_brookesia_app_icon_launcher_squareline_112_112.png": {
+      "sha256": "9b9504ceb47fd5317c0e6ae0d8b4c8f669c54bb268b9cf56f6386564111dfff2",
+      "bytes": 4477,
+      "mtime_ns": 1788513832239763100
+    },
+    "components/brookesia_app_squareline_demo/ui/ui.c": {
+      "sha256": "95a5963905f4562c1b49e356a98f79ddcc2a84f060889b37f664142365ad4232",
+      "bytes": 16731,
+      "mtime_ns": 1788600863077693600
+    },
+    "components/brookesia_app_squareline_demo/ui/ui.h": {
+      "sha256": "c2bb1ced8006843f22a9cd9708dbeb20257d9a4067a8fea678d44519dd4ba680",
+      "bytes": 8549,
+      "mtime_ns": 1788600825956299900
+    },
+    "components/brookesia_app_squareline_demo/ui/components/ui_comp.h": {
+      "sha256": "7c78cf7ce1fa498727201fa14b4bb428632eea2e1db53d6ab5c162fc382cb1d9",
+      "bytes": 583,
+      "mtime_ns": 1788513832287758600
+    },
+    "components/brookesia_app_squareline_demo/ui/components/ui_comp_alarm_comp.c": {
+      "sha256": "0b37ece801d94a97ddaf455ceb53b814d19425cbab9a106d32352ddb5ac272c6",
+      "bytes": 5151,
+      "mtime_ns": 1788513832291758500
+    },
+    "components/brookesia_app_squareline_demo/ui/components/ui_comp_alarm_comp.h": {
+      "sha256": "9d29c9ff386be433adaea1dc8bcd4188c74cfc89b6bb43a872a26036259fcaf5",
+      "bytes": 811,
+      "mtime_ns": 1788513832294756100
+    },
+    "components/brookesia_app_squareline_demo/ui/components/ui_comp_clock_dot.c": {
+      "sha256": "7639b97c5944503e1a1a1dfcdf5ee1a2ef60715d0aa66df1951573c1f8a41d8c",
+      "bytes": 1593,
+      "mtime_ns": 1788513832294756100
+    },
+    "components/brookesia_app_squareline_demo/ui/components/ui_comp_clock_dot.h": {
+      "sha256": "abf9d5a725848ae680316debb3747389ee57a88db9d48e6d90e88d9fa1828060",
+      "bytes": 645,
+      "mtime_ns": 1788513832295756600
+    },
+    "components/brookesia_app_squareline_demo/ui/components/ui_comp_hook.c": {
+      "sha256": "c2da859bcf7d0b4c24fbe9c2b12c6f8ca84bbddea8638d9b4e61eda4414ebec7",
+      "bytes": 839,
+      "mtime_ns": 1788513832298274800
+    },
+    "components/brookesia_app_squareline_demo/ui/components/ui_comp_hook.h": {
+      "sha256": "c6cdb4988db9e0805f2bc21dff3560ce2388879f30c4369fec15fcd62db79966",
+      "bytes": 703,
+      "mtime_ns": 1788513832298274800
+    },
+    "components/brookesia_app_squareline_demo/ui/components/ui_comp_scrolldots.c": {
+      "sha256": "8515e1317738c9443a726c73c95c747b99022eea7b15e5dda55954ffadaa4b26",
+      "bytes": 5694,
+      "mtime_ns": 1788513832299273500
+    },
+    "components/brookesia_app_squareline_demo/ui/components/ui_comp_scrolldots.h": {
+      "sha256": "d386b19f30875c447e717022ecc10d76503536976a25c74a14366dab8fa634ed",
+      "bytes": 922,
+      "mtime_ns": 1788513832300273000
+    },
+    "components/brookesia_app_squareline_demo/ui/components/ui_comp_small_label.c": {
+      "sha256": "883ab9d9c4c74489e92eba12c346739b5694f09c329a57f92de110107f49ea25",
+      "bytes": 1673,
+      "mtime_ns": 1788513832300273000
+    },
+    "components/brookesia_app_squareline_demo/ui/components/ui_comp_small_label.h": {
+      "sha256": "6e517397a3419d788e62b51f69475df95aba3ec7e40f7991fa7bd556d711e5e7",
+      "bytes": 659,
+      "mtime_ns": 1788513832301271800
+    },
+    "components/brookesia_app_squareline_demo/ui/fonts/ui_font_Number.c": {
+      "sha256": "26e740c36ac14abf6c5396fd02d24cc32c8c38aeff8a601c68bb9b70f5a1c682",
+      "bytes": 337066,
+      "mtime_ns": 1788513832314272000
+    },
+    "components/brookesia_app_squareline_demo/ui/images/ui_img_album_png.c": {
+      "sha256": "145b53d24fad8ee3171bf3bbf0edde04a93564701afd2a3ad19226041b95fb4c",
+      "bytes": 197163,
+      "mtime_ns": 1788513832317272300
+    },
+    "components/brookesia_app_squareline_demo/ui/images/ui_img_avatar_png.c": {
+      "sha256": "e89c266692c781409d88093cb9ab098cb4adb200ffa0eabea2187d89c9eaf688",
+      "bytes": 197168,
+      "mtime_ns": 1788513832324391300
+    },
+    "components/brookesia_app_squareline_demo/ui/images/ui_img_backward_png.c": {
+      "sha256": "6e261ecbd3bd27af976b17b38ca4d08deccb450e6de3f07594fd501a8839b6ae",
+      "bytes": 8640,
+      "mtime_ns": 1788513832325392900
+    },
+    "components/brookesia_app_squareline_demo/ui/images/ui_img_chatbox2_png.c": {
+      "sha256": "7bf85f74f15c2d1310a9586220691e69f1317fce5aafa5bcaba86fbf7a74d2e7",
+      "bytes": 7064,
+      "mtime_ns": 1788513832327394000
+    },
+    "components/brookesia_app_squareline_demo/ui/images/ui_img_chatbox_png.c": {
+      "sha256": "7a07d0dd48cade4625abdb11cf12683ccaed55d498e1b45f0acffde5708177c8",
+      "bytes": 7059,
+      "mtime_ns": 1788513832328392600
+    },
+    "components/brookesia_app_squareline_demo/ui/images/ui_img_clock_hour_png.c": {
+      "sha256": "c4fe33ecc89324891ab6a73b2cb8e670fb08ae510e546ee8b3ef52dd7e1494eb",
+      "bytes": 6803,
+      "mtime_ns": 1788513832329393300
+    },
+    "components/brookesia_app_squareline_demo/ui/images/ui_img_clock_min_png.c": {
+      "sha256": "9b683b9776d55437c2301320caffc462ada24275bd6935f5d22b333dacde3dce",
+      "bytes": 7050,
+      "mtime_ns": 1788513832330411300
+    },
+    "components/brookesia_app_squareline_demo/ui/images/ui_img_clock_sec_png.c": {
+      "sha256": "87de784ff6f9bd89eccfab4dc97132062aabf88301726f2e8c551f6349f6d868",
+      "bytes": 9231,
+      "mtime_ns": 1788513832330411300
+    },
+    "components/brookesia_app_squareline_demo/ui/images/ui_img_cloud_png.c": {
+      "sha256": "6c29aa429239ceeba5b1a288a0f8f28479e1bea4301458c65509b813972b9c7d",
+      "bytes": 77661,
+      "mtime_ns": 1788513832331391700
+    },
+    "components/brookesia_app_squareline_demo/ui/images/ui_img_forward_png.c": {
+      "sha256": "e5398a2597315faf5408c9c79f99bdc8b0b9880fa8665bd599530a0951d94edf",
+      "bytes": 8635,
+      "mtime_ns": 1788513832331391700
+    },
+    "components/brookesia_app_squareline_demo/ui/images/ui_img_pattern_png.c": {
+      "sha256": "d99922d4994519bd5d124fed58637e83bb6d4689ec3f78b586b5150d9298eab2",
+      "bytes": 44236,
+      "mtime_ns": 1788513832331391700
+    },
+    "components/brookesia_app_squareline_demo/ui/images/ui_img_phone_png.c": {
+      "sha256": "de145139cc4da976bc012d1e224467f25e9263e71c5303ec25b5018f8e25c8a5",
+      "bytes": 12129,
+      "mtime_ns": 1788513832332391200
+    },
+    "components/brookesia_app_squareline_demo/ui/images/ui_img_play_png.c": {
+      "sha256": "3907180a04d9b6eba831cb3099b96a7d011b848b2fa1fedc9eb3f666e7c172ea",
+      "bytes": 7972,
+      "mtime_ns": 1788513832332391200
+    },
+    "components/brookesia_app_squareline_demo/ui/images/ui_img_sls_logo_png.c": {
+      "sha256": "fbd5f8ab6a0b54984482735fdb8adc450d332847965a17c2b2b8adf5fd7d0892",
+      "bytes": 195571,
+      "mtime_ns": 1788513832334392800
+    },
+    "components/brookesia_app_squareline_demo/ui/images/ui_img_weather_1_png.c": {
+      "sha256": "79754516c1aea6c811a0eb99060f4747864ef2aff03929c762594ab391f332d4",
+      "bytes": 7195,
+      "mtime_ns": 1788513832334392800
+    },
+    "components/brookesia_app_squareline_demo/ui/images/ui_img_weather_2_png.c": {
+      "sha256": "b66efb38ce9910c517b38befaac796261bc213a66db700f8425b4ce34b135ef4",
+      "bytes": 7357,
+      "mtime_ns": 1788513832334392800
+    },
+    "components/brookesia_app_squareline_demo/ui/images/ui_img_weather_3_png.c": {
+      "sha256": "647ab186587b5fbf16466cff1c5a50beb40c3eb146a45226c2ac19e3e21c60c8",
+      "bytes": 6249,
+      "mtime_ns": 1788513832334392800
+    },
+    "components/brookesia_app_squareline_demo/ui/screens/ui_screen_alarm.c": {
+      "sha256": "8c5290143fe20120627ae9cb7b3ea3e39f70bdeeb638655417894463996052d5",
+      "bytes": 6607,
+      "mtime_ns": 1788513832341004800
+    },
+    "components/brookesia_app_squareline_demo/ui/screens/ui_screen_call.c": {
+      "sha256": "82715969b9c1f07018e6dd4d6098f04859e88e61520ae0ecefc87426851fc48a",
+      "bytes": 8805,
+      "mtime_ns": 1788513832341004800
+    },
+    "components/brookesia_app_squareline_demo/ui/screens/ui_screen_chat.c": {
+      "sha256": "70b0894bf8515d61f6e78b68a8a50bc3792455d4f7e81b374f1ab0d5e9d9202a",
+      "bytes": 13965,
+      "mtime_ns": 1788513832342100300
+    },
+    "components/brookesia_app_squareline_demo/ui/screens/ui_screen_clock.c": {
+      "sha256": "5a60348bbad6a0691718cb66be8f4971ee48e8d12ba28f1b0241f31a1649b0d3",
+      "bytes": 9187,
+      "mtime_ns": 1788513832343098200
+    },
+    "components/brookesia_app_squareline_demo/ui/screens/ui_screen_music_player.c": {
+      "sha256": "ea987589211bf07774209e70835946d7beb3fc0d5cf35faacf77a9cd3b9aca39",
+      "bytes": 10247,
+      "mtime_ns": 1788513832343098200
+    },
+    "components/brookesia_app_squareline_demo/ui/screens/ui_screen_splash.c": {
+      "sha256": "6e3fb459ccf8f826747717c9c249fc0acb4d34d82879a5612dc8487a7bfe7178",
+      "bytes": 2550,
+      "mtime_ns": 1788513832343098200
+    },
+    "components/brookesia_app_squareline_demo/ui/screens/ui_screen_weather.c": {
+      "sha256": "a5a6a77e3c02dc8c3d5679cdd51e64d29f36f3281874cea2875903adf3b20a60",
+      "bytes": 9738,
+      "mtime_ns": 1788513832344098100
+    },
+    "components/brookesia_core/CHANGELOG.md": {
+      "sha256": "75e5f1f232f67fa6a1eaa7c3be83f819a561161b864ae54fb042d914f99c01a7",
+      "bytes": 5464,
+      "mtime_ns": 1788513832345101600
+    },
+    "components/brookesia_core/CMakeLists.txt": {
+      "sha256": "d8c83902954dfb3a04432a4eafb732114555e4b7ac57d90f4e1a877c99bfd23e",
+      "bytes": 7402,
+      "mtime_ns": 1788576148365651800
+    },
+    "components/brookesia_core/esp_brookesia.h": {
+      "sha256": "84f48df4a73daba36c89287e86224057bd9d5a5e9b608cfc2c12b4e1800035ec",
+      "bytes": 1379,
+      "mtime_ns": 1788513832595112300
+    },
+    "components/brookesia_core/esp_brookesia.hpp": {
+      "sha256": "7e95c1dbf3fdf5a418531c450ade6adb0100241b9491ef458e56c030877e2a07",
+      "bytes": 1176,
+      "mtime_ns": 1788513832595112300
+    },
+    "components/brookesia_core/esp_brookesia_internal.h": {
+      "sha256": "1a2a01d3ca47b450784c6fd0b78b35fccadbab6c069b60ae78a55157cd93a840",
+      "bytes": 2718,
+      "mtime_ns": 1788513832596111500
+    },
+    "components/brookesia_core/idf_component.yml": {
+      "sha256": "594d47a059dccacdd22ff46ea97b2e7288a64cf60d4aa9875263582919aab6a3",
+      "bytes": 1472,
+      "mtime_ns": 1788576339784397900
+    },
+    "components/brookesia_core/Kconfig": {
+      "sha256": "f65d9b37e5a0c67aa88a0b12457bd8f8c3b2b38ec44e4d54b7a59cbd0bdc9850",
+      "bytes": 759,
+      "mtime_ns": 1788513832346100200
+    },
+    "components/brookesia_core/license.txt": {
+      "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+      "bytes": 11560,
+      "mtime_ns": 1788513832617885800
+    },
+    "components/brookesia_core/README.md": {
+      "sha256": "db1ed253efac421c36d0df8eb608b4c21ece512ad842982024367ef35a703383",
+      "bytes": 1619,
+      "mtime_ns": 1788513832347100600
+    },
+    "components/brookesia_core/README_CN.md": {
+      "sha256": "52ef914eaa3224a97cc618921c7197801d68c25ec05ab9b9d99bab123992e6bd",
+      "bytes": 1413,
+      "mtime_ns": 1788513832347100600
+    },
+    "components/brookesia_core/ai_framework/esp_brookesia_ai_framework_internal.h": {
+      "sha256": "9e9aeb29c227df8bd56462c604247e4ef8c671335a2c82f487a3ac9e41d07e33",
+      "bytes": 2482,
+      "mtime_ns": 1788513832359567600
+    },
+    "components/brookesia_core/ai_framework/Kconfig": {
+      "sha256": "94a9cd37afbfdf8e47ca61252d6d35f1c0b92ace564505f246c76f1fc46d59ff",
+      "bytes": 705,
+      "mtime_ns": 1788513832347100600
+    },
+    "components/brookesia_core/ai_framework/agent/audio_processor.c": {
+      "sha256": "32bbf7d11f4bdc6cc65ca78bbd7029b5e480c25be665c91d6342b639a7e56618",
+      "bytes": 22835,
+      "mtime_ns": 1788513832348877600
+    },
+    "components/brookesia_core/ai_framework/agent/audio_processor.h": {
+      "sha256": "b8b57ffcef4f0cc6036a7fb49a379a82001f8a2fc1f10bd37bdba6e711671b38",
+      "bytes": 5517,
+      "mtime_ns": 1788513832349936000
+    },
+    "components/brookesia_core/ai_framework/agent/coze_chat_app.cpp": {
+      "sha256": "943700286b7927bcf94956786a8cf74c3c1574a418395745876efa4cf2529811",
+      "bytes": 24135,
+      "mtime_ns": 1788513832349936000
+    },
+    "components/brookesia_core/ai_framework/agent/coze_chat_app.hpp": {
+      "sha256": "1f1bfc2456a7ab3ef0755ea683db62ce8d95afbdba37fc4c7adf418c4fa818e4",
+      "bytes": 1858,
+      "mtime_ns": 1788513832350937000
+    },
+    "components/brookesia_core/ai_framework/agent/esp_brookesia_ai_agent.cpp": {
+      "sha256": "39cca5a871a95a2af7072a16f7431f3c5497d6960b2cec0e7f10c2dad16d03e6",
+      "bytes": 16122,
+      "mtime_ns": 1788513832354567900
+    },
+    "components/brookesia_core/ai_framework/agent/esp_brookesia_ai_agent.hpp": {
+      "sha256": "2afa565bdfabdece49c6458c122eff56a614affcfbc42f4e6eefa18cae0346a2",
+      "bytes": 4615,
+      "mtime_ns": 1788513832355569400
+    },
+    "components/brookesia_core/ai_framework/agent/esp_gmf_setup_peripheral.c": {
+      "sha256": "c7118a2721da8333626fe4de05969a0c0563d70beaeea18ed90dbfebd9e4f036",
+      "bytes": 11797,
+      "mtime_ns": 1788513832355569400
+    },
+    "components/brookesia_core/ai_framework/agent/esp_gmf_setup_peripheral.h": {
+      "sha256": "ea98c376c70197d981cbca4d29979e2c7b89cbe5ae1ea3bccc4474e1e09d69b4",
+      "bytes": 2123,
+      "mtime_ns": 1788513832356566600
+    },
+    "components/brookesia_core/ai_framework/agent/esp_gmf_setup_pool.c": {
+      "sha256": "b136ea5e43390690012241f2c154c0d4ff0914054a1f46461a40b21e964b03d6",
+      "bytes": 11442,
+      "mtime_ns": 1788513832357568300
+    },
+    "components/brookesia_core/ai_framework/agent/esp_gmf_setup_pool.h": {
+      "sha256": "41cd5671b9b1e9c0729495cd54518fdd7614760910f6034cce9ca7d824778658",
+      "bytes": 1678,
+      "mtime_ns": 1788513832357568300
+    },
+    "components/brookesia_core/ai_framework/agent/function_calling.cpp": {
+      "sha256": "962878c276884cd0c0c686c57e7e3232cd040132aa8b4d34dec7c49a30a9435f",
+      "bytes": 12315,
+      "mtime_ns": 1788513832357568300
+    },
+    "components/brookesia_core/ai_framework/agent/function_calling.hpp": {
+      "sha256": "0fb0b5c5a3f9aec577eb02e5cbca98b88683c29084527df65bf8b4035fa1bf75",
+      "bytes": 2922,
+      "mtime_ns": 1788513832358568200
+    },
+    "components/brookesia_core/ai_framework/agent/private/esp_brookesia_ai_agent_utils.hpp": {
+      "sha256": "28a784083c87afcbeab3ac59915c778bcda1c2fdcaf80c263edf9b2a6ea7ed13",
+      "bytes": 760,
+      "mtime_ns": 1788513832359567600
+    },
+    "components/brookesia_core/ai_framework/expression/esp_brookesia_ai_expression.cpp": {
+      "sha256": "1297bd14b497d4d4219df0a355964130f716eb8bef1f124f5eb9256e47a54949",
+      "bytes": 13108,
+      "mtime_ns": 1788513832361575600
+    },
+    "components/brookesia_core/ai_framework/expression/esp_brookesia_ai_expression.hpp": {
+      "sha256": "2edf156132426c47e0b366a01f2a4670fdd464e61a34417137c247485ffd43dc",
+      "bytes": 3200,
+      "mtime_ns": 1788513832361575600
+    },
+    "components/brookesia_core/ai_framework/expression/private/esp_brookesia_ai_expression_utils.hpp": {
+      "sha256": "0e5f0b5d3c46e50e0dc80c0d41be80c9c7be53523d25cd88f5d63569fad43aca",
+      "bytes": 780,
+      "mtime_ns": 1788513832362578600
+    },
+    "components/brookesia_core/docs/how_to_use.md": {
+      "sha256": "38a0c3803518869383a3ef8a7c7977ff40342684f13ca2e14f15027db78db2bc",
+      "bytes": 8308,
+      "mtime_ns": 1788513832592713100
+    },
+    "components/brookesia_core/docs/how_to_use_CN.md": {
+      "sha256": "78befc3ffa4f8080d75d33d8641b4f64bd239fcd28cfd025a10d96f6d4898782",
+      "bytes": 8027,
+      "mtime_ns": 1788513832592713100
+    },
+    "components/brookesia_core/docs/system_ui_phone.md": {
+      "sha256": "9ce17fcd3625e6868e0fa0929230bda3d28d79694e019af98953bd9eae44c9b9",
+      "bytes": 6234,
+      "mtime_ns": 1788513832594106900
+    },
+    "components/brookesia_core/docs/system_ui_phone_CN.md": {
+      "sha256": "7af1c3911fbe410693c11bdc908c27647d99ea24924d5b4c5251d6a5cf15795a",
+      "bytes": 5479,
+      "mtime_ns": 1788513832594106900
+    },
+    "components/brookesia_core/docs/_static/assets/animations/boot/boot_360_360.gif": {
+      "sha256": "3b5913daad1a45bac6c0640f44a0a2384220f43c60ad9989c513bc82f679c447",
+      "bytes": 265099,
+      "mtime_ns": 1788513832366580700
+    },
+    "components/brookesia_core/docs/_static/assets/animations/emotion/emotion_angry_284_126.gif": {
+      "sha256": "3db01ceab157c77effb4e162529bffbd3d6684f6f64b3ce296518495c0bff798",
+      "bytes": 338309,
+      "mtime_ns": 1788513832379086400
+    },
+    "components/brookesia_core/docs/_static/assets/animations/emotion/emotion_blink1_284_126.gif": {
+      "sha256": "b52e805c7cdbb6e7f2a82fa0392ef844dca4e7941c1d239dce20ccfa9d0a8e51",
+      "bytes": 111786,
+      "mtime_ns": 1788513832382087500
+    },
+    "components/brookesia_core/docs/_static/assets/animations/emotion/emotion_blink_fast_284_126.gif": {
+      "sha256": "37321f68b81cccca68db76b4a3587804b095907d807a6eacc35901cc8ee12330",
+      "bytes": 61320,
+      "mtime_ns": 1788513832395158200
+    },
+    "components/brookesia_core/docs/_static/assets/animations/emotion/emotion_blink_slow_284_126.gif": {
+      "sha256": "7fa3e0d8b24b429d3e3e3005f3d56f168786b553a2659458d3aae2789a0a92f8",
+      "bytes": 158405,
+      "mtime_ns": 1788513832397157400
+    },
+    "components/brookesia_core/docs/_static/assets/animations/emotion/emotion_dizzy_284_126.gif": {
+      "sha256": "25c5d09b2f3467a0c41fc5d1d50df8a77e78beb63c50599073049fa714586644",
+      "bytes": 285252,
+      "mtime_ns": 1788513832404545200
+    },
+    "components/brookesia_core/docs/_static/assets/animations/emotion/emotion_happy_284_126.gif": {
+      "sha256": "49bc2d917bbf5c725646e20eab101d8b0c1fa8ed794d7009cfd05532fb58bacd",
+      "bytes": 159021,
+      "mtime_ns": 1788513832405547400
+    },
+    "components/brookesia_core/docs/_static/assets/animations/emotion/emotion_sad_284_126.gif": {
+      "sha256": "632d5b85515b0019dd943e21249e7c0e97a83586c034e1fc3e1193fd405c4cbb",
+      "bytes": 205648,
+      "mtime_ns": 1788513832408538300
+    },
+    "components/brookesia_core/docs/_static/assets/animations/emotion/emotion_sleep_284_126.gif": {
+      "sha256": "e3e35a0f1c0cb21452d4b65d5307796b4ba6d4e5ab323385e65122151760a434",
+      "bytes": 291057,
+      "mtime_ns": 1788513832411541400
+    },
+    "components/brookesia_core/docs/_static/assets/animations/icon/icon_brightness_down_64.gif": {
+      "sha256": "a4fd6526b9d0a2047c7fefb526f4705115d9ef67d4674c10d90fbc2ec9bedc9b",
+      "bytes": 86931,
+      "mtime_ns": 1788513832412543100
+    },
+    "components/brookesia_core/docs/_static/assets/animations/icon/icon_brightness_up_64.gif": {
+      "sha256": "d760242594f9775f7123144b78ef6ce8024c888d71a81555841a5109d3ec4968",
+      "bytes": 47536,
+      "mtime_ns": 1788513832413540000
+    },
+    "components/brookesia_core/docs/_static/assets/animations/icon/icon_emotion_confused_64.gif": {
+      "sha256": "7df030a87a579882248afd11b6c9f33e5c85a915423d76b03b7923b72671ad9f",
+      "bytes": 78457,
+      "mtime_ns": 1788513832427546500
+    },
+    "components/brookesia_core/docs/_static/assets/animations/icon/icon_emotion_sleep_64.gif": {
+      "sha256": "43772d3bf6caceee26f1c773ff4fbf5632721b8558765d09a1dcc70a4e78e03b",
+      "bytes": 40935,
+      "mtime_ns": 1788513832428548100
+    },
+    "components/brookesia_core/docs/_static/assets/animations/icon/icon_emotion_thinking_64.gif": {
+      "sha256": "3211eea46db14be01cf87b4cef55ce799c44b73811ba8b9800ebc7478c43c39e",
+      "bytes": 20858,
+      "mtime_ns": 1788513832429549400
+    },
+    "components/brookesia_core/docs/_static/assets/animations/icon/icon_invalid_file_64.gif": {
+      "sha256": "e4e913fe9a7fba133df3b7baf3de8ad9e6337d87de5d181c6e5d2e6373980c6d",
+      "bytes": 46945,
+      "mtime_ns": 1788513832430548100
+    },
+    "components/brookesia_core/docs/_static/assets/animations/icon/icon_server_connected_64.gif": {
+      "sha256": "286b37d454e7c5216a61916cfd50d21d359d14b85407a8c6979b185c372cb163",
+      "bytes": 117417,
+      "mtime_ns": 1788513832431547700
+    },
+    "components/brookesia_core/docs/_static/assets/animations/icon/icon_server_connecting_64.gif": {
+      "sha256": "4bde678d41f570c74adf551a12becc23a42dd16725dc474eb5c4ace33220150f",
+      "bytes": 25182,
+      "mtime_ns": 1788513832432547100
+    },
+    "components/brookesia_core/docs/_static/assets/animations/icon/icon_volume_down_64.gif": {
+      "sha256": "dd0a215c7b4b2186c52b84b9271ec13a827336fa330d971866d18bf2f018b594",
+      "bytes": 87524,
+      "mtime_ns": 1788513832433547300
+    },
+    "components/brookesia_core/docs/_static/assets/animations/icon/icon_volume_mute_64.gif": {
+      "sha256": "9843360edd14316811733c3ba1d2bb4e350db524cb02b87804e5f7d6b9dc7ba4",
+      "bytes": 55877,
+      "mtime_ns": 1788513832434547200
+    },
+    "components/brookesia_core/docs/_static/assets/animations/icon/icon_volume_up_64.gif": {
+      "sha256": "c7b1789532a2007f59606505cee58d65fee9b654d0e249e8faae9f40eff55cf0",
+      "bytes": 87189,
+      "mtime_ns": 1788513832437429100
+    },
+    "components/brookesia_core/docs/_static/assets/animations/icon/icon_wifi_disconnect_64.gif": {
+      "sha256": "728feded59051138e74ef08b13c5f7ceb30a92e2c498ee1f71cb0de6fdd0e106",
+      "bytes": 42995,
+      "mtime_ns": 1788513832439428400
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/large/esp_brookesia_image_large_app_launcher_default_112_112.png": {
+      "sha256": "6dcdf142f332685357e417ec779ba6831321b7fd7320ccfe21cbf87d88d55715",
+      "bytes": 7378,
+      "mtime_ns": 1788513832440427300
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/large/esp_brookesia_image_large_navigation_bar_back_36_36.png": {
+      "sha256": "40ca4075d94a0fafff199b7165d5538d9f405d068fab760c5331dbb78a5e0520",
+      "bytes": 570,
+      "mtime_ns": 1788513832441429400
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/large/esp_brookesia_image_large_navigation_bar_home_36_36.png": {
+      "sha256": "5cf7f233ad0aa3c136f0fe373dc383a60fbb97ef9e7404a44941b44ea017a87c",
+      "bytes": 542,
+      "mtime_ns": 1788513832464587500
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/large/esp_brookesia_image_large_navigation_bar_recents_screen_36_36.png": {
+      "sha256": "17077e8ad3a65cdcf49ca876f65324d42fb1b03e21da44e4763e83f81dd8d1c5",
+      "bytes": 230,
+      "mtime_ns": 1788513832465588800
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/large/esp_brookesia_image_large_recents_screen_trash_64_64.png": {
+      "sha256": "6e37e7f0d6333fd083a577eea3fbfea598ca2bcc1f9ae00a4216cfe47c1a9902",
+      "bytes": 1871,
+      "mtime_ns": 1788513832466588700
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/large/esp_brookesia_image_large_status_bar_battery_charge_36_36.png": {
+      "sha256": "98e427336a709a523fe58225d4202201d2ab2a401ea3de553005ad9ccd25cbc2",
+      "bytes": 480,
+      "mtime_ns": 1788513832466588700
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/large/esp_brookesia_image_large_status_bar_battery_level1_36_36.png": {
+      "sha256": "db2d9cd52d42b3391cfc62f6ea0c58ad9632a0b67e2d479329d221b5b0089f7e",
+      "bytes": 372,
+      "mtime_ns": 1788513832467588300
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/large/esp_brookesia_image_large_status_bar_battery_level2_36_36.png": {
+      "sha256": "f515dda3939acbb4e0acb48fd586a5e09dbba9015a1d0729a12fd84b9174a331",
+      "bytes": 409,
+      "mtime_ns": 1788513832467588300
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/large/esp_brookesia_image_large_status_bar_battery_level3_36_36.png": {
+      "sha256": "c7157700ed203f26c86cc3f32ef5bb4e2b26658e25a13fb5ec367f1f45f1216d",
+      "bytes": 435,
+      "mtime_ns": 1788513832467588300
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/large/esp_brookesia_image_large_status_bar_battery_level4_36_36.png": {
+      "sha256": "1a38c2d1600c3d698ff15d23e7123ae1ffd3872953e02ef0471d3687b55040ff",
+      "bytes": 428,
+      "mtime_ns": 1788513832470588400
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/large/esp_brookesia_image_large_status_bar_wifi_close_36_36.png": {
+      "sha256": "400dd20f551291ac4b3850878dc3dd90904c277b18d5000365d2b2755513fd17",
+      "bytes": 727,
+      "mtime_ns": 1788513832471588000
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/large/esp_brookesia_image_large_status_bar_wifi_level1_36_36.png": {
+      "sha256": "44a823786a889ab033491fa108bc80566345051741f7713a6a34a5d16c011cbf",
+      "bytes": 298,
+      "mtime_ns": 1788513832471588000
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/large/esp_brookesia_image_large_status_bar_wifi_level2_36_36.png": {
+      "sha256": "81c3c57592e94de4490ef6a9e15a345cd8ed0c095c050d428a1d2639bcc051e5",
+      "bytes": 467,
+      "mtime_ns": 1788513832494302600
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/large/esp_brookesia_image_large_status_bar_wifi_level3_36_36.png": {
+      "sha256": "f4412beae6e66dc2102b166d42434f934886183992f12781205010745c98b54e",
+      "bytes": 679,
+      "mtime_ns": 1788513832495289700
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/large/esp_brookesia_image_large_wallpaper_dark_720_720.png": {
+      "sha256": "ae2d1b815befdc670d5bced9387cd18994ac75d3fb811e31a681ce6583f9f802",
+      "bytes": 13350,
+      "mtime_ns": 1788513832496306200
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/large/esp_brookesia_image_large_wallpaper_dark_720_720_opa.png": {
+      "sha256": "da275bf8991536b038d65a7068710134056f6c4042bb9ec188c7eecc8380cf7f",
+      "bytes": 10013,
+      "mtime_ns": 1788513832497289700
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/middle/esp_brookesia_image_middle_app_launcher_default_112_112.png": {
+      "sha256": "6dcdf142f332685357e417ec779ba6831321b7fd7320ccfe21cbf87d88d55715",
+      "bytes": 7378,
+      "mtime_ns": 1788513832498292900
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/middle/esp_brookesia_image_middle_navigation_bar_back_32_32.png": {
+      "sha256": "97c34f37c229b30fccb2a18749b59baae461e8312675e15d11e8b1608df830bd",
+      "bytes": 515,
+      "mtime_ns": 1788513832498292900
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/middle/esp_brookesia_image_middle_navigation_bar_home_32_32.png": {
+      "sha256": "cb3d8d637675a3e4d7cee4c02f08241bcdb975e74e5e0b352380fda8749ee43e",
+      "bytes": 497,
+      "mtime_ns": 1788513832529662000
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/middle/esp_brookesia_image_middle_navigation_bar_recents_screen_32_32.png": {
+      "sha256": "69e089f64424cab10a909be2f4868812bdf593096ddd4445416a99386e3a5421",
+      "bytes": 215,
+      "mtime_ns": 1788513832530680900
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/middle/esp_brookesia_image_middle_recents_screen_trash_48_48.png": {
+      "sha256": "f63b2ec2a105639508495033fac6750e953b836d71bb411d86fce1e24e824dd6",
+      "bytes": 1380,
+      "mtime_ns": 1788513832530680900
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/middle/esp_brookesia_image_middle_status_bar_battery_charge_24_24.png": {
+      "sha256": "0f6676d8ad40a0eacd2eebc23462e705f2b6fb8adf08a3ccd28df66d780c35b1",
+      "bytes": 351,
+      "mtime_ns": 1788513832531678100
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/middle/esp_brookesia_image_middle_status_bar_battery_level1_24_24.png": {
+      "sha256": "af57dfd552254968f5c67804ef3158339df26ee0df71039d5b1c13f776bf9d42",
+      "bytes": 287,
+      "mtime_ns": 1788513832532680100
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/middle/esp_brookesia_image_middle_status_bar_battery_level2_24_24.png": {
+      "sha256": "4d3d10b257e69e1e935025aa7848a65b5d80df290559bf078f57b2f098e8ccdc",
+      "bytes": 305,
+      "mtime_ns": 1788513832532680100
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/middle/esp_brookesia_image_middle_status_bar_battery_level3_24_24.png": {
+      "sha256": "df037cfe4d9f28470aa36a205dc93b74e0179b4d4d9076ba7c6cdc057ff5f00d",
+      "bytes": 314,
+      "mtime_ns": 1788513832533677700
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/middle/esp_brookesia_image_middle_status_bar_battery_level4_24_24.png": {
+      "sha256": "92a2307e1d4a083093779ab8eaec794c4c0add5cfa343d6f7c3bf05c6963c773",
+      "bytes": 307,
+      "mtime_ns": 1788513832534679300
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/middle/esp_brookesia_image_middle_status_bar_wifi_close_24_24.png": {
+      "sha256": "f7af6e72c5fd39d0fa98cd1ef79d80bbc77942a9a091536ba6ee8d3550e706a4",
+      "bytes": 518,
+      "mtime_ns": 1788513832534679300
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/middle/esp_brookesia_image_middle_status_bar_wifi_level1_24_24.png": {
+      "sha256": "415d1d3f1ae71d1e6cabc4a0c77b92448af11bdc6675981eec51cbed8fc1696f",
+      "bytes": 216,
+      "mtime_ns": 1788513832536675500
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/middle/esp_brookesia_image_middle_status_bar_wifi_level2_24_24.png": {
+      "sha256": "11c8b0588e6d2976335371925eb8cb539ef0ae47d7897bcf54a30906ed57b1fc",
+      "bytes": 325,
+      "mtime_ns": 1788513832547186000
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/middle/esp_brookesia_image_middle_status_bar_wifi_level3_24_24.png": {
+      "sha256": "55645ff03670e20c6e3c15a4105abd12d8d185078de5d6d82f6dfda49c04d72d",
+      "bytes": 466,
+      "mtime_ns": 1788513832548185500
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/middle/esp_brookesia_image_middle_wallpaper_dark_480_480.png": {
+      "sha256": "575a5d0f653aa59c5a1d56df53fdbbbb373782047c2e1c4825c43509773c3bc1",
+      "bytes": 10084,
+      "mtime_ns": 1788513832548185500
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/middle/esp_brookesia_image_middle_wallpaper_dark_480_480_opa.png": {
+      "sha256": "c19bc6e6710ada19e895d24f38de0d8378ddeabc3e81e20deb403db217489de8",
+      "bytes": 6660,
+      "mtime_ns": 1788513832549186400
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/small/esp_brookesia_image_small_app_launcher_default_98_98.png": {
+      "sha256": "eb019a211e53320b443b9b78ceaace228d52f76ad19a99d491eaf9726c6d5ca2",
+      "bytes": 9793,
+      "mtime_ns": 1788513832550183800
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/small/esp_brookesia_image_small_navigation_bar_back_24_24.png": {
+      "sha256": "4c6688eec83d70ec22a75d5aee4b88c26d5046de242697a607f857db09bc0689",
+      "bytes": 503,
+      "mtime_ns": 1788513832550183800
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/small/esp_brookesia_image_small_navigation_bar_home_24_24.png": {
+      "sha256": "8da61641a89cc59fce07bbe39ff48718a3597dc722b2260d28f2a4034b42c29b",
+      "bytes": 509,
+      "mtime_ns": 1788513832554193800
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/small/esp_brookesia_image_small_navigation_bar_recents_screen_24_24.png": {
+      "sha256": "d0fe2e4c2312d640dce14cfe8646d2253feb0a209d9b260747db48aaf321338d",
+      "bytes": 322,
+      "mtime_ns": 1788513832555191800
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/small/esp_brookesia_image_small_recents_screen_trash_38_38.png": {
+      "sha256": "93be79a7a33957a9cea2ccd78955dd7a098b2ff6fd23e25dc1576c07296a0992",
+      "bytes": 1911,
+      "mtime_ns": 1788513832556194500
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/small/esp_brookesia_image_small_status_bar_battery_charge_20_20.png": {
+      "sha256": "f50cc599c2cb9f44b14e7097a60c075ee46ac325c0c8efbff82497449d34a7ae",
+      "bytes": 473,
+      "mtime_ns": 1788513832556194500
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/small/esp_brookesia_image_small_status_bar_battery_level1_20_20.png": {
+      "sha256": "149ec019d68c7c60cc80ec2cfb757ef352239c9f663efbac63ab29011a748b5b",
+      "bytes": 375,
+      "mtime_ns": 1788513832557191900
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/small/esp_brookesia_image_small_status_bar_battery_level2_20_20.png": {
+      "sha256": "3f810365c3034180c605126f4af0308e539d1f4c92e306d90518fc5dea4518ef",
+      "bytes": 400,
+      "mtime_ns": 1788513832557191900
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/small/esp_brookesia_image_small_status_bar_battery_level3_20_20.png": {
+      "sha256": "acac38dff9bcd654d8b347e28dc240d8e1472315d2bd6282f07c749f163c9901",
+      "bytes": 469,
+      "mtime_ns": 1788513832558513500
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/small/esp_brookesia_image_small_status_bar_battery_level4_20_20.png": {
+      "sha256": "9dfa64481b3680ce155aa931882696e3e3b11716976744518f833d31e17e7f40",
+      "bytes": 439,
+      "mtime_ns": 1788513832558513500
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/small/esp_brookesia_image_small_status_bar_wifi_close_20_20.png": {
+      "sha256": "80e5a26a15b3fa2aa5ca9da26f133a8f2775acbd9bc63f8393cb871b8b0d0828",
+      "bytes": 581,
+      "mtime_ns": 1788513832559616600
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/small/esp_brookesia_image_small_status_bar_wifi_level1_20_20.png": {
+      "sha256": "30c6b3a6e1aa10aafbe69022646428b9263b949e2f07e708fa05a74b00feae5a",
+      "bytes": 251,
+      "mtime_ns": 1788513832560617000
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/small/esp_brookesia_image_small_status_bar_wifi_level2_20_20.png": {
+      "sha256": "fdf4bf29bd7bf052e71f98c5b9ab4a1fd7f7f38729df85803ffecf8e67931396",
+      "bytes": 380,
+      "mtime_ns": 1788513832561618500
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/small/esp_brookesia_image_small_status_bar_wifi_level3_20_20.png": {
+      "sha256": "a5ac8e363b86e1179fc9b37b57082f41901dec87ba430cf3ea72da731ab9b7a2",
+      "bytes": 503,
+      "mtime_ns": 1788513832562617100
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/small/esp_brookesia_image_small_wallpaper_dark_240_240.png": {
+      "sha256": "ce5f67bea320ca534aa831669e156c67d1e1ed89af963268846d18ed2759da4e",
+      "bytes": 6988,
+      "mtime_ns": 1788513832564625000
+    },
+    "components/brookesia_core/docs/_static/assets/phone/images/small/esp_brookesia_image_small_wallpaper_dark_240_240_opa.png": {
+      "sha256": "b04e3ca45344d429e03cf57ecd5c5170813d888b31fe4f02f72f848d5f7ac746",
+      "bytes": 3363,
+      "mtime_ns": 1788513832566626800
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_battery_charge_20_20.png": {
+      "sha256": "f50cc599c2cb9f44b14e7097a60c075ee46ac325c0c8efbff82497449d34a7ae",
+      "bytes": 473,
+      "mtime_ns": 1788513832568624500
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_battery_level1_20_20.png": {
+      "sha256": "149ec019d68c7c60cc80ec2cfb757ef352239c9f663efbac63ab29011a748b5b",
+      "bytes": 375,
+      "mtime_ns": 1788513832572624200
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_battery_level2_20_20.png": {
+      "sha256": "3f810365c3034180c605126f4af0308e539d1f4c92e306d90518fc5dea4518ef",
+      "bytes": 400,
+      "mtime_ns": 1788513832573628900
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_battery_level3_20_20.png": {
+      "sha256": "acac38dff9bcd654d8b347e28dc240d8e1472315d2bd6282f07c749f163c9901",
+      "bytes": 469,
+      "mtime_ns": 1788513832574626800
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_battery_level4_20_20.png": {
+      "sha256": "9dfa64481b3680ce155aa931882696e3e3b11716976744518f833d31e17e7f40",
+      "bytes": 439,
+      "mtime_ns": 1788513832575624900
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_bluetooth_48_48.png": {
+      "sha256": "1f17fd4c17576e8cad1a3fd9e160223011153675102f6465964e952afcf3f1d7",
+      "bytes": 1382,
+      "mtime_ns": 1788513832575624900
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_brightness_auto_48_48.png": {
+      "sha256": "c34dfb93f51cadfc9d960e92f9a4a3a6c62d0c8fe730a9dc04e03ed70dadf111",
+      "bytes": 1021,
+      "mtime_ns": 1788513832576623500
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_brightness_high_48_48.png": {
+      "sha256": "ecfcab3e0051d66e8332e6e01fc111164ce988bf1c6d32c6032926255a108ce0",
+      "bytes": 1157,
+      "mtime_ns": 1788513832576623500
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_brightness_low_48_48.png": {
+      "sha256": "b95b56423f7d94933bd0fa4b027dee51796aec7e2756f6173c2c6603de1d652d",
+      "bytes": 991,
+      "mtime_ns": 1788513832576623500
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_brightness_medium_48_48.png": {
+      "sha256": "9d549c3575dee54624e55dfe9daaae532c1ac9b58d124ec02f6076bbd8bc7579",
+      "bytes": 917,
+      "mtime_ns": 1788513832577623900
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_lock_48_48.png": {
+      "sha256": "95fbb8516ee1f89c69a50b812b82ed82fac83714f701a2428a0c2e5235f3aaea",
+      "bytes": 598,
+      "mtime_ns": 1788513832577623900
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_settings_48_48.png": {
+      "sha256": "1e290444cfc73eb7cecd91bab86d25189874d872098a14ab09ff5bf7ad88a163",
+      "bytes": 787,
+      "mtime_ns": 1788513832578700700
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_volume_high_48_48.png": {
+      "sha256": "49be26de1b088e021f533c62cf8e06e18e270c706c5c1aea1b3515dbce550476",
+      "bytes": 1137,
+      "mtime_ns": 1788513832578700700
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_volume_low_48_48.png": {
+      "sha256": "7c608a2f6c447cb96961594932b1a5462179cd574d82192904db5bca35c33d53",
+      "bytes": 736,
+      "mtime_ns": 1788513832579702200
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_volume_medium_48_48.png": {
+      "sha256": "9bd035bf23d556c39ee62af2f4383b548f9678f3144d74a21abf9ac77e20ab3f",
+      "bytes": 903,
+      "mtime_ns": 1788513832579702200
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_volume_off_48_48.png": {
+      "sha256": "972bc58cd4945c53c367e0ee6e956384436dbd5a62e5023d2248a23af4f92a76",
+      "bytes": 860,
+      "mtime_ns": 1788513832580700900
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_wifi_48_48.png": {
+      "sha256": "57261d6d5edae86be341adfeaf531f9b95e66bc65731944b8b22d6e09e4ca062",
+      "bytes": 821,
+      "mtime_ns": 1788513832581701100
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_wifi_close_20_20.png": {
+      "sha256": "80e5a26a15b3fa2aa5ca9da26f133a8f2775acbd9bc63f8393cb871b8b0d0828",
+      "bytes": 581,
+      "mtime_ns": 1788513832582700500
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_wifi_level1_20_20.png": {
+      "sha256": "30c6b3a6e1aa10aafbe69022646428b9263b949e2f07e708fa05a74b00feae5a",
+      "bytes": 251,
+      "mtime_ns": 1788513832582700500
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_wifi_level2_20_20.png": {
+      "sha256": "fdf4bf29bd7bf052e71f98c5b9ab4a1fd7f7f38729df85803ffecf8e67931396",
+      "bytes": 380,
+      "mtime_ns": 1788513832583702200
+    },
+    "components/brookesia_core/docs/_static/assets/speaker/images/middle/speaker_image_middle_quick_settings_wifi_level3_20_20.png": {
+      "sha256": "a5ac8e363b86e1179fc9b37b57082f41901dec87ba430cf3ea72da731ab9b7a2",
+      "bytes": 503,
+      "mtime_ns": 1788513832583702200
+    },
+    "components/brookesia_core/docs/_static/readme/app_launcher_demo.png": {
+      "sha256": "88435e7a9fab8bcc076bdc0e1df8b736bd821cfbcf8c96ed7194a48c3c1b1d94",
+      "bytes": 110934,
+      "mtime_ns": 1788513832587711600
+    },
+    "components/brookesia_core/docs/_static/readme/navigation_bar_demo.png": {
+      "sha256": "5eba83da831678cf338d0356e213691cdab2c3392f4f7201095eb3a20f780666",
+      "bytes": 1210,
+      "mtime_ns": 1788513832588722900
+    },
+    "components/brookesia_core/docs/_static/readme/recents_screen_demo.png": {
+      "sha256": "98ea0b11862dbfec6e11ce5825eb12ec33faa52b1371cece0a70b53e2adef1c4",
+      "bytes": 19443,
+      "mtime_ns": 1788513832589712600
+    },
+    "components/brookesia_core/docs/_static/readme/status_bar_demo.png": {
+      "sha256": "178768aa99ff48c0c908620f5def806712bb0414471918bcdffc1d668adea9e3",
+      "bytes": 2905,
+      "mtime_ns": 1788513832589712600
+    },
+    "components/brookesia_core/docs/_static/tools/stylesheet_calculator.xlsx": {
+      "sha256": "28ae8962fcb7985d5d2599990fc3bf4a2ae4b613e53970634ad4687bbccdb2fd",
+      "bytes": 7913,
+      "mtime_ns": 1788513832591711100
+    },
+    "components/brookesia_core/gui/esp_brookesia_gui_internal.h": {
+      "sha256": "34540d932e62b2a82fb3014702ae0597e5f16288807d892c0dc03588b19a1b27",
+      "bytes": 7360,
+      "mtime_ns": 1788513832599113100
+    },
+    "components/brookesia_core/gui/Kconfig": {
+      "sha256": "3e674acd775869357d6f4968f4ea8d930c751997f925c999021e6a9c6276fe3d",
+      "bytes": 2654,
+      "mtime_ns": 1788513832596111500
+    },
+    "components/brookesia_core/gui/anim_player/esp_brookesia_anim_player.cpp": {
+      "sha256": "7910def8e99d22d18739662c559d2bd4354b6e7b15e432628541fc54fd54781d",
+      "bytes": 20012,
+      "mtime_ns": 1788513832597112800
+    },
+    "components/brookesia_core/gui/anim_player/esp_brookesia_anim_player.hpp": {
+      "sha256": "e636edf9b128326604ce8ed727be7b2b343a6ee147a0dd7e6c5c6ee5b3908a60",
+      "bytes": 5070,
+      "mtime_ns": 1788513832598111500
+    },
+    "components/brookesia_core/gui/anim_player/private/esp_brookesia_anim_player_utils.hpp": {
+      "sha256": "252d02535a206a6b6d5129ff31470db822a771bf861355367b7df53ebe08fd73",
+      "bytes": 770,
+      "mtime_ns": 1788513832598111500
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv.hpp": {
+      "sha256": "430e22955bb98c3f93da07c2cdb2999fa31c31c9d63888461537e3bc16d8634a",
+      "bytes": 500,
+      "mtime_ns": 1788513832600114100
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv_animation.cpp": {
+      "sha256": "1bf240fb5f129214326b0d117a7d148bf9c46c1a334f25b4f4245d04e618ed37",
+      "bytes": 4003,
+      "mtime_ns": 1788513832600114100
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv_animation.hpp": {
+      "sha256": "7fd15e847dc6686e8a4945bd20e3f43dbcd4c04af2ef0c887ec65a067cc477a7",
+      "bytes": 1324,
+      "mtime_ns": 1788513832601112900
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv_canvas.cpp": {
+      "sha256": "7a05dc9c094acb8dd43f1198ccde2ff10bcece995e012de708963b0b1553d85b",
+      "bytes": 1293,
+      "mtime_ns": 1788513832601112900
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv_canvas.hpp": {
+      "sha256": "f970034793a36147d63a63cf685d5338629588389fddbde61b42cdc17d26992c",
+      "bytes": 563,
+      "mtime_ns": 1788513832602113200
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv_container.cpp": {
+      "sha256": "d1c1ff85b5476595b5f7292d57b5167c84c2088516400828278642832fcfbe4f",
+      "bytes": 1654,
+      "mtime_ns": 1788513832602113200
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv_container.hpp": {
+      "sha256": "79e1a5184af16de28779cf06c0bad2b61c3f293e13d836708c99c704cfe4d6c0",
+      "bytes": 575,
+      "mtime_ns": 1788513832604217200
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv_display.cpp": {
+      "sha256": "d7e0cc1a534c66ede0dec8e60a93c349bb0ba2f73cfa088cf615e5595e4c31ad",
+      "bytes": 3970,
+      "mtime_ns": 1788513832605219300
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv_display.hpp": {
+      "sha256": "b9aed2f605d0f055b16e8534c7763efa6e463dc17a3b394199b9bd4c3491f5dd",
+      "bytes": 1689,
+      "mtime_ns": 1788513832605219300
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv_helper.cpp": {
+      "sha256": "c42e7266b6d56efa59a8f26acca1baaade1608158104f8f2abe922e2cd5bf1cd",
+      "bytes": 9184,
+      "mtime_ns": 1788513832606215400
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv_helper.hpp": {
+      "sha256": "7bc87cb4fc3f71029511449927e0a9302bcec36336294140e7bbdc65c60a780e",
+      "bytes": 5460,
+      "mtime_ns": 1788513832606215400
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv_lock.cpp": {
+      "sha256": "4576b17242171d68e5f608e278686b8d0214ab3af6d1bc902d4ebe15b660d582",
+      "bytes": 1882,
+      "mtime_ns": 1788513832607216600
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv_lock.hpp": {
+      "sha256": "03c2ff5bc49805f909f4699858f17b627905c7b8f5e01229f6d52b6d33efed33",
+      "bytes": 1055,
+      "mtime_ns": 1788513832607216600
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv_object.cpp": {
+      "sha256": "1b7ff4b7141d0a92a4b58763dfb9f927a2b169b6db4e04f407173d6b5e2d9262",
+      "bytes": 15204,
+      "mtime_ns": 1788513832608215100
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv_object.hpp": {
+      "sha256": "7d521c1416144f5bef4529c29451aa310c6e05ddbc0f549fd64988a6098626ca",
+      "bytes": 2701,
+      "mtime_ns": 1788513832608215100
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv_screen.cpp": {
+      "sha256": "b2429a31b5210f068f971742bc6989bc2fa98bbfc7fa37aaeb6ca60fa7c6f009",
+      "bytes": 1191,
+      "mtime_ns": 1788513832608215100
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv_screen.hpp": {
+      "sha256": "13b994ab8ce22b9a92c8fd1d36e09ef736f9d055a2f4edf65abfa6b318c23669",
+      "bytes": 529,
+      "mtime_ns": 1788513832609215300
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv_timer.cpp": {
+      "sha256": "7042ff9097f9e26537c1e8a9c3d46e74217bdb94fbbbd33689bc0d667c073f0b",
+      "bytes": 2786,
+      "mtime_ns": 1788513832609215300
+    },
+    "components/brookesia_core/gui/lvgl/esp_brookesia_lv_timer.hpp": {
+      "sha256": "6dbdf003135f2e96dd62ea9ebe115459cababd2bcafe12086c9c5b4424743f6f",
+      "bytes": 1548,
+      "mtime_ns": 1788513832610216500
+    },
+    "components/brookesia_core/gui/lvgl/private/esp_brookesia_lv_utils.hpp": {
+      "sha256": "1bec58adf20fe21ff8b36ff58f8bf04cc31a9316638e6f331dbcf0440840b483",
+      "bytes": 616,
+      "mtime_ns": 1788513832610216500
+    },
+    "components/brookesia_core/gui/squareline/ui_comp/ui_comp.c": {
+      "sha256": "b7a6c53315d65424fa89fadf6ec3853aa4bb3aa9635229fc38cfd537a6d2c9fd",
+      "bytes": 1382,
+      "mtime_ns": 1788513832611372400
+    },
+    "components/brookesia_core/gui/squareline/ui_comp/ui_comp.h": {
+      "sha256": "27fa8597e95bc0a8269ee9f7d7b4de5e874759fbdd053fd919a9a788097640d6",
+      "bytes": 888,
+      "mtime_ns": 1788513832612378800
+    },
+    "components/brookesia_core/gui/squareline/ui_helpers/ui_helpers.c": {
+      "sha256": "04c5c1d54bc09f7bf913e3374e0f4209202d3ff002a0b14d718d504c4969966f",
+      "bytes": 9210,
+      "mtime_ns": 1788513832612378800
+    },
+    "components/brookesia_core/gui/squareline/ui_helpers/ui_helpers.h": {
+      "sha256": "147924a3bd468fb152a73d0b7f02efb8d95d6637588fbc6dd09b8bdd7eabd889",
+      "bytes": 4288,
+      "mtime_ns": 1788513832612378800
+    },
+    "components/brookesia_core/gui/style/esp_brookesia_gui_style.cpp": {
+      "sha256": "b35e8d150dbbd9b9567b6bfad770bc9dddcdbaf01e575c1dccf5eec47699602e",
+      "bytes": 5883,
+      "mtime_ns": 1788513832613878800
+    },
+    "components/brookesia_core/gui/style/esp_brookesia_gui_style.hpp": {
+      "sha256": "c99aa1c0dacaf116f1790ad7951682676e317baeeba78137f32b79a2f6048488",
+      "bytes": 28308,
+      "mtime_ns": 1788513832613878800
+    },
+    "components/brookesia_core/gui/style/esp_brookesia_gui_stylesheet_manager.hpp": {
+      "sha256": "95e8002210ebaf98db96caff43c089ff8b995114b1011f71b45b1be40b25d278",
+      "bytes": 10880,
+      "mtime_ns": 1788513832614884800
+    },
+    "components/brookesia_core/gui/style/private/esp_brookesia_gui_style_utils.hpp": {
+      "sha256": "b0f2392bc15f531ce104ec4cd9bbed000d5e95d860e8a794a4f5ea655550e600",
+      "bytes": 623,
+      "mtime_ns": 1788513832616885700
+    },
+    "components/brookesia_core/services/esp_brookesia_services_internal.h": {
+      "sha256": "5d52cc37aad294c9fab043438eddf7b9bb178385f30fed15d723b711c7abc477",
+      "bytes": 1402,
+      "mtime_ns": 1788513832621817800
+    },
+    "components/brookesia_core/services/Kconfig": {
+      "sha256": "079079a3ecaf9571f0cfc080544c171582f0fc280dba525e555a78fcf9a2fcb4",
+      "bytes": 366,
+      "mtime_ns": 1788513832621817800
+    },
+    "components/brookesia_core/services/storage_nvs/esp_brookesia_service_storage_nvs.cpp": {
+      "sha256": "2cdde23c9592b63cbc892908b393deb70a5a1020c0b45ba6422d01c1a53a7d4d",
+      "bytes": 12489,
+      "mtime_ns": 1788513832621817800
+    },
+    "components/brookesia_core/services/storage_nvs/esp_brookesia_service_storage_nvs.hpp": {
+      "sha256": "c3d860759fb01a4ee1cb08c94050bc814c7310d53a1ed4b93fa7d36607229239",
+      "bytes": 2327,
+      "mtime_ns": 1788513832621817800
+    },
+    "components/brookesia_core/services/storage_nvs/private/esp_brookesia_service_storage_nvs_utils.hpp": {
+      "sha256": "8aced8beec4b2aa969c5cec82af59a65fc0e6d2fa023b9d87c5d7282845b5485",
+      "bytes": 775,
+      "mtime_ns": 1788513832621817800
+    },
+    "components/brookesia_core/systems/esp_brookesia_systems_internal.h": {
+      "sha256": "792e9798a22c9e1446dd81e256c3ff30bec8c43303a53dbe5f8d4112a1fb4132",
+      "bytes": 12041,
+      "mtime_ns": 1788513832664699200
+    },
+    "components/brookesia_core/systems/Kconfig": {
+      "sha256": "3837a1bc6e99d5d1528383a3a5558d5b4d730e6f417e0cd1207de284ced2f3f6",
+      "bytes": 3809,
+      "mtime_ns": 1788513832621817800
+    },
+    "components/brookesia_core/systems/base/esp_brookesia_base_app.cpp": {
+      "sha256": "62f5263c101b269afbc6437151cb46ea478ec10967f815e5d4a06597b8b9948f",
+      "bytes": 31956,
+      "mtime_ns": 1788513832658283500
+    },
+    "components/brookesia_core/systems/base/esp_brookesia_base_app.hpp": {
+      "sha256": "a4bce226183d523e82804aeaea06b54c926d5b97a340a6d99602fa18362103d2",
+      "bytes": 19076,
+      "mtime_ns": 1788513832659283100
+    },
+    "components/brookesia_core/systems/base/esp_brookesia_base_context.cpp": {
+      "sha256": "a137bc298584f48c2a383f31ff69f2adf671930bbce041f9d6d7d97632aca653",
+      "bytes": 11479,
+      "mtime_ns": 1788513832659717100
+    },
+    "components/brookesia_core/systems/base/esp_brookesia_base_context.hpp": {
+      "sha256": "ad4e1032ee85280b7bb2b1b00e74754ab325f6baadbcb9734e5d3af24fbe989b",
+      "bytes": 5870,
+      "mtime_ns": 1788513832659717100
+    },
+    "components/brookesia_core/systems/base/esp_brookesia_base_display.cpp": {
+      "sha256": "1163d4524c730fd86538f37abd861604c955a9781fdf03ad7575cfe4cb337695",
+      "bytes": 12883,
+      "mtime_ns": 1788513832659717100
+    },
+    "components/brookesia_core/systems/base/esp_brookesia_base_display.hpp": {
+      "sha256": "3e07efbd0bdb9af2d726d87aaa888cf942fd906a2f81233a0dc4111e64362dd1",
+      "bytes": 5825,
+      "mtime_ns": 1788513832660723400
+    },
+    "components/brookesia_core/systems/base/esp_brookesia_base_event.cpp": {
+      "sha256": "27318c6ed8fc3fe807b57e7637d04a4488b585fa719851c812a0721edef1fcf8",
+      "bytes": 8862,
+      "mtime_ns": 1788513832661493100
+    },
+    "components/brookesia_core/systems/base/esp_brookesia_base_event.hpp": {
+      "sha256": "a30a6c2a40f65c9f52fe4bcbddc5d69acff1cda815be9d9f7671dc931c140960",
+      "bytes": 1640,
+      "mtime_ns": 1788513832661493100
+    },
+    "components/brookesia_core/systems/base/esp_brookesia_base_manager.cpp": {
+      "sha256": "57b2b020c3a697a26e7c62a23443102954da807dcba1ae43c6e8822243d87e73",
+      "bytes": 20430,
+      "mtime_ns": 1788513832662500900
+    },
+    "components/brookesia_core/systems/base/esp_brookesia_base_manager.hpp": {
+      "sha256": "98e12970db56a1e9a33af54f2605fb4b4740ca545f5eb069aa0f6f7fe5bab6fa",
+      "bytes": 4169,
+      "mtime_ns": 1788513832662500900
+    },
+    "components/brookesia_core/systems/base/assets/esp_brookesia_base_assets.h": {
+      "sha256": "20f61fef5750891be055c2cacfb0824117fdd41eefd3062c40f8709752655267",
+      "bytes": 1365,
+      "mtime_ns": 1788513832621817800
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_10.c": {
+      "sha256": "6d9b330f82e0d91820510eda42ab4edc10044cf974f8f66c2730c369dc91c28e",
+      "bytes": 36745,
+      "mtime_ns": 1788513832621817800
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_12.c": {
+      "sha256": "ab752660e3eda44d6b0743d937f1ab1529a8cb693a9e47ea8910f226fee11d4b",
+      "bytes": 40252,
+      "mtime_ns": 1788513832621817800
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_14.c": {
+      "sha256": "2139131f7e8cb8d4a87589712bca02feeb66495511d9300513fa113df58b27d8",
+      "bytes": 44887,
+      "mtime_ns": 1788513832621817800
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_16.c": {
+      "sha256": "50794c4dcd0ec3fd01d408de41d910446f52c4b92e466b96f22a19a0dcd611b0",
+      "bytes": 50735,
+      "mtime_ns": 1788513832621817800
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_18.c": {
+      "sha256": "54f8fd60fdb910bc769bb30aa9bea7dc9fb4ae6057fdec26a5b90649f389425a",
+      "bytes": 55918,
+      "mtime_ns": 1788513832621817800
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_20.c": {
+      "sha256": "ac57e0a3b9c4049ba3b080161ab879c45be34eb68a6760e5f34acaf641679c31",
+      "bytes": 62267,
+      "mtime_ns": 1788513832621817800
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_22.c": {
+      "sha256": "792bdf8db72635c6f48eae7eeba5a66bcfee2aa7885f5db5d05d0c46504141a5",
+      "bytes": 68306,
+      "mtime_ns": 1788513832621817800
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_24.c": {
+      "sha256": "16f99e6870f2884729e450a3658cf571fe87eebcf7e2abdbbd92bbfd1db70e3b",
+      "bytes": 75970,
+      "mtime_ns": 1788513832637282600
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_26.c": {
+      "sha256": "0bd5491794ebec662354f6aa162fcdff89bc1aeccebe2ce704d7fe0d29f84b28",
+      "bytes": 83646,
+      "mtime_ns": 1788513832640280900
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_28.c": {
+      "sha256": "f8435b7345a13a3f2f9b58bd7cb317df5cba72f1895e063afd6f9c403d8ad360",
+      "bytes": 92402,
+      "mtime_ns": 1788513832641280900
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_30.c": {
+      "sha256": "4f3e11031e036ecedbfa1e175d658540e957f653b07d855b1f67e275c64a4e31",
+      "bytes": 102728,
+      "mtime_ns": 1788513832643280900
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_32.c": {
+      "sha256": "08196bbfcca12cce81266469298d962f7d56ab68f8722e3ca6503e79c0574077",
+      "bytes": 118474,
+      "mtime_ns": 1788513832644280300
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_34.c": {
+      "sha256": "a94872f29e1a57350c828ea6b6297e59a88fa6dbb28c733ec588d1bb5091d923",
+      "bytes": 126654,
+      "mtime_ns": 1788513832646279200
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_36.c": {
+      "sha256": "6ddfc4a5b75389e20c5dc5ca8ecb8df435ba28d1fd7a22673f1f7ae9f39a70d8",
+      "bytes": 139010,
+      "mtime_ns": 1788513832647283500
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_38.c": {
+      "sha256": "62ed2a09e76280bd1ba4a37f604e25128d7f666e3ffee4def75291d94ae3f2e5",
+      "bytes": 151038,
+      "mtime_ns": 1788513832648280800
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_40.c": {
+      "sha256": "b6de47e3ba30a82c3bfe2afe31532f05397f3feb19cef2be9f467b66c1904d38",
+      "bytes": 162267,
+      "mtime_ns": 1788513832649303000
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_42.c": {
+      "sha256": "ed01c66bfd12186688469713cfe4c427d1897efd1fe7b2aa6dc0d14ba0161b4e",
+      "bytes": 178360,
+      "mtime_ns": 1788513832650304900
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_44.c": {
+      "sha256": "199a761bc22b58847d2b9c40628641112cf845bd7d629265f6e917cc5c14ec5e",
+      "bytes": 190644,
+      "mtime_ns": 1788513832654288400
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_46.c": {
+      "sha256": "0efd8dff9a0e316a1f23cbbce9f1a99f4876f634b26f981a426ee52527568898",
+      "bytes": 203086,
+      "mtime_ns": 1788513832655283900
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_48.c": {
+      "sha256": "33e7839db3d2f5e773c1e49530a9dc9bbbf58686b2ba4eef631bc1909a014ab4",
+      "bytes": 216274,
+      "mtime_ns": 1788513832657282800
+    },
+    "components/brookesia_core/systems/base/assets/fonts/maison_neue_book/esp_brookesia_font_maison_neue_book_8.c": {
+      "sha256": "5dc1191a4ade4399a5aba24530bd4bd38d541a01192f6ca3d2995654c5bee625",
+      "bytes": 31464,
+      "mtime_ns": 1788513832657282800
+    },
+    "components/brookesia_core/systems/base/private/esp_brookesia_base_utils.hpp": {
+      "sha256": "599e3377b8e6925429963146cb33877627f93b71e03889ecce92e2ff1f49d3e1",
+      "bytes": 627,
+      "mtime_ns": 1788513832663950900
+    },
+    "components/brookesia_core/systems/phone/esp_brookesia_phone.cpp": {
+      "sha256": "0d6b51fee6d459805369db50703bca0a2653680f018c4872b69fdc6b47344f53",
+      "bytes": 6675,
+      "mtime_ns": 1788513832764852000
+    },
+    "components/brookesia_core/systems/phone/esp_brookesia_phone.hpp": {
+      "sha256": "5f02bf0a8231474909ea9825eaff1998591071a4db19fa40d50488ae6637116c",
+      "bytes": 2337,
+      "mtime_ns": 1788513832765847000
+    },
+    "components/brookesia_core/systems/phone/esp_brookesia_phone_app.cpp": {
+      "sha256": "584f230167b98a14ebba284fe7fb8730a3f7d125152232c75d52aad9062d4b3b",
+      "bytes": 4403,
+      "mtime_ns": 1788513832766852600
+    },
+    "components/brookesia_core/systems/phone/esp_brookesia_phone_app.hpp": {
+      "sha256": "e821e1efda74954bbbab858e6c5c3543c0e511a10c585cd2823ec1509ed2c3f1",
+      "bytes": 7942,
+      "mtime_ns": 1788513832766852600
+    },
+    "components/brookesia_core/systems/phone/esp_brookesia_phone_display.cpp": {
+      "sha256": "db94100f609a9f42a4db15e068a4cd47149cd208818f0f3498e014939d6131fb",
+      "bytes": 16985,
+      "mtime_ns": 1788513832767848300
+    },
+    "components/brookesia_core/systems/phone/esp_brookesia_phone_display.hpp": {
+      "sha256": "b2d1d9a97bdb1fd0a3a16eb2713c4cc1add662a1fdedc1d3933a9d59e383805e",
+      "bytes": 3503,
+      "mtime_ns": 1788513832768849200
+    },
+    "components/brookesia_core/systems/phone/esp_brookesia_phone_manager.cpp": {
+      "sha256": "fbae688c04db6a9e994cc7f63377d43236c830c1ffaef77a70835fcac1691ac3",
+      "bytes": 53828,
+      "mtime_ns": 1788513832771141200
+    },
+    "components/brookesia_core/systems/phone/esp_brookesia_phone_manager.hpp": {
+      "sha256": "d7c8b2c4e93bf76eb1c04547a5b833905c584c427dee91a5ed836d39438d5861",
+      "bytes": 5982,
+      "mtime_ns": 1788513832772141200
+    },
+    "components/brookesia_core/systems/phone/assets/esp_brookesia_phone_assets.h": {
+      "sha256": "a3aadcc023b62d1b0abe512f1e9932622e93afbb0af8809013b2aa243b6a47e5",
+      "bytes": 3590,
+      "mtime_ns": 1788513832665711600
+    },
+    "components/brookesia_core/systems/phone/assets/images/large/esp_brookesia_image_large_app_launcher_default_112_112.c": {
+      "sha256": "eaa36e711c71908da0a8f47fceb90b3e9094a70c9ea004800a230653f914bfc0",
+      "bytes": 252573,
+      "mtime_ns": 1788513832668708600
+    },
+    "components/brookesia_core/systems/phone/assets/images/large/esp_brookesia_image_large_navigation_bar_back_36_36.c": {
+      "sha256": "d4281ee80f7aa471cf67f2b3dffc0b0bf74f0077f4aed64d698f108f830780a3",
+      "bytes": 27134,
+      "mtime_ns": 1788513832671033700
+    },
+    "components/brookesia_core/systems/phone/assets/images/large/esp_brookesia_image_large_navigation_bar_home_36_36.c": {
+      "sha256": "80ec7f2dd04d11f28c3af4188604985013469fcbe521904b76b7e16e691e7aea",
+      "bytes": 27134,
+      "mtime_ns": 1788513832672097100
+    },
+    "components/brookesia_core/systems/phone/assets/images/large/esp_brookesia_image_large_navigation_bar_recents_screen_36_36.c": {
+      "sha256": "dda43c49fae7e80ac298c3ddce1768e02f8dcf0e4a57797b5bcdf35f592a8d81",
+      "bytes": 27204,
+      "mtime_ns": 1788513832672097100
+    },
+    "components/brookesia_core/systems/phone/assets/images/large/esp_brookesia_image_large_recents_screen_trash_64_64.c": {
+      "sha256": "3b5e36806a9ff506f1b763a219f12f9bd5a3bba5f4fa750c5d520a2826bb91dc",
+      "bytes": 83309,
+      "mtime_ns": 1788513832674080200
+    },
+    "components/brookesia_core/systems/phone/assets/images/large/esp_brookesia_image_large_status_bar_battery_charge_36_36.c": {
+      "sha256": "2254a79a53e2ee7792b4b5f58904b4b058968216e0fb840b2db280b2fd9f5fa8",
+      "bytes": 27176,
+      "mtime_ns": 1788513832674080200
+    },
+    "components/brookesia_core/systems/phone/assets/images/large/esp_brookesia_image_large_status_bar_battery_level1_36_36.c": {
+      "sha256": "9b172bdf7593329b915a1f7c4a6d5dc817c296185997a75e309adcf71e465591",
+      "bytes": 27176,
+      "mtime_ns": 1788513832675083800
+    },
+    "components/brookesia_core/systems/phone/assets/images/large/esp_brookesia_image_large_status_bar_battery_level2_36_36.c": {
+      "sha256": "50622250fd2eeacfd3431f6293edbc4b2a59204d60be52f5e1c8ab8b534251e0",
+      "bytes": 27176,
+      "mtime_ns": 1788513832676084600
+    },
+    "components/brookesia_core/systems/phone/assets/images/large/esp_brookesia_image_large_status_bar_battery_level3_36_36.c": {
+      "sha256": "1f7f3372414c1780b678469c4d589318dbb44d67a89b5d785475e4b9c991720d",
+      "bytes": 27176,
+      "mtime_ns": 1788513832676084600
+    },
+    "components/brookesia_core/systems/phone/assets/images/large/esp_brookesia_image_large_status_bar_battery_level4_36_36.c": {
+      "sha256": "ad699278743684cb6e0e3034fa6c778b7a6d11c5843419d9ffba28e6c074f16b",
+      "bytes": 27176,
+      "mtime_ns": 1788513832677081800
+    },
+    "components/brookesia_core/systems/phone/assets/images/large/esp_brookesia_image_large_status_bar_wifi_close_36_36.c": {
+      "sha256": "672aa400132aeb4065f5b575f31d8237de3f9c93f48c313285b048705c8b10b2",
+      "bytes": 27148,
+      "mtime_ns": 1788513832677081800
+    },
+    "components/brookesia_core/systems/phone/assets/images/large/esp_brookesia_image_large_status_bar_wifi_level1_36_36.c": {
+      "sha256": "5caed99f9353ee613e19df3d02ef71a00259a963f40ef48c42c890d71f087d30",
+      "bytes": 27155,
+      "mtime_ns": 1788513832678081700
+    },
+    "components/brookesia_core/systems/phone/assets/images/large/esp_brookesia_image_large_status_bar_wifi_level2_36_36.c": {
+      "sha256": "8d2dbcd0ca210af7f9a1d08dbcb3cda0c7f8eed5a440dc70b27d8d567c53eada",
+      "bytes": 27155,
+      "mtime_ns": 1788513832679081300
+    },
+    "components/brookesia_core/systems/phone/assets/images/large/esp_brookesia_image_large_status_bar_wifi_level3_36_36.c": {
+      "sha256": "34615349982f9a1d30f569be2f45ce63571f1a4c36bb003cd240d58d98746158",
+      "bytes": 27155,
+      "mtime_ns": 1788513832679081300
+    },
+    "components/brookesia_core/systems/phone/assets/images/large/esp_brookesia_image_large_wallpaper_dark_720_720.c": {
+      "sha256": "97bee32d15b09d55157be77e7526919febf147dd748f29641d1776311804031e",
+      "bytes": 9335098,
+      "mtime_ns": 1788513832718633900
+    },
+    "components/brookesia_core/systems/phone/assets/images/middle/esp_brookesia_image_middle_app_launcher_default_112_112.c": {
+      "sha256": "b36b385bb3792fa7e885e1bde5bd80bc8fbf26c6ee1464a6aa39d32018f37f02",
+      "bytes": 252580,
+      "mtime_ns": 1788513832724626100
+    },
+    "components/brookesia_core/systems/phone/assets/images/middle/esp_brookesia_image_middle_navigation_bar_back_32_32.c": {
+      "sha256": "5ef1459f8b19810adcfbe37f500884c672138dbd16ee68b1c26c22976fab9907",
+      "bytes": 21677,
+      "mtime_ns": 1788513832725406500
+    },
+    "components/brookesia_core/systems/phone/assets/images/middle/esp_brookesia_image_middle_navigation_bar_home_32_32.c": {
+      "sha256": "424960f1859771b5dfcf84b94bd0523fc48afed331ee2e50555ad896c1ac6adb",
+      "bytes": 21677,
+      "mtime_ns": 1788513832725406500
+    },
+    "components/brookesia_core/systems/phone/assets/images/middle/esp_brookesia_image_middle_navigation_bar_recents_screen_32_32.c": {
+      "sha256": "a0c2ab876a42a1c94c14348da79c1676f11872f47b25efb67440b0abe2966a95",
+      "bytes": 21747,
+      "mtime_ns": 1788513832726414200
+    },
+    "components/brookesia_core/systems/phone/assets/images/middle/esp_brookesia_image_middle_recents_screen_trash_48_48.c": {
+      "sha256": "6ba8344625457778b8e7eeb22a3370efcda2dfb408fc2ae82004468e54503f62",
+      "bytes": 47380,
+      "mtime_ns": 1788513832726414200
+    },
+    "components/brookesia_core/systems/phone/assets/images/middle/esp_brookesia_image_middle_status_bar_battery_charge_24_24.c": {
+      "sha256": "bab29afbe6f754dac4189b638ce55b25b5b61960f25a1200bec21405528b80f3",
+      "bytes": 12710,
+      "mtime_ns": 1788513832727412400
+    },
+    "components/brookesia_core/systems/phone/assets/images/middle/esp_brookesia_image_middle_status_bar_battery_level1_24_24.c": {
+      "sha256": "d62462c1d92a9e572f3c87d468ecfb83752a6cfc43c1be16c1577205a77404c5",
+      "bytes": 12710,
+      "mtime_ns": 1788513832727412400
+    },
+    "components/brookesia_core/systems/phone/assets/images/middle/esp_brookesia_image_middle_status_bar_battery_level2_24_24.c": {
+      "sha256": "69b71e8978df6e01e38849cc3db8ceacac2e944c4ce579d48d0a6ae234517a48",
+      "bytes": 12710,
+      "mtime_ns": 1788513832728416700
+    },
+    "components/brookesia_core/systems/phone/assets/images/middle/esp_brookesia_image_middle_status_bar_battery_level3_24_24.c": {
+      "sha256": "85e4be9f63fca6c51045bfed5cf9b767edd987b3e6975fd341231edfc1131527",
+      "bytes": 12710,
+      "mtime_ns": 1788513832728416700
+    },
+    "components/brookesia_core/systems/phone/assets/images/middle/esp_brookesia_image_middle_status_bar_battery_level4_24_24.c": {
+      "sha256": "2cc3fa76ef00e9957acfc9f7b99abb5b5f0993c6bc65c6e805c69855bdf4856f",
+      "bytes": 12710,
+      "mtime_ns": 1788513832729414100
+    },
+    "components/brookesia_core/systems/phone/assets/images/middle/esp_brookesia_image_middle_status_bar_wifi_close_24_24.c": {
+      "sha256": "feb93abbed449cecf39f2c47fe4d96cd6c6c9efb217ec34006bccaa725a30cc6",
+      "bytes": 12682,
+      "mtime_ns": 1788513832729414100
+    },
+    "components/brookesia_core/systems/phone/assets/images/middle/esp_brookesia_image_middle_status_bar_wifi_level1_24_24.c": {
+      "sha256": "ba43f7233dea37b9e3f92eaad0e8b00eb2555229d7e795f4fb56792a429e2dc8",
+      "bytes": 12689,
+      "mtime_ns": 1788513832730415800
+    },
+    "components/brookesia_core/systems/phone/assets/images/middle/esp_brookesia_image_middle_status_bar_wifi_level2_24_24.c": {
+      "sha256": "638a55833943e6b0cc4eea6fe98a3ab952d5c8e9a570a9eb010ac344628b6d9b",
+      "bytes": 12689,
+      "mtime_ns": 1788513832730415800
+    },
+    "components/brookesia_core/systems/phone/assets/images/middle/esp_brookesia_image_middle_status_bar_wifi_level3_24_24.c": {
+      "sha256": "ebe6e12eb67a586e552374532e3cb4e925241567bee93a6631ad4c9bfd136fd3",
+      "bytes": 12689,
+      "mtime_ns": 1788513832730415800
+    },
+    "components/brookesia_core/systems/phone/assets/images/middle/esp_brookesia_image_middle_wallpaper_dark_480_480.c": {
+      "sha256": "d2d935342cb3c519cc7611338f2c4c66ff0991eb488b52d9923288c65c068c4a",
+      "bytes": 4150144,
+      "mtime_ns": 1788513832747942600
+    },
+    "components/brookesia_core/systems/phone/assets/images/small/esp_brookesia_image_small_app_launcher_default_98_98.c": {
+      "sha256": "89dd07259e1c2c1e610c2e2580c275e8082bc95313480e60b502640762d21bdd",
+      "bytes": 193673,
+      "mtime_ns": 1788513832749928000
+    },
+    "components/brookesia_core/systems/phone/assets/images/small/esp_brookesia_image_small_navigation_bar_back_24_24.c": {
+      "sha256": "86559e4583ca6e75f5d99e1c05dc680f5406b5fdde3eeae96668ef85c42f34ee",
+      "bytes": 12661,
+      "mtime_ns": 1788513832750928900
+    },
+    "components/brookesia_core/systems/phone/assets/images/small/esp_brookesia_image_small_navigation_bar_home_24_24.c": {
+      "sha256": "fa6266953ace1d61773d5c0cc95f6b66c1c4d788925f7c4bc80a61130dac4923",
+      "bytes": 12661,
+      "mtime_ns": 1788513832750928900
+    },
+    "components/brookesia_core/systems/phone/assets/images/small/esp_brookesia_image_small_navigation_bar_recents_screen_24_24.c": {
+      "sha256": "93576810b5fef2db8935a9649ae5340c41da67a781de64f4866a14b0c0b9f5df",
+      "bytes": 12731,
+      "mtime_ns": 1788513832751926500
+    },
+    "components/brookesia_core/systems/phone/assets/images/small/esp_brookesia_image_small_recents_screen_trash_38_38.c": {
+      "sha256": "94cf37a460be167f17841de3073871ea51cba36520df84e68628068cef059d6e",
+      "bytes": 30113,
+      "mtime_ns": 1788513832754927600
+    },
+    "components/brookesia_core/systems/phone/assets/images/small/esp_brookesia_image_small_status_bar_battery_charge_20_20.c": {
+      "sha256": "79d5ff93e5d30a815aab2948c80c485ece92fe1d5aeb91caffa325ef6a940839",
+      "bytes": 9159,
+      "mtime_ns": 1788513832755927800
+    },
+    "components/brookesia_core/systems/phone/assets/images/small/esp_brookesia_image_small_status_bar_battery_level1_20_20.c": {
+      "sha256": "6ceebdd46f97ed1b2e76044010d283af22562f7d294a2451766e11411193a9c1",
+      "bytes": 9159,
+      "mtime_ns": 1788513832755927800
+    },
+    "components/brookesia_core/systems/phone/assets/images/small/esp_brookesia_image_small_status_bar_battery_level2_20_20.c": {
+      "sha256": "0abbff98ec85cd3a8574a147425dba16c1a684f56328bc424560e74c6d07d7b0",
+      "bytes": 9159,
+      "mtime_ns": 1788513832756927600
+    },
+    "components/brookesia_core/systems/phone/assets/images/small/esp_brookesia_image_small_status_bar_battery_level3_20_20.c": {
+      "sha256": "f86f2a66291f8910cbb3c0513b453010bde071ed23b5ac6f6a411be135b3f765",
+      "bytes": 9159,
+      "mtime_ns": 1788513832756927600
+    },
+    "components/brookesia_core/systems/phone/assets/images/small/esp_brookesia_image_small_status_bar_battery_level4_20_20.c": {
+      "sha256": "ef8e10b510bb557661ac7181113f82d0592d0c365901d37b684af68c8e4510a4",
+      "bytes": 9159,
+      "mtime_ns": 1788513832757929600
+    },
+    "components/brookesia_core/systems/phone/assets/images/small/esp_brookesia_image_small_status_bar_wifi_close_20_20.c": {
+      "sha256": "2423f29ee08e90314a7eede06354814313a3582a4c8098ae95c3d3e37e4e099f",
+      "bytes": 9131,
+      "mtime_ns": 1788513832757929600
+    },
+    "components/brookesia_core/systems/phone/assets/images/small/esp_brookesia_image_small_status_bar_wifi_level1_20_20.c": {
+      "sha256": "f34c911eef1da40b8b820676c633335d70e0aa85a707137385fa52e8c0c79d9b",
+      "bytes": 9138,
+      "mtime_ns": 1788513832758930300
+    },
+    "components/brookesia_core/systems/phone/assets/images/small/esp_brookesia_image_small_status_bar_wifi_level2_20_20.c": {
+      "sha256": "9d91d6a3c9d41b14006e3bd09964fe1cb1c514b0ad49fff3395eb6edb535a1be",
+      "bytes": 9138,
+      "mtime_ns": 1788513832758930300
+    },
+    "components/brookesia_core/systems/phone/assets/images/small/esp_brookesia_image_small_status_bar_wifi_level3_20_20.c": {
+      "sha256": "403252c037d903dc3ae155a734b48c754c7001f08cc6a122d34c6e457bc935b6",
+      "bytes": 9138,
+      "mtime_ns": 1788513832759839500
+    },
+    "components/brookesia_core/systems/phone/assets/images/small/esp_brookesia_image_small_wallpaper_dark_240_240.c": {
+      "sha256": "4e6c7c5220185d4af7a740fc6fdbfe07b5f2c9bebbe4b128b6cfd535849f172d",
+      "bytes": 1038777,
+      "mtime_ns": 1788513832763847500
+    },
+    "components/brookesia_core/systems/phone/private/esp_brookesia_phone_utils.hpp": {
+      "sha256": "7489fd320096f941149dc7b503fb22c6d26351c9220301fc9799b46d59101009",
+      "bytes": 744,
+      "mtime_ns": 1788513832773141400
+    },
+    "components/brookesia_core/systems/phone/stylesheets/esp_brookesia_phone_stylesheets.hpp": {
+      "sha256": "77af9e453f3d01ea8c8ae9d786a57929b26d70f670f21aecdde3536da8a36c22",
+      "bytes": 555,
+      "mtime_ns": 1788513832823735500
+    },
+    "components/brookesia_core/systems/phone/stylesheets/1024_600/dark/app_launcher_data.hpp": {
+      "sha256": "a879ec7f2cdb78cddde37a4d17bb6e8f2f53b22f280074fd44b259d72f8a4e1f",
+      "bytes": 1638,
+      "mtime_ns": 1788513832775142100
+    },
+    "components/brookesia_core/systems/phone/stylesheets/1024_600/dark/core_data.hpp": {
+      "sha256": "810a035864afbc062757a4c39e241418450b58d776eb9ccb2930761d747aefd4",
+      "bytes": 3747,
+      "mtime_ns": 1788513832775142100
+    },
+    "components/brookesia_core/systems/phone/stylesheets/1024_600/dark/gesture_data.hpp": {
+      "sha256": "5fef742212b670fb5e0177ac81d221b06b5b9467f67f98f31557bc145af3fc42",
+      "bytes": 2573,
+      "mtime_ns": 1788513832777141200
+    },
+    "components/brookesia_core/systems/phone/stylesheets/1024_600/dark/navigation_bar_data.hpp": {
+      "sha256": "e22a3ec91c50d47d5c30dfd1ff0926508042570f43d4618e84136268a2998ece",
+      "bytes": 1793,
+      "mtime_ns": 1788513832777141200
+    },
+    "components/brookesia_core/systems/phone/stylesheets/1024_600/dark/recents_screen_data.hpp": {
+      "sha256": "6b5e6c6a0ab33b125e8a1f3fbd1b18a6702ffea693defe7cd37fa704c1fa7810",
+      "bytes": 2096,
+      "mtime_ns": 1788513832778141400
+    },
+    "components/brookesia_core/systems/phone/stylesheets/1024_600/dark/status_bar_data.hpp": {
+      "sha256": "f03263bc70a1f364e4ad3bcc5aa3013105c9f9b6640f2bff04a0f94c686f189b",
+      "bytes": 3274,
+      "mtime_ns": 1788513832778647500
+    },
+    "components/brookesia_core/systems/phone/stylesheets/1024_600/dark/stylesheet.hpp": {
+      "sha256": "d844d092eee769b5f7bc98ccb87d1a0e30361c36e9670236e79dfbb555be8df6",
+      "bytes": 2426,
+      "mtime_ns": 1788513832778647500
+    },
+    "components/brookesia_core/systems/phone/stylesheets/1280_800/dark/app_launcher_data.hpp": {
+      "sha256": "12075810040710a428ea65cffad6af00c18b7581f32745f0b83abddb2b723c4a",
+      "bytes": 1638,
+      "mtime_ns": 1788513832780658600
+    },
+    "components/brookesia_core/systems/phone/stylesheets/1280_800/dark/core_data.hpp": {
+      "sha256": "fc095ad01b88e88e26b23c8606f578f090ef5da997ca8085af80f3db4b06871c",
+      "bytes": 3746,
+      "mtime_ns": 1788513832781655900
+    },
+    "components/brookesia_core/systems/phone/stylesheets/1280_800/dark/gesture_data.hpp": {
+      "sha256": "a4a828ed80b78bda7c42be87d146a4b8573dbf10ea429adb43cc7adcc0e7f718",
+      "bytes": 2573,
+      "mtime_ns": 1788513832782191300
+    },
+    "components/brookesia_core/systems/phone/stylesheets/1280_800/dark/navigation_bar_data.hpp": {
+      "sha256": "960c0a835ca9858ac44d4676c061a5e6e55567afdb44d7dcbd38ee479a843b2c",
+      "bytes": 1793,
+      "mtime_ns": 1788513832782191300
+    },
+    "components/brookesia_core/systems/phone/stylesheets/1280_800/dark/recents_screen_data.hpp": {
+      "sha256": "d0a03407110218e05993060bae6f3e99222dd3f0c300d6d24412d3641ca9b665",
+      "bytes": 2107,
+      "mtime_ns": 1788513832782191300
+    },
+    "components/brookesia_core/systems/phone/stylesheets/1280_800/dark/status_bar_data.hpp": {
+      "sha256": "19b1e4b8c5f69345d232387a86335e6799a4852b8cfda36aee26aad963bf66b9",
+      "bytes": 3274,
+      "mtime_ns": 1788513832783197600
+    },
+    "components/brookesia_core/systems/phone/stylesheets/1280_800/dark/stylesheet.hpp": {
+      "sha256": "e15e8070e12c310a227f9ccf4f84df6123ff57f4569925b838639b45902a2ba5",
+      "bytes": 2426,
+      "mtime_ns": 1788513832783197600
+    },
+    "components/brookesia_core/systems/phone/stylesheets/320_240/dark/app_launcher_data.hpp": {
+      "sha256": "88ac16849fb80d429d2261cd9bf51396e847594d437144646532f69da0d1266c",
+      "bytes": 1620,
+      "mtime_ns": 1788513832784197200
+    },
+    "components/brookesia_core/systems/phone/stylesheets/320_240/dark/core_data.hpp": {
+      "sha256": "6c69329fc379a916a2327d5bb9fef8a1776575e47b3947a9b0203859ffdcad48",
+      "bytes": 3735,
+      "mtime_ns": 1788513832785201700
+    },
+    "components/brookesia_core/systems/phone/stylesheets/320_240/dark/gesture_data.hpp": {
+      "sha256": "e0becfde3a396c1503b5098feaff3f3ebe8e8f0456bc545aad89d8afefe0b499",
+      "bytes": 2567,
+      "mtime_ns": 1788513832785201700
+    },
+    "components/brookesia_core/systems/phone/stylesheets/320_240/dark/navigation_bar_data.hpp": {
+      "sha256": "1d5f5cc5e6caeabd6fb9c83c20b1d42acf95d36551b003a176dc611e90341778",
+      "bytes": 1850,
+      "mtime_ns": 1788513832789201800
+    },
+    "components/brookesia_core/systems/phone/stylesheets/320_240/dark/recents_screen_data.hpp": {
+      "sha256": "e61fefe18b7c50a8c5ff65b9dbd21e14acb44d675454eed3a55296112b4af3b3",
+      "bytes": 2279,
+      "mtime_ns": 1788513832791210100
+    },
+    "components/brookesia_core/systems/phone/stylesheets/320_240/dark/status_bar_data.hpp": {
+      "sha256": "f1dc3efae53bdfd100649d75b58edde60d94576a2f08548784b344f46f202585",
+      "bytes": 3242,
+      "mtime_ns": 1788513832791210100
+    },
+    "components/brookesia_core/systems/phone/stylesheets/320_240/dark/stylesheet.hpp": {
+      "sha256": "7f4cdbf3c8a73c98e943f64b75286658bfc2430993581eda7cf4b523278d95ad",
+      "bytes": 2410,
+      "mtime_ns": 1788513832792209600
+    },
+    "components/brookesia_core/systems/phone/stylesheets/320_480/dark/app_launcher_data.hpp": {
+      "sha256": "ae440d0b0ba9348ccd34b26eabe155316428f3aefa2ba1731903ca76cef56a84",
+      "bytes": 1622,
+      "mtime_ns": 1788513832793212300
+    },
+    "components/brookesia_core/systems/phone/stylesheets/320_480/dark/core_data.hpp": {
+      "sha256": "0d04838b22a88d144362087520c801c80d3db1747895f6c8fb88c591ae03845c",
+      "bytes": 3737,
+      "mtime_ns": 1788513832794210300
+    },
+    "components/brookesia_core/systems/phone/stylesheets/320_480/dark/gesture_data.hpp": {
+      "sha256": "c674627593af0ebd3acace940b712b357070f08fbae55ff9df37a1d49a25815f",
+      "bytes": 2567,
+      "mtime_ns": 1788513832794210300
+    },
+    "components/brookesia_core/systems/phone/stylesheets/320_480/dark/navigation_bar_data.hpp": {
+      "sha256": "8ff557445e70a30dbd246ae22eb2f690ff3d6f967a257a6947aeb30e8ebdc1e6",
+      "bytes": 1800,
+      "mtime_ns": 1788513832795209700
+    },
+    "components/brookesia_core/systems/phone/stylesheets/320_480/dark/recents_screen_data.hpp": {
+      "sha256": "1b93393ceaccf0e0a1de92d10111300f8ff54f5c8e1a3883caa820cf6c3c143f",
+      "bytes": 2092,
+      "mtime_ns": 1788513832795209700
+    },
+    "components/brookesia_core/systems/phone/stylesheets/320_480/dark/status_bar_data.hpp": {
+      "sha256": "9d3717d25063f06973cc793c32fa7b8464deaea581ce4e91ace89027ae6e5ca7",
+      "bytes": 3192,
+      "mtime_ns": 1788513832796210400
+    },
+    "components/brookesia_core/systems/phone/stylesheets/320_480/dark/stylesheet.hpp": {
+      "sha256": "e33ebf3a6eb7fea0ecd6baf94679746c2beaadb4c041e655514b62ddc8ff3e2f",
+      "bytes": 2410,
+      "mtime_ns": 1788513832796210400
+    },
+    "components/brookesia_core/systems/phone/stylesheets/480_480/dark/app_launcher_data.hpp": {
+      "sha256": "1bc7f90baa29a660bae331dcb2788a2a6f1fcf2eea0d1e8aa834a9dea372a20a",
+      "bytes": 1620,
+      "mtime_ns": 1788513832797209800
+    },
+    "components/brookesia_core/systems/phone/stylesheets/480_480/dark/core_data.hpp": {
+      "sha256": "b3c09f88b472212330be237a19c8496f35f3365e504a6e79dca780bd1cadad0d",
+      "bytes": 3738,
+      "mtime_ns": 1788513832798209200
+    },
+    "components/brookesia_core/systems/phone/stylesheets/480_480/dark/gesture_data.hpp": {
+      "sha256": "759873337ab1cec5dabd575a566fa7133aabdc33e0534d6794571e2847405b6b",
+      "bytes": 2567,
+      "mtime_ns": 1788513832798209200
+    },
+    "components/brookesia_core/systems/phone/stylesheets/480_480/dark/navigation_bar_data.hpp": {
+      "sha256": "d16db38148154fc5d2171e6e668bb10312eb4cf38d244feffeebc851129a4f32",
+      "bytes": 1795,
+      "mtime_ns": 1788513832798209200
+    },
+    "components/brookesia_core/systems/phone/stylesheets/480_480/dark/recents_screen_data.hpp": {
+      "sha256": "91fcf4673e01cb01c087b3f6bef392a97bb76878ff1d089696fd79480e2a90e0",
+      "bytes": 2094,
+      "mtime_ns": 1788513832799209000
+    },
+    "components/brookesia_core/systems/phone/stylesheets/480_480/dark/status_bar_data.hpp": {
+      "sha256": "ce64988880fcc1bfa7f85a5f62cb9e9806d62d401fbaade980826f090f59844a",
+      "bytes": 3111,
+      "mtime_ns": 1788513832799209000
+    },
+    "components/brookesia_core/systems/phone/stylesheets/480_480/dark/stylesheet.hpp": {
+      "sha256": "d1dfff6e2ba634d17168930c61cf1bf511d1fa166df7cef127cc92239365d3b7",
+      "bytes": 2414,
+      "mtime_ns": 1788513832799209000
+    },
+    "components/brookesia_core/systems/phone/stylesheets/480_800/dark/app_launcher_data.hpp": {
+      "sha256": "1f5f3ef6d783dd2eb4e7bcb1de8d64ad634d01b94d8ab40318dd9a822c0f7779",
+      "bytes": 1635,
+      "mtime_ns": 1788513832801210500
+    },
+    "components/brookesia_core/systems/phone/stylesheets/480_800/dark/core_data.hpp": {
+      "sha256": "7546996e2a46ef2798fd9af9df0c4788590f8e6a4d0ac404c50719de950ba82e",
+      "bytes": 3738,
+      "mtime_ns": 1788513832801210500
+    },
+    "components/brookesia_core/systems/phone/stylesheets/480_800/dark/gesture_data.hpp": {
+      "sha256": "17dc1ef9efddba2508583226658a1f71bd0d41314170036f73c95f8c811ac4dd",
+      "bytes": 2567,
+      "mtime_ns": 1788513832802208300
+    },
+    "components/brookesia_core/systems/phone/stylesheets/480_800/dark/navigation_bar_data.hpp": {
+      "sha256": "ee4efa03a1c79a08dc14820c4a00143c325e6314d305196c19531c2fc56ed533",
+      "bytes": 1795,
+      "mtime_ns": 1788513832804718600
+    },
+    "components/brookesia_core/systems/phone/stylesheets/480_800/dark/recents_screen_data.hpp": {
+      "sha256": "6c8bfe2dc4245a47a24586e0e2897e4bbd3159bad12398facbca5db6ae4028e7",
+      "bytes": 2105,
+      "mtime_ns": 1788513832805731100
+    },
+    "components/brookesia_core/systems/phone/stylesheets/480_800/dark/status_bar_data.hpp": {
+      "sha256": "985f6df35838c67ce0db5e036293b71bcd555dbde5e0b3e9f22bcfc15d1566af",
+      "bytes": 3111,
+      "mtime_ns": 1788513832805731100
+    },
+    "components/brookesia_core/systems/phone/stylesheets/480_800/dark/stylesheet.hpp": {
+      "sha256": "a26e6b787d4a3f2505d4b14da61a2da14a2e60dbcb9c1c661adb522716c14aaa",
+      "bytes": 2414,
+      "mtime_ns": 1788513832806727300
+    },
+    "components/brookesia_core/systems/phone/stylesheets/720_1280/dark/app_launcher_data.hpp": {
+      "sha256": "bb10aa778b58f33381b6c471f2ff3f5f5b42a87315874bb0489d7d94530b50ea",
+      "bytes": 1639,
+      "mtime_ns": 1788513832806727300
+    },
+    "components/brookesia_core/systems/phone/stylesheets/720_1280/dark/core_data.hpp": {
+      "sha256": "036e36305ab2c250cf04a960017c74f5730bf79ebaab4c18e00b06012b162e98",
+      "bytes": 3746,
+      "mtime_ns": 1788513832807726300
+    },
+    "components/brookesia_core/systems/phone/stylesheets/720_1280/dark/gesture_data.hpp": {
+      "sha256": "2ec87429d472c23c8170f11e083768be14293f64bfa1d0c8c2debc1dc941ed49",
+      "bytes": 2573,
+      "mtime_ns": 1788513832807726300
+    },
+    "components/brookesia_core/systems/phone/stylesheets/720_1280/dark/navigation_bar_data.hpp": {
+      "sha256": "0ea1d3b466a3485b3f4d65a24c9f6ab245709bb6e2d2afa3d767597bb3470e1d",
+      "bytes": 1793,
+      "mtime_ns": 1788513832808729000
+    },
+    "components/brookesia_core/systems/phone/stylesheets/720_1280/dark/recents_screen_data.hpp": {
+      "sha256": "f1396934b2cfb1bd0968eb00b3f2c1196239d5bf8afa77f35b7ef9453034a01f",
+      "bytes": 2107,
+      "mtime_ns": 1788513832808729000
+    },
+    "components/brookesia_core/systems/phone/stylesheets/720_1280/dark/status_bar_data.hpp": {
+      "sha256": "42bd1326a6255574f73229d71a4d3d92e1b8f2b39e8887d34db29275e8be42a7",
+      "bytes": 3274,
+      "mtime_ns": 1788513832808729000
+    },
+    "components/brookesia_core/systems/phone/stylesheets/720_1280/dark/stylesheet.hpp": {
+      "sha256": "15da797671df80f84b252b2a89436c3e790a47cb10faff45290307a655bbae7a",
+      "bytes": 2426,
+      "mtime_ns": 1788513832809725600
+    },
+    "components/brookesia_core/systems/phone/stylesheets/800_1280/dark/app_launcher_data.hpp": {
+      "sha256": "5f2648980a52fe9b142284896f4dfab7cb885419318bba76b3a776598ad384a5",
+      "bytes": 1639,
+      "mtime_ns": 1788513832811727800
+    },
+    "components/brookesia_core/systems/phone/stylesheets/800_1280/dark/core_data.hpp": {
+      "sha256": "3b3b95c424c39b87911030211bd83537c64125ba248d03ca9063bdbeb828d148",
+      "bytes": 3749,
+      "mtime_ns": 1788513832811727800
+    },
+    "components/brookesia_core/systems/phone/stylesheets/800_1280/dark/gesture_data.hpp": {
+      "sha256": "7a49f2908e44359f8687e06b8a38a925a04cbaa791593ee906b6ef6c19d4da8c",
+      "bytes": 2573,
+      "mtime_ns": 1788513832812727200
+    },
+    "components/brookesia_core/systems/phone/stylesheets/800_1280/dark/navigation_bar_data.hpp": {
+      "sha256": "42302311b068ff6fa3492c8e404b38e7a1f66455253e787c48b84fa4613e453f",
+      "bytes": 1793,
+      "mtime_ns": 1788513832813725400
+    },
+    "components/brookesia_core/systems/phone/stylesheets/800_1280/dark/recents_screen_data.hpp": {
+      "sha256": "91a9901edbcee118f6acd23130f8bc04063575b77fb883bee2e6305ec4b94b45",
+      "bytes": 2107,
+      "mtime_ns": 1788513832813725400
+    },
+    "components/brookesia_core/systems/phone/stylesheets/800_1280/dark/status_bar_data.hpp": {
+      "sha256": "ef4617075fdaec4086a720aab8849836d99e064ea63a9eb2229cceb83d48f1ef",
+      "bytes": 3274,
+      "mtime_ns": 1788513832813725400
+    },
+    "components/brookesia_core/systems/phone/stylesheets/800_1280/dark/stylesheet.hpp": {
+      "sha256": "109c55aea48c135416c281a7a550e9dcad26523df68a41911a97bc98a6e0d794",
+      "bytes": 2426,
+      "mtime_ns": 1788513832814725300
+    },
+    "components/brookesia_core/systems/phone/stylesheets/800_480/dark/app_launcher_data.hpp": {
+      "sha256": "1d7d18c7ed3809fc27501e1d5cbc339dfb7982a1303b29ca769d960a6d4b7047",
+      "bytes": 1621,
+      "mtime_ns": 1788513832814725300
+    },
+    "components/brookesia_core/systems/phone/stylesheets/800_480/dark/core_data.hpp": {
+      "sha256": "6d969b2ea643f24bebb916c4ea8f044978358af713b3da6c8d4d3c903fd1046a",
+      "bytes": 3738,
+      "mtime_ns": 1788513832815725300
+    },
+    "components/brookesia_core/systems/phone/stylesheets/800_480/dark/gesture_data.hpp": {
+      "sha256": "eb2cd256861b087122b7e460c84bea22cdeed44b01a6dc2f7b41eb4ef16a6cc4",
+      "bytes": 2567,
+      "mtime_ns": 1788513832815725300
+    },
+    "components/brookesia_core/systems/phone/stylesheets/800_480/dark/navigation_bar_data.hpp": {
+      "sha256": "912cfc2da8832c71ab58f305b6b06718d0a7e7d31b48d93488c135e17da9f46b",
+      "bytes": 1795,
+      "mtime_ns": 1788513832816726000
+    },
+    "components/brookesia_core/systems/phone/stylesheets/800_480/dark/recents_screen_data.hpp": {
+      "sha256": "8012177735c8a9fc181de60b5606a33e461d2871ebf29bf3f9ac93887e409bf2",
+      "bytes": 2094,
+      "mtime_ns": 1788513832816726000
+    },
+    "components/brookesia_core/systems/phone/stylesheets/800_480/dark/status_bar_data.hpp": {
+      "sha256": "276338735ff574564382a9edc35fa68a2d79915301ad03855a4d6a940cc3d015",
+      "bytes": 3278,
+      "mtime_ns": 1788513832817725700
+    },
+    "components/brookesia_core/systems/phone/stylesheets/800_480/dark/stylesheet.hpp": {
+      "sha256": "9496a69107670e52f8cdf3bfcc08413c025e8f13ef5fa03b44910a190b1c43b4",
+      "bytes": 2414,
+      "mtime_ns": 1788513832817725700
+    },
+    "components/brookesia_core/systems/phone/stylesheets/default/dark/app_launcher_data.hpp": {
+      "sha256": "040ae485a9a56b6b2bb20ee3e4c916982822bafc881099e7b52565887071d0eb",
+      "bytes": 1617,
+      "mtime_ns": 1788513832818725200
+    },
+    "components/brookesia_core/systems/phone/stylesheets/default/dark/core_data.hpp": {
+      "sha256": "8cd5fd79392e4b4b2b8beb9ec7a969a98016917ab983ecf436c1c994360661c0",
+      "bytes": 3793,
+      "mtime_ns": 1788513832818725200
+    },
+    "components/brookesia_core/systems/phone/stylesheets/default/dark/gesture_data.hpp": {
+      "sha256": "2a62fefe0f6cc000b8796a8b5f854f00d666a2a15aa7cf542090f75232614483",
+      "bytes": 2567,
+      "mtime_ns": 1788513832821739200
+    },
+    "components/brookesia_core/systems/phone/stylesheets/default/dark/navigation_bar_data.hpp": {
+      "sha256": "5e30bbbd2edba5f88facbed70b63aca71fb900302fec5654b45c35483926f74e",
+      "bytes": 1922,
+      "mtime_ns": 1788513832821739200
+    },
+    "components/brookesia_core/systems/phone/stylesheets/default/dark/recents_screen_data.hpp": {
+      "sha256": "2b9b1b6638e59acae538163bbd83a1c38fff70ee519e3d34f177e4fba3b78fe0",
+      "bytes": 2281,
+      "mtime_ns": 1788513832822735600
+    },
+    "components/brookesia_core/systems/phone/stylesheets/default/dark/status_bar_data.hpp": {
+      "sha256": "e44a4e2df7c0f1fa402e07bbe648940c228fb204e84c76ccc36d413b4f6ea543",
+      "bytes": 3314,
+      "mtime_ns": 1788513832822735600
+    },
+    "components/brookesia_core/systems/phone/stylesheets/default/dark/stylesheet.hpp": {
+      "sha256": "142290d7282985a167f1bdb08db1db3ee2bd65d65bb63e07485a798f26397d97",
+      "bytes": 2411,
+      "mtime_ns": 1788513832822735600
+    },
+    "components/brookesia_core/systems/phone/widgets/app_launcher/esp_brookesia_app_launcher.cpp": {
+      "sha256": "9abe8b053ac83141e13e86bd3af2a456414ff01bf78dc4ff8b1cc5a38e220b74",
+      "bytes": 29457,
+      "mtime_ns": 1788513832824736400
+    },
+    "components/brookesia_core/systems/phone/widgets/app_launcher/esp_brookesia_app_launcher.hpp": {
+      "sha256": "e575522eff66ad65e443cab72e3ce89cec0c9c1c7a229f2f3c4f662c2d86c092",
+      "bytes": 3710,
+      "mtime_ns": 1788513832824736400
+    },
+    "components/brookesia_core/systems/phone/widgets/app_launcher/esp_brookesia_app_launcher_icon.cpp": {
+      "sha256": "9675f0e0bd16b081572979b456b0a8a385b909fec816a88f3c53c10a90df95bb",
+      "bytes": 10063,
+      "mtime_ns": 1788513832825736000
+    },
+    "components/brookesia_core/systems/phone/widgets/app_launcher/esp_brookesia_app_launcher_icon.hpp": {
+      "sha256": "3c27fac60cee5db95c747d0527c2db7b54daa2362d7a1c4e9974cf14b8f38c4b",
+      "bytes": 2249,
+      "mtime_ns": 1788513832825736000
+    },
+    "components/brookesia_core/systems/phone/widgets/gesture/esp_brookesia_gesture.cpp": {
+      "sha256": "5fcf2a7cc99072a2d178932482fdb803b5994d47247bb7e27f4e127ef91164fa",
+      "bytes": 28864,
+      "mtime_ns": 1788513832829736800
+    },
+    "components/brookesia_core/systems/phone/widgets/gesture/esp_brookesia_gesture.hpp": {
+      "sha256": "cd92a77d5a61f96b52695cef13f00843e514ff746eaac493951e9b565efa9bb6",
+      "bytes": 9115,
+      "mtime_ns": 1788513832829736800
+    },
+    "components/brookesia_core/systems/phone/widgets/navigation_bar/esp_brookesia_navigation_bar.cpp": {
+      "sha256": "1d803374a90b41d4c1f53ba33350af1172afba0cc5802c5a91cc9fed244faca5",
+      "bytes": 27514,
+      "mtime_ns": 1788513832830740500
+    },
+    "components/brookesia_core/systems/phone/widgets/navigation_bar/esp_brookesia_navigation_bar.hpp": {
+      "sha256": "e39b5b4f06c47881907bf482ae09d651dee401c5604b959dd79a5aa001769640",
+      "bytes": 4946,
+      "mtime_ns": 1788513832831736200
+    },
+    "components/brookesia_core/systems/phone/widgets/recents_screen/esp_brookesia_recents_screen.cpp": {
+      "sha256": "fa045a9cfb65dbeaf77d1a3500ddd6520d170667a0e5a7e21c5f0e6c11104c4c",
+      "bytes": 28650,
+      "mtime_ns": 1788513832841212600
+    },
+    "components/brookesia_core/systems/phone/widgets/recents_screen/esp_brookesia_recents_screen.hpp": {
+      "sha256": "017ca32feb8ceb4fb66cfc16dde467841e3381b86ce9e14e956d11f4943f1bc3",
+      "bytes": 4412,
+      "mtime_ns": 1788513832842221600
+    },
+    "components/brookesia_core/systems/phone/widgets/recents_screen/esp_brookesia_recents_screen_snapshot.cpp": {
+      "sha256": "d279569822bd2b4225c81cd525de21be666a6e3ee0467671beebc415fa8e76ce",
+      "bytes": 8740,
+      "mtime_ns": 1788513832846419600
+    },
+    "components/brookesia_core/systems/phone/widgets/recents_screen/esp_brookesia_recents_screen_snapshot.hpp": {
+      "sha256": "9e62b1d66e4e0914156f46516d2215cad66bc6693a820fa8db66b4eff9c1179f",
+      "bytes": 2923,
+      "mtime_ns": 1788513832847399500
+    },
+    "components/brookesia_core/systems/phone/widgets/status_bar/esp_brookesia_status_bar.cpp": {
+      "sha256": "7af6364ac79bfa5c8fb31576f0e88b75f4c02e45a17668e1b80c56628bfecc88",
+      "bytes": 27272,
+      "mtime_ns": 1788513832847399500
+    },
+    "components/brookesia_core/systems/phone/widgets/status_bar/esp_brookesia_status_bar.hpp": {
+      "sha256": "4a64b1fa0fb5cdf23e89392fcb06b728fa12dd56e47b3fe9b26ca04f431cbde9",
+      "bytes": 7005,
+      "mtime_ns": 1788513832848398100
+    },
+    "components/brookesia_core/systems/phone/widgets/status_bar/esp_brookesia_status_bar_icon.cpp": {
+      "sha256": "0e0928e0070ad3fb23b42dc73d76afc2c0d2ea11bbde91dde780f0c7ad3f42ca",
+      "bytes": 6018,
+      "mtime_ns": 1788513832861134400
+    },
+    "components/brookesia_core/systems/phone/widgets/status_bar/esp_brookesia_status_bar_icon.hpp": {
+      "sha256": "7603dc060d5f354c13bf52e4a9edbf838caa67e9f2a2340ede44dfb9b0004974",
+      "bytes": 1819,
+      "mtime_ns": 1788513832861134400
+    },
+    "components/brookesia_core/systems/speaker/CMakeLists.txt": {
+      "sha256": "1f8dded18fa1fb086424ecd3922600f5def11ff6e1d26eeac310792c1129cc65",
+      "bytes": 4335,
+      "mtime_ns": 1788513832862133100
+    },
+    "components/brookesia_core/systems/speaker/esp_brookesia_speaker.cpp": {
+      "sha256": "4de2b10aa3f4764d107b521feca486cf2e28c56f60f1fe398ecb733691638f00",
+      "bytes": 7582,
+      "mtime_ns": 1788513833130149300
+    },
+    "components/brookesia_core/systems/speaker/esp_brookesia_speaker.hpp": {
+      "sha256": "6cba4f251b5faf57711eff97cab52e7e3e858c5c7c64274b6fc6d32312c091a9",
+      "bytes": 2263,
+      "mtime_ns": 1788513833131146000
+    },
+    "components/brookesia_core/systems/speaker/esp_brookesia_speaker_ai_buddy.cpp": {
+      "sha256": "ee35e39144708b557c3661c901f077a2d15b1902d3e3fdeab1507746a09cea0c",
+      "bytes": 26644,
+      "mtime_ns": 1788513833131146000
+    },
+    "components/brookesia_core/systems/speaker/esp_brookesia_speaker_ai_buddy.hpp": {
+      "sha256": "e972d108c5f7784429375d7b5642bcd38cfc16e670f99166edc525e858a744e4",
+      "bytes": 9815,
+      "mtime_ns": 1788513833132146800
+    },
+    "components/brookesia_core/systems/speaker/esp_brookesia_speaker_app.cpp": {
+      "sha256": "f490d9f76d6cc9220dee69f39a6ee89f2e6323f44c779a90d43ad4019af52969",
+      "bytes": 2272,
+      "mtime_ns": 1788513833133146200
+    },
+    "components/brookesia_core/systems/speaker/esp_brookesia_speaker_app.hpp": {
+      "sha256": "8764e5a7913950f0e0cdf6641336d3a51f717b620965453bc0274ae014210f2c",
+      "bytes": 5018,
+      "mtime_ns": 1788513833133856100
+    },
+    "components/brookesia_core/systems/speaker/esp_brookesia_speaker_display.cpp": {
+      "sha256": "fad5a61f07b7a63bc493e642ae3f7f3d620931e2775bc0d34ad8c1f113dd56ff",
+      "bytes": 9369,
+      "mtime_ns": 1788513833134861800
+    },
+    "components/brookesia_core/systems/speaker/esp_brookesia_speaker_display.hpp": {
+      "sha256": "233fc519b526521d2e0c48db1048602c90b7f4c699463dda35b40acf02fe7009",
+      "bytes": 3215,
+      "mtime_ns": 1788513833134861800
+    },
+    "components/brookesia_core/systems/speaker/esp_brookesia_speaker_manager.cpp": {
+      "sha256": "7e05895fd40b72cce0c70ca85ea317665c64a2ff6751f55ec70169c4a070eb52",
+      "bytes": 49247,
+      "mtime_ns": 1788513833139378900
+    },
+    "components/brookesia_core/systems/speaker/esp_brookesia_speaker_manager.hpp": {
+      "sha256": "ebd011d5ba432f6f32080ebbed7651a13b39f1d0ea2287bbb97e25285e53cdbc",
+      "bytes": 6279,
+      "mtime_ns": 1788513833140376100
+    },
+    "components/brookesia_core/systems/speaker/idf_component.yml": {
+      "sha256": "f8065c7f9abecd068d408a8ae106bbf688cec6b8aaf215f10923a2207bff8d19",
+      "bytes": 214,
+      "mtime_ns": 1788513833140376100
+    },
+    "components/brookesia_core/systems/speaker/assets/esp_brookesia_speaker_assets.h": {
+      "sha256": "9939ea8a82a9de41a4f0b461a04962756e28dcaa3c428de0887c3343159341a6",
+      "bytes": 1953,
+      "mtime_ns": 1788513833005661800
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/mmap_generate_anim_boot.h": {
+      "sha256": "c15b3e6fdc69b6d5eeb7cf166e836fcb1b0f6e56f75f63db958ee084d609e46d",
+      "bytes": 488,
+      "mtime_ns": 1788513832952964300
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/mmap_generate_anim_emotion.h": {
+      "sha256": "963edaa54d3c216ef951014fdb44e369c75474f22f520ed4aa872020b741ab02",
+      "bytes": 1181,
+      "mtime_ns": 1788513833005661800
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/mmap_generate_anim_icon.h": {
+      "sha256": "bda3beb05d8a96a8cecd3212f989f252a4c6717ad30e1fec19cde83482d6309f",
+      "bytes": 1517,
+      "mtime_ns": 1788513833005661800
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/boot/boot_animation_360_360.aaf": {
+      "sha256": "360e6b9ba5986b11b04f4dba1c185348c61789ecfe0fa0d354852156bcc972b8",
+      "bytes": 648130,
+      "mtime_ns": 1788513832871302700
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/emotion/emotion_angry_284_126.aaf": {
+      "sha256": "f4a6ab190c592762d220f9aaa14f14203b886dfbd18e094239b869cd5c632314",
+      "bytes": 430145,
+      "mtime_ns": 1788513832877159600
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/emotion/emotion_blink1_284_126.aaf": {
+      "sha256": "aafdb404605114479346b98aba24880350905e4dfc2b7aa05a77bf11a2cfc843",
+      "bytes": 242816,
+      "mtime_ns": 1788513832879152800
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/emotion/emotion_blink_fast_284_126.aaf": {
+      "sha256": "65a9164db49f3cfbec1426031843cc2584be43c184772581e510590b79bada00",
+      "bytes": 73617,
+      "mtime_ns": 1788513832896058500
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/emotion/emotion_blink_slow_284_126.aaf": {
+      "sha256": "7ea7b322ee1dc859dbbc90e40eeb90dbfde036c5acbf6d794d90b7bcc546713a",
+      "bytes": 59177,
+      "mtime_ns": 1788513832898076500
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/emotion/emotion_dizzy_284_126.aaf": {
+      "sha256": "4ede200f33ad894afb65d5f20822040e18249d25151973a72e42ff09b444d294",
+      "bytes": 439515,
+      "mtime_ns": 1788513832903898100
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/emotion/emotion_happy_284_126.aaf": {
+      "sha256": "e7f38a2970a1b6ecfddb5b847b07a57503dfed05f6ed36c0311b2d750c5d487a",
+      "bytes": 113209,
+      "mtime_ns": 1788513832906415800
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/emotion/emotion_sad_284_126.aaf": {
+      "sha256": "4352279e0e925b60a4f7ca4bb5935516f69b438112115e1231aa727e28c19488",
+      "bytes": 321981,
+      "mtime_ns": 1788513832909418700
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/emotion/emotion_sleep_284_126.aaf": {
+      "sha256": "920424e4fc1e265fb033482121997f979581747eb622dfff7ffcb933bf262cfd",
+      "bytes": 252643,
+      "mtime_ns": 1788513832912415200
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/icon/icon_brightness_down_64.aaf": {
+      "sha256": "0d7fca63b8ee04067d0cbf94dcc7ce4947819c1efc0bde06c7d7ba04c10d0cf1",
+      "bytes": 120531,
+      "mtime_ns": 1788513832913434900
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/icon/icon_brightness_up_64.aaf": {
+      "sha256": "94946ead503feb7b589b8c30f31ecbd1d1e97273ea0c229210477fa00e6129f3",
+      "bytes": 95664,
+      "mtime_ns": 1788513832915417800
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/icon/icon_emotion_confused_64.aaf": {
+      "sha256": "b57b755a9c39057ede0afb8d6e4e442519b04ad6b64d6cd64551a3368531bf15",
+      "bytes": 124333,
+      "mtime_ns": 1788513832937321400
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/icon/icon_emotion_sleep_64.aaf": {
+      "sha256": "f4b38981e05baadb55656f27bbbd19e7656a1ff8f8a82b03e357ceedb19f54ed",
+      "bytes": 57369,
+      "mtime_ns": 1788513832937321400
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/icon/icon_emotion_thinking_64.aaf": {
+      "sha256": "77d0efb50a1ca26c2afcc0384563ba3f1f896001fc7574030bc9a35adb3b23ce",
+      "bytes": 57264,
+      "mtime_ns": 1788513832937321400
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/icon/icon_invalid_file_64.aaf": {
+      "sha256": "db2aac932835941c1c30d9d00e536f457c58c8ee3d19c27b28f5fcf0a59551e5",
+      "bytes": 184818,
+      "mtime_ns": 1788513832937321400
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/icon/icon_server_connected_64.aaf": {
+      "sha256": "b164b3b872b08a8d61980eeb1fab300a796f26a8dfe854707454c3c7c283210f",
+      "bytes": 157979,
+      "mtime_ns": 1788513832937321400
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/icon/icon_server_connecting_64.aaf": {
+      "sha256": "8c9f765ffaf8f97faf57a7d57aea01297f9165ebc0997dc944aab5e59f8a2095",
+      "bytes": 154328,
+      "mtime_ns": 1788513832937321400
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/icon/icon_volume_down_64.aaf": {
+      "sha256": "08ef045a5d4cb79aeeec672ce08914d244120d81d47d0700202a7bce70d3a0e1",
+      "bytes": 83004,
+      "mtime_ns": 1788513832937321400
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/icon/icon_volume_mute_64.aaf": {
+      "sha256": "43e9afedec7652d2d194dded6197fb592e74711771f8029430351fe3bb7be783",
+      "bytes": 51331,
+      "mtime_ns": 1788513832952964300
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/icon/icon_volume_up_64.aaf": {
+      "sha256": "e0841fe6b130b80f6614d91cef1e8f0be69b050dae9a3e0929fa9f342f0796dd",
+      "bytes": 86948,
+      "mtime_ns": 1788513832952964300
+    },
+    "components/brookesia_core/systems/speaker/assets/animations/icon/icon_wifi_disconnect_64.aaf": {
+      "sha256": "a9e08c56c5f942b2f3073f777c99b18ceccc2390e478ed6f57e193d2d1f7f099",
+      "bytes": 152590,
+      "mtime_ns": 1788513832952964300
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_app_launcher_default_112_112.c": {
+      "sha256": "d3394954dbeb10e93e65035e6fe03b8999ef48490fa8fbfb10ceb4280d52dfe4",
+      "bytes": 252538,
+      "mtime_ns": 1788513833014789400
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_battery_charge_20_20.c": {
+      "sha256": "810c6067dfbfea752d0b9ba78c244940c5c7c165a88b4a6d9e83fd4321a9ba8a",
+      "bytes": 9152,
+      "mtime_ns": 1788513833014789400
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_battery_level1_20_20.c": {
+      "sha256": "4a92e6e194f6ea4a3a7a86db91551371fc5387b7d3e004637b6180edda63cd3e",
+      "bytes": 9152,
+      "mtime_ns": 1788513833034868300
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_battery_level2_20_20.c": {
+      "sha256": "6d7b8f62802f60ede7f2a2a2f30e5224180c7634d6cce96640f7520852aa708b",
+      "bytes": 9152,
+      "mtime_ns": 1788513833037752200
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_battery_level3_20_20.c": {
+      "sha256": "109605bc4606550b9c13edd5f72ddfe8c1424e357d565abedda45405e214eced",
+      "bytes": 9152,
+      "mtime_ns": 1788513833037752200
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_battery_level4_20_20.c": {
+      "sha256": "cfc15e42dfce6e34644a7e8daabb63d63ba10be9644023beb0bbd6b0bf6e23fd",
+      "bytes": 9152,
+      "mtime_ns": 1788513833038751300
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_bluetooth_48_48.c": {
+      "sha256": "8412a253d3c87f10f48ef54be11c2b7649b62eeda3aebe80efecb391cbe3b648",
+      "bytes": 56474,
+      "mtime_ns": 1788513833039749700
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_brightness_auto_48_48.c": {
+      "sha256": "23dba4ee5e21e4e91227a7fb1bb12b6fc1775ae1d138eabfe716d5103744e673",
+      "bytes": 56510,
+      "mtime_ns": 1788513833039749700
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_brightness_high_48_48.c": {
+      "sha256": "6df4d4de58ac9431c634ab10b6c7feddf77f67deba6a8e8c76a711d3d9ac78bb",
+      "bytes": 56510,
+      "mtime_ns": 1788513833040749600
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_brightness_low_48_48.c": {
+      "sha256": "e3b2f6e7ce241c94eacbd8e2b813544ed54ae0789f10d0b926c8e9de66374bac",
+      "bytes": 56504,
+      "mtime_ns": 1788513833041751400
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_brightness_medium_48_48.c": {
+      "sha256": "6df600d850f79e24cde526bed24b17244b856c09eb474602030ca064b53b091e",
+      "bytes": 56522,
+      "mtime_ns": 1788513833041751400
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_lock_48_48.c": {
+      "sha256": "e5c5d11d470a3655073ad57e532d970fb0f2c421d7468aa195dc43e9613abcde",
+      "bytes": 56444,
+      "mtime_ns": 1788513833042749100
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_settings_48_48.c": {
+      "sha256": "57a3d9ebdec917990e8057f54f05fab3f78d15fb4265c25003d644fe960a4304",
+      "bytes": 56468,
+      "mtime_ns": 1788513833043753900
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_volume_high_48_48.c": {
+      "sha256": "2cb57cec8687b2420963f65f220cf1276043e698a514c3478be268d158fff1e2",
+      "bytes": 56486,
+      "mtime_ns": 1788513833048403200
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_volume_low_48_48.c": {
+      "sha256": "d55be081687bf923c84646bfbedf55f343df09c28e3555cf80ab9bda124b1c9b",
+      "bytes": 56480,
+      "mtime_ns": 1788513833049425200
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_volume_medium_48_48.c": {
+      "sha256": "323512213b53b83442307131a573e91c43d5cd3421df5ff0fcfab21494f3a3a4",
+      "bytes": 56498,
+      "mtime_ns": 1788513833050419400
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_volume_off_48_48.c": {
+      "sha256": "72977e3b46394228582bfec8e1739ba5c7272c73f0fb51d862426c027763f62c",
+      "bytes": 56480,
+      "mtime_ns": 1788513833051416700
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_wifi_48_48.c": {
+      "sha256": "0acd8b557023d134048b707ecedaf32e506b4157026ee61452635267758dd943",
+      "bytes": 56444,
+      "mtime_ns": 1788513833053418600
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_wifi_close_20_20.c": {
+      "sha256": "0cba4080f5249c10e4b55357a8a1c27528612f26e2314a59cddf5b7e1eee05ae",
+      "bytes": 9124,
+      "mtime_ns": 1788513833055603200
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_wifi_level1_20_20.c": {
+      "sha256": "1d02f74b9f1a482c9085721771cee26fe6f46e02cef9dcfd2ff2ae0ca81ddc6a",
+      "bytes": 9131,
+      "mtime_ns": 1788513833056614200
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_wifi_level2_20_20.c": {
+      "sha256": "4145d4c392f124d27439fcfe693732cdbb9f6bd8b14e54f70c0f6274b43cdaab",
+      "bytes": 9131,
+      "mtime_ns": 1788513833057211200
+    },
+    "components/brookesia_core/systems/speaker/assets/images/middle/speaker_image_middle_quick_settings_wifi_level3_20_20.c": {
+      "sha256": "1a9decd1382614881bb68dc2a1c6e3ce6568021ab8dc9b267c6b9e57961f6f1b",
+      "bytes": 9131,
+      "mtime_ns": 1788513833058425700
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/backup/emotion_confuse_284_212.gif": {
+      "sha256": "c0843a423c7a2b9a2ccf2f123fe6b93ffa405623c385d307f4cca0788531e045",
+      "bytes": 248071,
+      "mtime_ns": 1788513833062423300
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/backup/emotion_cry_284_212.gif": {
+      "sha256": "ce4a80cb4e6759055134c31972e8d08b1232b6f08c02cfb6600c44251a323d72",
+      "bytes": 184046,
+      "mtime_ns": 1788513833064423900
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/backup/emotion_laugh_284_212.gif": {
+      "sha256": "b48789eacf021c0c0892081b2aafad9f364caf456afe8c642cdc6626cbfcac39",
+      "bytes": 368743,
+      "mtime_ns": 1788513833071588700
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/backup/emotion_look_around_284_212.gif": {
+      "sha256": "cc897cf4d5ebd026b628ef46d1f64d6a1f5453ba36523a635b344b8747593369",
+      "bytes": 149485,
+      "mtime_ns": 1788513833073667500
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/backup/emotion_question_284_212.gif": {
+      "sha256": "187d9c1b7456830038610cd17a0d741c638a05607cc688cdee93320d0fb6de78",
+      "bytes": 148184,
+      "mtime_ns": 1788513833075592600
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/backup/emotion_speak_284_212.gif": {
+      "sha256": "4a36df4ed2c0b7d878351c68847399f88f20cac26828deaf244a34a2fd81abcc",
+      "bytes": 258501,
+      "mtime_ns": 1788513833077589200
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/backup/emotion_think_284_212.gif": {
+      "sha256": "b008978e2e6e4b3632488f8f0c571d4c8ec27cad5c2e91fcd9e3e5da4e99f6c8",
+      "bytes": 301513,
+      "mtime_ns": 1788513833080588500
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/boot/boot_animation_360_360.gif": {
+      "sha256": "3b5913daad1a45bac6c0640f44a0a2384220f43c60ad9989c513bc82f679c447",
+      "bytes": 265099,
+      "mtime_ns": 1788513833084591300
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/emotion/emotion_angry_284_126.gif": {
+      "sha256": "3db01ceab157c77effb4e162529bffbd3d6684f6f64b3ce296518495c0bff798",
+      "bytes": 338309,
+      "mtime_ns": 1788513833091598200
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/emotion/emotion_blink_fast_284_126.gif": {
+      "sha256": "37321f68b81cccca68db76b4a3587804b095907d807a6eacc35901cc8ee12330",
+      "bytes": 61320,
+      "mtime_ns": 1788513833092596900
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/emotion/emotion_blink_slow_284_126.gif": {
+      "sha256": "7fa3e0d8b24b429d3e3e3005f3d56f168786b553a2659458d3aae2789a0a92f8",
+      "bytes": 158405,
+      "mtime_ns": 1788513833094583700
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/emotion/emotion_happy_284_126.gif": {
+      "sha256": "49bc2d917bbf5c725646e20eab101d8b0c1fa8ed794d7009cfd05532fb58bacd",
+      "bytes": 159021,
+      "mtime_ns": 1788513833095596800
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/emotion/emotion_sad_284_126.gif": {
+      "sha256": "632d5b85515b0019dd943e21249e7c0e97a83586c034e1fc3e1193fd405c4cbb",
+      "bytes": 205648,
+      "mtime_ns": 1788513833099589900
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/emotion/emotion_sleep_284_126.gif": {
+      "sha256": "e3e35a0f1c0cb21452d4b65d5307796b4ba6d4e5ab323385e65122151760a434",
+      "bytes": 291057,
+      "mtime_ns": 1788513833108110100
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/icon/icon_brightness_down_64.gif": {
+      "sha256": "a4fd6526b9d0a2047c7fefb526f4705115d9ef67d4674c10d90fbc2ec9bedc9b",
+      "bytes": 86931,
+      "mtime_ns": 1788513833111107200
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/icon/icon_brightness_up_64.gif": {
+      "sha256": "d760242594f9775f7123144b78ef6ce8024c888d71a81555841a5109d3ec4968",
+      "bytes": 47536,
+      "mtime_ns": 1788513833112106500
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/icon/icon_emotion_confused_64.gif": {
+      "sha256": "7df030a87a579882248afd11b6c9f33e5c85a915423d76b03b7923b72671ad9f",
+      "bytes": 78457,
+      "mtime_ns": 1788513833114106300
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/icon/icon_emotion_sleep_64.gif": {
+      "sha256": "43772d3bf6caceee26f1c773ff4fbf5632721b8558765d09a1dcc70a4e78e03b",
+      "bytes": 40935,
+      "mtime_ns": 1788513833115109400
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/icon/icon_emotion_thinking_64.gif": {
+      "sha256": "3211eea46db14be01cf87b4cef55ce799c44b73811ba8b9800ebc7478c43c39e",
+      "bytes": 20858,
+      "mtime_ns": 1788513833116106500
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/icon/icon_volume_down_64.gif": {
+      "sha256": "dd0a215c7b4b2186c52b84b9271ec13a827336fa330d971866d18bf2f018b594",
+      "bytes": 87524,
+      "mtime_ns": 1788513833117106400
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/icon/icon_volume_mute_64.gif": {
+      "sha256": "9843360edd14316811733c3ba1d2bb4e350db524cb02b87804e5f7d6b9dc7ba4",
+      "bytes": 55877,
+      "mtime_ns": 1788513833123148800
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/icon/icon_volume_up_64.gif": {
+      "sha256": "c7b1789532a2007f59606505cee58d65fee9b654d0e249e8faae9f40eff55cf0",
+      "bytes": 87189,
+      "mtime_ns": 1788513833125147600
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/icon/icon_wifi_connected_64.gif": {
+      "sha256": "286b37d454e7c5216a61916cfd50d21d359d14b85407a8c6979b185c372cb163",
+      "bytes": 117417,
+      "mtime_ns": 1788513833127145400
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/icon/icon_wifi_connecting_64.gif": {
+      "sha256": "4bde678d41f570c74adf551a12becc23a42dd16725dc474eb5c4ace33220150f",
+      "bytes": 25182,
+      "mtime_ns": 1788513833128145100
+    },
+    "components/brookesia_core/systems/speaker/docs/assets/animation/icon/icon_wifi_disconnect_64.gif": {
+      "sha256": "728feded59051138e74ef08b13c5f7ceb30a92e2c498ee1f71cb0de6fdd0e106",
+      "bytes": 42995,
+      "mtime_ns": 1788513833129145000
+    },
+    "components/brookesia_core/systems/speaker/private/esp_brookesia_speaker_utils.hpp": {
+      "sha256": "9cdfce3ec857de93c92f7229ac1a308e83f16b5a117d0fda0d2918faea02e38a",
+      "bytes": 633,
+      "mtime_ns": 1788513833141375900
+    },
+    "components/brookesia_core/systems/speaker/stylesheets/esp_brookesia_speaker_stylesheets.hpp": {
+      "sha256": "37adec0c984b8628eba9c7613ebe7c7d73be7b6817923352560283763d659be2",
+      "bytes": 193,
+      "mtime_ns": 1788513833146003100
+    },
+    "components/brookesia_core/systems/speaker/stylesheets/360x360/dark/app_launcher_data.hpp": {
+      "sha256": "c9930ddb6aba8034723336a4d53e45f4dabdc854a49809df88c8072498f800ab",
+      "bytes": 1905,
+      "mtime_ns": 1788513833142375800
+    },
+    "components/brookesia_core/systems/speaker/stylesheets/360x360/dark/core_data.hpp": {
+      "sha256": "38b3eb4fd85080f073325aad1e8a7b3701f860fa6da0a3809e13c804fc6c38d9",
+      "bytes": 3810,
+      "mtime_ns": 1788513833143377900
+    },
+    "components/brookesia_core/systems/speaker/stylesheets/360x360/dark/gesture_data.hpp": {
+      "sha256": "a4ca492b8f15cbcd9472bd75c50f2d54983a8746cb73f8557a7cd397ed2d7fe4",
+      "bytes": 2139,
+      "mtime_ns": 1788513833143995900
+    },
+    "components/brookesia_core/systems/speaker/stylesheets/360x360/dark/keyboard.hpp": {
+      "sha256": "87aed957070b2cde10e3c7a1f191804891367c54123c8baa42dc4c06ef6407d0",
+      "bytes": 2161,
+      "mtime_ns": 1788513833143995900
+    },
+    "components/brookesia_core/systems/speaker/stylesheets/360x360/dark/quick_settings.hpp": {
+      "sha256": "962bfaef6f6089e97280cee23b5ef6c4718cc3d26e89686a6ac490373360d2fb",
+      "bytes": 790,
+      "mtime_ns": 1788513833145002000
+    },
+    "components/brookesia_core/systems/speaker/stylesheets/360x360/dark/stylesheet.hpp": {
+      "sha256": "c3decd79d6aa75efe041c95f8d9b261cad2dec7ece98170c41657921ba0f0b35",
+      "bytes": 9679,
+      "mtime_ns": 1788513833146003100
+    },
+    "components/brookesia_core/systems/speaker/widgets/app_launcher/esp_brookesia_app_launcher.cpp": {
+      "sha256": "0f26a64ab223f2222d90a53400c2522cfe39812e0a57dd18ce29ffa9b9b0e5cb",
+      "bytes": 29703,
+      "mtime_ns": 1788513833147001100
+    },
+    "components/brookesia_core/systems/speaker/widgets/app_launcher/esp_brookesia_app_launcher.hpp": {
+      "sha256": "33bb151d0381fb453258dba2cbad023aa24745c97f6accc655bf219472684cf7",
+      "bytes": 3599,
+      "mtime_ns": 1788513833148001100
+    },
+    "components/brookesia_core/systems/speaker/widgets/app_launcher/esp_brookesia_app_launcher_icon.cpp": {
+      "sha256": "e727d13b0f17633b3d7e9f2700885f6465342bd978fb4282fcb44107e9103c14",
+      "bytes": 10147,
+      "mtime_ns": 1788513833148001100
+    },
+    "components/brookesia_core/systems/speaker/widgets/app_launcher/esp_brookesia_app_launcher_icon.hpp": {
+      "sha256": "f6890e2c2f71cc195c0060ad4c39de99c4e280910aebb2b1295c09a3d0936d52",
+      "bytes": 1701,
+      "mtime_ns": 1788513833149001200
+    },
+    "components/brookesia_core/systems/speaker/widgets/gesture/esp_brookesia_gesture.cpp": {
+      "sha256": "f5205d252403f09c5499ed8cb2620d809185e99dbc8dbdd5ecd41ac8cbb524f2",
+      "bytes": 28981,
+      "mtime_ns": 1788513833150000700
+    },
+    "components/brookesia_core/systems/speaker/widgets/gesture/esp_brookesia_gesture.hpp": {
+      "sha256": "4b9407e2b057f247fc38c5852364a224ded70c18872a1a79a84fd8c7cd3d4031",
+      "bytes": 5718,
+      "mtime_ns": 1788513833150000700
+    },
+    "components/brookesia_core/systems/speaker/widgets/keyboard/esp_brookesia_keyboard.cpp": {
+      "sha256": "1c459e8b6ee1920a20786a129375c0285b7f78ebdad799a502c93b6e64172055",
+      "bytes": 20754,
+      "mtime_ns": 1788513833151007000
+    },
+    "components/brookesia_core/systems/speaker/widgets/keyboard/esp_brookesia_keyboard.hpp": {
+      "sha256": "9913ff24f790d805af755ab9db62f37cc5a3dff7d1451dd8f478e47cabc550c7",
+      "bytes": 3531,
+      "mtime_ns": 1788513833152003900
+    },
+    "components/brookesia_core/systems/speaker/widgets/quick_settings/esp_brookesia_speaker_quick_settings.cpp": {
+      "sha256": "7e286f9b365342ee4bc08c738a4ea5d00f02fe6c48a9eb2cb4a3d8d8d5a67c19",
+      "bytes": 25176,
+      "mtime_ns": 1788513833155292900
+    },
+    "components/brookesia_core/systems/speaker/widgets/quick_settings/esp_brookesia_speaker_quick_settings.hpp": {
+      "sha256": "440ff3dde312617bf785b2e90dbd0d947c66b3860e99a92095b8d7047832a044",
+      "bytes": 4611,
+      "mtime_ns": 1788513833156293700
+    },
+    "components/brookesia_core/systems/speaker/widgets/quick_settings/ui_comp_quicksettings.h": {
+      "sha256": "1a398ff870778369a2780441260e16a55767c5c7eb5d8885583a434cb4dd58f1",
+      "bytes": 6821,
+      "mtime_ns": 1788513833158294400
+    },
+    "components/brookesia_core/systems/speaker/widgets/quick_settings/ui_img_esp_brookesia_image_small_status_bar_battery_charge_20_20_png.c": {
+      "sha256": "7fcf1588190b01ad431a8b89fb6909fc1c8b9d1f5b959ef883d2491190ea23e8",
+      "bytes": 8440,
+      "mtime_ns": 1788513833159292300
+    },
+    "components/brookesia_core/systems/speaker/widgets/quick_settings/ui_img_esp_brookesia_image_small_status_bar_battery_level1_20_20_png.c": {
+      "sha256": "b46496901c93ad4aa936421e32899d9640cab6589b41287837b677bfc902139d",
+      "bytes": 8440,
+      "mtime_ns": 1788513833159292300
+    },
+    "components/brookesia_core/systems/speaker/widgets/quick_settings/ui_img_esp_brookesia_image_small_status_bar_battery_level2_20_20_png.c": {
+      "sha256": "f7f229237523a464fc9e0611a33d95cd670cccdeef6fb2c01fe4afd3f8482538",
+      "bytes": 8440,
+      "mtime_ns": 1788513833160293700
+    },
+    "components/brookesia_core/systems/speaker/widgets/quick_settings/ui_img_esp_brookesia_image_small_status_bar_battery_level3_20_20_png.c": {
+      "sha256": "2be0c0259fb82283fce2b701a2ea510ed692a301c3d6e75b5aa703c6614ba020",
+      "bytes": 8440,
+      "mtime_ns": 1788513833160293700
+    },
+    "components/brookesia_core/systems/speaker/widgets/quick_settings/ui_img_esp_brookesia_image_small_status_bar_battery_level4_20_20_png.c": {
+      "sha256": "f9d821ad462dee5588df07891832eec2199e84e03fe20ec9c7b097a004cc928c",
+      "bytes": 8440,
+      "mtime_ns": 1788513833161293400
+    },
+    "components/brookesia_core/systems/speaker/widgets/quick_settings/ui/ui_comp_quicksettings.c": {
+      "sha256": "00162b79cfc388170ad4fea2c2fcaf42b33d6ecbdbe1f0c98e907e434318d6ed",
+      "bytes": 35928,
+      "mtime_ns": 1788513833157294900
+    },
+    "components/brookesia_core/systems/speaker/widgets/quick_settings/ui/ui_comp_quicksettings.h": {
+      "sha256": "c7caccf6571064d3be10a7fc90cb1291e755877517476447bc2007bfb83c73e6",
+      "bytes": 6954,
+      "mtime_ns": 1788513833158294400
+    },
+    "components/brookesia_core/test_apps/CMakeLists.txt": {
+      "sha256": "c911d64fe926ac4fd080ef0fef4993a7e335212c93f7b4d80e6bcdb7e97f0fe1",
+      "bytes": 329,
+      "mtime_ns": 1788513833163293900
+    },
+    "components/brookesia_core/test_apps/partitions.csv": {
+      "sha256": "4f1c31ea58be21398f3eeb3f5dc3e605da29d8f91c6898e730cf1f6387075194",
+      "bytes": 276,
+      "mtime_ns": 1788513833166300300
+    },
+    "components/brookesia_core/test_apps/pytest_esp_brookesia.py": {
+      "sha256": "f0300b22f3f2b600b30d7aa64e17784b716cc28153422fdd68f281be595543bf",
+      "bytes": 309,
+      "mtime_ns": 1788513833166300300
+    },
+    "components/brookesia_core/test_apps/sdkconfig.ci.1024_600": {
+      "sha256": "5c4546e6eca775009951c7d286ea629c4feb34e09ec830abedb7c55c0be1d5af",
+      "bytes": 80,
+      "mtime_ns": 1788513833167301000
+    },
+    "components/brookesia_core/test_apps/sdkconfig.ci.1280_800": {
+      "sha256": "ef3f1e4b0bdfed8e363510e5f76239b0343b6ad0b7f4daecce0bed754a356a0c",
+      "bytes": 80,
+      "mtime_ns": 1788513833167301000
+    },
+    "components/brookesia_core/test_apps/sdkconfig.ci.320_240": {
+      "sha256": "5720a172a076e1b2c5983c97b5cce49afa379e1de71b20148944ae3439899399",
+      "bytes": 79,
+      "mtime_ns": 1788513833169307900
+    },
+    "components/brookesia_core/test_apps/sdkconfig.ci.320_480": {
+      "sha256": "13dddaa4bbcd7ed25d4e4cfe078472a98ec009a5a34d8457f98b4eb1902e4659",
+      "bytes": 79,
+      "mtime_ns": 1788513833172301000
+    },
+    "components/brookesia_core/test_apps/sdkconfig.ci.480_480": {
+      "sha256": "3262376abc4dc7f6983c51a76169c84e697ef48e035e2091e9ba33267f56ce2e",
+      "bytes": 79,
+      "mtime_ns": 1788513833172301000
+    },
+    "components/brookesia_core/test_apps/sdkconfig.ci.720_1280": {
+      "sha256": "c0cfb9e17ec9cf1df88b2eff83814ea03bf0fa6a6327780a2a981fa7630ddeff",
+      "bytes": 80,
+      "mtime_ns": 1788513833173300600
+    },
+    "components/brookesia_core/test_apps/sdkconfig.ci.800_1280": {
+      "sha256": "4ee6e567055e6298597271c7b7352eacf38a72a84baa1ee45c64f147eea1a073",
+      "bytes": 80,
+      "mtime_ns": 1788513833174299500
+    },
+    "components/brookesia_core/test_apps/sdkconfig.ci.800_480": {
+      "sha256": "e144eb62a85fc86f366b67a8f7bf051dd60aff8eadbe640ea196e804eec79957",
+      "bytes": 79,
+      "mtime_ns": 1788513833174299500
+    },
+    "components/brookesia_core/test_apps/sdkconfig.ci.default": {
+      "sha256": "6ca529d04b0d4225146c66bc18481d8257f57c363ad727c364bfd73dee3b950a",
+      "bytes": 79,
+      "mtime_ns": 1788513833175299800
+    },
+    "components/brookesia_core/test_apps/sdkconfig.defaults": {
+      "sha256": "09b4390f7397e9d94f5097b5ca6976b80becf36818921ecc0d7ef06f5f1bba7c",
+      "bytes": 1235,
+      "mtime_ns": 1788513833175299800
+    },
+    "components/brookesia_core/test_apps/sdkconfig.defaults.esp32p4": {
+      "sha256": "4651730dedcd29736f8f63bea45112f673b00311853c5a5a5e1c27155822921a",
+      "bytes": 143,
+      "mtime_ns": 1788513833178802900
+    },
+    "components/brookesia_core/test_apps/sdkconfig.defaults.esp32s3": {
+      "sha256": "fe0440ed553bba2819682441fcb82e35ff2e6db54904c6f2156ecc45090e29de",
+      "bytes": 169,
+      "mtime_ns": 1788513833179808900
+    },
+    "components/brookesia_core/test_apps/main/CMakeLists.txt": {
+      "sha256": "a1784473731d82226035e65b6b346e5248e8ac86678a665c6d7c95312dc3e4ef",
+      "bytes": 200,
+      "mtime_ns": 1788513833163293900
+    },
+    "components/brookesia_core/test_apps/main/idf_component.yml": {
+      "sha256": "34e04ad6a512fb13576292e912b8b9df00ffe946fd0fa8839915abe6c8a835a4",
+      "bytes": 261,
+      "mtime_ns": 1788513833165299900
+    },
+    "components/brookesia_core/test_apps/main/Kconfig.projbuild": {
+      "sha256": "d24630598a84a955dfab08100ff1cdca680b93fff0126fb0e8113dfd78ae29db",
+      "bytes": 251,
+      "mtime_ns": 1788513833164301300
+    },
+    "components/brookesia_core/test_apps/main/test_app_main.cpp": {
+      "sha256": "69493d572422d378fbb282caf432e1919d12c9c64d89782203084193ca6592ab",
+      "bytes": 3570,
+      "mtime_ns": 1788513833165299900
+    },
+    "components/brookesia_core/test_apps/main/test_esp_brookesia.cpp": {
+      "sha256": "36d8387c8c8ed552858fb3904a52061afbca00e515742b88f1a081633f061afe",
+      "bytes": 10171,
+      "mtime_ns": 1788513833165299900
+    },
+    "components/esp32_s3_touch_lcd_1_54/CHECKSUMS.json": {
+      "sha256": "3e23f7008cc8ddf34df9df696499fc1723f5134399c50b2d542abc1ea56073e9",
+      "bytes": 1485,
+      "mtime_ns": 1788513833180814100
+    },
+    "components/esp32_s3_touch_lcd_1_54/CMakeLists.txt": {
+      "sha256": "e31ab885b2346fd378f2dd4dfea1a11c4f8592046f73dc4639997547c5379e8b",
+      "bytes": 325,
+      "mtime_ns": 1788578001587053500
+    },
+    "components/esp32_s3_touch_lcd_1_54/esp32_s3_touch_lcd_1_54.c": {
+      "sha256": "acb2806e8285e48e864d917b3d285771c92273e26799da9cae353fc529136d09",
+      "bytes": 24453,
+      "mtime_ns": 1789541615241621800
+    },
+    "components/esp32_s3_touch_lcd_1_54/esp32_s3_touch_lcd_1_54.c.bak_touch": {
+      "sha256": "e50ac514ff38ad8cc8f13e94604a6f71b922e4c534f0cfda8f01231815ae7c15",
+      "bytes": 21714,
+      "mtime_ns": 1788513833182809700
+    },
+    "components/esp32_s3_touch_lcd_1_54/idf_component.yml": {
+      "sha256": "3e55d34c934ec8e2768f0bce1e2a192a6c744856838a624b1c8117ca492a5638",
+      "bytes": 643,
+      "mtime_ns": 1788513833183809700
+    },
+    "components/esp32_s3_touch_lcd_1_54/Kconfig": {
+      "sha256": "8d3828ef9bdd9dd41b4e703bddaf9a9af66eb65f2353fcd5b9faf4d126edd498",
+      "bytes": 3271,
+      "mtime_ns": 1788513833181811500
+    },
+    "components/esp32_s3_touch_lcd_1_54/LICENSE": {
+      "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+      "bytes": 11560,
+      "mtime_ns": 1788513833181811500
+    },
+    "components/esp32_s3_touch_lcd_1_54/README.md": {
+      "sha256": "742836cc176af6ff9f40f01efe7fdc8e7001ad012809530baf6642ce92c74c9a",
+      "bytes": 576,
+      "mtime_ns": 1788513833182809700
+    },
+    "components/esp32_s3_touch_lcd_1_54/include/bsp/config.h": {
+      "sha256": "d1abc2eefac059b153a9a7d521ec87597be1d0bdacf56d9fe734d27305dfd7ee",
+      "bytes": 585,
+      "mtime_ns": 1788513833188769200
+    },
+    "components/esp32_s3_touch_lcd_1_54/include/bsp/display.h": {
+      "sha256": "de176e23d25953e7e348a7724f7bd5f33b7e9eb425e559911fbb25250324c54f",
+      "bytes": 3526,
+      "mtime_ns": 1789541615244625500
+    },
+    "components/esp32_s3_touch_lcd_1_54/include/bsp/esp-bsp.h": {
+      "sha256": "2a66f94771cbdbcf0fba1da97b48a72facf8b4bf152d9b790394d428e5ba4a8d",
+      "bytes": 56,
+      "mtime_ns": 1788513833190768100
+    },
+    "components/esp32_s3_touch_lcd_1_54/include/bsp/esp32_s3_touch_lcd_1_54.h": {
+      "sha256": "4578c5d5a7631aa9898d4c3a2a92a5b75de31d349725cf3cb4de24c142dd7421",
+      "bytes": 16943,
+      "mtime_ns": 1788513833191816000
+    },
+    "components/esp32_s3_touch_lcd_1_54/include/bsp/touch.h": {
+      "sha256": "4c7628052ddcb97c1ed7c1a67f4a1f967c1dabbf5e28976730c42924ca2eea7b",
+      "bytes": 776,
+      "mtime_ns": 1788513833191816000
+    },
+    "components/esp32_s3_touch_lcd_1_54/priv_include/bsp_err_check.h": {
+      "sha256": "6cd5c12994dcf3221810b71adf7796e029522fca474f5ddcfd6b72f72ae5f4f8",
+      "bytes": 1552,
+      "mtime_ns": 1788513833192825500
+    },
+    "components/json/CMakeLists.txt": {
+      "sha256": "3184b92fe616245d907939429a6c18f29ec3daee2931a4e8643eaeb4714b9f1c",
+      "bytes": 38,
+      "mtime_ns": 1788576403686175700
+    },
+    "tools/check_battery_power.py": {
+      "sha256": "056a4ad6c45dd192705c179a3495194c4a0768e210c6ea26ce8f492c400fdd4e",
+      "bytes": 23713,
+      "mtime_ns": 1789553130094335200
+    },
+    "tools/check_firmware_refactor.py": {
+      "sha256": "05f5384c51df7f694a26522b565717ac4db3497fea788fcc0e3dbaec96a3ba26",
+      "bytes": 23027,
+      "mtime_ns": 1789553223782738500
+    },
+    "tools/check_radio_storage.py": {
+      "sha256": "9c5fb9c82001539a2f1c1d76668cd24f16660fd9d6d5cfdc4af197fe450495a0",
+      "bytes": 24895,
+      "mtime_ns": 1789553130110529700
+    },
+    "tools/check_ui_power.py": {
+      "sha256": "d815d8b948db270bebe4924db0a8a2d8fad0acd018e30b0232d616db03028e3c",
+      "bytes": 14478,
+      "mtime_ns": 1789551083655752900
+    },
+    "tools/gen_gbk_table.py": {
+      "sha256": "e4a1df4ef00109e752767e227c1e4dd86a0f6d003668ede88bebbe93d6a40eab",
+      "bytes": 2281,
+      "mtime_ns": 1789039240260910700
+    },
+    "tools/prepare_ninja_utf8.py": {
+      "sha256": "eaf2edb90b7488cc204b89401542e5032be6dae9a20b110c219102627c8abc20",
+      "bytes": 4857,
+      "mtime_ns": 1789228267534866000
+    },
+    "tools/repair_ninja_deps_utf8.py": {
+      "sha256": "fe1d6f9e370654e5a784b596aeae9dfe5f563253bf2440360a0322dd4bb23a01",
+      "bytes": 5288,
+      "mtime_ns": 1789232345556965600
+    },
+    "tools/subset_cjk_font.py": {
+      "sha256": "8ba4441596ed50c56fe0e186cb50630a07c6cdd73525f6b4432d41b21f26605b",
+      "bytes": 6486,
+      "mtime_ns": 1789045550512719700
+    },
+    "tools/test_repair_ninja_deps_utf8.py": {
+      "sha256": "eb1407c1274c8c0dd5d2a4ccb61e46ec128da7aea08145f9a95397fa1fd0edfe",
+      "bytes": 4537,
+      "mtime_ns": 1789232408787692800
+    },
+    "tools/ttf2lvgl.py": {
+      "sha256": "f7cf37451af32ac6ccc0a07068ec455868eb86a70abdb1cdf89e39ac19e943bf",
+      "bytes": 6443,
+      "mtime_ns": 1789539386886930700
+    },
+    "tools/ttf2lvgl_emit.py": {
+      "sha256": "5a5d96f5b94648a74b914f5124158edb4f9eb41acfc916815790c124abba68c8",
+      "bytes": 7599,
+      "mtime_ns": 1789391340072073700
+    },
+    "tools/ninja_utf8/ninja.exe": {
+      "sha256": "95a04c43b6049e579dca7ecd4def96b4cac7a7a5005be5c7990b081de63a4c2f",
+      "bytes": 569856,
+      "mtime_ns": 1789228301247579900
+    },
+    "docs/battery_power_20260916.md": {
+      "sha256": "63d78fb02396d73400de81e031471b39c9247f82cdbb787553fbfbccf44fca5f",
+      "bytes": 9538,
+      "mtime_ns": 1789553619442979300
+    },
+    "docs/battery_power_build_flash_20260916.md": {
+      "sha256": "14fd8f363529359aaa8cb7bc1d15a2d70876453df3c56b58878d2b03c630eabc",
+      "bytes": 5912,
+      "mtime_ns": 1789553619367740300
+    },
+    "docs/ble_standby_20260916.md": {
+      "sha256": "7fb4bfdefc0c6984de73e6f35c3d5e13b4b01f50e01ffba565ac05cd4f4b6330",
+      "bytes": 7388,
+      "mtime_ns": 1789544799822863900
+    },
+    "docs/ble_standby_flash_20260916.md": {
+      "sha256": "588d42cff2564190e83b5217d5fe7b4136f1ffb9d0ae8357d007f82b15a57c7e",
+      "bytes": 3547,
+      "mtime_ns": 1789544799826805500
+    },
+    "docs/build_flash_20260916.md": {
+      "sha256": "eb0ad92130cdc90db37ecf183d84104ec5347d3e6e5e021f1bb38e8bc7107576",
+      "bytes": 4332,
+      "mtime_ns": 1789536565774772100
+    },
+    "docs/firmware_architecture.md": {
+      "sha256": "1216c71ddd3c5fd0de5b1d4aefa4ea4c26f110787c0af0dd4c06ece5986357bf",
+      "bytes": 11940,
+      "mtime_ns": 1789542402969603100
+    },
+    "docs/radio_storage_fix_20260916.md": {
+      "sha256": "8b0b8a5b33b29db7812909991f9f0e11af58e264c7820b07c402880aa96faada",
+      "bytes": 8317,
+      "mtime_ns": 1789549739638744400
+    },
+    "docs/ui_power_refactor_20260916.md": {
+      "sha256": "2039373a72ca63342a3f33527a5b80e1f45bf52ab2528f1a3a2eb3bd9e82cfa0",
+      "bytes": 8764,
+      "mtime_ns": 1789542402965605100
+    },
+    "sdkconfig": {
+      "sha256": "b7c8cc667f71622a73adf4f17f8af8b2f289374703a8cfc48f500974ae08a0cb",
+      "bytes": 127716,
+      "mtime_ns": 1789551871294749600
+    },
+    "sdkconfig.defaults": {
+      "sha256": "6c4d0f069a4d454bf22338ddd404eef05bd29b55ecaf75dc070a5701dfe64ba8",
+      "bytes": 3260,
+      "mtime_ns": 1789547257673294800
+    },
+    "dependencies.lock": {
+      "sha256": "f28503392dca25b58dfca66d5ed88162786d3f13ff863d2268bbf8bcdaea7f64",
+      "bytes": 15713,
+      "mtime_ns": 1789530870758363000
+    },
+    "CMakeLists.txt": {
+      "sha256": "3d32a17459c1d4d6daf8e95c31ee73efd80136ad585cc8c221b0428882aafdcc",
+      "bytes": 111,
+      "mtime_ns": 1788513832221749800
+    },
+    "partitions.csv": {
+      "sha256": "68a89dbc63138c617525335132af17ff628ce8b80839dd2b41814d43ba458c49",
+      "bytes": 343,
+      "mtime_ns": 1788513833209345600
+    }
+  },
+  "build_before": {
+    "build/01_factory.bin": {
+      "sha256": "ef583995047180fdf21d48f83aa75af0e5558278b372f226e23f847a480390d3",
+      "bytes": 2835200,
+      "mtime_ns": 1789553294966733600
+    },
+    "build/01_factory.elf": {
+      "sha256": "006a4bf80376fccef1a8c9d02edb98e0fc9b495d0aa1ad01516aa1de352dc60f",
+      "bytes": 26837636,
+      "mtime_ns": 1789553293079440200
+    },
+    "build/flasher_args.json": {
+      "sha256": "324d3bb1e8ff1b52b422919410c9e6ee179b10acff2787fcc285342e37352478",
+      "bytes": 1079,
+      "mtime_ns": 1789112192884994600
+    },
+    "build/project_description.json": {
+      "sha256": "166183b03b31e8c3cc6989c180b86b7d2fcd9357e2d9b1b229187996540bd790",
+      "bytes": 489931,
+      "mtime_ns": 1789551912581427400
+    },
+    "build/config/sdkconfig.h": {
+      "sha256": "0a1ca1ce473d154469713a03170cc9accf869e293047986c3655a642c2576667",
+      "bytes": 70971,
+      "mtime_ns": 1789551870865082100
+    },
+    "build/bootloader/bootloader.bin": {
+      "sha256": "d2894e3f71e72aef3ec104a4d3e0ac13a0bb0f4a2bf631d8fdf1befdd964ad57",
+      "bytes": 22592,
+      "mtime_ns": 1789544086907668900
+    },
+    "build/partition_table/partition-table.bin": {
+      "sha256": "e97a742e9428da470341e10fcc74595549d327f8c3694c7a222f8033610e072b",
+      "bytes": 3072,
+      "mtime_ns": 1789112204406827600
+    },
+    "build/ota_data_initial.bin": {
+      "sha256": "7d2c7ac4888bfd75cd5f56e8d61f69595121183afc81556c876732fd3782c62f",
+      "bytes": 8192,
+      "mtime_ns": 1789112204390314400
+    }
+  },
+  "allowed_to_build": true,
+  "allowed_to_flash": false
+}

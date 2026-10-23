@@ -1,0 +1,108 @@
+/* Applied to EVERY device preview, inside each isolated 240px surface. */
+:host { display:block; width:240px; height:240px; --scale:1; }
+.screen,.canvas { transform:none; font-size:16px; font-weight:400; }
+yumo-clock { display:block; width:240px; height:240px; margin:0; padding:0; overflow:hidden; touch-action:pan-y; user-select:none; }
+yumo-clock canvas { display:block; width:240px; height:240px; }
+.screen .clock-page { padding:0; }
+.screen *,.canvas *,.screen *::before,.screen *::after,.canvas *::before,.canvas *::after {
+  animation:none!important; transition:none!important; filter:none!important;
+  backdrop-filter:none!important; box-shadow:none!important; text-shadow:none!important;
+}
+canvas.icon { display:block; pointer-events:none; object-fit:contain; }
+.screen .app-icon { width:27px; }
+.screen[data-theme=warm] .app-tile,.screen[data-theme=mono] .app-tile { outline:1px solid var(--line); outline-offset:-1px; }
+.screen .row-tail { font-size:16px; gap:2px; }
+.screen .row-sub { font-size:16px; line-height:21px; }
+.screen .list-row { min-height:52px; }
+.screen .vault-row { min-height:40px; }
+.screen .network-help { font-size:16px; line-height:21px; }
+.screen .network-label { min-height:28px; flex-shrink:0; }
+.screen .network-label span { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.screen .network-field { height:36px; min-height:36px; font-size:16px; }
+.screen .soft-keyboard { height:109px; min-height:109px; }
+.screen .soft-keyboard button,.screen .soft-keyboard select { height:54px; min-height:54px; }
+.screen .key-picker { position:absolute; inset:0; z-index:8; background:var(--bg); color:var(--fg); display:flex; flex-direction:column; }
+.screen .picker-head { height:36px; min-height:36px; display:flex; align-items:center; gap:8px; background:var(--surface); }
+.screen .picker-head button { width:36px; height:36px; display:grid; place-items:center; }
+.screen .picker-list { flex:1; min-height:0; overflow:auto; scrollbar-width:none; }
+.screen .picker-list button { width:240px; height:36px; min-height:36px; display:block; text-align:left; padding:0 14px; border-bottom:1px solid var(--line); background:var(--surface); }
+.screen .picker-list button[aria-pressed=true] { background:var(--accent); color:var(--on); }
+.screen .pin-prompt { white-space:nowrap; overflow:hidden; }
+.screen .record-tag { font-size:8px; }
+.screen .record-time { font-size:24px; letter-spacing:0; }
+.screen .record-file-open { padding:0 8px; }
+.screen .record-file-open small { display:block; }
+.screen .record-file { min-height:44px; }
+.screen .record-file-open,.screen .record-file-delete { height:44px; }
+.screen .password-purpose { font-size:16px; height:25px; }
+.screen .vault-name { height:25px; min-height:25px; }
+.screen .nav-title { white-space:nowrap; }
+.screen .nav-action { min-width:48px; padding:0 4px; }
+.screen .modal p { line-height:21px; margin-bottom:10px; }
+.screen .toast,.canvas .toast { font-size:16px; line-height:21px; border:1px solid var(--line,var(--edge)); }
+.canvas .icon { width:24px; height:24px; }
+.canvas .big-symbol:before { transform:none; border-radius:12px; }
+.canvas .big-symbol .icon { width:48px; height:48px; }
+.canvas .focus-card h3,.canvas .focus-control h3 { font-size:16px; letter-spacing:0; }
+.canvas .focus-index { font-size:48px; }
+.canvas .focus-card p { max-width:216px; font-size:16px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.canvas .focus-control p { font-size:16px; line-height:21px; }
+.canvas .focus-control>.icon { width:32px; height:32px; }
+.canvas .orbit-node { width:64px; height:48px; gap:1px; }
+.canvas .orbit-node .icon { width:20px; height:20px; }
+.canvas .orbit-node span { font-size:16px; line-height:21px; max-width:64px; overflow:hidden; }
+.canvas .orbit-center { width:64px; height:64px; left:88px; top:68px; padding:0; gap:0; }
+.canvas .orbit-center .icon { display:none; }
+.canvas .orbit-center strong { font-size:16px; white-space:nowrap; }
+.canvas .orbit-center small { font-size:12px; }
+.canvas .orbit-footer b { font-size:16px; }
+.canvas .dial:before { transform:none; border:3px solid var(--accent); }
+.canvas .reel { border:5px solid #f1eee6; position:relative; }
+.canvas .reel:after { content:""; position:absolute; left:var(--reel-x,14px); top:var(--reel-y,0px); width:6px; height:6px; background:#f1eee6; border-radius:50%; }
+.canvas .tape-label { align-items:center; }
+.canvas .tape-time { font-size:24px; }
+.canvas .tile-clock strong { font-size:32px; }
+.canvas .tile-clock span { font-size:16px; white-space:nowrap; }
+.canvas .tile-vault { padding:6px!important; gap:2px; }
+.canvas .tile-vault small { font-size:16px; white-space:nowrap; }
+.canvas .tile-vault .icon { width:20px; height:20px; }
+.canvas .tile-signal button { gap:3px; font-size:16px; }
+.canvas .tile-signal .icon { width:16px; height:16px; }
+.canvas .dock button { gap:3px; font-size:16px; }
+.canvas .dock .icon { width:16px; height:16px; }
+.canvas .control-tile { padding:6px; gap:3px; }
+.canvas .control-tile .icon { width:20px; height:20px; }
+.canvas .control-tile small { margin-top:1px; font-size:16px; }
+.canvas .drawer-grid button { font-size:16px; }
+.canvas .brightness input { height:36px; min-width:36px; }
+.canvas .rail-nav button { font-size:16px; }
+.canvas .rail-row { padding:0 5px; gap:4px; }
+.canvas .rail-row>span { font-size:16px; }
+.canvas .rail-top button { font-size:16px; }
+.canvas .rail-top button.selected { border-bottom:2px solid var(--accent); }
+.canvas .rail-row.on { border-left:3px solid var(--accent); }
+.canvas .rail-title small { display:none; }
+.canvas .rail-rec-time { font-size:32px; }
+.canvas .rail-rec-status { font-size:16px; line-height:21px; margin-bottom:8px; }
+.canvas .rail-fold { padding:5px; font-size:16px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.canvas .terminal-keys button { font-size:16px; gap:3px; }
+.canvas .terminal-keys .icon { width:12px; height:12px; }
+.canvas .terminal-rec strong { font-size:40px; }
+.canvas .scope { background:none; display:flex; gap:7px; justify-content:center; align-items:center; }
+.canvas .scope i { width:4px; background:var(--accent); }
+.canvas .clock-demo strong { font-size:48px; }
+.canvas .file-strip { font-size:16px; padding:6px; }
+.canvas .account-row { height:53px; min-height:53px; gap:0; padding:3px 8px; }
+.canvas .account-row span { white-space:nowrap; max-width:220px; overflow:hidden; text-overflow:ellipsis; }
+.canvas .account-meta { padding:5px 8px; font-size:16px; line-height:21px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.canvas .secret-block { padding:5px 8px; }
+.canvas .secret-value { font-size:16px; }
+.canvas .secret-row { margin:4px 8px; }
+.canvas .panel-head { gap:1px; height:39px; min-height:39px; }
+.canvas .panel-head>strong { font-size:16px; }
+.canvas .panel-footer { height:37px; min-height:37px; }
+.canvas .panel-footer button { gap:4px; font-size:16px; }
+.canvas .panel-footer .icon { width:16px; height:16px; }
+.canvas .up-icon,.canvas .down-icon { transform:none; }
+.canvas .detail-panel { border-radius:8px 8px 0 0; }
+.canvas .transport .icon { width:24px; height:24px; }

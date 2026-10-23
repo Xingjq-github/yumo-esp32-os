@@ -1,0 +1,50 @@
+# Fixed local copies; retain normal ESP-IDF dependency/name resolution.
+dependencies:
+  idf:
+    version: ">=5.0.0"
+  espressif/button:
+    override_path: "../../dependencies/managed_components/espressif__button"
+  espressif/cjson:
+    override_path: "../../dependencies/managed_components/espressif__cjson"
+  espressif/cmake_utilities:
+    override_path: "../../dependencies/managed_components/espressif__cmake_utilities"
+  espressif/esp_audio_effects:
+    override_path: "../../dependencies/managed_components/espressif__esp_audio_effects"
+  espressif/esp_codec_dev:
+    override_path: "../../dependencies/managed_components/espressif__esp_codec_dev"
+  espressif/esp_io_expander:
+    override_path: "../../dependencies/managed_components/espressif__esp_io_expander"
+  espressif/esp_io_expander_tca9554:
+    override_path: "../../dependencies/managed_components/espressif__esp_io_expander_tca9554"
+  espressif/esp_lcd_st77916:
+    override_path: "../../dependencies/managed_components/espressif__esp_lcd_st77916"
+  espressif/esp_lcd_touch:
+    override_path: "../../dependencies/managed_components/espressif__esp_lcd_touch"
+  espressif/esp_lcd_touch_cst816s:
+    override_path: "../../dependencies/managed_components/espressif__esp_lcd_touch_cst816s"
+  espressif/esp_lv_decoder:
+    override_path: "../../dependencies/managed_components/espressif__esp_lv_decoder"
+  espressif/esp_lv_fs:
+    override_path: "../../dependencies/managed_components/espressif__esp_lv_fs"
+  espressif/esp_lvgl_adapter:
+    override_path: "../../dependencies/managed_components/espressif__esp_lvgl_adapter"
+  espressif/esp_mmap_assets:
+    override_path: "../../dependencies/managed_components/espressif__esp_mmap_assets"
+  espressif/esp_new_jpeg:
+    override_path: "../../dependencies/managed_components/espressif__esp_new_jpeg"
+  espressif/esp_tinyusb:
+    override_path: "../../dependencies/managed_components/espressif__esp_tinyusb"
+  espressif/freetype:
+    override_path: "../../dependencies/managed_components/espressif__freetype"
+  espressif/knob:
+    override_path: "../../dependencies/managed_components/espressif__knob"
+  espressif/libpng:
+    override_path: "../../dependencies/managed_components/espressif__libpng"
+  espressif/tinyusb:
+    override_path: "../../dependencies/managed_components/espressif__tinyusb"
+  espressif/zlib:
+    override_path: "../../dependencies/managed_components/espressif__zlib"
+  lvgl/lvgl:
+    override_path: "../../dependencies/managed_components/lvgl__lvgl"
+  waveshare/pcf85063a:
+    override_path: "../../dependencies/managed_components/waveshare__pcf85063a"

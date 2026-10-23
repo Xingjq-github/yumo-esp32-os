@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent><groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter-parent</artifactId><version>2.7.18</version><relativePath/></parent>
+  <groupId>com.joyvault</groupId><artifactId>password-vault</artifactId><version>2.0.0</version>
+  <name>JoyVault password microservice</name>
+  <description>Single-user LAN service, unchanged JYVAULT2 device protocol</description>
+  <properties>
+    <java.version>1.8</java.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <spring-framework.version>5.3.39</spring-framework.version>
+    <tomcat.version>9.0.122</tomcat.version>
+    <!-- Keep bounded JSON parsing, unavailable in Boot 2.7's original Jackson. -->
+    <jackson-bom.version>2.19.4</jackson-bom.version>
+    <logback.version>1.2.13</logback.version>
+  </properties>
+  <dependencies>
+    <dependency><groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter-web</artifactId></dependency>
+    <dependency><groupId>org.xerial</groupId><artifactId>sqlite-jdbc</artifactId><version>3.53.4.0</version></dependency>
+    <dependency><groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter-test</artifactId><scope>test</scope></dependency>
+  </dependencies>
+  <build><directory>${project.basedir}/../artifacts/server</directory><finalName>joyvault</finalName>
+  <resources>
+    <resource><directory>src/main/resources</directory><filtering>false</filtering></resource>
+    <resource><directory>${project.basedir}</directory><filtering>false</filtering><includes><include>vault-sync-key.properties</include></includes></resource>
+  </resources>
+  <plugins>
+    <plugin><groupId>org.springframework.boot</groupId><artifactId>spring-boot-maven-plugin</artifactId></plugin>
+    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><version>3.13.0</version><configuration><release>8</release></configuration></plugin>
+    <!-- target already exists during test; SQLite must extract its JNI library to an existing directory. -->
+    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId><configuration><argLine>-Xmx256m -XX:ActiveProcessorCount=2 -Djava.io.tmpdir=${project.build.directory}</argLine><workingDirectory>${project.build.directory}</workingDirectory><forkCount>1</forkCount><reuseForks>true</reuseForks></configuration></plugin>
+  </plugins></build>
+</project>

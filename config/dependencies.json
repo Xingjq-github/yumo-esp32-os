@@ -1,0 +1,139 @@
+{
+  "sdk": {
+    "repository": "https://github.com/espressif/esp-idf.git",
+    "ref": "v6.1",
+    "commit": "fff9895c82d744c7237be8847347bdd1b07c6643",
+    "patch": {
+      "submodule": "components/bt/host/nimble/nimble",
+      "commit": "139cada0ae932957fa06ba37d17e3c9c2c95c773",
+      "file": "nimble/host/src/ble_hs.c",
+      "before": "90ae77dbddc00846be4a3be99ae72992186996dc54a7352b7a5b4997308caaf2",
+      "after": "c869111c85f5f432e64e81fb5de93bf3b0fc092afe96671c9cb4ef386b0b093f",
+      "patch": "patches/esp-idf/nimble.patch"
+    }
+  },
+  "components": [
+    {
+      "name": "espressif/button",
+      "version": "4.2.1",
+      "checksums_sha256": "2a64bc93e0e7bcaed434fdde33012f6a6c24339af5f8e516691ff67156ab8ae7"
+    },
+    {
+      "name": "espressif/cjson",
+      "version": "1.7.19~2",
+      "checksums_sha256": "aa07cb0a25b584460b3dd4119384af41bbec0ddc49c0efa0cbd015cbb439f9d3"
+    },
+    {
+      "name": "espressif/cmake_utilities",
+      "version": "0.5.3",
+      "checksums_sha256": "8a8857db28aa1ed552b027319b6c4434c98dc01a6d92cb3004ad4d5a70a4003e"
+    },
+    {
+      "name": "espressif/esp_audio_effects",
+      "version": "1.0.2",
+      "checksums_sha256": "bffc0ec1290959af48db84e8c0ad2c8d5447d71cc013fe2d0516b9080b677463"
+    },
+    {
+      "name": "espressif/esp_codec_dev",
+      "version": "1.5.11",
+      "checksums_sha256": "8d6eb3a93b3de9e5363f9f637c4947469003bbc644066149556081d6dc920dc6"
+    },
+    {
+      "name": "espressif/esp_io_expander",
+      "version": "1.2.1",
+      "checksums_sha256": "d8b0e5285f2bd825b061cb81c9f73175d77710d79a0106f7b018e6c2ced0e440"
+    },
+    {
+      "name": "espressif/esp_io_expander_tca9554",
+      "version": "2.0.3",
+      "checksums_sha256": "03bcae587599476312e3ac96a64249e6144ed553317bfda7f0111273333b3958"
+    },
+    {
+      "name": "espressif/esp_lcd_st77916",
+      "version": "2.0.2",
+      "checksums_sha256": "a328470cfef5fa54a4781b78c36869f763d1b63b31c9af49504d7120395d49dc"
+    },
+    {
+      "name": "espressif/esp_lcd_touch",
+      "version": "1.2.1",
+      "checksums_sha256": "761566314e032a5026c8fc71b6f7b4a483039b4622a4bb1fab13e9c59b63dea0"
+    },
+    {
+      "name": "espressif/esp_lcd_touch_cst816s",
+      "version": "1.1.2",
+      "checksums_sha256": "ef9b1eae42a7134645c51408f0b3375a2617261642e369a6123e86f1242ad369"
+    },
+    {
+      "name": "espressif/esp_lv_decoder",
+      "version": "0.4.3",
+      "checksums_sha256": "2af3c3a6bd5df40c3d3ffa4d4304bd74e3ad338a03fe6aafb96cf4b7c642f7f6"
+    },
+    {
+      "name": "espressif/esp_lv_fs",
+      "version": "1.0.1",
+      "checksums_sha256": "bb20a473ccd85d98306385e50c1f85b23241cdb6e0aec6d0efb68367c35c609a"
+    },
+    {
+      "name": "espressif/esp_lvgl_adapter",
+      "version": "0.3.2",
+      "checksums_sha256": "0458aff52ad68658a4a33857f0c8a800b9de4ea626c8693729dfddf1aa2418fd"
+    },
+    {
+      "name": "espressif/esp_mmap_assets",
+      "version": "2.0.1",
+      "checksums_sha256": "d4f3334c31b19f89cbbf845cce05a9495b00be3da0d660aca917adca0fbe0b17"
+    },
+    {
+      "name": "espressif/esp_new_jpeg",
+      "version": "1.0.2",
+      "checksums_sha256": "9649b221fb75b1133223f008930db591df6d39b9247e183f102abecc985bbc68"
+    },
+    {
+      "name": "espressif/esp_tinyusb",
+      "version": "2.0.1~1",
+      "checksums_sha256": "241c88cb70aa34bb92792f8b95eb50504b471c599346f95fb01ef6a67134e51a"
+    },
+    {
+      "name": "espressif/freetype",
+      "version": "2.14.3~1",
+      "checksums_sha256": "3cced6e457276890b467d9aa97da17ed0e41dd0bc7415fe6fde2f7dfcedece47"
+    },
+    {
+      "name": "espressif/knob",
+      "version": "1.1.0",
+      "checksums_sha256": "e0d2c783d9ad1b94a03bbab3b1439ee18c824c906233aa8fb59ce3d3ded82a9a"
+    },
+    {
+      "name": "espressif/libpng",
+      "version": "1.6.58~1",
+      "checksums_sha256": "06b866f3c7d164c3f2bea5baefb886e4e90ae5107144b1fdcc32c331b2b8d68e"
+    },
+    {
+      "name": "espressif/tinyusb",
+      "version": "0.21.0~2",
+      "checksums_sha256": "396787727b31da1ddc0d1a01c6a2259f0487fa4f339d10b59027d7a2694f2267"
+    },
+    {
+      "name": "espressif/zlib",
+      "version": "1.3.2~1",
+      "checksums_sha256": "c60bfccc912496321ccf4096e323bf88ef860f8e0be7168778cd39c8cfc90aa9"
+    },
+    {
+      "name": "lvgl/lvgl",
+      "version": "9.6.0",
+      "checksums_sha256": "d3a85442273674ec388830456201106e0d2ff70639ff8cdfcc0df2db06c5e403"
+    },
+    {
+      "name": "waveshare/pcf85063a",
+      "version": "1.1.1",
+      "checksums_sha256": "da4a197f3656bf222bc25f256887bf32a72c43818282b3e25edd4951ef83f85d",
+      "overlays": [
+        {
+          "path": "CMakeLists.txt",
+          "before": "baf0713adf715b70c71a06370a73d3adbf22c8dde2f910915c8a19cff1072152",
+          "after": "af2762cb8dd543510b9c6ed8341cb4a3bfdf1092cf6f9f37711b3635ac5da727"
+        }
+      ]
+    }
+  ]
+}

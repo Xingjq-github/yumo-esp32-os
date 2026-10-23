@@ -1,0 +1,24 @@
+{
+  "format": "chip-score",
+  "version": 1,
+  "title": "卡农·像素变奏",
+  "tempo": 96,
+  "loop": true,
+  "tracks": [
+    {
+      "id": "lead",
+      "wave": "pulse",
+      "duty": 0.5,
+      "volume": 0.62,
+      "gate": 0.88,
+      "notes": "O5 L4 F# E D C# O4 B A B O5 C# D C# O4 B A G F# G E O5 L8 D F# A F# E C# A E F# D B F# E C# A E O4 B G O5 D O4 B A F# O5 D O4 A B G O5 D O4 B O5 C# E A E O5 L4 F# E D C# O4 B A B O5 C# D C# O4 B A G F# G E O5 L8 D F# A F# E C# A E F# D B F# E C# A E O4 B G O5 D O4 B A F# O5 D O4 A B G O5 D O4 B O5 C# E A E"
+    },
+    {
+      "id": "bass",
+      "wave": "triangle",
+      "volume": 0.55,
+      "gate": 0.85,
+      "notes": "O3 L2 D O2 A B F# G O3 D O2 G A O3 D O2 A B F# G O3 D O2 G A O3 L2 D O2 A B F# G O3 D O2 G A O3 D O2 A B F# G O3 D O2 G A"
+    }
+  ]
+}

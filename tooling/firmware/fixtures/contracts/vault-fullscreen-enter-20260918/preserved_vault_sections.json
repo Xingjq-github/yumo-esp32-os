@@ -1,0 +1,32 @@
+[
+  {
+    "file": "main/core/password_vault.cpp",
+    "start": "bool stopped(",
+    "end": "bool enter(",
+    "sha256": "939d483cac1a66c40f24a9459781e3ebc0b6fed54b2f0fd378e4d54c2e489bdd"
+  },
+  {
+    "file": "main/core/password_vault.cpp",
+    "start": "bool type(",
+    "end": "std::string hex(",
+    "sha256": "d1196fa727f4e9207661472e6a50c6c7e4317d0c5cc6e3f9910462770feb6b60"
+  },
+  {
+    "file": "main/core/password_vault.cpp",
+    "start": "std::string hex(",
+    "end": "void run(",
+    "sha256": "2cb0f833d40bcb9bf0fd6b4371b6de7a600e3117563f5f82f70f8f98ba3ebf81"
+  },
+  {
+    "file": "main/core/password_vault.cpp",
+    "start": "void worker(",
+    "end": null,
+    "sha256": "186d75377ce5d85758cb4fbd977f3d33a58c0e74a283e2dfd0cf25f0010a8987"
+  },
+  {
+    "file": "main/core/vault_storage.cpp",
+    "start": "#include ",
+    "end": "} // namespace vault",
+    "sha256": "d47cc7ab435e7f3a74e891e91c86b035f8400e1fc20a41001128565fb078d1a2"
+  }
+]

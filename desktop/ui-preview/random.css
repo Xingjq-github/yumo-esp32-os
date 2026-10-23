@@ -1,0 +1,43 @@
+:host{display:block;width:240px;height:240px}
+.random-screen{position:relative;width:240px;height:240px;overflow:hidden;background:var(--bg);color:var(--fg);font:16px/22px Arial,"Microsoft YaHei",sans-serif;outline:none;touch-action:pan-y}
+.random-screen *{box-sizing:border-box;font-weight:400}
+.random-screen button,.random-screen select,.random-screen input{font:inherit;color:var(--fg);background:var(--surface);border:1px solid var(--edge);border-radius:var(--radius);outline:none;min-width:0;padding:1px}
+.random-screen button{cursor:pointer;touch-action:manipulation}
+.random-screen button:focus-visible,.random-screen select:focus-visible,.random-screen input:focus{outline:2px solid var(--accent);outline-offset:-2px}
+.random-screen :disabled{opacity:.5;cursor:default}
+.random-screen button:active{background:var(--accent);color:var(--on)}
+.random-header{position:absolute;inset:0 0 auto;height:36px;display:flex;gap:1px}
+.random-back{width:36px;height:36px;font-size:24px!important}
+.random-mode{width:203px;height:36px}
+.random-body{position:absolute;left:0;top:37px;width:240px;height:162px;overflow:hidden}
+.random-start,.random-pk{position:absolute;top:200px;height:40px}
+.random-start{left:0;width:240px;background:var(--accent)!important;color:var(--on)!important}
+.random-pk{right:0;width:60px}.random-pk.active{background:var(--accent);color:var(--on)}
+.random-param,.random-cell,.random-label,.random-result,.random-hint,.random-board{position:absolute}
+.random-param{height:36px;text-align:center;padding:6px 2px!important}
+.random-label,.random-hint{text-align:center;height:22px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.random-label{color:var(--fg)}.random-hint{color:var(--muted);font-size:16px}
+.random-result,.random-cell{background:var(--surface);border-radius:var(--radius);box-shadow:inset 0 0 0 var(--outline,1px) var(--edge);display:flex;align-items:center;justify-content:center;color:var(--muted);overflow:hidden}
+.random-result{font:48px/1.2 Arial,sans-serif;color:var(--fg);white-space:nowrap}
+.random-cell{font-size:24px}.random-cell.word{font-size:16px;line-height:22px}
+.random-cell.current{background:var(--edge);color:var(--fg)}.random-cell.final{background:var(--accent);color:var(--on)}
+.random-result.final{color:var(--accent)}.random-hint.error{color:#c52d44}
+.dice-pip{position:absolute;background:currentColor;border-radius:100%}
+.random-count{position:absolute;left:103px;top:0;width:137px;height:36px}
+.random-ball.revealed{background:#c52d44;color:white}.random-ball.blue.revealed{background:#2469b7}
+.pk-cell{font-size:16px}.pk-score{position:absolute;top:0;width:100px;text-align:center}
+.pk-result{position:absolute;left:80px;top:86px;width:80px;text-align:center}
+.pk-colon{position:absolute;left:100px;top:0;width:40px;text-align:center}
+.pk-cell.blue{background:#202e40;color:#9fcdf8}.pk-cell.red{background:#35242c;color:#f1a1aa}
+.pk-cell.blue.current{background:#345d86;color:white}.pk-cell.red.current{background:#88414d;color:white}
+.pk-cell.blue.final{background:#247dcf;color:white}.pk-cell.red.final{background:#d94759;color:white}
+.random-screen[data-family=focus] .random-result{background:var(--bg)}
+.random-screen[data-family=tiles] .random-mode,.random-screen[data-family=terminal] .random-mode{background:var(--accent);color:var(--on)}
+.random-screen[data-family=warm] .random-ball{border-radius:100%}
+.random-screen[data-theme=orbit] .random-cell,.random-screen[data-theme=sage] .random-cell{border-radius:24px}
+.random-screen[data-theme=folio] .random-cell{border-radius:0;box-shadow:inset 0 -2px var(--edge)}
+.random-screen[data-theme=night] .random-result,.random-screen[data-theme=matrix] .random-result{box-shadow:inset 0 0 0 2px var(--accent)}
+.random-screen[data-theme=rail] .random-cell{border-left:4px solid var(--edge)}
+.random-screen[data-theme=ribbon] .random-result{border-radius:18px 2px 18px 2px}
+.random-screen[data-theme=split] .random-cell{border-bottom:3px solid var(--accent)}
+.random-screen[data-theme=tabs] .random-cell{border-radius:8px 8px 0 0}

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>雨墨 · 整套主题预览</title>
+  <link rel="stylesheet" href="unified.css">
+  <script defer src="icon-bitmaps.js"></script>
+  <script defer src="device-preview.js"></script>
+  <script defer src="clock-fonts.js"></script>
+  <script defer src="clock-engine.js"></script>
+  <script defer src="preview.js"></script>
+  <script defer src="layouts.js"></script>
+  <script defer src="random-preview.js"></script>
+  <script defer src="unified.js"></script>
+</head>
+<body>
+  <header class="masthead"><a class="brand" href="#home"><b>雨</b><span>YUMO / 雨墨</span></a><span class="site-tag">一个主题，完整体验 <i></i> 离线预览</span></header>
+  <main>
+    <section class="intro"><div><p class="eyebrow">ONE THEME. THE WHOLE EXPERIENCE.</p><h1>选一种风格，<span>看完整套雨墨。</span></h1><p>15 套主题完整保留。应用、连接、密码本、录音、随机与三种表盘，按主题集中展示。<br>下方屏幕都可以独立操作；切换主题即可比较整套效果。</p></div><div class="spec"><strong>240 <small>×</small> 240</strong><span>每套 7 个应用场景 + 3 种表盘</span><span>单指操作 · 36 px 常用触控下限</span></div></section>
+    <section class="toolbar" aria-label="统一预览控制">
+      <div class="theme-navigation" role="group" aria-label="切换整套主题"><button id="previous-theme" aria-label="上一个主题">← 上一套</button><label class="sr-only" for="theme-select">当前主题</label><select id="theme-select"></select><button id="next-theme" aria-label="下一个主题">下一套 →</button><span id="theme-position">01 / 15</span></div>
+      <div class="filters"><label>显示 <select id="scale"><option value="1">1:1 · 240 px</option><option value="1.5">1.5× · 360 px</option></select></label><button id="reset">重置本套演示</button><button id="capability-toggle" aria-expanded="false" aria-controls="capabilities">设备适配说明 ↓</button></div>
+    </section>
+    <nav id="theme-list" class="theme-list" aria-label="全部十五套主题"></nav>
+    <section class="theme-heading" aria-labelledby="theme-name"><div><p class="eyebrow" id="theme-number">THEME / 01</p><h2 id="theme-name">正在加载主题…</h2><p id="theme-description"></p></div><div class="theme-summary"><div id="theme-palette" class="theme-palette" aria-hidden="true"></div><button id="choose-theme" aria-pressed="false">整套设为候选</button></div></section>
+    <nav class="scene-jumps" aria-label="跳到本主题的预览"><button data-jump="home">应用列表</button><button data-jump="settings">设置</button><button data-jump="wifi">Wi-Fi</button><button data-jump="bluetooth">蓝牙</button><button data-jump="vault">密码本</button><button data-jump="recorder">录音机</button><button data-jump="random">随机</button><button data-jump="clock">时钟 · 三表盘</button></nav>
+    <section id="capabilities" hidden>
+      <h2>以当前设备为边界，不用电脑特效代替可落地的 UI。</h2>
+      <div class="capability-grid">
+        <div><b>显示与图形</b><p>依据本项目的 ESP32-S3、240×240 SPI LCD、RGB565 和 LVGL 软件绘制配置。只使用色块、圆、直线、固定刻度；移除屏内模糊、滤镜、阴影、渐变网格与连续装饰旋转。图标已准备小尺寸 PNG 位图，不要求固件支持 SVG 解码。</p></div>
+        <div><b>字体与密度</b><p>中文标题、说明改为已有 16px；应用名保留专用 14px。ASCII 数字仅使用已开启的字号，大号字、很小的中文不再照搬。时钟使用真实固件字形位图；其他页面用浏览器字体近似排版，选定后仍须核验 LVGL 字宽与图标资源。</p></div>
+        <div><b>触控与输入</b><p>所有操作可单指点击、滚动或滑动，不要求多指、悬停或实体旋钮。常用按钮至少 36×36；网络输入框 36px，两行共享输入器各 54px。轨道改为点选确认，Wi-Fi 与蓝牙子页在全部风格中复用同一实现。</p></div>
+        <div><b>更新与资源</b><p>一次只创建当前主题的预览，切换主题卸载上一组界面和录音状态。滚出视口的样例不持续刷新。多屏仅用于网页比较，设备仍按需打开一个 App，不要求后台运行。LCD 深色不等于背光省电；这里不是实机性能验收。</p></div>
+      </div>
+      <p class="boundary">本页全为虚构数据，不访问 Wi-Fi、蓝牙、麦克风、SD 卡或密码服务。未详细设计的 App 保留入口并明确提示；随机的 04、05、06、08、10 已对应固件布局；其余主题仅供比较。网页输入使用浏览器输入框，设备仍复用系统键盘。演示不代替实机验收。</p>
+    </section>
+    <div class="section-heading"><div><p class="eyebrow">INTERFACES / ONE THEME</p><h2>应用与系统界面</h2></div><p>同一主题，七个独立演示。点进子页后可“还原本屏”。</p><span id="visible-count">7 个场景</span></div>
+    <section id="app-gallery" class="app-gallery" aria-label="当前主题的七个应用预览"></section>
+    <section id="clock-area" aria-labelledby="clock-title"><div class="section-heading"><div><p class="eyebrow">WATCHFACES / THREE WAYS</p><h2 id="clock-title">同一主题，三种表盘</h2></div><p>全屏无按钮 · 屏内左右滑动切换</p></div>
+      <div id="clock-controls"><label>时间 <select id="time-mode"><option value="demo">演示 · 逐秒走动</option><option value="frozen">冻结 · 对比排版</option><option value="local">电脑本地时间</option></select></label><label>测试 <select id="test-time"><option value="sample">10:08:36</option><option value="wide">23:59:58</option><option value="narrow">11:11:11</option><option value="midnight">跨年</option><option value="leap">闰日</option></select></label><button id="reset-faces">恢复三种表盘</button></div>
+      <div id="clock-gallery" class="clock-gallery" aria-label="当前主题的数字、指针、混合表盘"></div>
+    </section>
+    <section class="selection"><div><p class="eyebrow">YOUR COMBINATION</p><h2>可以整套选择，也可以混搭。</h2><p id="choice-summary">在卡片下选“设为候选”。各应用和三种表盘可以分别选择风格。</p><p id="previous-choices" hidden></p></div><button id="clear-choice">清除候选</button></section>
+    <footer><span>雨墨 / 15 THEMES · 45 WATCHFACES</span><span>只预览 · 不联网 · 不修改固件</span></footer>
+  </main>
+  <div class="sr-only" id="announcement" role="status" aria-live="polite"></div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+diff --git a/nimble/host/src/ble_hs.c b/nimble/host/src/ble_hs.c
+index 37be379..936391f 100644
+--- a/nimble/host/src/ble_hs.c
++++ b/nimble/host/src/ble_hs.c
+@@ -814,6 +814,9 @@ ble_hs_start(void)
+ #if MYNEWT_VAL(BLE_GATTS)
+     rc = ble_gatts_start();
+     if (rc != 0) {
++        BLE_HS_LOG(ERROR, "ble_gatts_start failed; rc=%d services=%d attrs=%d client_cfgs=%d\n",
++                   rc, ble_hs_max_services, ble_hs_max_attrs,
++                   ble_hs_max_client_configs);
+         return rc;
+     }
+ #endif

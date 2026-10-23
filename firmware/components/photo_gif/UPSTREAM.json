@@ -1,0 +1,15 @@
+{
+  "url": "https://downloads.sourceforge.net/project/giflib/giflib-6.x/giflib-6.1.3.tar.gz",
+  "archive_sha256": "b65b66b99f0424b93525f987386f22fc5efb9da2bfc92ad4a532249aaffbab0e",
+  "files": {
+    "COPYING": "ed5d90cb4a041bddad679470a071302ab05ae5d0ec2cf8f9c97ad7b2708751e6",
+    "dgif_lib.c": "415d74e7a2e2688e3fcf7dc17605503f4b2231f534e649443d8efda2e01cacda",
+    "gifalloc.c": "c567c5dff9322e92ca1a239f0a4538d104ef4964b3f93bb81f7061cc7e48f0bb",
+    "gif_err.c": "74f36c79f17e21a2889895ce32cc484fdb237889dd628ebce2c6ee5dabb1d20c",
+    "gif_hash.h": "04ef37d3254792d75e5406c1d40378efb1e2e280948785c985a9cff85ff6ff61",
+    "gif_lib.h": "fa87f58874aa1fc59395999ef6f069326b125a7b147bd7fd62a51791dec2c21f",
+    "gif_lib_private.h": "242a041a249c7c4897aa5c3fff64d52fd8c75e8b25f73ea9d8c7268d78833d64",
+    "openbsd-reallocarray.c": "401d3c3ab60d60cdbbe13d04a03880ba636f9538d05931b88bb37107fb8b279a"
+  },
+  "version": "6.1.3"
+}

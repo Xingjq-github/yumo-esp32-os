@@ -1,0 +1,24 @@
+{
+  "format": "chip-score",
+  "version": 1,
+  "title": "小星星·芯片夜空",
+  "tempo": 108,
+  "loop": true,
+  "tracks": [
+    {
+      "id": "lead",
+      "wave": "pulse",
+      "duty": 0.5,
+      "volume": 0.62,
+      "gate": 0.88,
+      "notes": "O5 L4 C C G G A A G2 F F E E D D C2 G G F F E E D2 G G F F E E D2 C C G G A A G2 F F E E D D C2 O5 L4 C C G G A A G2 F F E E D D C2 G G F F E E D2 G G F F E E D2 C C G G A A G2 F F E E D D C2"
+    },
+    {
+      "id": "bass",
+      "wave": "triangle",
+      "volume": 0.55,
+      "gate": 0.85,
+      "notes": "O3 L2 C C F C F C G C C G C G C G C G C C F C F G C C O3 L2 C C F C F C G C C G C G C G C G C C F C F G C C"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <springProperty name="VAULT_LOG" source="logging.file.name" defaultValue="java-native/logs/vault.log"/>
+  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${VAULT_LOG}</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy"><fileNamePattern>${VAULT_LOG}.%i</fileNamePattern><minIndex>1</minIndex><maxIndex>2</maxIndex></rollingPolicy>
+    <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy"><maxFileSize>1MB</maxFileSize></triggeringPolicy>
+    <encoder><charset>UTF-8</charset><pattern>%d{yyyy-MM-dd HH:mm:ss} %level %logger{36} - %msg%n</pattern></encoder>
+  </appender>
+  <logger name="com.joyvault" level="INFO"/>
+  <logger name="org.springframework.web.servlet.PageNotFound" level="ERROR"/>
+  <root level="WARN"><appender-ref ref="FILE"/></root>
+</configuration>

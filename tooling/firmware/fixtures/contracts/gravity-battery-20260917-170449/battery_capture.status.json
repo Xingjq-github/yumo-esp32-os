@@ -1,0 +1,45 @@
+{
+  "status": "succeeded",
+  "started": "2026-09-17T17:06:29.488341+08:00",
+  "pid": 10748,
+  "port": "COM4",
+  "baud": 1000000,
+  "reset_requested": false,
+  "serial_writes": false,
+  "seconds_requested": 125,
+  "seconds": 125.19,
+  "samples": [
+    {
+      "device_uptime_ms": 1675974,
+      "percent": 92,
+      "millivolts": 4116,
+      "charge": "inactive",
+      "valid_samples": 16
+    },
+    {
+      "device_uptime_ms": 1706481,
+      "percent": 92,
+      "millivolts": 4116,
+      "charge": "inactive",
+      "valid_samples": 16
+    },
+    {
+      "device_uptime_ms": 1737087,
+      "percent": 92,
+      "millivolts": 4115,
+      "charge": "inactive",
+      "valid_samples": 16
+    },
+    {
+      "device_uptime_ms": 1767497,
+      "percent": 92,
+      "millivolts": 4115,
+      "charge": "inactive",
+      "valid_samples": 16
+    }
+  ],
+  "unexpected_boot_marker": false,
+  "error_lines": [],
+  "serial_released": true,
+  "finished": "2026-09-17T17:08:34.669775+08:00"
+}

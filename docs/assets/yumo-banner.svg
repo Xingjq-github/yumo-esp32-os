@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400" viewBox="0 0 1200 400" role="img" aria-labelledby="title desc">
+<title id="title">雨墨 Yumo OS</title><desc id="desc">ESP32-S3便携触屏系统项目插画；非设备实拍截图。</desc>
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#101827"/><stop offset="1" stop-color="#193d42"/></linearGradient><linearGradient id="screen" x2="0" y2="1"><stop stop-color="#203e4a"/><stop offset="1" stop-color="#142431"/></linearGradient></defs>
+<rect width="1200" height="400" rx="24" fill="url(#bg)"/>
+<g fill="none" stroke="#94d6c6" opacity=".08"><circle cx="1010" cy="195" r="230"/><circle cx="1010" cy="195" r="285"/><path d="M0 326H1200M0 350H1200M0 374H1200"/></g>
+<g font-family="Segoe UI,Arial,Microsoft YaHei,sans-serif"><text x="76" y="98" font-size="16" fill="#90d6c5" letter-spacing="4">ESP32-S3 · 240 × 240 · LVGL</text><text x="70" y="190" font-size="76" font-weight="700" fill="#f1f8f5">雨墨 OS</text><text x="77" y="245" font-size="33" fill="#b9d7d3">Yumo OS</text><text x="77" y="305" font-size="22" fill="#d4e2e4">工具、音乐与像素游戏，随身而行。</text></g>
+<rect x="816" y="55" width="281" height="286" rx="38" fill="#0a111c" stroke="#536c75" stroke-width="3"/>
+<rect x="836" y="76" width="240" height="240" rx="23" fill="url(#screen)"/>
+<g fill="#94d6c6"><rect x="858" y="97" width="4" height="5"/><rect x="865" y="94" width="4" height="8"/><rect x="872" y="90" width="4" height="12"/><rect x="1032" y="93" width="21" height="9" rx="2"/></g>
+<text x="955" y="195" text-anchor="middle" fill="#f1f8f5" font-size="56" font-weight="600" font-family="Segoe UI,Arial,sans-serif">09:41</text>
+<path d="M866 247H888V222H910V268H932V237H954V253H976V215H998V243H1020V229H1046" stroke="#94d6c6" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="957" y="296" text-anchor="middle" fill="#91aeb9" font-size="12" font-family="Segoe UI,Arial,sans-serif" letter-spacing="3">TOOLS · MUSIC · PLAY</text>
+<text x="957" y="369" text-anchor="middle" fill="#90a9b2" font-size="13" font-family="Segoe UI,Arial,Microsoft YaHei,sans-serif">项目插画 · 非设备截图</text></svg>

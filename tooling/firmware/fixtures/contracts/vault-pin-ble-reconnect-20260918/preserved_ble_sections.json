@@ -1,0 +1,37 @@
+[
+  {
+    "start": "constexpr char kTag[]",
+    "end": "std::atomic<BleHidState>",
+    "sha256": "dd1e514a9c8f0496c31be928defc14ccd483313b6facd992c423139935747e48"
+  },
+  {
+    "start": "struct PrivateStroke {",
+    "end": "// Refuse a new bond",
+    "sha256": "42b2fba827ced36e137c3a70a1439a18a8dfb6a46fad545e255c5dce7ceb4716"
+  },
+  {
+    "start": "const uint8_t kReportMap[]",
+    "end": "void hostTask(",
+    "sha256": "fa3ca88e975872ccb46d573031a3427142411ef11bc067765b03634bb18a5de1"
+  },
+  {
+    "start": "int gapEvent(",
+    "end": "    case BLE_GAP_EVENT_REPEAT_PAIRING:",
+    "sha256": "0bc200e9d3f7f93c4b25308798c21d2a23028c5dc80469a680eaf05e8c4c9056"
+  },
+  {
+    "start": "esp_err_t configureGap(",
+    "end": "esp_err_t BleHid::init(",
+    "sha256": "c0a55ce9485f221276e6c3d756af0d721866c17a5d32a361b78082924551ada3"
+  },
+  {
+    "start": "esp_err_t BleHid::connectKeyboard(",
+    "end": "esp_err_t BleHid::reconnectBond(",
+    "sha256": "0321c2bb4add6c8baafdc8b58bf9f9da0824c3cb3ad57eae401986f635d8d6b1"
+  },
+  {
+    "start": "uintptr_t BleHid::privateLinkGeneration()",
+    "end": "void BleHid::poll()",
+    "sha256": "20b047f1d6084912d7da67e5e0739e0fb1d4d93613eb1b93496a370825af7ebc"
+  }
+]
