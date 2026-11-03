@@ -131,36 +131,8 @@ bool payload(const Bytes &data, Session &session) {
   return true;
 }
 bool validOrigin(const std::string &url) {
-  size_t prefix = url.rfind("http://", 0) == 0    ? 7
-                  : url.rfind("https://", 0) == 0 ? 8
-                                                  : 0;
-  if (!prefix || url.size() <= prefix || url.size() > 240 ||
-      !printable(url.data(), url.size()))
-    return false;
-  auto colon = url.find(':', prefix);
-  size_t end = colon == std::string::npos ? url.size() : colon;
-  if (end == prefix || url[prefix] == '.' || url[prefix] == '-' ||
-      url[end - 1] == '.' || url[end - 1] == '-')
-    return false;
-  for (size_t i = prefix; i < end; ++i) {
-    char c = url[i];
-    if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') ||
-          (c >= '0' && c <= '9') || c == '.' || c == '-'))
-      return false;
-  }
-  if (colon != std::string::npos) {
-    if (url.size() - colon < 2 || url.size() - colon > 6)
-      return false;
-    unsigned port = 0;
-    for (size_t i = colon + 1; i < url.size(); ++i) {
-      if (url[i] < '0' || url[i] > '9')
-        return false;
-      port = port * 10 + url[i] - '0';
-    }
-    if (!port || port > 65535)
-      return false;
-  }
-  return true;
+  std::string normalized;
+  return normalizeOrigin(url, normalized);
 }
 bool configDecode(const Bytes &config, Session &session) {
   if (config.size() < 28 || config.size() > 8192)
@@ -174,22 +146,31 @@ bool configDecode(const Bytes &config, Session &session) {
   Json doc(plain.value.data(), plain.value.size());
   if (!doc.value || !number(doc.value, "schema", 2))
     return false;
+  auto auth = cJSON_GetObjectItemCaseSensitive(doc.value, "auth");
+  if (auth && (!cJSON_IsString(auth) || !auth->valuestring ||
+               std::strcmp(auth->valuestring, "pattern-v1")))
+    return false; // Unknown/corrupt credentials must never become a setup request.
   auto url = text(doc.value, "url"), salt = text(doc.value, "pin_salt"),
        hash = text(doc.value, "pin_hash");
-  if (!url || !validOrigin(url) || !salt || !hash || std::strlen(salt) != 32 ||
+  std::string origin;
+  if (!url || !normalizeOrigin(url, origin) || !salt || !hash ||
+      std::strlen(salt) != 32 ||
       std::strlen(hash) != 64 || std::strspn(salt, "0123456789abcdef") != 32 ||
       std::strspn(hash, "0123456789abcdef") != 64)
     return false;
-  session.url = url;
+  session.url = origin;
   session.pinSalt = salt;
   session.pinHash = hash;
+  session.patternAuth = auth != nullptr;
   return true;
 }
 bool configEncode(const Session &session, Bytes &output) {
+  if (!session.patternAuth) return false;
   cJSON *doc = cJSON_CreateObject();
   if (!doc)
     return false;
   bool ok = cJSON_AddNumberToObject(doc, "schema", 2) &&
+            cJSON_AddStringToObject(doc, "auth", "pattern-v1") &&
             cJSON_AddStringToObject(doc, "url", session.url.c_str()) &&
             cJSON_AddStringToObject(doc, "pin_salt", session.pinSalt.c_str()) &&
             cJSON_AddStringToObject(doc, "pin_hash", session.pinHash.c_str());

@@ -12,6 +12,7 @@
 #include "esp_heap_caps.h"
 
 #include <algorithm>
+#include <cerrno>
 #include <cstdio>
 #include <cstring>
 
@@ -134,6 +135,7 @@ void PhotoViewer::scanFiles(void)
     m_paths.clear(); m_names.clear(); m_directories.clear(); m_scanError.clear();
     m_listingTruncated=false; m_viewing=false;
     m_job=core::listDirectory(m_directory,true);
+    if(!m_job) {m_scanError=core::storageError(ENOMEM);showList();return;}
     if(m_poll) lv_timer_resume(m_poll);
     showList(); showMessage("正在读取目录…");
 }
@@ -295,7 +297,7 @@ void PhotoViewer::releaseGif()
         if(m_image)lv_image_set_src(m_image,nullptr);
         m_imageDsc={};m_gifJob->cancelled.store(true);m_gifJob.reset();
     }
-    m_gifMode=m_gifPending=false;m_draggable=false;
+    m_gifMode=m_gifPending=m_gifFailed=false;m_draggable=false;
     if(m_poll)lv_timer_set_period(m_poll,100);
 }
 void PhotoViewer::openGif(size_t index)
@@ -321,12 +323,12 @@ void PhotoViewer::switchGif(int direction)
 }
 void PhotoViewer::pollGif()
 {
-    if(!m_gifMode)return;
+    if(!m_gifMode || m_gifFailed)return;
     if(m_gifPending && core::gif::idle() && core::photo::idle()) {
         m_gifJob=core::gif::start(m_paths[m_gifIndex]);m_gifPending=false;
-        if(!m_gifJob)lv_label_set_text(m_notice,"GIF任务启动失败，请返回重试");
+        if(!m_gifJob)failGif("GIF任务启动失败，请返回重试");
     } else if(m_gifPending && uint32_t(lv_tick_get()-m_gifWait)>5000) {
-        m_gifPending=false;lv_label_set_text(m_notice,"图片任务忙，请返回重试");
+        m_gifPending=false;failGif("图片任务忙，请返回重试");
     }
     if(!m_gifJob)return;
     auto &job=*m_gifJob;
@@ -344,8 +346,15 @@ void PhotoViewer::pollGif()
         job.present(frame,now);
     }
     if(job.done.load(std::memory_order_acquire) && job.error) {
-        lv_label_set_text(m_notice,job.error);lv_obj_center(m_notice);lv_obj_set_hidden(m_notice,false);
+        failGif(job.error);
     }
+}
+void PhotoViewer::failGif(const char *error)
+{
+    m_gifFailed=true;
+    lv_label_set_text(m_notice,error);lv_obj_center(m_notice);lv_obj_set_hidden(m_notice,false);
+    // Keep exit polling and the displayed frame's shared owner until back/next.
+    if(m_poll)lv_timer_set_period(m_poll,100);
 }
 
 void PhotoViewer::showMessage(const char *message)

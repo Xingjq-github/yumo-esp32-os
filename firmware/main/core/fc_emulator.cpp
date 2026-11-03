@@ -1,4 +1,5 @@
 #include "mp3_player.hpp"
+#include "xiaozhi_service.hpp"
 #include "chiptune_player.hpp"
 #include "fc_emulator.hpp"
 #include "fc_autosave.hpp"
@@ -337,7 +338,7 @@ bool parseMapping(const std::string &json, Mapping &mapping,
 }
 std::shared_ptr<Job> start(const std::string &path,uint32_t keySession) {
   if (sys::Power::sleepPending() || !core::mp3::idle() || !core::chip::idle() || !core::game_audio::idle() || !core::recorder::idle() ||
-      !autoSavesIdle() || active.exchange(true))
+      !autoSavesIdle() || !core::xiaozhi::idle() || active.exchange(true))
     return {};
   std::shared_ptr<Job> job;
   std::shared_ptr<Job> *holder = nullptr;

@@ -1,4 +1,5 @@
 #include "mp3_player.hpp"
+#include "xiaozhi_service.hpp"
 #include "chiptune_player.hpp"
 #include "password_vault.hpp"
 #include "power_mgr.hpp"
@@ -118,6 +119,7 @@ void setScreenLocked(bool on) {
     // Revoke queued private HID strokes before GUI ScreenOff dispatch.
     if(!on) BleHid::cancelPrivateInput();
     if(!on) BleHid::cancelKeys();
+    if(!on) BleHid::cancelMouse();
 
     if(shuttingDown.load() || screen.load()==on) return;
     if(on && sleepRequested.load()) return;
@@ -378,6 +380,12 @@ void Power::processStandby() {
         if(esp_timer_get_time()-sleepRequestedAt.load()>2000000)requestRecovery("keyboard release busy");
         return;
     }
+    // The mouse queue preserves all-up across transient controller pressure.
+    // Allow its bounded release recovery before attempting terminal shutdown.
+    if(!BleHid::mouseIdle()) {
+        if(esp_timer_get_time()-sleepRequestedAt.load()>6000000)requestRecovery("mouse release busy");
+        return;
+    }
     // Do not enter deep sleep while a foreground hotspot is still releasing
     // its AP_STOP fence, DHCP interface or radio resources.
     if(!LanHotspot::idle()) {
@@ -390,8 +398,8 @@ void Power::processStandby() {
     }
     // UI has cancelled its workers. Do not unmount a card still being read.
     if(core::sd::busy()) return; // bounded eject/read finishes before SD teardown
-    if(!core::mp3::idle() || !core::chip::idle() || !core::game_audio::idle() || !core::storageIdle() || !vault::idle() || !core::recorder::idle() || !core::fc::idle()) {
-        if(!core::mp3::idle() || !core::chip::idle() || !core::game_audio::idle() || !vault::idle() || !core::recorder::idle() || !core::fc::idle()) {
+    if(!core::xiaozhi::idle() || !core::mp3::idle() || !core::chip::idle() || !core::game_audio::idle() || !core::storageIdle() || !vault::idle() || !core::recorder::idle() || !core::fc::idle()) {
+        if(!core::xiaozhi::idle() || !core::mp3::idle() || !core::chip::idle() || !core::game_audio::idle() || !vault::idle() || !core::recorder::idle() || !core::fc::idle()) {
             if(esp_timer_get_time()-sleepRequestedAt.load()>10000000) requestRecovery("app storage worker busy");
         } else if(esp_timer_get_time()-sleepRequestedAt.load()>2000000) requestRecovery("SD reader busy");
         return;
@@ -439,9 +447,14 @@ void Power::processStandby() {
         Battery::poll(isScreenOn());
         if(!automaticDeepSleepAllowed()) {requestRecovery("automatic sleep settings protection");return;}
     }
-    // Cancellation is still possible until the terminal phase begins.
-    if(wakeRequested.load()) return;
-    standbyActive.store(true); terminalPhase.store(true);
+    // Serialize the final commit with PWR cancellation, as for theme restart.
+    // Never accept a wake request between its last check and terminal entry.
+    {
+        const std::lock_guard<std::mutex> lock(displayMutex);
+        if(wakeRequested.load()) return;
+        if(shuttingDown.load()) return;
+        standbyActive.store(true); terminalPhase.store(true);
+    }
     holdPerformance(false);
     // Save credentials/settings BEFORE stopping hardware. Teardown does not
     // rewrite user data; runtime radio permissions still default off after reboot.

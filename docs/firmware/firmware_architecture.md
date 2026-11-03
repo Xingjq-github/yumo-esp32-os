@@ -2,7 +2,7 @@
 
 本页路径以工程根目录下的 `firmware/` 为起点。本文说明现有行为；构建、设备和服务状态以[项目当前状态](../current-state.md)为准。
 
-`main/apps`注册24个应用（用户顺序可保存，设置最后），主编译清单以 `main/CMakeLists.txt` 为准；`main/core`负责系统服务、无线、输入、存储、电源及音频，`main/ui`负责界面和字体。`components`为本地组件和BSP，`managed_components`为依赖锁定的第三方组件。
+`main/apps`注册25个应用（用户顺序可保存，设置最后），主编译清单以 `main/CMakeLists.txt` 为准；`main/core`负责系统服务、无线、输入、存储、电源及音频，`main/ui`负责界面和字体。`components`为本地组件和BSP，`managed_components`为依赖锁定的第三方组件。
 
 ## 应用、线程与资源
 
@@ -16,7 +16,7 @@ BLE连接由SystemService独占的`BluetoothConnectionFlow`统一管理，应用
 
 Wi-Fi和蓝牙开机默认开启，分别尝试最近成功网络和最近配对设备；用户手动操作优先，断开蓝牙后不自动重连，运动感应仍默认关闭。BLE支持向电脑输入和单个外接键盘/手柄的两种角色，同一时间只连接一个设备。蓝牙音乐使用HID媒体控制，不是A2DP音频播放。
 
-局域网 App 最多接入 4 台；上游 Wi-Fi 可用时采用 APSTA 和 IPv4 NAPT 自动共享，无上游时提供本地组网。普通关闭热点保留原 STA，退出 App 或深睡关闭热点；热点内提供SD文件管理和设备PIN验证的只读密码网页。详见[局域网](lan_hotspot_20260920.md)。密码本通过Wi-Fi同步，独立vault分区双槽保存；编译同步鉴权密钥与原存储身份/数字PIN分离，HTTP请求和bundle响应必须匹配证明。仅轮换双端同步密钥不影响已有密码读取；每次有效同步全量覆盖，不限制版本。SHA-256改用每次独立上下文的软件实现、4KiB协作分段；PIN的PSA HMAC路径保留。软件AES-GCM长数据每2048字节协作让出CPU，认证失败清输出，存储/PIN格式不变。详见[同步说明](vault_sync_20260920.md)。
+局域网 App 最多接入 4 台；上游 Wi-Fi 可用时采用 APSTA 和 IPv4 NAPT 自动共享，无上游时提供本地组网。普通关闭热点保留原 STA，退出 App 或深睡关闭热点；热点内提供SD文件管理和设备图形密码验证的只读密码网页。详见[局域网](lan_hotspot_20260920.md)。密码本通过Wi-Fi同步，独立vault分区双槽保存；编译同步鉴权密钥与原存储身份/数字PIN分离，HTTP请求和bundle响应必须匹配证明。仅轮换双端同步密钥不影响已有密码读取；每次有效同步全量覆盖，不限制版本。SHA-256改用每次独立上下文的软件实现、4KiB协作分段；PIN的PSA HMAC路径保留。软件AES-GCM长数据每2048字节协作让出CPU，认证失败清输出，存储/PIN格式不变。详见[同步说明](vault_sync_20260920.md)。
 
 普通PWR控制亮灭屏；文本阅读/加载及相册图片查看页（含图片加载/失败）单击返回文件列表，返回列表/退出即释放接管，屏幕已灭时优先唤醒，长按不变；设置和快捷面板中的深睡以RTC计时和低待机为主，快速双击PWR后重新启动。各App按关屏/退出规则停止或暂停活动，详见[贡献说明](../../CONTRIBUTING.md)。
 
@@ -92,3 +92,5 @@ KEY双击启动一次截图，GUI有界复制完整RGB565帧，短时worker编�
 统一显示方向、触控映射及重力App锁定见[方向架构](screen_orientation.md)；热点HTTP服务见[局域网](lan_hotspot_20260920.md)，图片worker/SD分块缓存见[图片处理](photo_rendering.md)。
 
 MP3的`mp3_player`将SD解码与音频输出分任务，GUI通过状态快照显示歌词；退出停止并释放。FC画面由`fc_video.hpp`生成240×240的1:1裁切输出；C/H模式输入由统一蓝牙输入路由分发，参见[MP3](mp3_music.md)和[FC显示](fc_rendering.md)。
+
+小智AI的会话、音频与网络由独立worker协调，GUI读取状态；工作栈及音频资源随会话释放，参见[小智AI](xiaozhi_ai.md)。

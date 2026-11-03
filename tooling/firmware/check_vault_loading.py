@@ -60,7 +60,7 @@ class VaultLoadingContracts(unittest.TestCase):
     def test_reopen_and_lock_reset_the_load_state(self):
         code = compact(read('main/apps/password_vault.cpp'))
         self.assertIn('m_load.reset(lv_tick_get());load();draw();', code)
-        self.assertIn('m_load.reset(lv_tick_get());m_exists=m_blank=false;', code)
+        self.assertIn('m_load.reset(lv_tick_get());m_exists=m_blank=m_needsPatternSetup=false;', code)
         self.assertIn('if(!m_job&&m_page==Page::Locked)load();', code)
     def test_storage_io_errors_not_treated_as_invalid_header(self):
         code = compact(read('main/core/vault_storage.cpp'))

@@ -1,6 +1,7 @@
 """Create original chip-score arrangements, without external audio assets."""
 from pathlib import Path
-import json,re,zipfile
+import json,re
+from package_sd_resources import write_chiptune_archive
 ROOT=(Path(__file__).resolve().parents[2]/'firmware')
 OUT=ROOT/'../resources/sdcard/chiptune'
 def beats(sequence):
@@ -86,8 +87,6 @@ L1/L2/L4/L8/L16/L32设置默认时值，音符后数字覆盖时值，单附点�
 设备喇叭音色及响度仍需实际试听；电脑验证只核对协议、节奏和PCM输出。
 ''',encoding='utf-8')
     archive=ROOT/'../artifacts/releases/sd/chiptune-samples.zip'
-    archive.parent.mkdir(parents=True,exist_ok=True)
-    with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED) as z:
-        for p in sorted(OUT.iterdir()):z.write(p,'chiptune/'+p.name)
+    write_chiptune_archive(OUT.parent,archive)
     print(json.dumps(manifest,ensure_ascii=False,indent=2))
 if __name__=='__main__':main()

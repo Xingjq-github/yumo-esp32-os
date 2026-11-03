@@ -147,8 +147,8 @@ int main(){
         reset();s_connHandle=7;CHECK(BleHid::makeDiscoverable()==ESP_ERR_INVALID_STATE);CHECK(BleHid::reconnectBond(phone())==ESP_ERR_INVALID_STATE);
         reset();CHECK(!BleHid::makeDiscoverable(true));CHECK(s_requireAuthenticated&&ble_hs_cfg.sm_mitm==1);
     }
-    reset();CHECK(kMaxBondSlots==8);fake::bonds.clear();
-    for(unsigned i=0;i<8;++i){auto p=phone();p.addr[0]=uint8_t(i+1);p.keyboard=true;std::strcpy(p.name,"Controller");fake::bonds.push_back(p);}
+    reset();CHECK(kMaxBondSlots==16);fake::bonds.clear();
+    for(unsigned i=0;i<16;++i){auto p=phone();p.addr[0]=uint8_t(i+1);p.keyboard=true;std::strcpy(p.name,"Controller");fake::bonds.push_back(p);}
     for(const auto &p:fake::bonds){CHECK(BleHid::reconnectBond(p)==ESP_OK);CHECK(BlePeerStore::same(fake::active,p));}
-    std::printf("%u checks; 200 invitation cycles and eight saved identities: saved-peer filter, iPhone discovery data, RPA identity, cancellation, 60s deadline, keyboard delegation and injected HCI failures; fake radio only\n",checks);
+    std::printf("%u checks; 200 invitation cycles and sixteen saved identities: saved-peer filter, iPhone discovery data, RPA identity, cancellation, 60s deadline, keyboard delegation and injected HCI failures; fake radio only\n",checks);
 }

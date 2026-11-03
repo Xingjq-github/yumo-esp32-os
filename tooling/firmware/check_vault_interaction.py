@@ -22,16 +22,17 @@ class VaultInteractionContracts(unittest.TestCase):
         self.assertIn('m_page==Page::Detail&&m_session&&m_selected<m_session->entries.size()', s)
         self.assertIn('m_session->entries[m_selected].category!="other")startTyping(true,sys::BleHid::privateLinkGeneration())', s)
         self.assertNotIn('ConfirmType', s)
-    def test_password_still_requires_explicit_confirmation(self):
-        s = section(self.app, 'caseAction::Password:', 'caseAction::Type:')
-        self.assertIn('m_page!=Page::Detail', s)
-        self.assertIn('m_targetLink=sys::BleHid::privateLinkGeneration()', s)
-        self.assertIn('if(!m_targetLink)', s)
-        self.assertIn('m_page=Page::ConfirmType', s)
-        self.assertNotIn('startTyping(', s)
-        s = section(self.app, 'caseAction::Type:', 'caseAction::Enter:')
-        self.assertIn('if(m_page==Page::ConfirmType)startTyping(false,m_targetLink)', s)
-        self.assertIn('button(m_body,"确认并立即输入",Action::Type)', self.app)
+    def test_password_sends_directly_only_from_valid_detail(self):
+        s = section(self.app, 'caseAction::Password:', 'caseAction::Enter:')
+        guard = 'if(m_page!=Page::Detail||!m_session||m_selected>=m_session->entries.size())return;'
+        send = 'startTyping(false,sys::BleHid::privateLinkGeneration());'
+        self.assertIn(guard, s)
+        self.assertIn(send, s)
+        self.assertLess(s.index(guard), s.index(send))
+        self.assertEqual(s.count('startTyping('), 1)
+        for old in ('ConfirmType', 'm_targetLink', 'Action::Type', '确认并立即输入'):
+            self.assertNotIn(old, self.app)
+            self.assertNotIn(old, read('main/apps/password_vault.hpp'))
     def test_typing_rechecks_target_and_cleans_failed_launch(self):
         s = section(self.app, 'voidPasswordVault::startTyping(', 'voidPasswordVault::drawPin(')
         self.assertIn('m_reveal.hide()', s)
@@ -68,7 +69,7 @@ class VaultInteractionContracts(unittest.TestCase):
         s = section(self.app, 'caseAction::VerifyReveal:', 'caseAction::Sync:')
         for token in ('m_page!=Page::VerifyReveal', '!m_session',
                       'm_selected>=m_session->entries.size()',
-                      '!vault::validPin(m_pin.data(),m_pin.size())', 'vault::Operation::VerifyPin',
+                      '!vault::pattern::valid(m_pin.data(),m_pin.size())', 'vault::Operation::VerifyPin',
                       'job->input=m_session;job->entry=m_selected;job->master=m_pin;',
                       'vault::clear(m_pin);m_reveal.request(m_selected)',
                       'if(launch(job)!=vault::StartResult::Started)rejectReveal(nullptr)',
@@ -95,7 +96,7 @@ class VaultInteractionContracts(unittest.TestCase):
         s = section(self.core, 'voidrun(', 'Diskdisk;')
         self.assertIn('job.operation==Operation::Unlock||job.operation==Operation::WebUnlock||job.operation==Operation::VerifyPin', s)
         self.assertIn('esp_timer_get_time()<nextUnlock', s)
-        self.assertIn('validPin(job.master.data(),job.master.size())', s)
+        self.assertIn('pattern::valid(job.master.data(),job.master.size())', s)
     def test_only_successful_uncancelled_result_can_show_password(self):
         s = section(self.app, 'voidPasswordVault::poll()', 'voidPasswordVault::draw()')
         self.assertIn('if(m_job&&m_job->done.load())', s)
@@ -108,11 +109,11 @@ class VaultInteractionContracts(unittest.TestCase):
         self.assertIn('m_reveal.hide()', section(self.app, 'voidPasswordVault::rejectReveal(', 'lv_obj_t*PasswordVault::button('))
         self.assertEqual(self.app.count('m_reveal.complete('), 1)
     def test_secret_label_always_uses_entry_scoped_visibility(self):
-        s = section(self.app, 'casePage::Detail:', 'casePage::ConfirmType:')
+        s = section(self.app, 'casePage::Detail:', 'casePage::Qr:')
         self.assertIn('(m_access.super()||m_reveal.visible(m_selected))?entry.password.c_str():"********"', s)
         self.assertIn('m_reveal.visible(m_selected)?"隐藏密码":"展示密码"', s)
     def test_other_codes_are_visible_and_have_no_account_or_reveal_controls(self):
-        detail = section(self.app, 'casePage::Detail:', 'casePage::ConfirmType:')
+        detail = section(self.app, 'casePage::Detail:', 'casePage::Qr:')
         code = section(detail, 'if(entry.category=="other"){', '}else{')
         for token in ('button(actions,entry.password.c_str(),Action::Password',
                       '"回车",Action::Enter', '"二维码",Action::Qr'):
@@ -142,17 +143,13 @@ class VaultInteractionContracts(unittest.TestCase):
                       'job->ok=false;job->output.reset()', 'sys::Power::WorkGuardguard;'):
             self.assertIn(token, self.core)
     def test_one_compact_pin_renderer_for_setup_unlock_and_reveal(self):
-        self.assertEqual(self.app.count('drawPin('), 5)  # definition + unlock, reveal, access and change screens
+        self.assertEqual(self.app.count('drawPin('), 6)  # includes disabled loading/verification view
         s = section(self.app, 'voidPasswordVault::drawPin(', 'voidPasswordVault::timer(')
-        for token in ('usingL=vault::interaction::PinLayout', 'static_assert(c::kGap==L::Gap)',
-                      'updatePinLine()',
-                      'lv_obj_set_height(m_pinLabel,L::LineHeight)', 'row<4', 'col<3',
-                      'c::panel(m_body,L::Width,L::KeyHeight)', 'L::KeyWidth',
-                      'lv_obj_set_height(key,L::KeyHeight)'):
-            self.assertIn(token, s)
+        self.assertIn('m_pattern.create(m_body,patternPrompt(),ready,patternSubmitted,this)',s)
+        self.assertIn('!m_job&&(m_page!=Page::Locked||(m_load.ready()&&(m_exists||m_blank)))',s)
         self.assertIn('m_body=c::panel(root(),L::Width,pinPage?L::BodyHeight:L::NormalBodyHeight,!pinPage)', self.app)
-        self.assertIn('m_page!=Page::Locked&&m_page!=Page::VerifyReveal', self.app)
-        self.assertIn('m_page!=Page::Locked&&m_page!=Page::VerifyReveal&&m_page!=Page::VerifyAccess&&!changingPin())||index>9', self.app)
+        self.assertNotIn('Action::Digit',self.app)
+        self.assertNotIn('Action::DeleteDigit',self.app)
     def test_layout_respects_actual_font_metrics(self):
         cjk = read('main/ui/lv_font_cjk_16.c')
         mask = read('../dependencies/managed_components/lvgl__lvgl/src/font/lv_font_montserrat_14.c')

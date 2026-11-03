@@ -25,7 +25,7 @@ python tooling\apply_sdk_patch.py
 python tooling\prepare_dependencies.py
 ```
 
-脚本从 Espressif 官方组件存储下载 23 个锁定版本，校验 `CHECKSUMS.json` 摘要和文件内容。下载路径 `dependencies/managed_components/` 被 Git 忽略，可以在构建后删除。
+脚本从 Espressif 官方组件存储准备26个锁定组件（24个注册表包、2个固定Git源码清单），校验 `CHECKSUMS.json` 摘要和文件内容。下载路径 `dependencies/managed_components/` 被 Git 忽略，可以在构建后删除。
 
 唯一使用中的组件适配是 `waveshare/pcf85063a` 的 CMake 依赖声明，保存在 `patches/components/waveshare__pcf85063a/CMakeLists.txt`；下载后只对指定基线应用此文件。清单同时记录修改前后摘要。
 
@@ -45,3 +45,15 @@ MP3组件使用`lieff/minimp3`，固定提交`ea99364f61c14656440e8d77e9c233ccf3
 - PC 投屏 Python 依赖见 `desktop/pc-display/requirements.txt`；Tkinter 由 Python 安装提供。
 - 网页自动化测试依赖见 `tooling/server/requirements-browser.txt`，Playwright 浏览器另行安装；普通使用不需要浏览器测试环境。
 - 重新制作字库需要自行提供有相应使用/分发授权的字体及 `fonttools`、`freetype-py`；普通固件编译使用已有 C 字库，不需要额外安装字体。
+
+## 小智与蓝牙新增依赖（2026-11-03）
+
+- ESP Audio Codec 2.5.0：注册表CHECKSUMS摘要锁定，含音频编解码库，许可证随组件下载。
+- WebSocket 1.8.0：`espressif/esp-protocols` 提交 `70bf122fc8bc74622dcf7e15233b5b2af9088df5`。
+- MQTT 1.1.0：`espressif/esp-mqtt` 提交 `1a1e5788a5cf57a0f44a3c6c061407f6c9be1026`。
+
+后两项使用 `config/sources/` 的官方固定提交文件清单，共35个文件，包含完整生产源码、头文件、CMake/Kconfig和许可，省略上游CI/示例。下载脚本逐文件检查Git blob SHA1、SHA256及长度，先在临时目录验证后发布；已有目录须内容匹配，不覆盖未知文件。无需携带开发机器的下载包。
+
+新增两项构建期SDK适配位于 `firmware/cmake/`：HID输入资源压力处理和NVS blob中断恢复。它们校验原函数后在构建目录生成副本，不修改外部SDK；原有NimBLE三行补丁仍需按前文配置。SDK升级必须重新核验所有适配。
+
+小智协议参考来源与MIT许可见[小智AI](firmware/xiaozhi_ai.md)。`firmware/components/yumo_ble_store` 为本项目紧凑绑定存储实现，配套回放只用合成身份。

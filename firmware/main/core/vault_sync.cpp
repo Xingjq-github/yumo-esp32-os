@@ -1,5 +1,10 @@
 #include "vault_sync.hpp"
 #include "connectivity.hpp"
+#include "esp_crt_bundle.h"
+#include "esp_log.h"
+#include "esp_tls_errors.h"
+#include "mbedtls/x509.h"
+#include <cerrno>
 #include "esp_http_client.h"
 #include "esp_timer.h"
 #include "freertos/FreeRTOS.h"
@@ -65,6 +70,31 @@ struct TransferBuffer {
   uint8_t value[2048]{};
   ~TransferBuffer() { wipe(value, sizeof(value)); }
 };
+void connectionError(Job &job, esp_http_client_handle_t client, bool https) {
+  int tlsCode = 0, certFlags = 0;
+  const auto tlsError = esp_http_client_get_and_clear_last_tls_error(
+      client, &tlsCode, &certFlags);
+  const int socketError = esp_http_client_get_errno(client);
+  // Only numeric diagnostics: never log credentials or response data.
+  ESP_LOGW("vault_sync", "connect failed https=%d tls=%d code=%d cert=%d socket=%d",
+           int(https), int(tlsError), tlsCode, certFlags, socketError);
+  if (tlsError == ESP_ERR_ESP_TLS_CANNOT_RESOLVE_HOSTNAME)
+    job.error = "域名解析失败，请检查Wi-Fi网络";
+  else if (certFlags & (MBEDTLS_X509_BADCERT_EXPIRED | MBEDTLS_X509_BADCERT_FUTURE))
+    job.error = "HTTPS证书日期无效，请检查设备时间";
+  else if (certFlags & MBEDTLS_X509_BADCERT_CN_MISMATCH)
+    job.error = "HTTPS证书与服务域名不匹配";
+  else if (certFlags || tlsCode == MBEDTLS_ERR_X509_CERT_VERIFY_FAILED)
+    job.error = "HTTPS证书不受信任，请检查服务证书链";
+  else if (tlsError == ESP_ERR_ESP_TLS_CONNECTION_TIMEOUT ||
+           tlsError == ESP_ERR_ESP_TLS_SERVER_HANDSHAKE_TIMEOUT ||
+           socketError == ETIMEDOUT)
+    job.error = "连接超时，请检查公网服务和网络";
+  else if (https && tlsError == ESP_ERR_MBEDTLS_SSL_HANDSHAKE_FAILED)
+    job.error = "HTTPS握手失败，请检查服务TLS配置";
+  else
+    job.error = "连接失败，请检查服务地址、端口和网络";
+}
 } // namespace
 bool request(Job &job, const std::string &origin, const std::string &ca,
              const std::string &path, const std::string &token, size_t maximum,
@@ -84,10 +114,14 @@ bool request(Job &job, const std::string &origin, const std::string &ca,
     job.error = "Wi-Fi未连接，请手动连接";
     return false;
   }
-  if (!validOrigin(origin) ||
-      (origin.rfind("https://", 0) == 0 &&
-       (ca.empty() || std::time(nullptr) < 1704067200))) {
-    job.error = "服务地址或设备时间无效";
+  std::string endpoint;
+  if (!normalizeOrigin(origin, endpoint)) {
+    job.error = "服务地址无效，请填写HTTP或HTTPS地址";
+    return false;
+  }
+  const bool https = endpoint.rfind("https://", 0) == 0;
+  if (https && std::time(nullptr) < 1704067200) {
+    job.error = "设备时间未校准，请联网校时后重试";
     return false;
   }
   SyncProof proof;
@@ -95,13 +129,16 @@ bool request(Job &job, const std::string &origin, const std::string &ca,
     job.error = "同步密钥校验失败，请重试";
     return false;
   }
-  const std::string url = origin + path;
+  const std::string url = endpoint + path;
   esp_http_client_config_t config{};
   config.url = url.c_str();
   config.event_handler = responseHeader;
   config.user_data = &proof;
   config.cert_pem = ca.empty() ? nullptr : ca.c_str();
-  config.timeout_ms = 3000;
+  // Public HTTPS uses the maintained CA bundle; an explicit CA takes priority.
+  if (https && ca.empty())
+    config.crt_bundle_attach = esp_crt_bundle_attach;
+  config.timeout_ms = 10000;
   config.disable_auto_redirect = true;
   config.buffer_size = 2048;
   config.buffer_size_tx = 1024;
@@ -128,26 +165,49 @@ bool request(Job &job, const std::string &origin, const std::string &ca,
     return false;
   }
   bool ok = false;
-  int64_t deadline = esp_timer_get_time() + 20000000;
+  const int64_t deadline = esp_timer_get_time() + 30000000;
+  auto continuing = [&]() {
+    if (job.cancelled.load() || !sys::Power::isScreenOn() ||
+        sys::Power::sleepPending()) {
+      job.error = "同步已取消";
+      return false;
+    }
+    if (esp_timer_get_time() >= deadline) {
+      job.error = "同步超时，请重试";
+      return false;
+    }
+    return true;
+  };
   do {
+    if (!continuing()) break;
     if (esp_http_client_open(client, 0) != ESP_OK) {
-      job.error = "连接失败：检查服务地址、Wi-Fi和防火墙";
+      connectionError(job, client, https);
       break;
     }
+    if (!continuing()) break;
     auto length = esp_http_client_fetch_headers(client);
+    if (!continuing()) break;
     int status = esp_http_client_get_status_code(client);
+    if (length < 0) {
+      job.error = "服务响应中断或超时，请重试";
+      break;
+    }
     if (status != 200) {
       job.error = status == 401   ? "设备同步身份不匹配"
                   : status == 403 ? "同步密钥不匹配，请更新双端程序"
                   : status == 404 ? "请先在服务端登录并保存密码"
-                                  : "NAS请求失败（不接受重定向）";
+                  : status >= 300 && status < 400
+                      ? "地址发生跳转，请填写最终HTTPS服务地址"
+                  : status == 502 || status == 503 || status == 504
+                      ? "公网转发或服务暂不可用，请稍后重试"
+                      : "同步请求失败，HTTP " + std::to_string(status);
       break;
     }
     if (!proof.matched || proof.received != 1) {
       job.error = "服务端密钥校验失败，请更新服务";
       break;
     }
-    if (length < 0 || length > static_cast<int64_t>(maximum)) {
+    if (length > static_cast<int64_t>(maximum)) {
       job.error = "响应长度无效或超过上限";
       break;
     }
@@ -160,6 +220,9 @@ bool request(Job &job, const std::string &origin, const std::string &ca,
            !sys::Power::sleepPending() && esp_timer_get_time() < deadline) {
       int n = esp_http_client_read(client, reinterpret_cast<char *>(buffer),
                                    sizeof(buffer));
+      // Blocking I/O may return after screen-off, cancellation or the deadline.
+      // Recheck before treating EOF as a successful complete response.
+      if (!continuing()) break;
       if (n < 0) {
         job.error = "下载中断";
         break;

@@ -32,7 +32,7 @@ struct BluetoothSnapshot {
     BleScanState scan=BleScanState::Idle;
     BlePairAction pairing=BlePairAction::None;
     uint32_t passkey=0, pairGeneration=0, discoverableSeconds=0, scanRevision=0, bondRevision=0;
-    std::array<BleBond,8> bonds{};
+    std::array<BleBond,BlePeerStore::Capacity> bonds{};
     int bondCount=0;
     bool discovering() const { return operation==BluetoothOperation::Discover; }
     bool connecting() const { return operation==BluetoothOperation::Saved || operation==BluetoothOperation::Keyboard || switching; }

@@ -83,6 +83,16 @@ python tooling\firmware\flash_firmware.py --port COM_PORT --build-run artifacts\
 
 本工程新初始化的存储身份与其他部署不同。已有密码数据的设备不能在保留数据的前提下随意更换存储身份；先按 [配置说明](configuration.md) 决定是否沿用自己的配套身份。烧录本身不代表新旧身份兼容。
 
+## 便携系统升级包
+
+需要分发已有设备的仅系统分区升级包时，先在本副本完成独立初始化及完整构建，再在已激活的Windows x64 Python 3.11环境中使用已安装的esptool 5.4.0运行：
+
+```bat
+python -B tooling/firmware/package_portable_flash.py --build-run artifacts/validation/BUILD_RUN
+```
+
+`BUILD_RUN` 必须是本副本完整构建成功、所有输入和当前镜像匹配的记录目录。打包器从当前Python环境收集运行时和依赖，不下载或引用开发者机器的目录。本轮仅同步脚本并通过32项烧录测试和15项适配检查，没有在final独立完整编译或生成final身份的固件包。使用方式与保留数据边界见[便携升级](firmware/portable_flash.md)。
+
 ## 5. 服务端及 NAS 打包
 
 服务端单独构建只需 Python 初始化配置、JDK8 和 Maven，不需要 ESP-IDF：
@@ -100,6 +110,8 @@ Build-Server.cmd
 python tooling\server\java_integration_test.py --java java --jar artifacts/server/joyvault.jar --work artifacts/validation/server-http
 python tooling\server\package_nas.py --verification artifacts/validation/server-http/result.json
 ```
+
+本节对应仓库提供的独立密码服务；源码库不附带可直接部署的NAS包。
 
 测试目录要求不存在；重复测试换一个新目录名。测试只启动隔离临时服务，结束后关闭。打包检查本次 JAR 哈希、JUnit 和 HTTP 结果，输出到 `artifacts/releases/nas/`。介质含本部署身份及嵌入同步密钥，不要将自己的介质公开提交到源码仓库。
 
@@ -119,7 +131,7 @@ USB 投屏：安装 `desktop/pc-display/requirements.txt` 中依赖，使用带 
 
 ## 已烧录来源与额外宿主回放
 
-当前功能基线来自2026-10-22成功烧录版本，详情见[当前状态](current-state.md)。本仓库保留独立初始化；仍须按上文构建自己的镜像，不能把来源镜像摘要当成本地新构建结果。
+当前功能基线来自2026-11-02成功烧录版本，详情见[当前状态](current-state.md)。本仓库保留独立初始化；仍须按上文构建自己的镜像，不能把来源镜像摘要当成本地新构建结果。
 
 可选安装 GCC/G++ 后运行电量、Wi-Fi 与局域网生产逻辑回放。将 `GXX_PATH` 替换为实际 g++ 可执行文件路径，每次使用新的 run-dir：
 

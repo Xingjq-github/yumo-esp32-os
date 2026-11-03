@@ -18,7 +18,7 @@ static bool shutdownRequested=false,displayNeedsResume=false,lit=true;
 static int restartTheme=0,sleepTask=1,kPwrPin=5;
 static int64_t now=100;
 static std::mutex displayMutex;
-static bool usbIdle=true,castIdle=true,shotIdle=true,keysIdle=true,lanIdle=true,storageBusy=false,workersIdle=true,flushOk=true;
+static bool usbIdle=true,castIdle=true,shotIdle=true,keysIdle=true,mouseIdle=true,lanIdle=true,storageBusy=false,workersIdle=true,flushOk=true;
 static int cut=0,flushes=0,unmounts=0,notifications=0;
 static bool usbStop=false;
 static power::Config config;
@@ -48,11 +48,12 @@ struct Battery{static void poll(bool){}static bool supplyProtected(){return supp
 struct DisplayCast{static bool idle(){return castIdle;}};
 struct Screenshot{static bool idle(){return shotIdle;}};
 struct LanHotspot{static bool idle(){return lanIdle;}};
-struct BleHid{static bool keysIdle(){return sys::keysIdle;}static bool connected(){return false;}static int prepareDeepSleep(){return 0;}};
+struct BleHid{static bool keysIdle(){return sys::keysIdle;}static bool mouseIdle(){return sys::mouseIdle;}static bool connected(){return false;}static int prepareDeepSleep(){return 0;}};
 struct Qmi8658{static bool resumeFromStandby(){return true;}static bool suspendForStandby(){return true;}};
 struct Audio{static bool resumeFromStandby(){return true;}static void suspendForStandby(){protect(lateProtection);}};
 struct Settings{static power::Config powerConfig(){return config;}static void saveClock(time_t){}static bool flush(bool){++flushes;return flushOk;}static bool saveTheme(themes::Id){return true;}};
 namespace core {
+namespace xiaozhi {bool idle(){return workersIdle;}}
 namespace mp3 {bool idle(){return workersIdle;}}
 namespace speed{bool idle(){return workersIdle;}}
 namespace sd {enum class RestartState{Ready,Busy,Failed};static RestartState card=RestartState::Ready;bool busy(){return storageBusy;}RestartState prepareRestart(){++unmounts;return card;}}
@@ -65,13 +66,13 @@ bool Power::isScreenOn(){return lit;}
 bool Power::automaticSleepAllowed(){return true;}
 void Power::powerOff(){CHECK(flushes>0&&unmounts>0&&uiStopped&&workersIdle&&!storageBusy);++cut;shuttingDown=true;}
 #include "shutdown.inc"
-static void reset(){config={};supply=connected=false;lateProtection=0;shuttingDown=false;sleepRequested=false;uiStopped=false;wakeRequested=false;standbyActive=false;terminalPhase=false;shutdownRequested=false;automaticSleepRequested=false;restartTheme=0;lit=true;shutdownFailed=false;now=100;cut=flushes=unmounts=notifications=0;usbIdle=castIdle=shotIdle=keysIdle=lanIdle=workersIdle=flushOk=true;storageBusy=usbStop=false;core::sd::card=core::sd::RestartState::Ready;}
+static void reset(){config={};supply=connected=false;lateProtection=0;shuttingDown=false;sleepRequested=false;uiStopped=false;wakeRequested=false;standbyActive=false;terminalPhase=false;shutdownRequested=false;automaticSleepRequested=false;restartTheme=0;lit=true;shutdownFailed=false;now=100;cut=flushes=unmounts=notifications=0;usbIdle=castIdle=shotIdle=keysIdle=mouseIdle=lanIdle=workersIdle=flushOk=true;storageBusy=usbStop=false;core::sd::card=core::sd::RestartState::Ready;}
 }
 int main(){using namespace sys;
  for(int cycle=0;cycle<100;++cycle){
   reset();CHECK(Power::shutdown()==ESP_OK&&sleepRequested&&!lit);Power::processStandby();CHECK(cut==0&&flushes==0);
   uiStopped=true;
-  for(auto gate:{&castIdle,&shotIdle,&keysIdle,&lanIdle,&workersIdle}){*gate=false;Power::processStandby();CHECK(cut==0);*gate=true;}
+  for(auto gate:{&castIdle,&shotIdle,&keysIdle,&mouseIdle,&lanIdle,&workersIdle}){*gate=false;Power::processStandby();CHECK(cut==0);*gate=true;}
   storageBusy=true;Power::processStandby();CHECK(cut==0);storageBusy=false;
   core::sd::card=core::sd::RestartState::Busy;Power::processStandby();CHECK(cut==0);
   core::sd::card=core::sd::RestartState::Ready;Power::processStandby();CHECK(cut==1&&terminalPhase);

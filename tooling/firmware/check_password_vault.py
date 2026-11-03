@@ -74,14 +74,18 @@ class VaultContracts(unittest.TestCase):
         self.assertIn('MALLOC_CAP_INTERNAL|MALLOC_CAP_8BIT',worker)
     def test_exception_safe_crypto_http_handles(self):
         crypto=compact(read('main/core/vault_crypto.cpp'));network=read('main/core/vault_sync.cpp');parser=read('main/core/vault_json.cpp')
-        self.assertIn('~PsaKey()',crypto);self.assertIn('psa_destroy_key(id)',crypto)
+        self.assertIn('~HmacSha256(){wipe(this,sizeof(*this));}',crypto)
+        self.assertIn('HmacSha256hmac;',crypto)
+        self.assertNotIn('psa_import_key(',crypto);self.assertNotIn('psa_mac_compute(',crypto)
         self.assertIn('ClientOwner',network);self.assertIn('~ClientOwner()',network)
         self.assertIn('TransferBuffer',network);self.assertNotIn('/sdcard/',parser);self.assertIn('printedOwner',parser)
     def test_https_strict_bounded_manual_download(self):
         source=compact(read('main/core/vault_sync.cpp'))
-        for token in ('config.cert_pem=ca.empty()?nullptr:ca.c_str()','config.skip_cert_common_name_check=false','config.disable_auto_redirect=true','config.timeout_ms=3000','status!=200','output.size()+n>maximum','sys::WifiState::Connected','esp_http_client_is_complete_data_received'):
+        for token in ('config.cert_pem=ca.empty()?nullptr:ca.c_str()','config.skip_cert_common_name_check=false','config.disable_auto_redirect=true','config.timeout_ms=10000','status!=200','output.size()+n>maximum','sys::WifiState::Connected','esp_http_client_is_complete_data_received'):
             self.assertIn(token,source)
-        self.assertNotIn('crt_bundle_attach',source)
+        self.assertIn('if(https&&ca.empty())config.crt_bundle_attach=esp_crt_bundle_attach',source)
+        self.assertIn('normalizeOrigin(origin,endpoint)',source)
+        self.assertIn('https&&std::time(nullptr)<1704067200',source)
         self.assertNotRegex(source,r'https?://192\.')
     def test_sync_checks_identity_authentication_without_revision_gate(self):
         code=compact(read('main/core/password_vault.cpp'))
@@ -95,7 +99,7 @@ class VaultContracts(unittest.TestCase):
         self.assertIn('configDecode(disk.config,*result)',worker)
         self.assertIn('Operation::Setup',worker);self.assertIn('pin_salt',core);self.assertIn('pin_hash',core)
         self.assertIn('builtin::Token',worker);self.assertIn('builtin::Key',worker)
-        self.assertIn('validPin(job.master.data(),job.master.size())',worker)
+        self.assertIn('pattern::valid(job.master.data(),job.master.size())',worker)
         self.assertIn('!job.blank',worker)
     def test_no_automatic_enter_tab_or_host_target_switch(self):
         s=compact(read('main/core/password_vault.cpp'));ble=compact(read('main/core/ble_hid.cpp'))
@@ -120,7 +124,12 @@ class VaultContracts(unittest.TestCase):
         code=compact(read('main/core/vault_crypto.cpp'));header=compact(read('main/core/vault_format.hpp'))
         self.assertIn('PinRounds=10000',header);self.assertIn('first[19]=1',code)
         self.assertIn('uint32_ti=1;',code);self.assertIn('i<PinRounds',code)
-        self.assertIn('(i&1023)==0',code);self.assertIn('vTaskDelay(1)',code);self.assertIn('psa_mac_compute',code)
+        self.assertIn('(i&1023)==0',code);self.assertIn('vTaskDelay(1)',code)
+        self.assertIn('(i&255)==0&&(cancel.load()||!sys::Power::isScreenOn()||sys::Power::sleepPending())',code)
+        self.assertIn('hmac.compute(first,sizeof(first),u.bytes.data())',code)
+        self.assertIn('hmac.compute(u.bytes.data(),u.bytes.size(),next.bytes.data())',code)
+        self.assertIn('output.bytes[j]^=u.bytes[j]',code)
+        self.assertIn('wipe(output.bytes.data(),32);returnfalse;',code)
         self.assertNotIn('mbedtls/gcm.h',code)
     def test_schema_sizes_and_parser_recursion(self):
         code=compact(read('main/core/vault_json.cpp'))

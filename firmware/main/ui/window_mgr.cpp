@@ -9,6 +9,7 @@
 #include "text_input.hpp"
 #include "external_keyboard.hpp"
 #include "quick_panel.hpp"
+#include "screen_protection.hpp"
 #include "../core/event_bus.hpp"
 #include "../core/button_mgr.hpp"
 #include "../core/battery_mgr.hpp"
@@ -33,6 +34,13 @@ lv_obj_t *s_statusWifi = nullptr;
 lv_obj_t *s_statusBluetooth = nullptr;
 lv_obj_t *s_statusBattery = nullptr;
 
+void statusColor(lv_obj_t *label,lv_color_t color)
+{
+    lv_style_value_t previous;
+    if(lv_obj_get_local_style_prop(label,LV_STYLE_TEXT_COLOR,&previous,0)!=LV_STYLE_RES_FOUND ||
+        !lv_color_eq(previous.color,color))lv_obj_set_style_text_color(label,color,0);
+}
+
 void updateStatusBar(lv_timer_t *)
 {
     if (!sys::Power::isScreenOn() || !s_statusTime ||
@@ -41,7 +49,8 @@ void updateStatusBar(lv_timer_t *)
     struct tm current;
     localtime_r(&now, &current);
     if (s_statusTime) {
-        lv_label_set_text_fmt(s_statusTime, "%02d:%02d", current.tm_hour, current.tm_min);
+        char text[12];std::snprintf(text,sizeof(text),"%02d:%02d",current.tm_hour,current.tm_min);
+        compact::setText(s_statusTime,text);
     }
     const auto wifi=sys::Connectivity::snapshot();
     const auto bt=sys::SystemService::bluetooth();
@@ -49,8 +58,8 @@ void updateStatusBar(lv_timer_t *)
     // amber=transition, green=connected, red=error.
     auto radioIcon=[](lv_obj_t *label,const char *icon,bool enabled,bool connected,bool pending,bool failed) {
         if(!label) return;
-        lv_label_set_text(label,(enabled || failed)?icon:"");
-        lv_obj_set_style_text_color(label,failed?theme::danger():connected?ui::theme::success():pending?ui::theme::warning():theme::muted(),0);
+        compact::setText(label,(enabled || failed)?icon:"");
+        statusColor(label,failed?theme::danger():connected?ui::theme::success():pending?ui::theme::warning():theme::muted());
     };
     radioIcon(s_statusWifi,LV_SYMBOL_WIFI,wifi.enabled,wifi.state==sys::WifiState::Connected,
         wifi.transitioning || wifi.state==sys::WifiState::Searching || wifi.state==sys::WifiState::Connecting,wifi.state==sys::WifiState::Failed);
@@ -67,8 +76,8 @@ void updateStatusBar(lv_timer_t *)
         if(battery.valid) std::snprintf(text,sizeof(text),"%s %d%%",icon,level);
         else std::snprintf(text,sizeof(text),"%s --%%",icon);
         if(std::strcmp(lv_label_get_text(s_statusBattery),text)!=0) lv_label_set_text(s_statusBattery,text);
-        lv_obj_set_style_text_color(s_statusBattery,battery.charging?ui::theme::success():
-            battery.valid && level<=10?theme::danger():theme::fg(),0);
+        statusColor(s_statusBattery,battery.charging?ui::theme::success():
+            battery.valid && level<=10?theme::danger():theme::fg());
     }
 }
 }
@@ -145,8 +154,19 @@ void WindowManager::createWindow(std::unique_ptr<App> app)
 {
     sys::Power::activity();
     if (!app || !m_screen) { showTop();return; }
-    lv_obj_t *win = lv_obj_create(m_screen);
-    if(!win) { showTop();return; }
+    // A separate screen keeps the home object tree out of app compositing.
+    // The screen owns the opaque backdrop even if an app restyles its root.
+    m_appScreen = lv_obj_create(nullptr);
+    if(!m_appScreen) { showTop();return; }
+    lv_obj_remove_style_all(m_appScreen);
+    lv_obj_set_style_bg_color(m_appScreen, theme::bg(), 0);
+    lv_obj_set_style_bg_opa(m_appScreen, LV_OPA_COVER, 0);
+    lv_obj_set_scrollable(m_appScreen, false);
+    lv_obj_t *win = lv_obj_create(m_appScreen);
+    if(!win) {
+        lv_obj_delete(m_appScreen);m_appScreen=nullptr;
+        showTop();return;
+    }
     lv_obj_remove_style_all(win);
     lv_obj_set_size(win, LV_PCT(100), kScreenHeight);
     lv_obj_set_pos(win, 0, 0);
@@ -160,11 +180,12 @@ void WindowManager::createWindow(std::unique_ptr<App> app)
     if (!m_active->handlesHorizontalGesture()) Gesture::hook(win);
     lv_obj_set_hidden(m_home,true);
     lv_obj_set_hidden(m_statusBar,true);
+    lv_screen_load(m_appScreen);
     m_active->onShow();
     // Replace the entire home frame, including its bottom navigation dock.
     // Only do this on navigation; ordinary app updates remain partial redraws.
-    lv_obj_update_layout(m_screen);
-    lv_obj_invalidate(m_screen);
+    lv_obj_update_layout(m_appScreen);
+    lv_obj_invalidate(m_appScreen);
 }
 
 void WindowManager::openApp(size_t index)
@@ -177,7 +198,8 @@ void WindowManager::processNavigation()
     HomeScreen::poll();
     const bool shutdownError=sys::Power::takeShutdownError();
     if(sys::Power::takeThemeRestartError() || shutdownError) {
-        auto toast=compact::panel(m_screen,240,74);
+        // System notices outlive scene navigation until their expiry timer.
+        auto toast=compact::panel(lv_layer_top(),240,74);
         lv_obj_set_style_bg_color(toast,theme::surface(),0);
         lv_obj_align(toast,LV_ALIGN_BOTTOM_MID,0,0);
         auto text=compact::label(toast,shutdownError?"关机未完成\n请稍后到设置中重试":"主题切换未完成\n请稍后到设置中重试",230);
@@ -203,6 +225,7 @@ void WindowManager::processNavigation()
 
 void WindowManager::closeActive()
 {
+    ScreenProtection::reset();
     HomeScreen::cancelArrange();
     QuickPanel::close();
     TextInput::hide();
@@ -211,9 +234,14 @@ void WindowManager::closeActive()
     // A failing save must not keep the old app's widgets or subscriptions alive.
     try { m_active->onHide(); } catch(const std::bad_alloc &) { ESP_LOGW("window","App hide allocation failed"); }
     try { m_active->onDestroy(); } catch(const std::bad_alloc &) { ESP_LOGW("window","App destroy allocation failed"); }
+    // LVGL must have a live active screen while the outgoing scene is deleted.
+    // Navigation is processed in one GUI turn, so no intermediate home frame
+    // is flushed during an app-to-app switch.
+    lv_screen_load(m_screen);
     if(m_active->root()) lv_obj_delete(m_active->root());
     m_active->setRoot(nullptr);
     m_active.reset();
+    if(m_appScreen) { lv_obj_delete(m_appScreen);m_appScreen=nullptr; }
 }
 
 void WindowManager::goBack(void)
@@ -239,6 +267,10 @@ lv_obj_t *WindowManager::inputRoot() const {
 bool WindowManager::allowsQuickPanel() const {
     return !HomeScreen::arranging() && m_pendingApp>=m_apps.size() && (!m_active || m_active->allowsQuickPanel());
 }
+bool WindowManager::allowsScreenProtection() const {
+    return !HomeScreen::arranging() && m_pendingApp>=m_apps.size() &&
+        (!m_active || m_active->allowsScreenProtection());
+}
 bool WindowManager::directionalKey(lv_dir_t direction) {
     if(QuickPanel::visible() || TextInput::visible() || m_pendingApp<m_apps.size()) return false;
     return m_active && m_active->onDirectionalKey(direction);
@@ -251,6 +283,7 @@ uint32_t WindowManager::powerHints() const {
 void WindowManager::showTop(void)
 {
     if(!m_active) {
+        if(lv_screen_active()!=m_screen) lv_screen_load(m_screen);
         lv_obj_set_hidden(m_home,false);
         lv_obj_set_hidden(m_statusBar,false);
         lv_obj_move_foreground(m_statusBar);

@@ -1,6 +1,6 @@
 """Fetch pinned component packages; tools and SDK must be installed separately."""
 from pathlib import Path
-import hashlib, io, json, shutil, tempfile, urllib.request, zipfile
+import hashlib, io, json, re, shutil, tempfile, urllib.request, zipfile
 
 ROOT=Path(__file__).resolve().parents[1]
 STORAGE='https://components-file.espressif.com/'
@@ -12,6 +12,44 @@ def fetch(path):
 
 def digest(data):
     return hashlib.sha256(data).hexdigest()
+
+def prepare_source_component(item, target):
+    """Reproduce the reviewed upstream file set at one immutable Git commit."""
+    manifest_path=Path(item['source_manifest'])
+    if manifest_path.is_absolute() or '..' in manifest_path.parts:
+        raise RuntimeError('Invalid source manifest path')
+    manifest=json.loads((ROOT/manifest_path).read_text(encoding='utf-8'))
+    repo=manifest['repo'];commit=manifest['commit']
+    if not re.fullmatch(r'espressif/[A-Za-z0-9_-]+',repo) or not re.fullmatch(r'[a-f0-9]{40}',commit):
+        raise RuntimeError('Expected a pinned official source commit')
+    prefix='https://raw.githubusercontent.com/'+repo+'/'+commit+'/'
+    folder=target/item['name'].replace('/','__')
+    checks={'files':[]}
+    for row in manifest['files']:
+        relative=Path(row['path'])
+        if (relative.is_absolute() or '..' in relative.parts or ':' in row['path']
+                or '\\' in row['path'] or not row['url'].startswith(prefix)):
+            raise RuntimeError('Invalid pinned source path')
+        checks['files'].append({'path':row['path'],'hash':row['sha256']})
+    if folder.exists():
+        verify(folder,checks,{})
+        print(item['name']+' verified',flush=True)
+        return
+    print('Downloading '+item['name']+' '+item['version'],flush=True)
+    with tempfile.TemporaryDirectory(prefix='.download-',dir=target) as temporary:
+        stage=Path(temporary)
+        for row in manifest['files']:
+            request=urllib.request.Request(row['url'],headers={'User-Agent':'Yumo-source-build/1'})
+            with urllib.request.urlopen(request,timeout=45) as response:
+                raw=response.read()
+            blob=hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest()
+            if len(raw)!=row['bytes'] or digest(raw)!=row['sha256'] or blob!=row['git_blob_sha1']:
+                raise RuntimeError('Pinned upstream source differs: '+row['path'])
+            output=stage/row['path'];output.parent.mkdir(parents=True,exist_ok=True)
+            output.write_bytes(raw)
+        verify(stage,checks,{})
+        stage.rename(folder)
+    print(item['name']+' ready',flush=True)
 
 def verify(folder, checks, overlays):
     for entry in checks['files']:
@@ -30,6 +68,9 @@ def main():
     target=ROOT/'dependencies/managed_components'
     target.mkdir(parents=True, exist_ok=True)
     for item in config['components']:
+        if 'source_manifest' in item:
+            prepare_source_component(item,target)
+            continue
         name=item['name'];version=item['version'];folder_name=name.replace('/','__')
         folder=target/folder_name
         expected={row['path']:row['after'] for row in item.get('overlays',[])}

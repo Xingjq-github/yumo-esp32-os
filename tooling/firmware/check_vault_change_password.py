@@ -49,11 +49,13 @@ class VaultChangePasswordContracts(unittest.TestCase):
     def test_new_is_confirmed_before_final_job(self):
         self.assertIn('if(m_page==Page::ChangeNew){m_firstPin=m_pin;vault::clear(m_pin);m_page=Page::ChangeConfirm;',self.submit)
         self.assertLess(self.submit.index('!old&&m_pin!=m_firstPin'),self.submit.index('std::make_shared'))
-        self.assertIn('finishPinChange("修改失败：两次新密码不同");return;',self.submit)
+        self.assertIn('finishPinChange("修改失败：两次图形不同");return;',self.submit)
     def test_invalid_or_overlong_input_returns_immediately(self):
-        self.assertLess(self.submit.index('!vault::validPin'),self.submit.index('std::make_shared'))
-        self.assertIn('finishPinChange("修改失败：请输入4到12位数字");return;',self.submit)
-        self.assertIn('if(changingPin()&&m_pin.size()>=12){finishPinChange("修改失败：密码最多12位");return;}',self.app)
+        self.assertLess(self.submit.index('!vault::pattern::valid'),self.submit.index('std::make_shared'))
+        self.assertIn('finishPinChange("请至少连接4个点");return;',self.submit)
+        self.assertNotIn('Action::Digit',self.app)
+        self.assertIn('pattern::valid',self.app)
+        self.assertIn('count > Maximum', (ROOT/'main/core/vault_pattern.hpp').read_text())
     def test_allocation_and_launch_failure_return(self):
         self.assertIn('if(launch(job)!=vault::StartResult::Started)finishPinChange(',self.submit)
         self.assertIn('catch(conststd::bad_alloc&){finishPinChange(',self.submit)
@@ -68,10 +70,10 @@ class VaultChangePasswordContracts(unittest.TestCase):
         self.assertIn('m_page==Page::ChangeConfirm&&m_session&&m_job->output',s)
         self.assertLess(s.index('m_session=std::move(m_job->output)'),s.index('finishPinChange("密码修改成功")'))
     def test_errors_return_and_uncertain_commit_forces_disk_reload(self):
-        self.assertIn('kind==vault::Operation::ChangePin&&m_job->configWriteStarted',self.poll)
+        self.assertIn('(kind==vault::Operation::ChangePin||kind==vault::Operation::Setup)&&m_job->configWriteStarted',self.poll)
         self.assertIn('lock();message("保存结果未确认，请重新解锁核对")',self.poll)
         self.assertIn('kind==vault::Operation::VerifyChangePin||kind==vault::Operation::ChangePin',self.poll)
-        self.assertIn('finishPinChange("修改失败：原密码错误或操作未完成")',self.poll)
+        self.assertIn('finishPinChange("修改失败：原图形错误或操作未完成")',self.poll)
         self.assertIn('if(!m_job&&m_page==Page::Locked)load();',self.poll)
     def test_pin_screens_keep_existing_fullscreen_geometry(self):
         self.assertIn('constboolpinPage=m_page==Page::Locked||m_page==Page::VerifyReveal||m_page==Page::VerifyAccess||changingPin()',self.app)
@@ -88,7 +90,7 @@ class VaultChangePasswordContracts(unittest.TestCase):
     def test_core_validates_both_pins_and_retains_cooldown(self):
         self.assertIn('job.operation==Operation::VerifyChangePin||job.operation==Operation::VerifyAccess||job.operation==Operation::ChangePin',self.core)
         self.assertIn('if(esp_timer_get_time()<nextUnlock)',self.core)
-        self.assertIn('!validPin(job.replacement.data(),job.replacement.size())',self.core)
+        self.assertIn('!pattern::valid(job.replacement.data(),job.replacement.size())',self.core)
         self.assertIn('if(!verifyPin(job,*result))return;',self.core)
     def test_persistence_rechecks_disk_and_changes_only_verifier(self):
         s=section(self.core,'elseif(job.operation==Operation::ChangePin){','elseif(job.operation==Operation::Sync||')

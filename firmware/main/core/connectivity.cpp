@@ -17,6 +17,7 @@
 #include <cctype>
 #include <cstring>
 #include <mutex>
+#include <new>
 
 namespace sys {
 namespace {
@@ -53,6 +54,7 @@ std::atomic<bool> stopDelivered{false};
 int64_t connectDeadline=0, scanDeadline=0, retryAt=0;
 int64_t cancelDeadline=0, transitionDeadline=0;
 int64_t disconnectDeadline=0, probeRetryAt=0, probeBusyDeadline=0;
+int64_t attemptStarted=-1, probeStarted=-1, joinStarted=-1, addressStarted=-1;
 bool transitionTimedOut=false;
 std::mutex viewMutex;
 WifiSnapshot view;
@@ -60,9 +62,22 @@ wifi_ap_record_t *viewNetworks=nullptr;
 uint16_t viewCount=0;
 struct PublishView {
     ~PublishView() {
-        const std::lock_guard<std::mutex> lock(viewMutex);
-        view=state; view.transitioning=!transitionTimedOut && (awaitingStart || awaitingStop || restartPending || ignoreDisconnect); view.retrying=retryAt!=0; view.scanPending=scanOutstanding || awaitingStop; viewCount=networkCount;
-        if(networkCount) std::copy_n(networks,networkCount,viewNetworks);
+        try {
+            const std::lock_guard<std::mutex> lock(viewMutex);
+            // Reserve before modifying any published field. If memory is low,
+            // retain the complete previous snapshot and retry on the next poll;
+            // an allocation escaping this scope guard would call terminate.
+            view.ssid.reserve(state.ssid.size());
+            view.ip.reserve(state.ip.size());
+            const bool scansChanged=view.scanRevision!=state.scanRevision || viewCount!=networkCount;
+            view=state; view.transitioning=!transitionTimedOut && (awaitingStart || awaitingStop || restartPending || ignoreDisconnect); view.retrying=retryAt!=0; view.scanPending=scanOutstanding || awaitingStop;
+            // Scan arrays change at scan completion/clear, not at every 50ms
+            // service poll. Keep the public scan revision/count as the fence.
+            if(scansChanged && networkCount) std::copy_n(networks,networkCount,viewNetworks);
+            viewCount=networkCount;
+        } catch(const std::bad_alloc &) {
+            // No allocating diagnostics from a destructor, including unwind.
+        }
     }
 };
 
@@ -73,6 +88,12 @@ QueueHandle_t events=nullptr;
 esp_event_handler_instance_t wifiHandler=nullptr, ipHandler=nullptr;
 std::atomic<bool> overflow{false};
 
+void resetConnectionTiming(int64_t now=-1) {
+    attemptStarted=now; probeStarted=joinStarted=addressStarted=-1;
+}
+long long elapsedMs(int64_t started,int64_t now) {
+    return started>=0 && now>=started?static_cast<long long>((now-started)/1000):-1;
+}
 void reportStartFailure(const char *stage,esp_err_t error) {
     // Failure only: enough evidence for the next reproduction, no polling log
     // or credentials. PSRAM totals do not describe the radio's internal heap.
@@ -116,6 +137,7 @@ esp_err_t releaseStoppedLocked() {
     broadcastProbe=false; networksSeenAt=targetSeenAt=-1; targetChannel=0; targetRssi=0;
     connectDeadline=scanDeadline=retryAt=cancelDeadline=transitionDeadline=0;
     disconnectDeadline=probeRetryAt=probeBusyDeadline=0;
+    resetConnectionTiming();
     startDelivered.store(false); stopDelivered.store(false); driverStarted.store(false);
     scanCompletion.store(-1); overflow.store(false);
     targetSsid.clear(); targetPassword.clear();
@@ -244,16 +266,27 @@ esp_err_t beginConnect() {
     std::memcpy(config.sta.password,targetPassword.data(),targetPassword.size());
     config.sta.threshold.authmode=targetPassword.empty()?WIFI_AUTH_OPEN:WIFI_AUTH_WPA_PSK;
     config.sta.pmf_cfg.capable=true;
-    config.sta.scan_method=WIFI_ALL_CHANNEL_SCAN;
+    // A fresh presence scan already selected the strongest observed channel.
+    // ALL_CHANNEL_SCAN ignores that head start and still scans every channel.
+    // Try the observed channel first; retain an unpinned, all-channel fallback
+    // on bounded retries so a changed channel or another mesh AP can recover.
+    const bool fastScan=state.retry==0 && targetChannel>=1 && targetChannel<=13;
+    config.sta.scan_method=fastScan?WIFI_FAST_SCAN:WIFI_ALL_CHANNEL_SCAN;
     config.sta.sort_method=WIFI_CONNECT_AP_BY_SIGNAL;
-    // One SDK retry per candidate, inside the bounded application attempt.
-    config.sta.failure_retry_cnt=1;
+    // SDK per-candidate retries apply only to ALL_CHANNEL_SCAN.
+    config.sta.failure_retry_cnt=fastScan?0:1;
     // Start discovery on the channel just observed, without pinning a BSSID:
     // mesh/repeater APs with the same SSID can still be selected by the driver.
     config.sta.channel=targetChannel;
     networksSeenAt=targetSeenAt=-1; // retries require new presence evidence
     err=esp_wifi_set_config(WIFI_IF_STA,&config);
-    if(err==ESP_OK) err=esp_wifi_connect();
+    if(err==ESP_OK) {
+        joinStarted=esp_timer_get_time(); addressStarted=-1;
+        ESP_LOGI("wifi","join start attempt=%u scan=%s channel=%u prejoin_ms=%lld",
+            static_cast<unsigned>(state.retry)+1,fastScan?"fast":"all",static_cast<unsigned>(targetChannel),
+            elapsedMs(attemptStarted,joinStarted));
+        err=esp_wifi_connect();
+    }
     state.ssid=targetSsid; state.ip.clear(); state.rssi=targetRssi;
     state.phase=WifiConnectPhase::Joining;
     if(err==ESP_OK) { connectionActive=true; connectDeadline=esp_timer_get_time()+kConnectTimeout; setState(WifiState::Connecting); }
@@ -277,13 +310,20 @@ esp_err_t beginTargetScan() {
     state.scan=targetScan?WifiScanState::Scanning:WifiScanState::Failed;
     state.scanError=err; ++state.scanRevision;
     scanDeadline=targetScan?esp_timer_get_time()+kScanTimeout:0;
+    if(targetScan) {
+        probeStarted=esp_timer_get_time();
+        ESP_LOGI("wifi","probe start attempt=%u mode=%s elapsed_ms=%lld",
+            static_cast<unsigned>(state.retry)+1,broadcastProbe?"broadcast":"directed",elapsedMs(attemptStarted,probeStarted));
+    }
     return err;
 }
 void failed(int reason) {
-    ESP_LOGW("wifi","connect failure state=%d phase=%d reason=%d channel=%u rssi=%d; internal free=%u largest=%u",
+    ESP_LOGW("wifi","connect failure state=%d phase=%d reason=%d channel=%u rssi=%d attempt=%u elapsed_ms=%lld; internal free=%u largest=%u",
         static_cast<int>(state.state),static_cast<int>(state.phase),reason,static_cast<unsigned>(targetChannel),state.rssi,
+        static_cast<unsigned>(state.retry)+1,elapsedMs(attemptStarted,esp_timer_get_time()),
         static_cast<unsigned>(heap_caps_get_free_size(MALLOC_CAP_INTERNAL|MALLOC_CAP_8BIT)),
         static_cast<unsigned>(heap_caps_get_largest_free_block(MALLOC_CAP_INTERNAL|MALLOC_CAP_8BIT)));
+    resetConnectionTiming();
     connectDeadline=0; state.ip.clear(); state.rssi=0;
     probeRetryAt=probeBusyDeadline=0;
     setState(WifiState::Failed,reason);
@@ -350,6 +390,11 @@ void consumeScan(int status) {
     state.scan=err==ESP_OK?WifiScanState::Complete:WifiScanState::Failed;
     state.scanError=err; ++state.scanRevision;
     if(targetScan) {
+        const auto now=esp_timer_get_time();
+        ESP_LOGI("wifi","probe done attempt=%u mode=%s result=%d found=%d records=%u scan_ms=%lld elapsed_ms=%lld",
+            static_cast<unsigned>(state.retry)+1,broadcastProbe?"broadcast":"directed",err,int(err==ESP_OK && found),
+            static_cast<unsigned>(count),elapsedMs(probeStarted,now),elapsedMs(attemptStarted,now));
+        probeStarted=-1;
         targetScan=false;
         if(err==ESP_OK && found) { targetValidated=true; targetSeenAt=networksSeenAt; }
         else if(err==ESP_OK && !broadcastProbe) broadcastProbe=true;
@@ -418,6 +463,7 @@ esp_err_t Connectivity::setWifiEnabled(bool enabled) {
         retryAt=0; connectDeadline=0; connectQueued=false; targetValidated=false;
         broadcastProbe=false; networksSeenAt=targetSeenAt=-1; targetChannel=0; targetRssi=0;
         probeRetryAt=probeBusyDeadline=0;
+        resetConnectionTiming();
         if(!enabled) {
             reconnect=false; restartPending=false; awaitingStart=false; startDelivered.store(false); stopScanLocked();
             (void)esp_wifi_disconnect();
@@ -458,6 +504,7 @@ esp_err_t Connectivity::disconnectWifi() {
     reconnect=false; connectQueued=false; targetValidated=false; retryAt=0; connectDeadline=0;
     broadcastProbe=false; networksSeenAt=targetSeenAt=-1; targetChannel=0; targetRssi=0;
     probeRetryAt=probeBusyDeadline=0;
+    resetConnectionTiming();
     stopScanLocked();
     const auto err=requestDisconnectLocked();
     if(err!=ESP_OK) return err;
@@ -476,10 +523,12 @@ esp_err_t Connectivity::connectWifi(const std::string &ssid,const std::string &p
         return err; // never scan on top of a driver which refused the disconnect
     }
     targetSsid=ssid; targetPassword=password; reconnect=true; retryAt=0; state.retry=0;
+    resetConnectionTiming(esp_timer_get_time());
     probeRetryAt=probeBusyDeadline=0; probeRecovered=false;
     targetValidated=false; connectQueued=true; connectDeadline=0;
     broadcastProbe=false; targetSeenAt=-1; targetChannel=0; targetRssi=0;
     validateCachedTarget();
+    ESP_LOGI("wifi","connect requested attempt=1 cached=%d channel=%u",int(targetValidated),static_cast<unsigned>(targetChannel));
     state.ssid=ssid; state.ip.clear(); state.rssi=0;
     setState(WifiState::Searching);
     return ESP_OK; // poll waits for the cancelled scan / STA_STOP / STA_START fences.
@@ -569,7 +618,11 @@ void Connectivity::poll() {
             wifi_ap_record_t ap{};
             if(esp_wifi_sta_get_ap_info(&ap)!=ESP_OK || !sameSsid(ap.ssid,targetSsid)) continue;
             state.phase=WifiConnectPhase::Address; state.rssi=ap.rssi; ++state.revision;
-            connectDeadline=esp_timer_get_time()+kAddressTimeout;
+            addressStarted=esp_timer_get_time();
+            // join_ms includes the SDK's internal scan and authentication.
+            ESP_LOGI("wifi","associated attempt=%u join_ms=%lld elapsed_ms=%lld rssi=%d",
+                static_cast<unsigned>(state.retry)+1,elapsedMs(joinStarted,addressStarted),elapsedMs(attemptStarted,addressStarted),state.rssi);
+            connectDeadline=addressStarted+kAddressTimeout;
         } else if(event.kind==RadioEvent::GotIp) {
             if(ignoreDisconnect || !reconnect || !connectionActive || state.state!=WifiState::Connecting) continue; // reject stale DHCP completion
             wifi_ap_record_t ap{}; esp_netif_ip_info_t info{};
@@ -578,6 +631,10 @@ void Connectivity::poll() {
             if(!targetSsid.empty() && targetSsid!=std::string((char *)ap.ssid,strnlen((char *)ap.ssid,32))) continue;
             char ip[16]; esp_ip4addr_ntoa(&info.ip,ip,sizeof(ip));
             state.ip=ip; state.ssid.assign((char *)ap.ssid,strnlen((char *)ap.ssid,32)); state.rssi=ap.rssi;
+            const auto now=esp_timer_get_time();
+            ESP_LOGI("wifi","online attempt=%u dhcp_ms=%lld total_ms=%lld rssi=%d",
+                static_cast<unsigned>(state.retry)+1,elapsedMs(addressStarted,now),elapsedMs(attemptStarted,now),state.rssi);
+            resetConnectionTiming();
             state.retry=0; retryAt=0; connectDeadline=0; ignoreDisconnect=false;
             Settings::setWifiCredentials(targetSsid,targetPassword);
             Settings::rememberWifi(targetSsid,targetPassword); // only after DHCP success
@@ -619,6 +676,8 @@ void Connectivity::poll() {
     if(retryAt && now>=retryAt && state.enabled) {
         retryAt=0; connectQueued=true; targetValidated=false; setState(WifiState::Searching);
         broadcastProbe=false; targetSeenAt=-1; targetChannel=0; targetRssi=0;
+        resetConnectionTiming(now);
+        ESP_LOGI("wifi","connect retry attempt=%u",static_cast<unsigned>(state.retry)+1);
     }
     if(connectQueued && state.enabled && !awaitingStop && !awaitingStart && !scanOutstanding && !ignoreDisconnect && now>=probeRetryAt) {
         if(targetValidated && !recentPresence(targetSeenAt)) { targetValidated=false; targetChannel=0; targetRssi=0; }

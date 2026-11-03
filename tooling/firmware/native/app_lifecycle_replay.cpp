@@ -33,6 +33,7 @@ class Power {public:
     static void activity(){}
 };
 class Buttons {public:static bool blockHomeShortcut(){return false;}};
+class BleKeyboardClient {public:static bool iineKeyboard(){return false;}};
 bool BleHid::keyboardConnected(){return fake::keyboard;}
 WifiSnapshot Connectivity::snapshot(){return {};}
 BluetoothSnapshot SystemService::bluetooth(){return {};}

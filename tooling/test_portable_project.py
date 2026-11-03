@@ -55,4 +55,34 @@ class InitializationTests(unittest.TestCase):
                 initialize(self.root,url)
         self.assertFalse((self.root/'server/deployment/local-keys.json').exists())
 
+    def test_https_urls_preserve_existing_identity_and_normalize_root_slash(self):
+        initialize(self.root)
+        before=self.snapshot()
+        for url,expected in (
+            ('https://vault.example.com', 'https://vault.example.com'),
+            ('https://vault.example.com/', 'https://vault.example.com'),
+            ('https://vault.example.com:443/', 'https://vault.example.com:443'),
+            ('https://vault.example.com:9443', 'https://vault.example.com:9443'),
+            ('http://192.0.2.10:9080/', 'http://192.0.2.10:9080'),
+        ):
+            with self.subTest(url=url):
+                initialize(self.root,url)
+                self.assertEqual(before,self.snapshot(),'URL changes must never replace keys')
+                saved=json.loads((self.root/'firmware/vault-connection.json').read_text())
+                self.assertEqual(saved['url'],expected)
+                self.assertIn(json.dumps(expected),(self.root/'firmware/main/core/vault_builtin.hpp').read_text())
+                initialize(self.root)
+                self.assertEqual(before,self.snapshot())
+                self.assertEqual(json.loads((self.root/'firmware/vault-connection.json').read_text())['url'],expected)
+    def test_invalid_https_urls_leave_all_existing_files_unchanged(self):
+        initialize(self.root,url='https://vault.example.com')
+        before={p.relative_to(self.root):p.read_bytes() for p in self.root.rglob('*') if p.is_file()}
+        for url in ('https://', 'https://user:pass@vault.example.com',
+                    'https://vault.example.com/path', 'https://vault.example.com/?secret=1',
+                    'https://vault.example.com/#fragment', 'https://vault.example.com:0',
+                    'https://vault.example.com:65536', 'https://vault.example.com:bad'):
+            with self.subTest(url=url),self.assertRaises(ValueError):
+                initialize(self.root,url)
+            self.assertEqual(before,{p.relative_to(self.root):p.read_bytes() for p in self.root.rglob('*') if p.is_file()})
+
 if __name__=='__main__':unittest.main()

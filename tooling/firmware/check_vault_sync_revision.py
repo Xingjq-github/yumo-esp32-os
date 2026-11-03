@@ -46,7 +46,7 @@ class RevisionIndependentSyncContracts(unittest.TestCase):
  def test_authenticated_decryption_and_pin_preserved(self):
   s=read('main/core/password_vault.cpp')
   self.assertIn('!decryptBundle(bundle, key, plain.value)',s)
-  self.assertIn('validPin(job.master.data(), job.master.size())',s)
+  self.assertIn('pattern::valid(job.master.data(), job.master.size())',s)
   self.assertIn('verifyPin(job, *result)',s)
   self.assertIn('builtin::Token, MaxBundle, bundle)',s)
  def test_local_slot_generation_is_independent_of_remote_revision(self):

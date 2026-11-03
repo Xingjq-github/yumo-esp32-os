@@ -3,7 +3,7 @@ from pathlib import Path
 import argparse,struct,zlib
 
 ROOT=(Path(__file__).resolve().parents[2]/'firmware')
-NAMES=('Fc','Programming','Dino','Maze','Patterns','Garden','Timer','Music')
+NAMES=('Fc','Programming','Dino','Maze','Patterns','Garden','Timer','Music','Xiaozhi')
 
 def artwork():
     images=[]
@@ -73,6 +73,12 @@ def artwork():
     # Two connected musical notes, distinct from microphone and Bluetooth.
     p=canvas();line(p,(8,4),(20,1),2);line(p,(8,7),(20,4),2)
     rect(p,8,4,2,14);rect(p,20,1,2,15);disk(p,5,18,4);disk(p,17,16,4)
+    images.append(p)
+    # An original robot in a speech bubble: two eyes, antenna and a reply tail.
+    p=canvas();rect(p,3,5,18,15);rect(p,5,7,14,11,0)
+    rect(p,11,1,2,4);rect(p,9,0,6,2);rect(p,0,9,3,6);rect(p,21,9,3,6)
+    rect(p,7,9,3,4);rect(p,14,9,3,4);rect(p,9,15,6,1)
+    rect(p,5,20,2,3);line(p,(6,22),(10,18),1)
     images.append(p)
     return images
 

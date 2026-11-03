@@ -1,6 +1,7 @@
 #pragma once
 #include "cJSON.h"
 #include "password_vault.hpp"
+#include "vault_origin.hpp"
 namespace vault {
 void wipeJson(cJSON *obj);
 struct Json {

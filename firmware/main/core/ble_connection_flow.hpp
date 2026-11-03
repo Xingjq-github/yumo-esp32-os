@@ -19,7 +19,7 @@ public:
         if(!BleHid::enabled() || BleHid::state()==BleHidState::Starting) return ESP_ERR_INVALID_STATE;
         BleBond selected=peer;
         if(next==BluetoothOperation::Saved) {
-            BleBond saved[8]{};const int count=BleHid::bonds(saved,8);bool found=false;
+            BleBond saved[BlePeerStore::Capacity]{};const int count=BleHid::bonds(saved,BlePeerStore::Capacity);bool found=false;
             for(int i=0;i<count;++i) if(BlePeerStore::same(saved[i],peer)) {selected=saved[i];found=true;break;}
             if(!found) return ESP_ERR_NOT_FOUND; // don't disconnect a working host for a stale row
             if(BleHid::connected() && BlePeerStore::same(BleHid::peer(),selected)) return ESP_OK;

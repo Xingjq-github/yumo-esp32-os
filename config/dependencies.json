@@ -29,6 +29,11 @@
       "checksums_sha256": "8a8857db28aa1ed552b027319b6c4434c98dc01a6d92cb3004ad4d5a70a4003e"
     },
     {
+      "name": "espressif/esp_audio_codec",
+      "version": "2.5.0",
+      "checksums_sha256": "3d5015b429f7c3052b4d1d4fc5a76b78ba35fa67a4a0ec93ffdb5113f1526aeb"
+    },
+    {
       "name": "espressif/esp_audio_effects",
       "version": "1.0.2",
       "checksums_sha256": "bffc0ec1290959af48db84e8c0ad2c8d5447d71cc013fe2d0516b9080b677463"
@@ -94,6 +99,11 @@
       "checksums_sha256": "241c88cb70aa34bb92792f8b95eb50504b471c599346f95fb01ef6a67134e51a"
     },
     {
+      "name": "espressif/esp_websocket_client",
+      "version": "1.8.0",
+      "source_manifest": "config/sources/espressif__esp_websocket_client.json"
+    },
+    {
       "name": "espressif/freetype",
       "version": "2.14.3~1",
       "checksums_sha256": "3cced6e457276890b467d9aa97da17ed0e41dd0bc7415fe6fde2f7dfcedece47"
@@ -107,6 +117,11 @@
       "name": "espressif/libpng",
       "version": "1.6.58~1",
       "checksums_sha256": "06b866f3c7d164c3f2bea5baefb886e4e90ae5107144b1fdcc32c331b2b8d68e"
+    },
+    {
+      "name": "espressif/mqtt",
+      "version": "1.1.0",
+      "source_manifest": "config/sources/espressif__mqtt.json"
     },
     {
       "name": "espressif/tinyusb",

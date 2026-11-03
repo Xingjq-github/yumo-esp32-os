@@ -10,6 +10,7 @@
 #include "src/misc/lv_text_private.h"
 
 #include <algorithm>
+#include <cerrno>
 #include <cstdio>
 #include <cstring>
 
@@ -150,6 +151,7 @@ void TextReader::scanFiles(void)
     m_paths.clear(); m_names.clear(); m_directories.clear(); m_scanError.clear();
     m_listingTruncated=false; m_viewing=false;
     m_job=core::listDirectory(m_directory,false);
+    if(!m_job) {m_scanError=core::storageError(ENOMEM);showList();return;}
     if(m_poll) lv_timer_resume(m_poll);
     showList(); showMessage("正在读取目录…");
 }
@@ -224,6 +226,7 @@ void TextReader::openFile(size_t index)
     if(m_directories[index]) { m_directory=m_paths[index]; scanFiles(); return; }
     if(m_job) m_job->cancelled.store(true);
     m_job=core::readText(m_paths[index]);
+    if(!m_job) {showList();showMessage(core::storageError(ENOMEM));return;}
     if(m_poll) lv_timer_resume(m_poll);
     m_viewing=true;
     m_powerSession=sys::Buttons::claimViewExit();

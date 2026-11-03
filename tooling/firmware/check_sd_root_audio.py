@@ -1,6 +1,7 @@
 """Current root-SD and recorder-level source checks (no hardware assumptions)."""
 from pathlib import Path
-import hashlib,json,re,unittest
+import hashlib,json,re,tempfile,unittest,zipfile
+from package_sd_resources import write_template_archive
 from urllib.parse import urlsplit
 ROOT=(Path(__file__).resolve().parents[2]/'firmware')
 RUN=ROOT/'../tooling/firmware/fixtures/contracts/sd-root-audio-20260919-0020'
@@ -51,6 +52,13 @@ class SdRootAudioContracts(unittest.TestCase):
   expected=before['sdcard/joycode/config/nes-keys.json']
   self.assertEqual(hashlib.sha256((sd/'config/nes-keys.json').read_bytes()).hexdigest(),expected['sha256'])
   for name in ('config','recordings','nes'):self.assertTrue((sd/name).is_dir(),name)
+  with tempfile.TemporaryDirectory(prefix='yumo-sd-template-') as temporary:
+   archive=Path(temporary)/'sd-template.zip'
+   write_template_archive(sd,archive)
+   with zipfile.ZipFile(archive) as z:
+    self.assertIsNone(z.testzip())
+    self.assertEqual(sorted(z.namelist()),sorted(('config/','recordings/','nes/','config/vault.json','config/nes-keys.json')))
+    for name in ('vault.json','nes-keys.json'):self.assertEqual(z.read('config/'+name),(sd/'config'/name).read_bytes())
  def test_hardware_gain_has_readback_and_failure_cleanup(self):
   s=compact(read('main/core/audio_mgr.cpp'))
   self.assertIn('ESP_CODEC_DEV_MAKE_CHANNEL_MASK(0)|ESP_CODEC_DEV_MAKE_CHANNEL_MASK(1)',s)

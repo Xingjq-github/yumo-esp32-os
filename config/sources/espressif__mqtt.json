@@ -1,0 +1,198 @@
+{
+  "repo": "espressif/esp-mqtt",
+  "commit": "1a1e5788a5cf57a0f44a3c6c061407f6c9be1026",
+  "tag": "v1.1.0",
+  "method": "official raw GitHub files with Git blob SHA1 and local SHA256 verification",
+  "scope": "Complete production sources, public/private headers, CMake/Kconfig/manifest, license, README/changelog; repository CI/examples/tests omitted.",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "4fc1c14da50917694e5b013b0207c4c32384f43d6536c53cffac9b9a32c72093",
+      "git_blob_sha1": "481455e3ccea171ffbdf51fe8254a7ecc4f57944",
+      "bytes": 4625,
+      "url": "https://raw.githubusercontent.com/espressif/esp-mqtt/1a1e5788a5cf57a0f44a3c6c061407f6c9be1026/CHANGELOG.md"
+    },
+    {
+      "path": "CMakeLists.txt",
+      "sha256": "c497a329f336f801af4f697e956db5de23721a89000696e7d354e3f35ba158b6",
+      "git_blob_sha1": "c0a4b8607c15383345dca39d7cc1f40d4b10a84b",
+      "bytes": 855,
+      "url": "https://raw.githubusercontent.com/espressif/esp-mqtt/1a1e5788a5cf57a0f44a3c6c061407f6c9be1026/CMakeLists.txt"
+    },
+    {
+      "path": "Kconfig",
+      "sha256": "b80dcdfd895c1c0b93c40c10e1001963782c9ca41fd582f4bcdee3486c99b516",
+      "git_blob_sha1": "d6866ab00b7b507cbf08c094ba76aa0952da4149",
+      "bytes": 7913,
+      "url": "https://raw.githubusercontent.com/espressif/esp-mqtt/1a1e5788a5cf57a0f44a3c6c061407f6c9be1026/Kconfig"
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "20ed622a5f1a273258b415097609f6a236fb2f23f8c593c63e29e6cc77de0032",
+      "git_blob_sha1": "a623b53ffcbf30742ce5b393d500f0a83e6f642c",
+      "bytes": 11339,
+      "url": "https://raw.githubusercontent.com/espressif/esp-mqtt/1a1e5788a5cf57a0f44a3c6c061407f6c9be1026/LICENSE"
+    },
+    {
+      "path": "README.md",
+      "sha256": "54d6257aad19abb52f97c8015a66bfad6adb1216db35a5092a9105b52f7bd61b",
+      "git_blob_sha1": "c956b4787474e19a1c3d384540eee881d533e39b",
+      "bytes": 2087,
+      "url": "https://raw.githubusercontent.com/espressif/esp-mqtt/1a1e5788a5cf57a0f44a3c6c061407f6c9be1026/README.md"
+    },
+    {
+      "path": "idf_component.yml",
+      "sha256": "0f2d0f2ade5774691c2390fef575ac8f751529eba8c5b965ffe7b31a09503e0a",
+      "git_blob_sha1": "a3bc571ee82aa71fc0cf530e68c9727d53762602",
+      "bytes": 618,
+      "url": "https://raw.githubusercontent.com/espressif/esp-mqtt/1a1e5788a5cf57a0f44a3c6c061407f6c9be1026/idf_component.yml"
+    },
+    {
+      "path": "include/mqtt5_client.h",
+      "sha256": "93fce4cdcc0ed372f80866102696d4fe47f2fdd5e7649057648e6d549ffe43b4",
+      "git_blob_sha1": "c17e12ac5c6c9542a2b2c701235c21501ff6545e",
+      "bytes": 17773,
+      "url": "https://raw.githubusercontent.com/espressif/esp-mqtt/1a1e5788a5cf57a0f44a3c6c061407f6c9be1026/include/mqtt5_client.h"
+    },
+    {
+      "path": "include/mqtt_client.h",
+      "sha256": "da851009a71d3e381f7dd4973b84a0f0499f7090a8aaf215572ad7aaba60e179",
+      "git_blob_sha1": "2db00cdcbeab69e7a54821b8d04365ae1bd1d06f",
+      "bytes": 34232,
+      "url": "https://raw.githubusercontent.com/espressif/esp-mqtt/1a1e5788a5cf57a0f44a3c6c061407f6c9be1026/include/mqtt_client.h"
+    },
+    {
+      "path": "include/mqtt_supported_features.h",
+      "sha256": "4f9a6d7ac6e01517722861a16276df8dfef9791339e35c169a57691b909a85f8",
+      "git_blob_sha1": "2b461458cbd696174ea23266aaca364df79ab3eb",
+      "bytes": 2154,
+      "url": "https://raw.githubusercontent.com/espressif/esp-mqtt/1a1e5788a5cf57a0f44a3c6c061407f6c9be1026/include/mqtt_supported_features.h"
+    },
+    {
+      "path": "lib/include/mqtt5_client_priv.h",
+      "sha256": "ab530bef1f1e35034fbe3ad907869527abb29a4ccd64000608da5a8cd4e634c5",
+      "git_blob_sha1": "8f54478d2d37e7005ca93040ded8fa52918f3c5a",
+      "bytes": 2503,
+      "url": "https://raw.githubusercontent.com/espressif/esp-mqtt/1a1e5788a5cf57a0f44a3c6c061407f6c9be1026/lib/include/mqtt5_client_priv.h"
+    },
+    {
+      "path": "lib/include/mqtt5_msg.h",
+      "sha256": "55a003857dc532f5e71b45b0aa8329c9827ff7db9b35f32e6c3406a943ad79a7",
+      "git_blob_sha1": "cd93ef813684ebb804d4e0d541ba21c54c194851",
+      "bytes": 6686,
+      "url": "https://raw.githubusercontent.com/espressif/esp-mqtt/1a1e5788a5cf57a0f44a3c6c061407f6c9be1026/lib/include/mqtt5_msg.h"
+    },
+    {
+      "path": "lib/include/mqtt_client_priv.h",
+      "sha256": "dc613a10765ad9d68648065400fb2c52bb081cca1951c64f7e6b7df574971c49",
+      "git_blob_sha1": "38c047e0d74cec82a0334fffc8282d77afcbbcd9",
+      "bytes": 3890,
+      "url": "https://raw.githubusercontent.com/espressif/esp-mqtt/1a1e5788a5cf57a0f44a3c6c061407f6c9be1026/lib/include/mqtt_client_priv.h"
+    },
+    {
+      "path": "lib/include/mqtt_config.h",
+      "sha256": "b16062e703223bfff86e9834825411352e24fd4f9c185bd6e1b75c7905253cc7",
+      "git_blob_sha1": "ff43557a2c98aa84a0a5bef3a6eb5a5835349990",
+      "bytes": 3663,
+      "url": "https://raw.githubusercontent.com/espressif/esp-mqtt/1a1e5788a5cf57a0f44a3c6c061407f6c9be1026/lib/include/mqtt_config.h"
+    },
+    {
+      "path": "lib/include/mqtt_msg.h",
+      "sha256": "c3dbd6b37f168662c995406af2f4119fe2cb869a376667cf11949b9fc3089009",
+      "git_blob_sha1": "4b238816e4f288a2e1fe6ed85dfb497d786b50e3",
+      "bytes": 4369,
+      "url": "https://raw.githubusercontent.com/espressif/esp-mqtt/1a1e5788a5cf57a0f44a3c6c061407f6c9be1026/lib/include/mqtt_msg.h"
+    },
+    {
+      "path": "lib/include/mqtt_outbox.h",
+      "sha256": "12c5e19841bd0a21e9445d9ffe480103d206255c37272ce43c26d5428783c34f",
+      "git_blob_sha1": "a096f0a4bf24437bb635ce6515458a6c8a16cfc8",
+      "bytes": 2314,
+      "url": "https://raw.githubusercontent.com/espressif/esp-mqtt/1a1e5788a5cf57a0f44a3c6c061407f6c9be1026/lib/include/mqtt_outbox.h"
+    },
+    {
+      "path": "lib/include/platform.h",
+      "sha256": "95fe9b4feb2c78977a3506b6772997b64e58a173897d370d61ba0468a91b8d45",
+      "git_blob_sha1": "c647a4ba4d59fd9d478ab887259e26d264bddba4",
+      "bytes": 413,
+      "url": "https://raw.githubusercontent.com/espressif/esp-mqtt/1a1e5788a5cf57a0f44a3c6c061407f6c9be1026/lib/include/platform.h"
+    },
+    {
+      "path": "lib/include/platform_esp32_idf.h",
+      "sha256": "c7b3dde6f103bb0af86a653b0e263d57011b85d44e1264e69df7731a7631e80a",
+      "git_blob_sha1": "9623afe53fe649fad37246c5ef3b2e71ee7fa88c",
+      "bytes": 1174,
+      "url": "https://raw.githubusercontent.com/espressif/esp-mqtt/1a1e5788a5cf57a0f44a3c6c061407f6c9be1026/lib/include/platform_esp32_idf.h"
+    },
+    {
+      "path": "lib/mqtt5_msg.c",
+      "sha256": "c7166e1bce335b9803dfc27c23899bc3ceec921b5c60aba7b59160d2af6eb2a0",
+      "git_blob_sha1": "40ed8e9f54d2fb3b8ef8d166441fcb98c81c5d14",
+      "bytes": 59044,
+      "url": "https://raw.githubusercontent.com/espressif/esp-mqtt/1a1e5788a5cf57a0f44a3c6c061407f6c9be1026/lib/mqtt5_msg.c"
+    },
+    {
+      "path": "lib/mqtt_msg.c",
+      "sha256": "4f030f744316677de0d852968b5c6e8d99dfa9f3e8601c6800385779c05096cc",
+      "git_blob_sha1": "0fdc4d8e1c06d660477f6ea53586c08641fc7f98",
+      "bytes": 18916,
+      "url": "https://raw.githubusercontent.com/espressif/esp-mqtt/1a1e5788a5cf57a0f44a3c6c061407f6c9be1026/lib/mqtt_msg.c"
+    },
+    {
+      "path": "lib/mqtt_outbox.c",
+      "sha256": "5e17d0b15f699e241a89b28301d17507003813100e2f61cc4d0906362d51b5e3",
+      "git_blob_sha1": "abf2f174f1286211a3da8a5c349aa6fee2c58aa0",
+      "bytes": 6923,
+      "url": "https://raw.githubusercontent.com/espressif/esp-mqtt/1a1e5788a5cf57a0f44a3c6c061407f6c9be1026/lib/mqtt_outbox.c"
+    },
+    {
+      "path": "lib/mqtt_outbox/CMakeLists.txt",
+      "sha256": "32d7f919dce119a2238226c2676ed2ee19a44a6da72d259310c20a2874b71a85",
+      "git_blob_sha1": "126fd9927b79c82b08876f74a55de21efd51ebeb",
+      "bytes": 404,
+      "url": "https://raw.githubusercontent.com/espressif/esp-mqtt/1a1e5788a5cf57a0f44a3c6c061407f6c9be1026/lib/mqtt_outbox/CMakeLists.txt"
+    },
+    {
+      "path": "lib/mqtt_utils/CMakeLists.txt",
+      "sha256": "3f78ae03420c5cfc1a63cb89a6682531d0cda38a69b004132f3e0f93c7dad12b",
+      "git_blob_sha1": "a482dfdd48b2e4ba9588dda989dda63299f5d70c",
+      "bytes": 389,
+      "url": "https://raw.githubusercontent.com/espressif/esp-mqtt/1a1e5788a5cf57a0f44a3c6c061407f6c9be1026/lib/mqtt_utils/CMakeLists.txt"
+    },
+    {
+      "path": "lib/mqtt_utils/include/mqtt_utils.h",
+      "sha256": "9b49beb2592e31c206c337a33802c195d1957305da20916d5c4999a9492b3cba",
+      "git_blob_sha1": "7ac3274e2ffda66b8d63f779ccdf241c6fb6d947",
+      "bytes": 351,
+      "url": "https://raw.githubusercontent.com/espressif/esp-mqtt/1a1e5788a5cf57a0f44a3c6c061407f6c9be1026/lib/mqtt_utils/include/mqtt_utils.h"
+    },
+    {
+      "path": "lib/mqtt_utils/mqtt_utils.c",
+      "sha256": "b59a589d9ce4aab80445eabc40ee070439834c26ae0f51151477b1af1794d3d7",
+      "git_blob_sha1": "30c262c0bd296932b74fd8770604201864bd9266",
+      "bytes": 1218,
+      "url": "https://raw.githubusercontent.com/espressif/esp-mqtt/1a1e5788a5cf57a0f44a3c6c061407f6c9be1026/lib/mqtt_utils/mqtt_utils.c"
+    },
+    {
+      "path": "lib/platform_esp32_idf.c",
+      "sha256": "cd94d14de26dddc0498683cb512e41e86bfa9d227e899de7d84aeadce95d4d28",
+      "git_blob_sha1": "e7401f0d6949952fb25879d2954ac8cb100f17be",
+      "bytes": 1237,
+      "url": "https://raw.githubusercontent.com/espressif/esp-mqtt/1a1e5788a5cf57a0f44a3c6c061407f6c9be1026/lib/platform_esp32_idf.c"
+    },
+    {
+      "path": "mqtt5_client.c",
+      "sha256": "8fecc7182072eaa360a0ae1acbaa9e650cf312f78fea3d399af44080af752f3b",
+      "git_blob_sha1": "0104f584d53b105c2cbe36e8831c2184b5bf9163",
+      "bytes": 35990,
+      "url": "https://raw.githubusercontent.com/espressif/esp-mqtt/1a1e5788a5cf57a0f44a3c6c061407f6c9be1026/mqtt5_client.c"
+    },
+    {
+      "path": "mqtt_client.c",
+      "sha256": "83e5a7065b8774dce83dd6b9be0163caed3a4fdbbd7de38b328e7e01911487dc",
+      "git_blob_sha1": "d1c711d03f7e23be76c9d69f06bc0d913c7e3473",
+      "bytes": 109302,
+      "url": "https://raw.githubusercontent.com/espressif/esp-mqtt/1a1e5788a5cf57a0f44a3c6c061407f6c9be1026/mqtt_client.c"
+    }
+  ]
+}

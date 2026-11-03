@@ -1,5 +1,6 @@
 #include "ble_hid.hpp"
 #include "hid_key_sequence.hpp"
+#include "hid_mouse_queue.hpp"
 #include "battery_mgr.hpp"
 #include "power_mgr.hpp"
 #include "ble_keyboard_client.hpp"
@@ -19,6 +20,7 @@
 #include "esp_timer.h"
 #include "esp_heap_caps.h"
 #include "nvs.h"
+#include "yumo_ble_store.h"
 #include "freertos/idf_additions.h"
 #include "host/ble_gap.h"
 #include "host/ble_hs.h"
@@ -61,9 +63,9 @@ constexpr int64_t kDiscoverableDurationUs = 60LL * 1000 * 1000;
 #ifdef CONFIG_BT_NIMBLE_MAX_BONDS
 constexpr int kMaxBondSlots = CONFIG_BT_NIMBLE_MAX_BONDS;
 #else
-constexpr int kMaxBondSlots = 8;
+constexpr int kMaxBondSlots = BlePeerStore::Capacity;
 #endif
-static_assert(kMaxBondSlots<=8,"BLE peer metadata and UI support eight saved devices");
+static_assert(kMaxBondSlots<=BlePeerStore::Capacity,"BLE peer metadata must cover every saved bond");
 
 std::atomic<BleHidState> s_state{BleHidState::Disabled};
 std::atomic<bool> s_enabled{false};
@@ -216,6 +218,161 @@ void keyStrokeEvent(ble_npl_event *) {
     }
 }
 std::atomic<int64_t> s_connectDeadline{0};
+// Mouse producers do no GATT work. The host owns report transmission and GAP
+// generation changes; the small critical sections only move fixed-size state.
+struct MouseOutput {
+    ble_npl_callout timer{};std::atomic<bool> initialized{false};
+    std::atomic<bool> running{false};
+    std::atomic<int> error{ESP_OK};
+    std::atomic<int64_t> nextSendAt{0};
+    hid::MouseQueue queue{}; // s_mouseLock
+    uintptr_t link=0;bool scheduled=false; // s_mouseLock
+    int64_t failedSince=0,connectedAt=0;bool failureReported=false; // host only
+    uintptr_t tunedLink=0,blockedLink=0; // host only except producer guarded read
+    uint32_t sent=0,sendErrors=0,maxSendUs=0; // host-only, summarized at disconnect
+} s_mouse;
+portMUX_TYPE s_mouseLock=portMUX_INITIALIZER_UNLOCKED;
+std::mutex s_mouseSubmitMutex; // producers only, never taken by host callbacks
+
+void resetMouseOutput() {
+    if(s_mouse.initialized)ble_npl_callout_stop(&s_mouse.timer);
+    portENTER_CRITICAL(&s_mouseLock);
+    s_mouse.queue.reset();s_mouse.link=0;s_mouse.scheduled=false;s_mouse.running.store(false);
+    s_mouse.blockedLink=0;s_mouse.nextSendAt.store(0);
+    portEXIT_CRITICAL(&s_mouseLock);
+    s_mouse.error.store(ESP_OK);s_mouse.failedSince=0;s_mouse.failureReported=false;
+    s_mouse.tunedLink=0;s_mouse.connectedAt=esp_timer_get_time();
+    s_mouse.sent=s_mouse.sendErrors=s_mouse.maxSendUs=0;
+}
+void reportMouseSession() {
+    if(!s_mouse.sent && !s_mouse.sendErrors)return;
+    ESP_LOGI(kTag,"Mouse session sent=%lu errors=%lu max_send_us=%lu",
+             static_cast<unsigned long>(s_mouse.sent),static_cast<unsigned long>(s_mouse.sendErrors),
+             static_cast<unsigned long>(s_mouse.maxSendUs));
+}
+unsigned mouseIntervalMs(uint16_t handle) {
+    ble_gap_conn_desc desc{};
+    if(ble_gap_conn_find(handle,&desc)!=0)return 15;
+    const unsigned interval=(unsigned(desc.conn_itvl)*5+3)/4;
+    // Never flood the ACL queue faster than the accepted connection interval.
+    return std::max(12u,std::min(4000u,interval));
+}
+unsigned mouseScheduleDelayMs() {
+    const auto wait=s_mouse.nextSendAt.load()-esp_timer_get_time();
+    return wait>0?unsigned((wait+999)/1000):1;
+}
+void tuneMouseConnection(uintptr_t link,uint16_t handle) {
+    if(s_mouse.tunedLink==link || esp_timer_get_time()-s_mouse.connectedAt<5000000)return;
+    s_mouse.tunedLink=link;
+    ble_gap_conn_desc desc{};
+    if(ble_gap_conn_find(handle,&desc)!=0 || desc.role!=BLE_GAP_ROLE_SLAVE)return;
+    if(desc.conn_itvl<=12 && !desc.conn_latency)return;
+    ble_gap_upd_params params{};
+    params.itvl_min=9;params.itvl_max=12; // HID: 11.25-15ms; peer has final choice
+    params.latency=0;params.supervision_timeout=600;
+    const int rc=ble_gap_update_params(handle,&params);
+    ESP_LOGI(kTag,"Mouse connection interval request rc=%d current_units=%u latency=%u",rc,desc.conn_itvl,desc.conn_latency);
+    // A host may reject/override the preference. Never disconnect or retry
+    // repeatedly; subsequent reports simply use its actual interval.
+}
+void mouseScheduleFailure(uintptr_t link) {
+    bool held=false;
+    portENTER_CRITICAL(&s_mouseLock);
+    if(s_mouse.link==link){s_mouse.queue.cancel();held=s_mouse.queue.held();}
+    portEXIT_CRITICAL(&s_mouseLock);
+    if(held && link==s_linkGeneration.load() && BleHid::remoteConnected()) {
+        uint8_t zero[4]{};
+        if(sendReport(kMouseReportId,zero,sizeof(zero))!=ESP_OK)
+            (void)ble_gap_terminate(s_connHandle.load(),BLE_ERR_REM_USER_CONN_TERM);
+    }
+    portENTER_CRITICAL(&s_mouseLock);
+    if(s_mouse.link==link){s_mouse.queue.reset();s_mouse.scheduled=false;s_mouse.running.store(false);}
+    portEXIT_CRITICAL(&s_mouseLock);
+    s_mouse.error.store(ESP_FAIL);
+}
+void mouseOutputEvent(ble_npl_event *) {
+    auto &s=s_mouse;
+    const auto link=s_linkGeneration.load();
+    const auto handle=s_connHandle.load();
+    portENTER_CRITICAL(&s_mouseLock);
+    if(s.link!=link || !BleHid::remoteConnected()) {
+        s.queue.reset();s.link=0;s.scheduled=false;s.running.store(false);
+        portEXIT_CRITICAL(&s_mouseLock);s.failedSince=0;return;
+    }
+    if(Power::sleepPending())s.queue.cancel();
+    if(s.queue.pending() && esp_timer_get_time()<s.nextSendAt.load()) {
+        // The queue may have drained between touch samples. Retain the last
+        // transmission deadline so new samples cannot restart a 1ms burst.
+        portEXIT_CRITICAL(&s_mouseLock);
+        if(ble_npl_callout_reset(&s.timer,ble_npl_time_ms_to_ticks32(mouseScheduleDelayMs()))!=0)mouseScheduleFailure(link);
+        return;
+    }
+    const auto ticket=s.queue.begin();
+    if(!ticket.valid) {
+        s.scheduled=false;s.running.store(!s.queue.idle());
+        portEXIT_CRITICAL(&s_mouseLock);return;
+    }
+    portEXIT_CRITICAL(&s_mouseLock);
+    auto report=ticket.bytes;
+    const auto sendStarted=esp_timer_get_time();
+    const auto err=sendReport(kMouseReportId,report.data(),report.size());
+    const auto now=esp_timer_get_time();
+    s.maxSendUs=std::max(s.maxSendUs,static_cast<uint32_t>(std::min<int64_t>(UINT32_MAX,now-sendStarted)));
+    if(err==ESP_OK)++s.sent;else ++s.sendErrors;
+    const unsigned delay=std::max(mouseIntervalMs(handle),err==ESP_OK?ticket.dwellMs:50u);
+    bool fatalHeld=false;
+    portENTER_CRITICAL(&s_mouseLock);
+    if(s.link!=link || link!=s_linkGeneration.load()) {
+        // A stopped/replaced link never consumes or releases another peer's
+        // work, even if a transport shim synchronously changes generation.
+        portEXIT_CRITICAL(&s_mouseLock);return;
+    }
+    s.nextSendAt.store(now+int64_t(delay)*1000);
+    s.queue.complete(ticket,err==ESP_OK);
+    if(err==ESP_OK){s.failedSince=0;s.failureReported=false;if(s.queue.idle())s.blockedLink=0;}
+    else {
+        if(!s.failedSince)s.failedSince=now;
+        const bool permanent=err==ESP_ERR_INVALID_ARG || err==ESP_ERR_INVALID_STATE ||
+            err==ESP_ERR_NOT_FOUND || err==ESP_ERR_NOT_SUPPORTED || err==ESP_ERR_INVALID_SIZE;
+        if(permanent || now-s.failedSince>=500000) {
+            // A stale gesture must not catch up after a prolonged radio stall.
+            // A previously accepted button is still released before new work.
+            s.queue.cancel();
+            if(!s.failureReported){s.error.store(err);s.failureReported=true;}
+        }
+        if((permanent || now-s.failedSince>=4000000) && s.queue.held() && s.blockedLink!=link) {
+            s.blockedLink=link;fatalHeld=true;
+        }
+    }
+    const bool pending=s.queue.pending();
+    s.scheduled=pending;s.running.store(!s.queue.idle());
+    if(!pending&&!s.queue.held()){s.failedSince=0;s.failureReported=false;}
+    portEXIT_CRITICAL(&s_mouseLock);
+    if(fatalHeld) {
+        // Only four seconds of continuously failed all-up on this exact link
+        // warrants teardown, preventing a permanently held host button.
+        ESP_LOGW(kTag,"Mouse all-up unavailable; closing stalled link rc=%d stalled_ms=%ld",err,long((now-s.failedSince)/1000));
+        if(link==s_linkGeneration.load() && BleHid::remoteConnected())
+            (void)ble_gap_terminate(handle,BLE_ERR_REM_USER_CONN_TERM);
+    }
+    tuneMouseConnection(link,handle);
+    if(pending) {
+        if(ble_npl_callout_reset(&s.timer,ble_npl_time_ms_to_ticks32(delay))!=0)mouseScheduleFailure(link);
+    }
+}
+void recoverMouseSchedule() {
+    if(!s_mouse.running.load() || !s_mouse.initialized.load() || !s_hostRunning.load())return;
+    std::unique_lock<std::mutex> producer(s_mouseSubmitMutex,std::try_to_lock);
+    if(!producer.owns_lock())return;
+    portENTER_CRITICAL(&s_mouseLock);
+    const bool start=s_mouse.queue.pending()&&!s_mouse.scheduled;
+    if(start)s_mouse.scheduled=true;
+    portEXIT_CRITICAL(&s_mouseLock);
+    if(start && ble_npl_callout_reset(&s_mouse.timer,ble_npl_time_ms_to_ticks32(mouseScheduleDelayMs()))!=0) {
+        portENTER_CRITICAL(&s_mouseLock);s_mouse.scheduled=false;portEXIT_CRITICAL(&s_mouseLock);
+        s_mouse.error.store(ESP_FAIL);
+    }
+}
 std::atomic<bool> s_presenceScan{false}; // one explicit scan-before-connect, never periodic
 BleBond s_presenceTarget{};
 int s_lastBattery=-1;int64_t s_nextBattery=0,s_nextPeerFlush=0;
@@ -630,7 +787,7 @@ int gapEvent(struct ble_gap_event *event, void *arg)
         if(arg && reinterpret_cast<uintptr_t>(arg)!=s_advGeneration.load()) permitted=false;
         s_connectDeadline.store(0);
         if (event->connect.status == 0) {
-            ++s_linkGeneration;s_privateEligible.store(false);
+            ++s_linkGeneration;s_privateEligible.store(false);resetMouseOutput();
             s_verifyExpected=s_targeted.load();s_linkExpected=BlePeerStore::active();
             BleHid::setConnectionHandle(event->connect.conn_handle);
             s_advAwaitingResult.store(false);s_connectPending.store(false);
@@ -709,9 +866,10 @@ int gapEvent(struct ble_gap_event *event, void *arg)
         const auto expected=s_linkExpected;
         ESP_LOGI(kTag,"GAP link ended established=%u local_stop=%u security_requested=%u invitation_remaining_ms=%ld resume=%u",
                  established,cancelled,s_securityRequested,static_cast<long>(std::max<int64_t>(0,remaining)/1000),resume);
+        reportMouseSession();
         if(s_securityTimerInitialized)ble_npl_callout_stop(&s_securityTimer);
         s_securityHandle=kInvalidHandle;s_securityRequested=false;
-        ++s_linkGeneration;s_privateEligible.store(false);s_namePending.store(false);
+        ++s_linkGeneration;s_privateEligible.store(false);s_namePending.store(false);resetMouseOutput();
         s_linkExpected={};s_verifyExpected=false;
         s_securityDeadlineUs.store(0);
         s_keyboardLink.store(false);s_connectPending.store(false);
@@ -737,6 +895,15 @@ int gapEvent(struct ble_gap_event *event, void *arg)
         s_disconnectPending.store(false);
         BleHid::setConnectionHandle(kInvalidHandle);
         s_gapTeardown.store(false);
+        return 0;
+    }
+    case BLE_GAP_EVENT_CONN_UPDATE: {
+        if(event->conn_update.conn_handle!=s_connHandle.load())return 0;
+        ble_gap_conn_desc desc{};
+        if(ble_gap_conn_find(event->conn_update.conn_handle,&desc)==0) {
+            ESP_LOGI(kTag,"GAP interval update status=%d units=%u latency=%u timeout_units=%u",
+                     event->conn_update.status,desc.conn_itvl,desc.conn_latency,desc.supervision_timeout);
+        }
         return 0;
     }
     case BLE_GAP_EVENT_ENC_CHANGE:
@@ -852,7 +1019,7 @@ esp_err_t configureGap(void)
         s_disconnectPending.store(false); s_securityDeadlineUs.store(0);
         if(s_securityTimerInitialized)ble_npl_callout_stop(&s_securityTimer);
         s_securityHandle=kInvalidHandle;s_securityRequested=false;
-        s_connHandle.store(kInvalidHandle); clearPairRequest();++s_linkGeneration;s_privateEligible.store(false);
+        s_connHandle.store(kInvalidHandle); clearPairRequest();++s_linkGeneration;s_privateEligible.store(false);resetMouseOutput();
         s_connectPending.store(false);s_keyboardLink.store(false);s_namePending.store(false);
         BleKeyboardClient::reset();BlePeerStore::clearActive();
         s_lastError.store(reason); endConnectionWindow();s_advAwaitingResult.store(false);
@@ -905,6 +1072,11 @@ esp_err_t BleHid::init(void)
 {
     const std::lock_guard<std::recursive_mutex> control(s_scanControlMutex);
     if (s_initialized.load()) return ESP_OK;
+    // NimBLE emits TWO synchronous INFO lines for every GATT notification.
+    // A full USB secondary-console FIFO can busy-wait for 50ms in that path,
+    // stalling this same host task before it can serve input or GAP events.
+    // Keep warnings/errors and our bounded connection/session diagnostics.
+    esp_log_level_set("NimBLE",ESP_LOG_WARN);
     s_state.store(BleHidState::Starting);
 
     esp_hidd_dev_t *device = nullptr;
@@ -945,6 +1117,14 @@ esp_err_t BleHid::init(void)
         }
     }
     ble_store_config_init();
+    err = yumo_ble_store_status();
+    if (err != ESP_OK) {
+        // Never start with an incomplete migration or an unreadable bond store.
+        // Retain the persisted records so startup can be retried safely.
+        (void)esp_hidd_dev_deinit(device);
+        (void)nimble_port_deinit();
+        goto fail;
+    }
     ble_hs_cfg.store_status_cb = bondStoreStatus;
 
     s_device.store(device);
@@ -1018,7 +1198,7 @@ esp_err_t BleHid::setEnabled(bool enabled)
 esp_err_t BleHid::disconnect(void)
 {
     const std::lock_guard<std::recursive_mutex> control(s_scanControlMutex);
-    endConnectionWindow();stopScan();KeyboardInput::reset();cancelKeys();cancelPrivateInput();
+    endConnectionWindow();stopScan();KeyboardInput::reset();cancelKeys();cancelMouse();cancelPrivateInput();
     s_lastError.store(0);s_pairError.store(0);clearPairRequest();
     if(!s_initialized.load()) return ESP_ERR_INVALID_STATE;
     if(ble_gap_adv_active()) (void)stopAdvertising();
@@ -1363,19 +1543,88 @@ void BleHid::cancelKeys() { ++s_keys.epoch; }
 bool BleHid::keysIdle() { return !s_keys.running.load(); }
 esp_err_t BleHid::takeKeyError() { return s_keys.error.exchange(ESP_OK); }
 
-esp_err_t BleHid::sendMouse(int8_t dx, int8_t dy, int8_t wheel, uint8_t buttons)
+uintptr_t BleHid::mouseLinkGeneration() {
+    const auto link=s_linkGeneration.load();
+    return remoteConnected()&&link==s_linkGeneration.load()?link:0;
+}
+esp_err_t BleHid::sendMouse(int32_t dx, int32_t dy, int32_t wheel, uint8_t buttons,uintptr_t expectedLink)
 {
-    uint8_t report[4] = {buttons, static_cast<uint8_t>(dx), static_cast<uint8_t>(dy),
-                         static_cast<uint8_t>(wheel)};
-    return sendReport(kMouseReportId, report, sizeof(report));
+    const std::lock_guard<std::mutex> producer(s_mouseSubmitMutex);
+    if(buttons&~7u)return ESP_ERR_INVALID_ARG;
+    if(!remoteConnected() || !s_hostRunning.load() || Power::sleepPending())return ESP_ERR_INVALID_STATE;
+    auto &s=s_mouse;
+    if(!s.initialized) {
+        if(ble_npl_callout_init(&s.timer,nimble_port_get_dflt_eventq(),mouseOutputEvent,nullptr)!=0)return ESP_ERR_NO_MEM;
+        s.initialized=true;
+    }
+    const auto link=s_linkGeneration.load();
+    portENTER_CRITICAL(&s_mouseLock);
+    if((expectedLink && expectedLink!=link) || link!=s_linkGeneration.load()){
+        portEXIT_CRITICAL(&s_mouseLock);return ESP_ERR_INVALID_STATE;
+    }
+    if(s.blockedLink==link){portEXIT_CRITICAL(&s_mouseLock);return ESP_ERR_INVALID_STATE;}
+    if(s.link!=link){s.queue.reset();s.link=link;s.scheduled=false;}
+    if(!s.queue.push(dx,dy,wheel,buttons)){portEXIT_CRITICAL(&s_mouseLock);return ESP_ERR_NO_MEM;}
+    const bool start=s.queue.pending()&&!s.scheduled;
+    if(start)s.scheduled=true;
+    s.running.store(!s.queue.idle());
+    portEXIT_CRITICAL(&s_mouseLock);
+    if(start && ble_npl_callout_reset(&s.timer,ble_npl_time_ms_to_ticks32(mouseScheduleDelayMs()))!=0) {
+        // No previously scheduled report exists here. A prior held button
+        // must be released by the host, never by this GUI/producer task.
+        portENTER_CRITICAL(&s_mouseLock);
+        s.queue.cancel();s.scheduled=false;s.running.store(!s.queue.idle());
+        portEXIT_CRITICAL(&s_mouseLock);
+        s.error.store(ESP_FAIL);return ESP_FAIL;
+    }
+    return ESP_OK;
 }
 
-esp_err_t BleHid::clickMouse(uint8_t button)
+esp_err_t BleHid::clickMouse(uint8_t button,uintptr_t expectedLink)
 {
-    esp_err_t err = sendMouse(0, 0, 0, button);
-    if (err != ESP_OK) return err;
-    return sendMouse(0, 0, 0, 0);
+    const std::lock_guard<std::mutex> producer(s_mouseSubmitMutex);
+    if(!button || (button&~7u))return ESP_ERR_INVALID_ARG;
+    if(!remoteConnected() || !s_hostRunning.load() || Power::sleepPending())return ESP_ERR_INVALID_STATE;
+    auto &s=s_mouse;
+    if(!s.initialized) {
+        if(ble_npl_callout_init(&s.timer,nimble_port_get_dflt_eventq(),mouseOutputEvent,nullptr)!=0)return ESP_ERR_NO_MEM;
+        s.initialized=true;
+    }
+    const auto link=s_linkGeneration.load();
+    portENTER_CRITICAL(&s_mouseLock);
+    if((expectedLink && expectedLink!=link) || link!=s_linkGeneration.load()){
+        portEXIT_CRITICAL(&s_mouseLock);return ESP_ERR_INVALID_STATE;
+    }
+    if(s.blockedLink==link){portEXIT_CRITICAL(&s_mouseLock);return ESP_ERR_INVALID_STATE;}
+    if(s.link!=link){s.queue.reset();s.link=link;s.scheduled=false;}
+    if(!s.queue.click(button)){portEXIT_CRITICAL(&s_mouseLock);return ESP_ERR_NO_MEM;}
+    const bool start=!s.scheduled;s.scheduled=true;s.running.store(true);
+    portEXIT_CRITICAL(&s_mouseLock);
+    if(start && ble_npl_callout_reset(&s.timer,ble_npl_time_ms_to_ticks32(mouseScheduleDelayMs()))!=0) {
+        portENTER_CRITICAL(&s_mouseLock);
+        s.queue.cancel();s.scheduled=false;s.running.store(!s.queue.idle());
+        portEXIT_CRITICAL(&s_mouseLock);
+        s.error.store(ESP_FAIL);return ESP_FAIL;
+    }
+    return ESP_OK;
 }
+void BleHid::cancelMouse() {
+    const std::lock_guard<std::mutex> producer(s_mouseSubmitMutex);
+    auto &s=s_mouse;
+    portENTER_CRITICAL(&s_mouseLock);
+    s.queue.cancel();
+    if(s.link!=s_linkGeneration.load() || !remoteConnected())s.queue.reset();
+    const bool start=s.initialized&&s.queue.pending()&&!s.scheduled;
+    if(start)s.scheduled=true;
+    s.running.store(!s.queue.idle());
+    portEXIT_CRITICAL(&s_mouseLock);
+    if(start && ble_npl_callout_reset(&s.timer,ble_npl_time_ms_to_ticks32(mouseScheduleDelayMs()))!=0) {
+        portENTER_CRITICAL(&s_mouseLock);s.scheduled=false;portEXIT_CRITICAL(&s_mouseLock);
+        s.error.store(ESP_FAIL);
+    }
+}
+bool BleHid::mouseIdle(){return !s_mouse.running.load();}
+esp_err_t BleHid::takeMouseError(){return s_mouse.error.exchange(ESP_OK);}
 
 esp_err_t BleHid::sendConsumer(ConsumerKey key)
 {
@@ -1433,6 +1682,8 @@ int BleHid::bonds(BleBond *out, int maxCount)
 esp_err_t BleHid::removeBond(const BleBond &bond)
 {
     if (!s_initialized.load()) return ESP_ERR_INVALID_STATE;
+    esp_err_t storeError = yumo_ble_store_status();
+    if (storeError != ESP_OK) { s_lastError.store(storeError); return storeError; }
 
     ble_addr_t addr = {};
     addr.type = bond.addrType;
@@ -1442,12 +1693,29 @@ esp_err_t BleHid::removeBond(const BleBond &bond)
     // identity from the controller resolving list. Fall back to a plain store
     // delete if it reports the peer is not known to GAP.
     int rc = ble_gap_unpair(&addr);
-    if (rc != 0) {
+    if (rc != 0 && yumo_ble_store_status() == ESP_OK) {
         ESP_LOGW(kTag, "ble_gap_unpair failed rc=%d; deleting store records", rc);
         rc = ble_store_util_delete_peer(&addr);
     }
+    storeError = yumo_ble_store_status();
+    if (storeError != ESP_OK) {
+        s_lastError.store(storeError);
+        ESP_LOGE(kTag, "Cannot persist bond removal: %s", esp_err_to_name(storeError));
+        return storeError;
+    }
     if (rc != 0) {
         ESP_LOGE(kTag, "Cannot remove bond: rc=%d", rc);
+        return ESP_FAIL;
+    }
+    // The pinned SDK unpair path can swallow a store deletion error. Confirm
+    // both security directions are gone before forgetting the visible device.
+    ble_store_key_sec key{};
+    key.peer_addr = addr;
+    ble_store_value_sec value{};
+    const int ourRc = ble_store_read_our_sec(&key, &value);
+    const int peerRc = ble_store_read_peer_sec(&key, &value);
+    if (ourRc != BLE_HS_ENOENT || peerRc != BLE_HS_ENOENT) {
+        ESP_LOGE(kTag, "Bond removal incomplete: our_rc=%d peer_rc=%d", ourRc, peerRc);
         return ESP_FAIL;
     }
     const auto target=BlePeerStore::target();
@@ -1465,15 +1733,21 @@ esp_err_t BleHid::removeBond(const BleBond &bond)
 esp_err_t BleHid::removeAllBonds(void)
 {
     if (!s_initialized.load()) return ESP_ERR_INVALID_STATE;
+    const esp_err_t storeError = yumo_ble_store_status();
+    if (storeError != ESP_OK) { s_lastError.store(storeError); return storeError; }
 
     esp_err_t firstErr = ESP_OK;
-    BleBond list[kMaxBondSlots] = {};
-    const int count = bonds(list, kMaxBondSlots);
+    ble_addr_t list[kMaxBondSlots] = {};
+    int count = 0;
+    if (ble_store_util_bonded_peers(list, &count, kMaxBondSlots) != 0) return ESP_FAIL;
     for (int i = 0; i < count; ++i) {
-        const esp_err_t err = removeBond(list[i]);
+        BleBond bond{};
+        bond.addrType = list[i].type;
+        std::memcpy(bond.addr, list[i].val, sizeof(bond.addr));
+        const esp_err_t err = removeBond(bond);
         if (err != ESP_OK && firstErr == ESP_OK) firstErr = err;
     }
-    s_bondStoreFull.store(false);
+    if (firstErr == ESP_OK) s_bondStoreFull.store(false);
     return firstErr;
 }
 
@@ -1543,6 +1817,7 @@ void BleHid::startAdvertisingFromCallback(void)
 int BleHid::lastError() { const int radio=s_lastError.load(); return radio?radio:s_pairError.load(); }
 void BleHid::poll()
 {
+    recoverMouseSchedule();
     if(!s_initialized.load()) return;
     const auto now=esp_timer_get_time();
     if(now>=s_nextPeerFlush) { s_nextPeerFlush=now+5000000;BlePeerStore::flush(); }

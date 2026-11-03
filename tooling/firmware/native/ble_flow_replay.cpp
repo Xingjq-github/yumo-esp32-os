@@ -79,12 +79,12 @@ int main(){
  fake::reset();CHECK(!flow.begin(BluetoothOperation::Saved,a,{},false,0));flow.poll(1,false);
  fake::failure=23;fake::state=BleHidState::Failed;flow.poll(2,false);CHECK(flow.error==23&&!flow.switching&&flow.operation==BluetoothOperation::None);
  fake::bonds.clear();
- for(unsigned i=0;i<8;++i){auto p=a;p.addr[0]=uint8_t(i+1);p.keyboard=true;std::strcpy(p.name,"Controller");fake::bonds.push_back(p);}
- for(unsigned from=0;from<8;++from)for(unsigned to=0;to<8;++to)if(from!=to){
+ for(unsigned i=0;i<16;++i){auto p=a;p.addr[0]=uint8_t(i+1);p.keyboard=true;std::strcpy(p.name,"Controller");fake::bonds.push_back(p);}
+ for(unsigned from=0;from<16;++from)for(unsigned to=0;to<16;++to)if(from!=to){
   fake::reset();BluetoothConnectionFlow next;fake::peer=fake::bonds[from];fake::connected=true;fake::idle=false;fake::state=BleHidState::Connected;
   CHECK(!next.begin(BluetoothOperation::Saved,fake::bonds[to],{},false,0));CHECK(next.switching);
   next.poll(1,false);CHECK(!fake::requests);fake::release();next.poll(2,false);
   CHECK(fake::requests==1&&BlePeerStore::same(fake::invited,fake::bonds[to]));
  }
- std::printf("%u checks: worker lifecycle, 200 alternating saved-host switches, all 56 eight-device switches, transient connection loops, cancellation, deleted targets, latest target, deadlines and shutdown; synthetic transport\n",checks);
+ std::printf("%u checks: worker lifecycle, 200 alternating saved-host switches, all 240 sixteen-device switches, transient connection loops, cancellation, deleted targets, latest target, deadlines and shutdown; synthetic transport\n",checks);
 }

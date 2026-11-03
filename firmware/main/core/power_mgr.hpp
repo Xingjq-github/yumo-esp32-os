@@ -10,6 +10,7 @@ public:
     static void toggleScreen();
     static bool isScreenOn();
     static void activity(); // real user input only; safe from task context
+    static uint32_t activityGeneration(); // read-only, no timer/radio side effects
     static void pollAutomatic(uint32_t hints); // GUI task
     static bool saving();
     static bool slowIdle();

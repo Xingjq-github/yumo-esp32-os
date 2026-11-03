@@ -1,4 +1,5 @@
 #include "mp3_player.hpp"
+#include "xiaozhi_service.hpp"
 #include "chiptune_player.hpp"
 #include "power_mgr.hpp"
 #include "game_audio.hpp"
@@ -31,10 +32,10 @@ std::atomic<uint32_t> activitySerial{1},idleSerial{0};
 std::atomic<bool> quiet{false},slow{false},stopRadios{false};
 power::Policy policy; // GUI task owns the state machine
 bool jobsBusy() {
-    return !UsbStorage::idle() || !core::mp3::idle() || core::chip::busy() || core::game_audio::busy() || !vault::idle() || !core::storageIdle() || !core::photo::idle() ||
+    return !core::xiaozhi::idle() || !UsbStorage::idle() || !core::mp3::idle() || core::chip::busy() || core::game_audio::busy() || !vault::idle() || !core::storageIdle() || !core::photo::idle() ||
         core::sd::busy() || !core::recorder::idle() || !core::fc::idle() ||
         !Screenshot::idle() || !DisplayCast::idle() || !LanHotspot::idle() || !core::speed::idle() ||
-        !BleHid::keysIdle() || !BleHid::privateInputIdle() ||
+        !BleHid::keysIdle() || !BleHid::mouseIdle() || !BleHid::privateInputIdle() ||
         SystemService::busy(ServiceDomain::Wifi) || SystemService::busy(ServiceDomain::Bluetooth) ||
         SystemService::busy(ServiceDomain::System) || SystemService::timeSyncBusy();
 }
@@ -75,7 +76,7 @@ void Power::pollAutomatic(uint32_t hints) {
     // session follows deadlines subject to explicit supply/link settings.
     const bool displayBusy=!UsbStorage::idle() || DisplayCast::enabled() || !DisplayCast::idle() ||
         !vault::idle() || !core::storageIdle() || !core::photo::idle() ||
-        !Screenshot::idle() || !core::speed::idle() || !BleHid::keysIdle() || !BleHid::privateInputIdle();
+        !Screenshot::idle() || !core::speed::idle() || !BleHid::keysIdle() || !BleHid::mouseIdle() || !BleHid::privateInputIdle();
     if(sleepPending()) {
         quiet=false;slow=false;stopRadios=false;setEconomy(false,false,false);bsp_power_set_quiet(false,isScreenOn());return;
     }
@@ -92,6 +93,7 @@ void Power::pollAutomatic(uint32_t hints) {
     bsp_power_set_quiet(idle,isScreenOn());
     if(d.deep && !isScreenOn() && automaticDeepSleepAllowed()) (void)deepSleep(true);
 }
+uint32_t Power::activityGeneration() {return activitySerial.load();}
 void Power::processEconomy() {
     if(!slowIdle() || sleepPending())return;
     (void)Audio::releaseIdle();

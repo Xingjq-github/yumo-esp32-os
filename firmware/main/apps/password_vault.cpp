@@ -17,6 +17,8 @@
 namespace apps {
 namespace c = ui::compact;
 namespace {
+constexpr uint32_t IdlePollMs = 100;
+constexpr uint32_t JobPollMs = 20;
 const char *categoryKeys[] = {"work", "app", "web", "other"};
 const char *categoryNames[] = {"工作", "应用", "网页", "其他"};
 void wrap(lv_obj_t *p, const char *text) {
@@ -68,8 +70,8 @@ void PasswordVault::finishPinChange(const char *text) {
 void PasswordVault::submitPinChange() {
   if (!changingPin() || !m_session)
     return;
-  if (!vault::validPin(m_pin.data(), m_pin.size())) {
-    finishPinChange("修改失败：请输入4到12位数字");
+  if (!vault::pattern::valid(m_pin.data(), m_pin.size())) {
+    finishPinChange("请至少连接 4 个点");
     return;
   }
   try {
@@ -83,7 +85,7 @@ void PasswordVault::submitPinChange() {
     }
     const bool old = m_page == Page::ChangeOld;
     if (!old && m_pin != m_firstPin) {
-      finishPinChange("修改失败：两次新密码不同");
+      finishPinChange("修改失败：两次图形不同");
       return;
     }
     auto job = std::make_shared<vault::Job>(old ? vault::Operation::VerifyChangePin
@@ -161,7 +163,7 @@ void PasswordVault::onShow() {
   m_visible = true;
   m_screenOff = sys::EventBus::subscribe(
       sys::EventType::ScreenOff, [this](const sys::Event &) { lock(); });
-  m_timer = lv_timer_create(timer, 100, this);
+  m_timer = lv_timer_create(timer, IdlePollMs, this);
   m_load.reset(lv_tick_get());
   load();
   draw();
@@ -176,11 +178,12 @@ void PasswordVault::lock() {
   wipeField();
   vault::clear(m_oldPin);
   m_load.reset(lv_tick_get());
-  m_exists = m_blank = false;
+  m_exists = m_blank = m_needsPatternSetup = false;
   vault::clear(m_pin);
   vault::clear(m_firstPin);
   m_reveal.hide();
-  m_pinLabel = nullptr;
+  m_pattern.detach();
+  m_patternPending = false;
   m_access.lock();
   m_accessScope = vault::interaction::AccessState::None;
   if (m_pairStarted)
@@ -217,6 +220,7 @@ void PasswordVault::onDestroy() {
   m_status = nullptr;
 }
 bool PasswordVault::onBack() {
+  m_patternPending = false;
   m_qrPending = false;
   if (m_page == Page::Qr) {
     m_reveal.hide();
@@ -245,8 +249,7 @@ bool PasswordVault::onBack() {
   m_reveal.hide();
   vault::clear(m_pin);
   vault::clear(m_firstPin);
-  if (m_page == Page::Detail || m_page == Page::ConfirmType ||
-      m_page == Page::VerifyReveal) {
+  if (m_page == Page::Detail || m_page == Page::VerifyReveal) {
     m_page = m_page == Page::Detail ? Page::List : Page::Detail;
     m_message.clear();
     m_redraw = true;
@@ -293,6 +296,10 @@ vault::StartResult PasswordVault::launch(const std::shared_ptr<vault::Job> &job)
   }
   wipeField();
   m_job = job;
+  // A completed KDF should not sit behind the idle UI's 100ms poll window.
+  // The worker stays asynchronous; only its completion check runs faster.
+  if (m_timer)
+    lv_timer_set_period(m_timer, JobPollMs);
   m_message = "";
   m_redraw = true;
   return result;
@@ -408,52 +415,34 @@ void PasswordVault::requestBluetooth(Action action, size_t index) {
     m_pairStarted = false;
   message("蓝牙请求已提交，正在处理");
 }
-void PasswordVault::updatePinLine() {
-  if (!m_pinLabel)
-    return;
-  using vault::interaction::PinLine;
-  const auto content = vault::interaction::pinLine(m_pin.size(), !m_message.empty());
-  if (content == PinLine::Message) {
-    c::setText(m_pinLabel, m_message.c_str());
-  } else if (content == PinLine::Masked) {
-    c::setText(m_pinLabel, std::string(m_pin.size(), '*').c_str());
-  } else {
-    const char *prompt = m_page == Page::ChangeOld ? "请输入原密码"
-                         : m_page == Page::ChangeNew ? "设置4到12位新密码"
-                         : m_page == Page::ChangeConfirm ? "再次输入新密码"
-                         : (m_page == Page::VerifyReveal || m_page == Page::VerifyAccess) ? "输入设备管理员密码"
-                         : m_exists ? "请输入密码"
-                         : m_firstPin.empty() ? "设置4到12位数字密码"
-                                              : "再次输入数字密码";
-    c::setText(m_pinLabel, prompt);
-  }
+bool PasswordVault::patternPage() const {
+  return m_page == Page::Locked || m_page == Page::VerifyReveal ||
+         m_page == Page::VerifyAccess || changingPin();
+}
+const char *PasswordVault::patternPrompt() const {
+  if (!m_message.empty()) return m_message.c_str();
+  if (m_job) return m_job->operation == vault::Operation::Load ? "正在读取" : "正在验证";
+  if (m_page == Page::ChangeOld) return "绘制原图形";
+  if (m_page == Page::ChangeNew) return "设置新图形，至少 4 个点";
+  if (m_page == Page::ChangeConfirm) return "再次绘制新图形";
+  if (m_page == Page::Locked && m_needsPatternSetup)
+    return m_firstPin.empty() ? "设置图形，至少 4 个点" : "再次绘制图形";
+  return "绘制图形密码";
+}
+void PasswordVault::patternSubmitted(void *context, const char *value, size_t size) {
+  auto self = static_cast<PasswordVault *>(context);
+  if (!self->m_visible || !self->patternPage() || self->m_job || self->m_patternPending) return;
+  self->m_pin.assign(value, size);
+  self->m_patternPending = true; // submit from poll, never destroy the active touch object
+  // Ready schedules the next GUI timer pass; it does not run the job or
+  // replace the touch object while its RELEASED callback is still executing.
+  if (self->m_timer)
+    lv_timer_ready(self->m_timer);
 }
 void PasswordVault::drawPin(Action submit) {
-  using L = vault::interaction::PinLayout;
-  static_assert(c::kGap == L::Gap);
-  m_pinLabel = c::label(m_body, "", 238);
-  lv_obj_set_height(m_pinLabel, L::LineHeight);
-  lv_obj_set_style_text_align(m_pinLabel, LV_TEXT_ALIGN_CENTER, 0);
-  updatePinLine();
-  for (size_t row = 0; row < 4; ++row) {
-    auto line = c::panel(m_body, L::Width, L::KeyHeight);
-    lv_obj_set_flex_flow(line, LV_FLEX_FLOW_ROW);
-    for (size_t col = 0; col < 3; ++col) {
-      auto digit = row * 3 + col + 1;
-      char text[2] = {char('0' + digit), 0};
-      auto key = button(line,
-                        row == 3 ? (col == 0   ? LV_SYMBOL_BACKSPACE
-                                    : col == 1 ? "0"
-                                               : LV_SYMBOL_OK)
-                                 : text,
-                        row == 3 ? (col == 0   ? Action::DeleteDigit
-                                    : col == 1 ? Action::Digit
-                                               : submit)
-                                 : Action::Digit,
-                        row == 3 ? 0 : digit, L::KeyWidth);
-      lv_obj_set_height(key, L::KeyHeight);
-    }
-  }
+  m_patternAction = submit;
+  const bool ready = !m_job && (m_page != Page::Locked || (m_load.ready() && (m_exists || m_blank)));
+  m_pattern.create(m_body, patternPrompt(), ready, patternSubmitted, this);
 }
 void PasswordVault::timer(lv_timer_t *t) {
   static_cast<PasswordVault *>(lv_timer_get_user_data(t))->poll();
@@ -515,8 +504,8 @@ void PasswordVault::action(Action a, size_t index) {
   case Action::VerifyAccess:
     if (m_page != Page::VerifyAccess || !m_session)
       return;
-    if (!vault::validPin(m_pin.data(), m_pin.size())) {
-      finishAccess(false, "验证失败，请输入4到12位数字");
+    if (!vault::pattern::valid(m_pin.data(), m_pin.size())) {
+      finishAccess(false, "请至少连接 4 个点");
       return;
     }
     try {
@@ -553,49 +542,27 @@ void PasswordVault::action(Action a, size_t index) {
       load();
     }
     break;
-  case Action::Digit:
-    if ((m_page != Page::Locked && m_page != Page::VerifyReveal && m_page != Page::VerifyAccess && !changingPin()) || index > 9)
-      return;
-    if (changingPin() && m_pin.size() >= 12) {
-      finishPinChange("修改失败：密码最多12位");
-      return;
-    }
-    if (m_pin.size() < 12)
-      m_pin.push_back('0' + index);
-    m_message.clear();
-    updatePinLine();
-    break;
-  case Action::DeleteDigit:
-    if (m_page != Page::Locked && m_page != Page::VerifyReveal && m_page != Page::VerifyAccess && !changingPin())
-      return;
-    if (!m_pin.empty()) {
-      m_pin.back() = 0;
-      m_pin.pop_back();
-    }
-    m_message.clear();
-    updatePinLine();
-    break;
   case Action::Unlock: {
     if (!m_load.ready() || (!m_exists && !m_blank))
       return;
-    if (m_pin.size() < 4 || m_pin.size() > 12) {
-      message("请输入4到12位数字");
+    if (!vault::pattern::valid(m_pin.data(), m_pin.size())) {
+      message("请至少连接 4 个点");
       return;
     }
-    if (!m_exists && m_firstPin.empty()) {
+    if (m_needsPatternSetup && m_firstPin.empty()) {
       m_firstPin = m_pin;
       vault::clear(m_pin);
-      message("再次输入数字密码");
+      message("再次绘制图形");
       return;
     }
-    if (!m_exists && m_firstPin != m_pin) {
+    if (m_needsPatternSetup && m_firstPin != m_pin) {
       vault::clear(m_pin);
       vault::clear(m_firstPin);
       message("两次不同，请重新设置");
       return;
     }
-    auto job = std::make_shared<vault::Job>(m_exists ? vault::Operation::Unlock
-                                                     : vault::Operation::Setup);
+    auto job = std::make_shared<vault::Job>(m_needsPatternSetup ? vault::Operation::Setup
+                                                                : vault::Operation::Unlock);
     job->master = m_pin;
     vault::clear(m_pin);
     vault::clear(m_firstPin);
@@ -664,8 +631,8 @@ void PasswordVault::action(Action a, size_t index) {
     if (m_page != Page::VerifyReveal || !m_session ||
         m_selected >= m_session->entries.size())
       return;
-    if (!vault::validPin(m_pin.data(), m_pin.size())) {
-      rejectReveal("验证失败，请输入4到12位数字");
+    if (!vault::pattern::valid(m_pin.data(), m_pin.size())) {
+      rejectReveal("请至少连接 4 个点");
       return;
     }
     try {
@@ -782,19 +749,7 @@ void PasswordVault::action(Action a, size_t index) {
     if (m_page != Page::Detail || !m_session ||
         m_selected >= m_session->entries.size())
       return;
-    m_reveal.hide();
-    m_targetLink = sys::BleHid::privateLinkGeneration();
-    if (!m_targetLink) {
-      message("请先连接用于接收输入的蓝牙设备");
-      break;
-    }
-    m_page = Page::ConfirmType;
-    m_message.clear();
-    m_redraw = true;
-    break;
-  case Action::Type:
-    if (m_page == Page::ConfirmType)
-      startTyping(false, m_targetLink);
+    startTyping(false, sys::BleHid::privateLinkGeneration());
     break;
   case Action::Enter:
     if (m_page == Page::Detail || purposePage())
@@ -822,6 +777,11 @@ void PasswordVault::poll() {
       lock();
     return;
   }
+  m_pattern.poll();
+  if (m_patternPending) {
+    m_patternPending = false;
+    action(m_patternAction, 0);
+  }
   if (m_session && !m_job && lv_display_get_inactive_time(nullptr) >= 60000)
     lock();
   if (m_reveal.expire(lv_tick_get()))
@@ -844,6 +804,7 @@ void PasswordVault::poll() {
         m_load.finish(true);
         m_exists = m_job->exists;
         m_blank = m_job->blank;
+        m_needsPatternSetup = m_job->needsPatternSetup;
         break;
       case vault::Operation::Setup:
       case vault::Operation::SaveConfig:
@@ -855,7 +816,7 @@ void PasswordVault::poll() {
         // not while that operation was still computing.
         lv_display_trigger_activity(nullptr);
         m_exists = true;
-        m_blank = false;
+        m_blank = m_needsPatternSetup = false;
         m_page = kind == vault::Operation::SaveConfig ? Page::Network
                                                       : Page::Categories;
         m_message = kind == vault::Operation::Sync
@@ -905,22 +866,22 @@ void PasswordVault::poll() {
         break;
       case vault::Operation::Type:
         m_page = m_typePage;
-        message("已发送按键，请在目标设备核对");
+        message("已发送，请核对");
         break;
       case vault::Operation::Enter:
         m_page = m_typePage;
-        message("回车已发送，请在目标设备核对");
+        message("回车已发送");
         break;
       }
     } else {
-      if (kind == vault::Operation::ChangePin && m_job->configWriteStarted) {
+      if ((kind == vault::Operation::ChangePin || kind == vault::Operation::Setup) && m_job->configWriteStarted) {
         // A late cancel can race the atomic header write. Reload the actual PIN
         // from disk before any sync/config save; never overwrite it via old RAM.
         lock();
         message("保存结果未确认，请重新解锁核对");
       } else if (kind == vault::Operation::VerifyChangePin ||
                  kind == vault::Operation::ChangePin) {
-        finishPinChange("修改失败：原密码错误或操作未完成");
+        finishPinChange("修改失败：原图形错误或操作未完成");
       } else if (kind == vault::Operation::VerifyAccess)
         finishAccess(false, m_job->error.empty() ? "操作已取消" : m_job->error.c_str());
       else if (kind == vault::Operation::VerifyPin)
@@ -935,6 +896,8 @@ void PasswordVault::poll() {
         m_page = m_session ? m_typePage : Page::Locked;
     }
     m_job.reset();
+    if (m_timer)
+      lv_timer_set_period(m_timer, IdlePollMs);
     m_redraw = true;
   }
   if (!m_job && m_page == Page::Locked)
@@ -958,7 +921,7 @@ void PasswordVault::poll() {
       }
     }
   }
-  if (m_redraw)
+  if (m_redraw && !m_pattern.drawing())
     draw();
   if (m_job && m_status) {
     char text[96];
@@ -967,7 +930,7 @@ void PasswordVault::poll() {
                     m_job->progress.load());
     else if (m_job->operation == vault::Operation::Sync)
       std::snprintf(text, sizeof(text), "%s", m_job->syncStage.load() == 0
-          ? "正在使用本地地址同步" : m_job->syncStage.load() == 1
+          ? "正在连接密码服务" : m_job->syncStage.load() == 1
           ? "同步失败，尝试从SD卡获取配置后再同步" : "正在使用SD配置同步");
     else if (m_job->operation == vault::Operation::Enter)
       std::snprintf(text, sizeof(text), "正在发送回车");
@@ -1323,7 +1286,8 @@ void PasswordVault::draw() {
   m_status = nullptr;
   m_peerName = nullptr;
   m_peerAddress = nullptr;
-  m_pinLabel = nullptr;
+  m_pattern.detach();
+  m_patternPending = false;
   m_bleButton = m_pairButton = m_disconnectButton = nullptr;
   m_bondButtons.clear();
   clearListWidgets();
@@ -1376,13 +1340,14 @@ void PasswordVault::draw() {
                     pinPage ? L::BodyHeight : L::NormalBodyHeight, !pinPage);
   lv_obj_set_flex_flow(m_body, LV_FLEX_FLOW_COLUMN);
   if (m_job) {
+    if (pinPage) { drawPin(Action::Unlock); return; }
     m_status = c::label(m_body, "正在处理…", 238);
     lv_label_set_long_mode(m_status, LV_LABEL_LONG_MODE_WRAP);
     if (m_job->operation != vault::Operation::ChangePin)
       button(m_body, "取消", Action::Cancel);
     return;
   }
-  if (!m_message.empty() && !pinPage && !purposePage())
+  if (!m_message.empty() && !pinPage && !purposePage() && m_page != Page::Detail)
     wrap(m_body, m_message.c_str());
   switch (m_page) {
   case Page::Locked:
@@ -1459,12 +1424,12 @@ void PasswordVault::draw() {
     break;
   }
   case Page::Address:
-    wrap(m_body, "局域网服务地址");
-    m_field = c::networkField(m_body, "http://地址:端口",
+    wrap(m_body, "密码服务地址");
+    m_field = c::networkField(m_body, "https://example.com",
                               m_session ? m_session->url.c_str() : "", 240,
                               &lv_font_montserrat_14);
     button(m_body, "保存地址", Action::SaveAddress);
-    wrap(m_body, "与服务端连接同一局域网，填写服务地址。");
+    wrap(m_body, "支持公网域名或局域网IP，标准端口可省略。");
     break;
   case Page::Detail:
     if (!m_session || m_selected >= m_session->entries.size()) {
@@ -1504,19 +1469,15 @@ void PasswordVault::draw() {
         wrap(m_body, (std::string(vault::targetLabel(entry.category)) + "：" + entry.target).c_str());
       if (!entry.note.empty())
         wrap(m_body, ("备注：" + entry.note).c_str());
+      if (!m_message.empty())
+        wrap(m_body, m_message.c_str());
+      auto hint = c::label(m_body, "先选输入框，US英文、关大写", 238);
+      lv_label_set_long_mode(hint, LV_LABEL_LONG_MODE_WRAP);
+      lv_obj_set_style_text_color(hint, ui::theme::muted(), 0);
     }
     break;
   case Page::Qr:
     lock();
-    break;
-  case Page::ConfirmType:
-    peerLabel(m_body, sys::BleHid::peer());
-    wrap(m_body, m_session && m_selected < m_session->entries.size() &&
-                    m_session->entries[m_selected].category == "other"
-                    ? "将向此设备输入码值" : "将向此设备输入密码");
-    wrap(m_body, "选中目标输入框，切到US英文布局，关闭大写锁定。");
-    button(m_body, "确认并立即输入", Action::Type);
-    button(m_body, "取消", Action::Back);
     break;
   case Page::Network:
     m_status = c::label(m_body, "", 238);

@@ -24,7 +24,7 @@ private:
     void refreshStatus(),updateSpeedLabel(),updateAutoLabel(),restartAutoClick();
     void showKeyboard(bool show),selectTab(unsigned tab),updateKeyLabels(),refreshPreview();
     bool commitPending(); void cancelPending(),releasePointer();
-    void emitMove(int32_t dx,int32_t dy,uint8_t buttons);
+    bool emitMove(int32_t dx,int32_t dy,uint8_t buttons);
     lv_obj_t *m_status=nullptr,*m_switch=nullptr,*m_mouseBar=nullptr,*m_tabsBar=nullptr;
     lv_obj_t *m_pad=nullptr,*m_wheel=nullptr,*m_keys=nullptr,*m_shortcuts=nullptr,*m_charPanel=nullptr,*m_preview=nullptr;
     lv_obj_t *m_shortcutHints[12]{},*m_tabs[3]{},*m_digitLabels[10]{},*m_modeLabel=nullptr;
@@ -32,7 +32,8 @@ private:
     lv_timer_t *m_statusTimer=nullptr,*m_autoTimer=nullptr;
     bool m_visible=false,m_keyboard=false,m_speedX2=false,m_autoClick=false;
     unsigned m_tab=0; keys::Alphabet m_alphabet=keys::Alphabet::Lower; keys::MultiTap m_compose;
-    uint32_t m_screenOffSub=0,m_errorUntil=0; bool m_wasConnected=false; int m_railState=-1;
+    uint32_t m_screenOffSub=0,m_errorUntil=0,m_nextStatusMs=0; bool m_wasConnected=false; int m_railState=-1;
+    uintptr_t m_pointerLink=0,m_clickLink=0;
     int32_t m_autoRate=1;
     lv_point_t m_lastPoint{};int32_t m_totalMove=0;bool m_touching=false;
     float m_accX=0,m_accY=0;bool m_dragArmed=false,m_dragging=false;

@@ -30,6 +30,11 @@ set(MAIN_SRCS
     "core/screenshot_png.c"
     "core/button_mgr.cpp"
     "core/audio_mgr.cpp"
+    "core/xiaozhi_service.cpp"
+    "core/xiaozhi_cloud.cpp"
+    "core/xiaozhi_protocol.cpp"
+    "core/xiaozhi_transport.cpp"
+    "core/xiaozhi_audio.cpp"
     "core/audio_recorder.cpp"
     "core/worker_wake.cpp"
     "core/game_audio.cpp"
@@ -68,12 +73,14 @@ set(MAIN_SRCS
     "core/gbk_table.c"
     # ui layer
     "ui/window_mgr.cpp"
+    "ui/screen_protection.cpp"
     "ui/gesture.cpp"
     "ui/home_screen.cpp"
     "ui/sysinfo_overlay.cpp"
     "ui/theme.cpp"
     "ui/compact_ui.cpp"
     "ui/vault_qr.cpp"
+    "ui/vault_pattern.cpp"
     "ui/garden_scene.cpp"
     "ui/text_input.cpp"
     "ui/quick_panel.cpp"
@@ -90,6 +97,7 @@ set(MAIN_SRCS
     "ui/lv_font_reading_15.c"
     "ui/lv_font_music_22.c"
     # apps layer
+    "apps/xiaozhi.cpp"
     "apps/flashlight.cpp"
     "apps/watchface.cpp"
     "apps/timer.cpp"
@@ -159,6 +167,7 @@ idf_component_register(
         button
         bt
         esp_hid
+        yumo_ble_store
         esp_lvgl_adapter
         spi_flash
         esp_new_jpeg
@@ -171,6 +180,9 @@ idf_component_register(
         fatfs
         esp_hal_wdt
         espressif__esp_audio_effects
+        espressif__esp_audio_codec
+        espressif__esp_websocket_client
+        espressif__mqtt
 )
 
 include("${CMAKE_CURRENT_LIST_DIR}/../components/esp32_s3_touch_lcd_1_54/power_adapter.cmake")

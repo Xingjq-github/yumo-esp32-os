@@ -4,6 +4,7 @@
 #include <array>
 #include <atomic>
 #include <cctype>
+#include <cstdarg>
 #include <cstdint>
 #include <cstdio>
 #include <cstdlib>
@@ -27,7 +28,7 @@ constexpr int WIFI_REASON_AUTH_FAIL=202, WIFI_REASON_4WAY_HANDSHAKE_TIMEOUT=15,
 constexpr int MALLOC_CAP_INTERNAL=1,MALLOC_CAP_8BIT=2,MALLOC_CAP_SPIRAM=4;
 constexpr int WIFI_AUTH_OPEN=0,WIFI_AUTH_WPA_PSK=1,WIFI_IF_STA=0,WIFI_MODE_STA=1,WIFI_STORAGE_RAM=0;
 constexpr int WIFI_PS_MIN_MODEM=1,WIFI_PS_NONE=0,ESP_EVENT_ANY_ID=-1,pdTRUE=1;
-constexpr int WIFI_ALL_CHANNEL_SCAN=1,WIFI_CONNECT_AP_BY_SIGNAL=0;
+constexpr int WIFI_FAST_SCAN=0,WIFI_ALL_CHANNEL_SCAN=1,WIFI_CONNECT_AP_BY_SIGNAL=0;
 constexpr unsigned WIFI_PASSIVE_SCAN_DEFAULT_TIME=360,WIFI_SCAN_HOME_CHANNEL_DWELL_DEFAULT_TIME=30;
 using esp_event_base_t=int;
 constexpr int WIFI_EVENT=1,IP_EVENT=2,WIFI_EVENT_SCAN_DONE=1,WIFI_EVENT_STA_START=2,
@@ -65,6 +66,7 @@ namespace fake {
 std::string fail;
 unsigned allocations=0,driverInits=0,driverDeinits=0,starts=0,stops=0,connects=0,scans=0,remembered=0;
 unsigned cleanupFailures=0,unregisterFailures=0,logs=0;
+std::vector<std::string> logLines;
 unsigned scanBusy=0,scanAttempts=0;
 unsigned recordsRead=0, recordsFailAfter=~0u;
 bool dropDirected=false;
@@ -101,6 +103,12 @@ void disconnectDone(int reason=WIFI_REASON_ASSOC_LEAVE) {
     std::strcpy(reinterpret_cast<char*>(event.ssid),"test-ap");event.ssid_len=7;
     emit(WIFI_EVENT,WIFI_EVENT_STA_DISCONNECTED,&event);
 }
+void log(const char *level,const char *tag,const char *format,...) {
+    char message[1024];va_list args;va_start(args,format);
+    const int length=std::vsnprintf(message,sizeof(message),format,args);va_end(args);
+    CHECK(length>=0 && size_t(length)<sizeof(message));
+    ++logs;logLines.emplace_back(std::string(level)+" "+tag+" "+message);
+}
 }
 static void *heap_caps_calloc(size_t n,size_t size,int caps) {
     CHECK(caps==(MALLOC_CAP_SPIRAM|MALLOC_CAP_8BIT));
@@ -112,8 +120,9 @@ static void heap_caps_free(void *p) { if(p){CHECK(fake::blocks.erase(p)==1);std:
 static unsigned heap_caps_get_free_size(int) { return 12345; }
 static unsigned heap_caps_get_largest_free_block(int) { return 6789; }
 static const char *esp_err_to_name(esp_err_t) { return "injected"; }
-#define ESP_LOGE(...) do { ++fake::logs; } while(0)
-#define ESP_LOGW(...) do { ++fake::logs; } while(0)
+#define ESP_LOGE(...) fake::log("E",__VA_ARGS__)
+#define ESP_LOGW(...) fake::log("W",__VA_ARGS__)
+#define ESP_LOGI(...) fake::log("I",__VA_ARGS__)
 static int64_t esp_timer_get_time() { return fake::time; }
 static QueueHandle_t xQueueCreateStatic(unsigned,size_t size,uint8_t*,StaticQueue_t *q) { q->size=size;return q; }
 static int xQueueSend(QueueHandle_t q,const void *p,int) {
@@ -211,9 +220,13 @@ static esp_err_t esp_wifi_connect() {
     CHECK(fake::started && !fake::scan && !fake::disconnectRequested);
     CHECK(fake::scanParameters.scan_time.active.min==120 && fake::scanParameters.scan_time.active.max==300);
     CHECK(fake::scanParameters.scan_time.passive==360 && fake::scanParameters.home_chan_dwell_time==30);
-    CHECK(fake::connectConfig.sta.scan_method==WIFI_ALL_CHANNEL_SCAN);
+    const auto &config=fake::connectConfig.sta;
+    CHECK(config.scan_method==WIFI_FAST_SCAN || config.scan_method==WIFI_ALL_CHANNEL_SCAN);
+    if(config.scan_method==WIFI_FAST_SCAN) {
+        CHECK(config.channel>=1 && config.channel<=13);
+        CHECK(config.failure_retry_cnt==0);
+    } else CHECK(config.failure_retry_cnt==1);
     CHECK(fake::connectConfig.sta.sort_method==WIFI_CONNECT_AP_BY_SIGNAL);
-    CHECK(fake::connectConfig.sta.failure_retry_cnt==1);
     ++fake::connects;fake::linkActive=true;return ESP_OK;
 }
 static esp_err_t esp_wifi_sta_get_ap_info(wifi_ap_record_t *out) {
@@ -260,7 +273,7 @@ static void clean() {
 }
 static void fresh() {
     clean();fake::fail.clear();fake::allocations=0;fake::records.clear();fake::scanBusy=0;++scenarios;
-    fake::dropDirected=false;fake::recordsFailAfter=~0u;
+    fake::dropDirected=false;fake::recordsFailAfter=~0u;fake::logLines.clear();
     CHECK(!Connectivity::hotspotReserved());
 }
 static void start() {
@@ -278,7 +291,7 @@ static void stop() {
 static void selectAndAssociate() {
     CHECK(Connectivity::connectWifi("test-ap","12345678")==ESP_OK);Connectivity::poll();
     CHECK(fake::scan);
-    wifi_ap_record_t record{};std::strcpy(reinterpret_cast<char*>(record.ssid),"test-ap");record.rssi=-40;
+    wifi_ap_record_t record{};std::strcpy(reinterpret_cast<char*>(record.ssid),"test-ap");record.rssi=-40;record.primary=6;
     fake::records={record};fake::scanDone();Connectivity::poll();
     CHECK(Connectivity::snapshot().state==WifiState::Connecting);
 }
@@ -291,6 +304,9 @@ static void associated(const char *ssid="test-ap") {
     wifi_event_sta_connected_t event{};
     event.ssid_len=uint8_t(std::strlen(ssid));std::memcpy(event.ssid,ssid,event.ssid_len);
     fake::emit(WIFI_EVENT,WIFI_EVENT_STA_CONNECTED,&event);
+}
+static bool hasLog(const std::string &text) {
+    return std::any_of(fake::logLines.begin(),fake::logLines.end(),[&](const auto &line){return line.find(text)!=std::string::npos;});
 }
 int main() {
     const char *faults[]={"scan1","scan2","driver","netif","attach","defaults","storage","mode","wifi-handler","ip-handler","start"};
@@ -390,9 +406,10 @@ int main() {
     CHECK(Connectivity::snapshot().state==WifiState::Disconnected);
     CHECK(Connectivity::connectWifi("test-ap","12345678")==ESP_OK);Connectivity::poll();
     CHECK(fake::connects==connects && fake::scan);
-    wifi_ap_record_t record{};std::strcpy(reinterpret_cast<char*>(record.ssid),"test-ap");record.rssi=-40;
+    wifi_ap_record_t record{};std::strcpy(reinterpret_cast<char*>(record.ssid),"test-ap");record.rssi=-40;record.primary=6;
     fake::records.push_back(record);fake::scanDone();Connectivity::poll();
     CHECK(fake::connects==connects+1 && Connectivity::snapshot().state==WifiState::Connecting);
+    CHECK(fake::connectConfig.sta.scan_method==WIFI_FAST_SCAN && fake::connectChannel==6);
     fake::emit(IP_EVENT,IP_EVENT_STA_GOT_IP);Connectivity::poll();
     CHECK(Connectivity::snapshot().state==WifiState::Connecting && fake::remembered==remembered);
     fake::associated=true;fake::hasIp=true;fake::emit(IP_EVENT,IP_EVENT_STA_GOT_IP);Connectivity::poll();
@@ -534,6 +551,7 @@ int main() {
     CHECK(Connectivity::connectWifi("test-ap","12345678")==ESP_OK);Connectivity::poll();
     CHECK(fake::scans==displayedScans && fake::connects==displayedConnects+1);
     CHECK(fake::connectChannel==13 && fake::allocations==displayedAllocations);
+    CHECK(fake::connectConfig.sta.scan_method==WIFI_FAST_SCAN);
     CHECK(Connectivity::snapshot().state==WifiState::Connecting);stop();
 
     // Cache TTL is enforced both at selection and at actual association.
@@ -543,13 +561,27 @@ int main() {
         fake::time+=age;const auto startsBefore=fake::connects;
         CHECK(Connectivity::connectWifi("test-ap","12345678")==ESP_OK);Connectivity::poll();
         CHECK((fake::connects==startsBefore+1)==(age<=60000000));
-        CHECK(fake::scan==(age>60000000));stop();
+        CHECK(fake::scan==(age>60000000));
+        if(age>60000000) {fake::scanDone();Connectivity::poll();CHECK(fake::connects==startsBefore+1);}
+        CHECK(fake::connectConfig.sta.scan_method==WIFI_FAST_SCAN);stop();
     }
     fresh();start();fake::records={makeAp("test-ap")};
     CHECK(Connectivity::startScan()==ESP_OK);fake::scanDone();Connectivity::poll();
     CHECK(Connectivity::connectWifi("test-ap","12345678")==ESP_OK);
     const auto delayedConnects=fake::connects;fake::time+=60000001;Connectivity::poll();
-    CHECK(fake::scan && fake::connects==delayedConnects);stop();
+    CHECK(fake::scan && fake::connects==delayedConnects);
+    fake::scanDone();Connectivity::poll();
+    CHECK(fake::connects==delayedConnects+1 && fake::connectConfig.sta.scan_method==WIFI_FAST_SCAN);stop();
+
+    // A discovered SSID without a channel cannot use the accelerated path.
+    // Discovery is still required; the driver receives an unpinned all-channel scan.
+    fresh();start();fake::records={makeAp("test-ap",-50,0)};
+    const auto unknownChannelConnects=fake::connects;
+    CHECK(Connectivity::connectWifi("test-ap","12345678")==ESP_OK);Connectivity::poll();
+    CHECK(fake::scan && fake::connects==unknownChannelConnects);
+    fake::scanDone();Connectivity::poll();
+    CHECK(fake::connects==unknownChannelConnects+1 && fake::connectChannel==0);
+    CHECK(fake::connectConfig.sta.scan_method==WIFI_ALL_CHANNEL_SCAN);stop();
 
     // A fresh cache is exact by byte length, including 32-byte and UTF-8 SSIDs.
     for(const std::string name:{std::string(32,'a'),std::string("\xe9\x9b\xa8\xe5\xa2\xa8-wifi"),std::string("Test AP ")}) {
@@ -589,6 +621,7 @@ int main() {
     fake::scanDone();Connectivity::poll();
     CHECK(fake::recordsRead==65 && fake::results.empty());
     CHECK(fake::connects==denseConnects+1 && fake::connectChannel==13);
+    CHECK(fake::connectConfig.sta.scan_method==WIFI_FAST_SCAN);
     std::array<wifi_ap_record_t,Connectivity::kMaxNetworks> visible{};
     CHECK(Connectivity::scanResults(visible.data(),visible.size())==visible.size());
     CHECK(std::none_of(visible.begin(),visible.end(),[](const auto &ap){return std::strcmp(reinterpret_cast<const char *>(ap.ssid),"test-ap")==0;}));
@@ -633,10 +666,56 @@ int main() {
     fresh();start();fake::records={makeAp("test-ap",-50,11)};
     CHECK(Connectivity::startScan()==ESP_OK);fake::scanDone();Connectivity::poll();
     CHECK(Connectivity::connectWifi("test-ap","12345678")==ESP_OK);Connectivity::poll();
+    CHECK(fake::connectConfig.sta.scan_method==WIFI_FAST_SCAN && fake::connectChannel==11);
     fake::disconnectDone(WIFI_REASON_NO_AP_FOUND);Connectivity::poll();
     CHECK(Connectivity::snapshot().error==WIFI_REASON_NO_AP_FOUND && sys::targetChannel==0);
     CHECK(sys::retryAt-fake::time==2000000);
-    fake::time=sys::retryAt;Connectivity::poll();CHECK(fake::scan);stop();
+    fake::time=sys::retryAt;Connectivity::poll();CHECK(fake::scan);
+    const auto changedChannelConnects=fake::connects;
+    fake::records={makeAp("test-ap",-45,1)};fake::scanDone();Connectivity::poll();
+    CHECK(fake::connects==changedChannelConnects+1 && fake::connectChannel==1);
+    CHECK(fake::connectConfig.sta.scan_method==WIFI_ALL_CHANNEL_SCAN && Connectivity::snapshot().retry==1);
+    associated();Connectivity::poll();fake::hasIp=true;fake::emit(IP_EVENT,IP_EVENT_STA_GOT_IP);Connectivity::poll();
+    CHECK(Connectivity::snapshot().state==WifiState::Connected && Connectivity::snapshot().retry==0);stop();
+
+    // Authentication failures do not trigger an automatic fallback that keeps
+    // retrying rejected credentials. A later explicit request starts a new fast attempt.
+    for(const auto reason:{WIFI_REASON_AUTH_FAIL,WIFI_REASON_4WAY_HANDSHAKE_TIMEOUT,WIFI_REASON_HANDSHAKE_TIMEOUT}) {
+        fresh();start();selectAndAssociate();
+        CHECK(fake::connectConfig.sta.scan_method==WIFI_FAST_SCAN);
+        const auto rejectedConnects=fake::connects,rejectedScans=fake::scans;
+        fake::disconnectDone(reason);Connectivity::poll();
+        CHECK(Connectivity::snapshot().state==WifiState::Failed && Connectivity::snapshot().error==reason);
+        CHECK(!sys::retryAt && !sys::reconnect && !sys::connectQueued);
+        fake::time+=300000000;Connectivity::poll();
+        CHECK(fake::connects==rejectedConnects && fake::scans==rejectedScans);
+        selectAndAssociate();CHECK(fake::connects==rejectedConnects+1);
+        CHECK(fake::connectConfig.sta.scan_method==WIFI_FAST_SCAN && Connectivity::snapshot().retry==0);stop();
+    }
+
+    // Timings separate discovery, SDK join and DHCP instead of attributing the
+    // whole wait to DHCP. Unchanged polls and duplicate ASSOCIATED do not log.
+    fresh();start();fake::records={makeAp("test-ap",-40,6)};
+    const std::string privatePassword="private-test-password";
+    CHECK(Connectivity::connectWifi("test-ap",privatePassword)==ESP_OK);Connectivity::poll();
+    fake::time+=2300000;fake::scanDone();Connectivity::poll();
+    CHECK(hasLog("connect requested attempt=1 cached=0 channel=0"));
+    CHECK(hasLog("probe done attempt=1 mode=directed result=0 found=1 records=1 scan_ms=2300 elapsed_ms=2300"));
+    CHECK(hasLog("join start attempt=1 scan=fast channel=6 prejoin_ms=2300"));
+    auto logCount=fake::logLines.size();
+    for(unsigned i=0;i<100;++i)Connectivity::poll();
+    CHECK(fake::logLines.size()==logCount);
+    fake::time+=1250000;associated();Connectivity::poll();
+    CHECK(hasLog("associated attempt=1 join_ms=1250 elapsed_ms=3550"));
+    logCount=fake::logLines.size();associated();Connectivity::poll();CHECK(fake::logLines.size()==logCount);
+    fake::time+=400000;fake::hasIp=true;fake::emit(IP_EVENT,IP_EVENT_STA_GOT_IP);Connectivity::poll();
+    CHECK(hasLog("online attempt=1 dhcp_ms=400 total_ms=3950"));
+    for(const auto &line:fake::logLines) {
+        CHECK(line.find("test-ap")==std::string::npos);
+        CHECK(line.find(privatePassword)==std::string::npos);
+        CHECK(line.find("192.0.2.1")==std::string::npos);
+    }
+    stop();
 
     // Default dwell is applied to the internal connection scan, including the
     // fresh-cache path. A failed SDK setter cannot fall through to connect.

@@ -207,7 +207,7 @@ class NativeThemes(unittest.TestCase):
 
     def test_every_app_reachable_without_factory_preload(self):
         main=read('main/main.cpp');home=read('main/ui/home_screen.cpp')
-        self.assertEqual(len(re.findall(r'registerApp\(',main)),24)
+        self.assertEqual(len(re.findall(r'registerApp\(',main)),25)
         self.assertIn('if(theme::tiles()) buildTiles(parent)',home)
         self.assertIn('else if(theme::terminal()) buildTerminal(parent)',home)
         self.assertIn('else buildAppList(parent)',home)

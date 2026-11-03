@@ -1,4 +1,5 @@
 #include "mp3_player.hpp"
+#include "xiaozhi_service.hpp"
 #include "chiptune_player.hpp"
 #include "game_audio.hpp"
 #include "game_synth.hpp"
@@ -77,7 +78,7 @@ void worker(void *arg) {
 }
 }
 std::shared_ptr<Session> start(Track track) {
-    if(sys::Power::sleepPending()||!mp3::idle()||!chip::idle()||!recorder::idle()||!fc::idle()||active.exchange(true))return {};
+    if(sys::Power::sleepPending()||!mp3::idle()||!chip::idle()||!recorder::idle()||!fc::idle()||!core::xiaozhi::idle() || active.exchange(true))return {};
     std::shared_ptr<Session> job;std::shared_ptr<Session> *arg=nullptr;
     try {job=std::make_shared<Session>(track);arg=new std::shared_ptr<Session>(job);}
     catch(const std::bad_alloc &) {active.store(false);return {};}

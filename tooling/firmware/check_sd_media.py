@@ -22,7 +22,7 @@ class SdMediaContracts(unittest.TestCase):
   self.assertEqual(sources.count('ui/lv_font_reading_15.c'),1)
   for path in sources:self.assertTrue((ROOT/'main'/path).is_file(),path)
   names=re.findall(r'registerApp\(\s*"([^"]+)"',read('main/main.cpp'))
-  self.assertEqual(names,['密码本','时钟','计时器','文本','蓝牙键鼠','相册','录音机','随机','万年历','编程速查','设计模式','蓝牙音乐','MP3音乐','8Bit音乐','手电筒','摩斯电码','文件管理','萌芽物语','局域网','网速测速','FC游戏','小恐龙','重力迷宫','设置'])
+  self.assertEqual(names,['密码本','时钟','计时器','文本','蓝牙键鼠','相册','录音机','随机','万年历','编程速查','设计模式','蓝牙音乐','MP3音乐','8Bit音乐','手电筒','摩斯电码','文件管理','萌芽物语','局域网','网速测速','FC游戏','小恐龙','重力迷宫','小智AI','设置'])
   self.assertIn('YUMO-INPUT-KEYS-20260921',read('main/main.cpp'))
   self.assertIn('esp_app_get_description()',read('main/apps/settings_system.cpp'))
   for worker in ('recorder::start','fc::start'):self.assertNotIn(worker,read('main/main.cpp'))
@@ -35,7 +35,7 @@ class SdMediaContracts(unittest.TestCase):
   self.assertEqual(len(set(keys['keys'].values())),10)
  def test_connection_parser_bounded_and_only_transport_fields(self):
   s=compact(read('main/core/vault_connection.cpp'))
-  for token in ('json.size()>1024','fields!=2','validOrigin(url->valuestring)','version->valuedouble!=1','char data[1025]'.replace(' ',''),'std::fclose(file)'):
+  for token in ('json.size()>1024','fields!=2','normalizeOrigin(url->valuestring,origin)','out.url=origin','version->valuedouble!=1','char data[1025]'.replace(' ',''),'std::fclose(file)'):
    self.assertIn(token,s)
   for token in ('configEncode','commit(','Pin','Token','Key'):
    self.assertNotIn(token,read('main/core/vault_connection.cpp'))
@@ -123,8 +123,8 @@ class SdMediaContracts(unittest.TestCase):
    self.assertIn('!sys::Power::audioMayRun()' if 'audio_recorder' in path else '!sys::Power::isScreenOn()',read(path));self.assertIn('sys::Power::sleepPending()',read(path))
  def test_deep_sleep_waits_for_both_media_workers_before_unmount(self):
   s=compact(read('main/core/power_mgr.cpp'))
-  self.assertIn('if(!core::mp3::idle()||!core::chip::idle()||!core::game_audio::idle()||!core::storageIdle()||!vault::idle()||!core::recorder::idle()||!core::fc::idle())',s)
-  self.assertLess(s.index('if(!core::mp3::idle()||!core::chip::idle()||!core::game_audio::idle()||!core::storageIdle()'),s.index('bsp_sdcard_unmount()'))
+  self.assertIn('if(!core::xiaozhi::idle()||!core::mp3::idle()||!core::chip::idle()||!core::game_audio::idle()||!core::storageIdle()||!vault::idle()||!core::recorder::idle()||!core::fc::idle())',s)
+  self.assertLess(s.index('if(!core::xiaozhi::idle()||!core::mp3::idle()||!core::chip::idle()||!core::game_audio::idle()||!core::storageIdle()'),s.index('bsp_sdcard_unmount()'))
   self.assertIn('>10000000',s);self.assertIn('appstorageworkerbusy',s)
  def test_worker_lifetime_and_psram_allocations(self):
   for path in ('main/core/audio_recorder.cpp','main/core/fc_emulator.cpp'):

@@ -5,6 +5,7 @@
 #include "core/vault_list.hpp"
 #include "core/vault_web_index.hpp"
 #include "core/system_service.hpp"
+#include "ui/vault_pattern.hpp"
 #include <memory>
 #include <string>
 #include <vector>
@@ -18,6 +19,11 @@ public:
   void onHide() override;
   void onDestroy() override;
   bool onBack() override;
+  bool allowsQuickPanel() const override { return !patternPage(); }
+  bool locksScreenOrientation() const override { return patternPage(); }
+  bool allowsScreenProtection() const override {
+    return m_visible && patternPage() && !m_job && !m_patternPending && !m_pattern.drawing();
+  }
 
 private:
   enum class Page {
@@ -32,13 +38,10 @@ private:
     ChangeNew,
     ChangeConfirm,
     Network,
-    Address,
-    ConfirmType
+    Address
   };
   enum class Action {
     Back,
-    Digit,
-    DeleteDigit,
     Category,
     Address,
     SaveAddress,
@@ -59,7 +62,6 @@ private:
     Detail,
     User,
     Password,
-    Type,
     Enter,
     Cancel,
     Settings,
@@ -97,7 +99,9 @@ private:
   uint32_t m_qrSince = 0;
   void styleCategory(lv_obj_t *row,lv_obj_t *name,lv_obj_t *detail,size_t index);
   void drawPin(Action submit);
-  void updatePinLine();
+  bool patternPage() const;
+  const char *patternPrompt() const;
+  static void patternSubmitted(void *context, const char *value, size_t size);
   void startTyping(bool username, uintptr_t link, bool enter = false);
   void requestBluetooth(Action action, size_t index);
   void poll();
@@ -116,8 +120,10 @@ private:
   Page m_typePage = Page::Detail;
   size_t m_accessScope = vault::interaction::AccessState::None;
   lv_obj_t *m_body = nullptr, *m_field = nullptr, *m_status = nullptr;
-  lv_obj_t *m_peerName = nullptr, *m_peerAddress = nullptr,
-           *m_pinLabel = nullptr;
+  lv_obj_t *m_peerName = nullptr, *m_peerAddress = nullptr;
+  ui::VaultPattern m_pattern;
+  Action m_patternAction = Action::Unlock;
+  bool m_patternPending = false, m_needsPatternSetup = false;
   lv_obj_t *m_bleButton = nullptr, *m_pairButton = nullptr,
            *m_disconnectButton = nullptr;
   std::vector<lv_obj_t *> m_bondButtons;
@@ -150,7 +156,6 @@ private:
   bool m_listUpdating = false;
   vault::interaction::RevealState m_reveal;
   vault::interaction::AccessState m_access;
-  uintptr_t m_targetLink = 0;
   std::string m_message, m_lastNetwork, m_pin, m_firstPin, m_oldPin;
   std::vector<std::string> m_wifi;
   std::vector<sys::BleBond> m_bonds;

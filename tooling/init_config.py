@@ -11,9 +11,9 @@ def initialize(root=ROOT, url=None):
     configs = [root/'firmware/vault-sync-key.properties', root/'server/vault-sync-key.properties']
     if url is not None:
         origin = urlsplit(url)
-        if (origin.scheme != 'http' or not origin.hostname or origin.username or
+        if (origin.scheme not in ('http', 'https') or not origin.hostname or origin.username or
                 origin.password or origin.path not in ('', '/') or origin.query or origin.fragment):
-            raise ValueError('Use an HTTP LAN origin, for example http://vault.local:8443')
+            raise ValueError('Use an HTTP(S) server origin, for example https://vault.example.com')
         if origin.port is not None and not 1 <= origin.port <= 65535:
             raise ValueError('Invalid port')
         url = url.rstrip('/')
@@ -63,7 +63,7 @@ def initialize(root=ROOT, url=None):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--url', help='Server LAN address reachable from the device')
+    parser.add_argument('--url', help='HTTP(S) server origin reachable from the device; standard port may be omitted')
     args=parser.parse_args()
     initialize(url=args.url)
 

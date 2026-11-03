@@ -174,8 +174,12 @@ void refresh() {
     c::checked(tiles[2],motion);c::disabled(tiles[2],motionBusy);
     // Icon-only tiles: keep on/off backgrounds and signal radio status by outline.
     auto outline=[](lv_obj_t *tile,bool pending,bool failed,bool connected) {
-        lv_obj_set_style_border_color(tile,failed?theme::danger():pending?theme::warning():
-            connected?theme::success():theme::edge(),0);
+        const auto color=failed?theme::danger():pending?theme::warning():
+            connected?theme::success():theme::edge();
+        // Compare the declared default value, not an in-flight state transition.
+        lv_style_value_t previous;
+        if(lv_obj_get_local_style_prop(tile,LV_STYLE_BORDER_COLOR,&previous,0)!=LV_STYLE_RES_FOUND ||
+            !lv_color_eq(previous.color,color))lv_obj_set_style_border_color(tile,color,0);
     };
     outline(tiles[0],wifiBusy||hotspot,wifi.state==sys::WifiState::Failed,wifi.state==sys::WifiState::Connected);
     outline(tiles[1],btBusy,bt.hasError(),bt.peer.connected);

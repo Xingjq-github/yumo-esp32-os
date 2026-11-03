@@ -6,6 +6,7 @@
 | --- | --- |
 | ESP32-S3板级组件 | `firmware/components/esp32_s3_touch_lcd_1_54/LICENSE` |
 | Nofrendo / NES核心 | `firmware/components/nofrendo/COPYING`、`PORT.md` |
+| 小智AI协议与绑定适配 | `firmware/main/core/xiaozhi.LICENSE`（MIT）；固定来源与范围见[小智AI](docs/firmware/xiaozhi_ai.md) |
 | minimp3 | `firmware/components/mp3_decoder/LICENSE`；固定提交见[MP3说明](docs/firmware/mp3_music.md) |
 | JPEG | `firmware/components/photo_jpeg/LICENSE.md`及对应来源说明 |
 | GIF / giflib | `firmware/components/photo_gif/giflib/COPYING` |

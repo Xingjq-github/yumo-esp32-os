@@ -1,4 +1,5 @@
 #include "mp3_player.hpp"
+#include "xiaozhi_service.hpp"
 #include "chiptune_player.hpp"
 #include "audio_recorder.hpp"
 #include "audio_mgr.hpp"
@@ -344,7 +345,7 @@ void worker(void *arg) {
 }
 } // namespace
 std::shared_ptr<Job> start(bool record, const std::string &path) {
-  if (sys::Power::sleepPending() || !core::mp3::idle() || !core::chip::idle() || !core::game_audio::idle() || !core::fc::idle() || active.exchange(true))
+  if (sys::Power::sleepPending() || !core::mp3::idle() || !core::chip::idle() || !core::game_audio::idle() || !core::fc::idle() || !core::xiaozhi::idle() || active.exchange(true))
     return {};
   std::shared_ptr<Job> job;
   std::shared_ptr<Job> *holder = nullptr;

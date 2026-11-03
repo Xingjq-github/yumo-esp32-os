@@ -8,7 +8,7 @@ def assert_config(test,name):
     test.assertEqual(hashlib.sha256((ROOT/name).read_bytes()).hexdigest(),expected[name],name)
     s=read(name)
     for option in ('CONFIG_FREERTOS_USE_TICKLESS_IDLE=y','CONFIG_PM_ENABLE=y',
-                   'CONFIG_BT_NIMBLE_MAX_CCCDS=64','CONFIG_BT_NIMBLE_MAX_BONDS=8',
+                   'CONFIG_BT_NIMBLE_MAX_CCCDS=128','CONFIG_BT_NIMBLE_MAX_BONDS=16',
                    'CONFIG_BT_NIMBLE_NVS_PERSIST=y',
                    'CONFIG_COMPILER_CXX_EXCEPTIONS_EMG_POOL_SIZE=1024'):
         test.assertIn(option,s)

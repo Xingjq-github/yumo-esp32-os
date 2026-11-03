@@ -65,7 +65,7 @@ class FullscreenEnterContracts(unittest.TestCase):
         self.assertEqual(p['TextWidth']+p['Gap']+p['EnterWidth'],p['Width'])
         self.assertEqual(2*p['RowHeight']+p['Gap'],p['Height'])
     def test_production_buttons_use_one_tall_enter_on_the_right(self):
-        s=section(self.app,'casePage::Detail:','casePage::ConfirmType:')
+        s=section(self.app,'casePage::Detail:','casePage::Qr:')
         # The ordinary password layout follows the separate code-only branch.
         code_start=s.index('if(entry.category=="other"){')
         code_end=s.index('}else{',code_start)+len('}')
@@ -142,6 +142,10 @@ class FullscreenEnterContracts(unittest.TestCase):
         for item in json.loads((RUN/'preserved_vault_sections.json').read_text()):
             with self.subTest(file=item['file'],section=item['start']):
                 actual=section(read(item['file']),item['start'],item['end'])
+                if item['start']=='std::string hex(':
+                    current=json.loads((ROOT/'../tooling/firmware/fixtures/contracts/vault-pattern-20261028/sections.json').read_text())
+                    self.assertEqual(hashlib.sha256(actual.encode()).hexdigest(),current[item['start']]['sha256'])
+                    continue
                 # Browser unlock alone may run with the screen dark. Normalize
                 # exactly that gate; preserve device-worker cancellation bytes.
                 actual=actual.replace('(!sys::Power::isScreenOn() && job.operation != Operation::WebUnlock)', '!sys::Power::isScreenOn()')
@@ -183,9 +187,9 @@ class FullscreenEnterContracts(unittest.TestCase):
         self.assertIn('casevault::Operation::Enter:m_page=m_typePage;',s)
         self.assertIn('kind==vault::Operation::Type||kind==vault::Operation::Enter',s)
         self.assertIn('m_page=m_session?m_typePage:Page::Locked',s)
-        self.assertIn('回车已发送，请在目标设备核对',s)
+        self.assertIn('message("回车已发送")',s)
     def test_network_requests_use_shared_service_and_stable_saved_identity(self):
-        s=section(self.app,'voidPasswordVault::requestBluetooth(','voidPasswordVault::updatePinLine(')
+        s=section(self.app,'voidPasswordVault::requestBluetooth(','boolPasswordVault::patternPage(')
         self.assertIn('if(m_page!=Page::Network)return;',s)
         self.assertIn('if(index>=m_bonds.size())return;',s)
         self.assertIn('sys::SystemService::reconnectBond(m_bonds[index])',s)
@@ -193,14 +197,14 @@ class FullscreenEnterContracts(unittest.TestCase):
         self.assertNotIn('BleHid::reconnectBond(',s)
         self.assertNotIn('BleHid::makeDiscoverable(',s)
     def test_queue_acceptance_is_not_reported_as_connection_success(self):
-        s=section(self.app,'voidPasswordVault::requestBluetooth(','voidPasswordVault::updatePinLine(')
+        s=section(self.app,'voidPasswordVault::requestBluetooth(','boolPasswordVault::patternPage(')
         self.assertLess(s.index('constautorevision='),s.index('result=sys::SystemService::'))
         self.assertIn('if(result!=ESP_OK)',s)
         self.assertIn('m_btRevision=revision;m_btAction=service;m_btPending=true;',s)
         self.assertIn('蓝牙请求已提交，正在处理',s)
         self.assertNotIn('已连接',s)
     def test_completion_uses_changed_revision_and_matching_action_for_errors(self):
-        s=section(self.app,'voidPasswordVault::poll()','if(m_redraw)')
+        s=section(self.app,'voidPasswordVault::poll()','if(m_redraw&&!m_pattern.drawing())')
         for token in ('m_btPending&&!sys::SystemService::busy(sys::ServiceDomain::Bluetooth)',
                       'if(result.revision!=m_btRevision)',
                       'm_btPending=false;m_message.clear()',
@@ -208,7 +212,7 @@ class FullscreenEnterContracts(unittest.TestCase):
                       'esp_err_to_name(result.error)'):
             self.assertIn(token,s)
     def test_bond_list_refreshes_on_revision_not_every_poll(self):
-        s=section(self.app,'voidPasswordVault::poll()','if(m_redraw)')
+        s=section(self.app,'voidPasswordVault::poll()','if(m_redraw&&!m_pattern.drawing())')
         self.assertIn('if(state.bondRevision!=m_bondRevision)m_redraw=true;',s)
         s=section(self.app,'casePage::Network:')
         self.assertIn('m_bondRevision=state.bondRevision;',s)

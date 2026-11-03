@@ -12,8 +12,8 @@ class CalendarGames(unittest.TestCase):
     def test_retired_apps_removed_and_settings_always_last(self):
         s=read('main/main.cpp');cmake=read('main/CMakeLists.txt')
         names=re.findall(r'registerApp\(\s*"([^"]+)"',s)
-        self.assertEqual(names[-6:],['局域网','网速测速','FC游戏','小恐龙','重力迷宫','设置'])
-        self.assertEqual(len(names),24)
+        self.assertEqual(names[-7:],['局域网','网速测速','FC游戏','小恐龙','重力迷宫','小智AI','设置'])
+        self.assertEqual(len(names),25)
         for app in ('gravity_ball','touch_scope','deep_sleep'):
             for ext in ('cpp','hpp'):self.assertFalse((ROOT/f'main/apps/{app}.{ext}').exists())
             self.assertNotIn('apps/'+app+'.',s+cmake)

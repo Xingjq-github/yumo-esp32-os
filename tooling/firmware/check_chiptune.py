@@ -1,6 +1,7 @@
 """Integration contracts complement the production parser/worker/UI replays."""
 from pathlib import Path
-import json,re,unittest,zipfile
+import json,re,tempfile,unittest,zipfile
+from package_sd_resources import write_chiptune_archive
 ROOT=(Path(__file__).resolve().parents[2]/'firmware')
 def read(n):return (ROOT/n).read_text(encoding='utf-8')
 class ChiptuneIntegration(unittest.TestCase):
@@ -24,8 +25,15 @@ class ChiptuneIntegration(unittest.TestCase):
         for token in ('listing->cancel.store(true)','player->cancel.store(true)','lv_timer_delete(timer)','listing.reset()','player.reset()','swap(entries)'):self.assertIn(token,close)
     def test_resources_match_archive_and_chiptune_directory(self):
         scores=sorted((ROOT/'../resources/sdcard/chiptune').glob('*.chip.json'));self.assertEqual(len(scores),7)
-        with zipfile.ZipFile(ROOT/'../artifacts/releases/sd/chiptune-samples.zip') as z:
-            for path in (ROOT/'../resources/sdcard/chiptune').iterdir():self.assertEqual(z.read('chiptune/'+path.name),path.read_bytes())
+        sd=ROOT/'../resources/sdcard'
+        with tempfile.TemporaryDirectory(prefix='yumo-chiptune-') as temporary:
+            archive=Path(temporary)/'chiptune-samples.zip'
+            write_chiptune_archive(sd,archive)
+            with zipfile.ZipFile(archive) as z:
+                paths=sorted(path for path in (sd/'chiptune').iterdir() if path.is_file())
+                self.assertIsNone(z.testzip())
+                self.assertEqual(sorted(z.namelist()),sorted('chiptune/'+path.name for path in paths))
+                for path in paths:self.assertEqual(z.read('chiptune/'+path.name),path.read_bytes())
         for p in scores:
             value=json.loads(p.read_text(encoding='utf-8'));self.assertEqual(value['format'],'chip-score');self.assertEqual(value['version'],1);self.assertLessEqual(p.stat().st_size,65536)
         self.assertIn('"/sdcard/chiptune"',read('main/core/chiptune_player.hpp'))

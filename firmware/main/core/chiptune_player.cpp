@@ -1,4 +1,5 @@
 #include "mp3_player.hpp"
+#include "xiaozhi_service.hpp"
 #include "chiptune_player.hpp"
 #include "audio_mgr.hpp"
 #include "audio_recorder.hpp"
@@ -156,7 +157,7 @@ std::shared_ptr<Listing> scan(){
     return job;
 }
 std::shared_ptr<Player> start(const std::string &path){
-    if(sys::Power::sleepPending()||!mp3::idle()||!game_audio::idle()||!recorder::idle()||!fc::idle()||active.exchange(true))return {};
+    if(sys::Power::sleepPending()||!mp3::idle()||!game_audio::idle()||!recorder::idle()||!fc::idle()||!core::xiaozhi::idle() || active.exchange(true))return {};
     std::shared_ptr<Player> job;std::shared_ptr<Player> *arg=nullptr;
     try{job=std::make_shared<Player>();job->path=path;job->access=sd::requestAccess();arg=new std::shared_ptr<Player>(job);}catch(const std::bad_alloc &){active.store(false);return {};}
     if(xTaskCreateWithCaps(playerWorker,"chip_audio",6144,arg,2,nullptr,MALLOC_CAP_SPIRAM|MALLOC_CAP_8BIT)!=pdPASS){delete arg;active.store(false);return {};}

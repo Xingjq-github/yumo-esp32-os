@@ -49,7 +49,7 @@ class LanWebContracts(unittest.TestCase):
         self.assertIn('document.execCommand(\'copy\')',web)
         self.assertIn('request.responseText).bytes!==file.size',web)
     def test_detail_has_title_header_values_on_input_and_labeled_metadata(self):
-        app=read('apps/password_vault.cpp');detail=app.split('  case Page::Detail:',1)[1].split('  case Page::ConfirmType:',1)[0]
+        app=read('apps/password_vault.cpp');detail=app.split('  case Page::Detail:',1)[1].split('  case Page::Qr:',1)[0]
         self.assertIn('m_session->entries[m_selected].title.c_str()',app.split('void PasswordVault::draw()',1)[1])
         for token in ('"输入账号"','"输入密码"','wrap(m_body, entry.title.c_str())','auto secret'):self.assertNotIn(token,detail)
         for token in ('entry.username.c_str(), Action::User','entry.password.c_str() : "********", Action::Password','vault::targetLabel(entry.category)','"备注："','Action::Qr'):self.assertIn(token,detail)

@@ -14,6 +14,16 @@ class VaultRevealReturnContracts(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.raw = (ROOT / 'main/apps/password_vault.cpp').read_text(encoding='utf-8-sig')
+        # Reviewed public HTTP(S) address copy only. Preserve the existing
+        # hashes/contracts for every surrounding authentication/UI byte.
+        for current, previous in (
+            ('正在连接密码服务', '正在使用本地地址同步'),
+            ('密码服务地址', '局域网服务地址'),
+            ('https://example.com', 'http://地址:端口'),
+            ('支持公网域名或局域网IP，标准端口可省略。', '与服务端连接同一局域网，填写服务地址。'),
+        ):
+            assert cls.raw.count(current) == 1, current
+            cls.raw = cls.raw.replace(current, previous)
         cls.app = compact(cls.raw)
         cls.reject = section(cls.app, 'voidPasswordVault::rejectReveal(',
                              'voidPasswordVault::finishAccess(')
@@ -46,11 +56,11 @@ class VaultRevealReturnContracts(unittest.TestCase):
         self.assertLess(self.reject.index(guard), self.reject.index('m_page=Page::Detail'))
 
     def test_empty_short_or_invalid_pin_returns_without_launching_a_job(self):
-        invalid = section(self.submit, 'if(!vault::validPin(', 'try{')
-        self.assertIn('rejectReveal("验证失败，请输入4到12位数字");return;', invalid)
+        invalid = section(self.submit, 'if(!vault::pattern::valid(', 'try{')
+        self.assertIn('rejectReveal("请至少连接4个点");return;', invalid)
         self.assertNotIn('launch(', invalid)
         self.assertNotIn('m_reveal.request(', invalid)
-        self.assertLess(self.submit.index('!vault::validPin'), self.submit.index('std::make_shared'))
+        self.assertLess(self.submit.index('!vault::pattern::valid'), self.submit.index('std::make_shared'))
 
     def test_launch_and_allocation_failures_also_leave_verification(self):
         self.assertIn('if(launch(job)!=vault::StartResult::Started)rejectReveal(nullptr);', self.submit)
@@ -62,7 +72,23 @@ class VaultRevealReturnContracts(unittest.TestCase):
     def test_failed_pin_cooldown_and_cancelled_jobs_use_same_rejection(self):
         self.assertIn('boolsuccess=m_job->ok&&!m_job->cancelled.load();if(success)', self.poll)
         self.assertIn('if(kind==vault::Operation::VerifyPin)rejectReveal(m_job->error.empty()?"操作已取消":m_job->error.c_str());elsemessage(m_job->error.empty()?"操作已取消":m_job->error.c_str());', self.poll)
-        self.assertIn('m_job.reset();m_redraw=true;', self.poll)
+        self.assertIn('m_job.reset();if(m_timer)lv_timer_set_period(m_timer,IdlePollMs);m_redraw=true;', self.poll)
+        worker = compact((ROOT/'main/core/password_vault.cpp').read_text(encoding='utf-8'))
+        self.assertIn('failures=std::min(failures+1,5u);nextUnlock=esp_timer_get_time()+(1LL<<failures)*1000000;', worker)
+        self.assertIn('if(esp_timer_get_time()<nextUnlock){job.error="请稍后再试";return;}', worker)
+
+    def test_pattern_release_schedules_without_synchronous_auth_or_page_deletion(self):
+        submit = section(self.app, 'voidPasswordVault::patternSubmitted(', 'voidPasswordVault::drawPin(')
+        self.assertIn('if(!self->m_visible||!self->patternPage()||self->m_job||self->m_patternPending)return;', submit)
+        self.assertLess(submit.index('self->m_patternPending=true'), submit.index('lv_timer_ready(self->m_timer)'))
+        self.assertIn('if(self->m_timer)lv_timer_ready(self->m_timer);', submit)
+        for forbidden in ('action(', 'launch(', 'poll(', 'draw(', 'lv_obj_clean(', 'derive('):
+            self.assertNotIn(forbidden, submit)
+        self.assertIn('constexpruint32_tIdlePollMs=100;', self.app)
+        self.assertIn('constexpruint32_tJobPollMs=20;', self.app)
+        launch = section(self.app, 'vault::StartResultPasswordVault::launch(', 'voidPasswordVault::load(')
+        self.assertIn('if(m_timer)lv_timer_set_period(m_timer,JobPollMs);', launch)
+        self.assertLess(launch.index('m_job=job;'), launch.index('lv_timer_set_period(m_timer,JobPollMs)'))
 
     def test_valid_result_requires_current_entry_and_rejected_result_returns(self):
         success = section(self.poll, 'casevault::Operation::VerifyPin:', 'casevault::Operation::Type:')
@@ -73,8 +99,12 @@ class VaultRevealReturnContracts(unittest.TestCase):
 
     def test_returned_detail_has_message_mask_and_original_entry(self):
         draw = section(self.app, 'voidPasswordVault::draw()', 'casePage::Locked:')
-        self.assertIn('if(!m_message.empty()&&!pinPage&&!purposePage())wrap(m_body,m_message.c_str());', draw)
-        detail = section(self.app, 'casePage::Detail:', 'casePage::ConfirmType:')
+        self.assertIn('if(!m_message.empty()&&!pinPage&&!purposePage()&&m_page!=Page::Detail)wrap(m_body,m_message.c_str());', draw)
+        detail = section(self.app, 'casePage::Detail:', 'casePage::Qr:')
+        self.assertIn('if(!m_message.empty())wrap(m_body,m_message.c_str());', detail)
+        self.assertLess(detail.index('"备注："'), detail.index('m_message.c_str()'))
+        self.assertLess(detail.index('m_message.c_str()'), detail.index('"先选输入框，US英文、关大写"'))
+        self.assertIn('lv_obj_set_style_text_color(hint,ui::theme::muted(),0)', detail)
         self.assertIn('constauto&entry=m_session->entries[m_selected];', detail)
         self.assertIn('(m_access.super()||m_reveal.visible(m_selected))?entry.password.c_str():"********"', detail)
         self.assertIn('m_reveal.visible(m_selected)?"隐藏密码":"展示密码"', detail)
@@ -82,12 +112,32 @@ class VaultRevealReturnContracts(unittest.TestCase):
 
     def test_unlock_bluetooth_layout_typing_and_lifecycle_sections_unchanged(self):
         reviewed = json.loads((ROOT/'../tooling/firmware/fixtures/contracts/vault-device-super-20260922/sections.json').read_text())
-        for item in self.baseline['preserved_app_sections']:
+        pattern_review = json.loads((ROOT/'../tooling/firmware/fixtures/contracts/vault-pattern-20261028/sections.json').read_text())
+        for original in self.baseline['preserved_app_sections']:
+            item = dict(original)
+            if item['start'] == 'void PasswordVault::updatePinLine(':
+                item['start'] = 'bool PasswordVault::patternPage('
+            if item['end'] == 'void PasswordVault::updatePinLine(':
+                item['end'] = 'bool PasswordVault::patternPage('
             with self.subTest(section=item['start']):
-                if item['start'] in ('void PasswordVault::lock()', 'void PasswordVault::draw()'):
-                    current=json.loads((ROOT/'../tooling/firmware/fixtures/contracts/vault-lan-web-20261020/sections.json').read_text())
-                    actual=section(self.raw,item['start'],item['end'])
-                    self.assertEqual(hashlib.sha256(actual.encode()).hexdigest(),current[item['start']])
+                if item['start'] in pattern_review:
+                    # Reviewed pattern UI/migration. Separate pattern contracts cover
+                    # auth gates, gesture cancellation, transient hints and setup.
+                    current = pattern_review[item['start']]
+                    self.assertEqual(current['end'], item['end'])
+                    actual = section(self.raw, item['start'], item['end'])
+                    if item['start'] == 'bool PasswordVault::patternPage(':
+                        # Only this reviewed timer wakeup changed. Preserve the
+                        # exact hash of every remaining auth gate/prompt byte;
+                        # the dedicated test above and real LVGL replay cover it.
+                        wakeup = '''  // Ready schedules the next GUI timer pass; it does not run the job or
+  // replace the touch object while its RELEASED callback is still executing.
+  if (self->m_timer)
+    lv_timer_ready(self->m_timer);
+'''
+                        self.assertEqual(actual.count(wakeup), 1)
+                        actual = actual.replace(wakeup, '')
+                    self.assertEqual(hashlib.sha256(actual.encode()).hexdigest(), current['sha256'])
                     continue
                 if item['start'] in reviewed:
                     actual = section(self.raw, item['start'], item['end'])

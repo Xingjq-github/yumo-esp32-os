@@ -75,7 +75,7 @@ private:
     std::array<wifi_ap_record_t,sys::Connectivity::kMaxNetworks> aps{};
     std::array<std::string,sys::Connectivity::kMaxNetworks> networkNames;
     size_t networkCount=0;
-    std::array<sys::BleBond,8> bonds{};
+    std::array<sys::BleBond,sys::BlePeerStore::Capacity> bonds{};
     int bondCount=0,scanShown=0;
     std::array<sys::BleScanDevice,sys::BleHid::kMaxScanDevices> scanned{};
     void navigate(Page target);

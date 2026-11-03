@@ -33,7 +33,7 @@ class VaultAccessContracts(unittest.TestCase):
         for forbidden in ('entries', 'commit(', 'load(', 'job.output'):
             self.assertNotIn(forbidden, check)
         action = section(self.app, 'caseAction::VerifyAccess:', 'caseAction::ChangePassword:')
-        self.assertLess(action.index('!vault::validPin'), action.index('std::make_shared'))
+        self.assertLess(action.index('!vault::pattern::valid'), action.index('std::make_shared'))
         self.assertIn('job->entry=m_accessScope', action)
         self.assertIn('vault::clear(m_pin)', action)
         self.assertIn('catch(conststd::bad_alloc&)', action)

@@ -5,6 +5,7 @@ LV_FONT_DECLARE(lv_font_app_icons_24);
 LV_FONT_DECLARE(lv_font_app_icons_48);
 
 namespace ui::icons {
+inline constexpr char Xiaozhi[]="\xEE\x80\x88";
 inline constexpr char Music[]="\xEE\x80\x87";
 inline constexpr char Timer[]="\xEE\x80\x86";
 inline constexpr char Garden[]="\xEE\x80\x85";

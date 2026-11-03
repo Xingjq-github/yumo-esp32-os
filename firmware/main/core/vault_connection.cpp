@@ -29,14 +29,14 @@ bool ConnectionConfig::parse(const std::string &json, ConnectionConfig &out,
     }
     ++fields;
   }
+  std::string origin;
   if (fields != 2 || !cJSON_IsNumber(version) || version->valuedouble != 1 ||
       !cJSON_IsString(url) || !url->valuestring ||
-      !validOrigin(url->valuestring) ||
-      std::strncmp(url->valuestring, "http://", 7) != 0) {
-    error = "SD配置错误：schema须为1，url为http://地址:端口";
+      !normalizeOrigin(url->valuestring, origin)) {
+    error = "SD配置错误：schema须为1，url须为HTTP或HTTPS服务地址";
     return false;
   }
-  out.url = url->valuestring;
+  out.url = origin;
   return true;
 }
 bool ConnectionConfig::readSd(ConnectionConfig &out, std::string &error,core::sd::Access access) {

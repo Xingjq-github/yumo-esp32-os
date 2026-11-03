@@ -11,7 +11,7 @@
 
 - [学习路线](learning.md) · [目录结构](structure.md)
 - [固件架构与生命周期](firmware/firmware_architecture.md)
-- [24个应用总览](firmware/overview.md) · [贡献说明](../CONTRIBUTING.md)
+- [25个应用总览](firmware/overview.md) · [贡献说明](../CONTRIBUTING.md)
 - [验证范围与检查入口](validation.md)
 
 ## 设备功能
@@ -31,3 +31,11 @@
 - [PC服务](server/pc.md) · [NAS容器部署](server/nas.md)
 - [配置说明](configuration.md) · [协议说明](server/PROTOCOL.md)
 - [第三方来源与许可](../THIRD_PARTY_NOTICES.md)
+
+## 2026-11-02设备版本
+
+- [小智AI：在线语音与240×240界面](firmware/xiaozhi_ai.md)
+- [蓝牙鼠标、16条绑定与手柄](firmware/bluetooth_connections.md)
+- [九点图形密码](firmware/password_vault.md) · [公网HTTPS同步](firmware/vault_public_https_20261031.md)
+- [Wi-Fi连接优化](firmware/wifi_connection_latency.md) · [LCD静置保护](firmware/screen_protection.md)
+- [K8s/K9s知识库](firmware/learning_files_morse.md) · [便携升级脚本](firmware/portable_flash.md)

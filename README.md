@@ -9,7 +9,7 @@
 
 <p align="center">
   <a href="#快速开始">快速开始</a> ·
-  <a href="docs/firmware/overview.md">24 个应用</a> ·
+  <a href="docs/firmware/overview.md">25 个应用</a> ·
   <a href="docs/firmware/hardware.md">硬件</a> ·
   <a href="docs/README.md">文档</a> ·
   <a href="docs/validation.md">验证范围</a>
@@ -23,13 +23,14 @@ Yumo OS 是面向 **ESP32-S3-Touch-LCD-1.54** 的便携式触屏系统。应用�
 
 | 场景 | 主要功能 | 说明 |
 | --- | --- | --- |
-| 密码与工具 | 设备密码本、配套网页服务、分类管理、二维码、蓝牙键鼠 | [密码本](docs/firmware/password_vault.md) |
+| 密码与工具 | 九点图形密码本、配套网页服务、HTTPS同步、分类与二维码、蓝牙键鼠 | [密码本](docs/firmware/password_vault.md) |
 | 时间与日常 | 四面时钟、中文时钟、分段秒表、万年历、随机工具、手电筒、摩斯电码 | [应用概览](docs/firmware/overview.md) |
 | 音乐与录音 | MP3/LRC歌词、8Bit合成音乐、蓝牙媒体遥控、双麦录音 | [MP3音乐](docs/firmware/mp3_music.md) |
 | 游戏 | FC/NES、IINE蓝牙手柄、萌芽物语、小恐龙、重力迷宫 | [FC操作](docs/firmware/fc_touch_controls.md) · [萌芽物语](docs/firmware/garden.md) |
 | 文件与图片 | SD文件管理、文本阅读、JPEG/PNG/GIF、视口缩放与SD缓存 | [图片解码](docs/firmware/photo_rendering.md) |
 | 网络 | Wi-Fi自动共享、本地热点、Wi-Fi硬盘、密码查看网页、测速图表与历史 | [局域网](docs/firmware/lan_hotspot_20260920.md) · [测速](docs/firmware/speed_test.md) |
-| 学习 | 编程速查、设计模式课程及离线资料 | [学习功能](docs/firmware/learning_files_morse.md) |
+| 学习 | 编程速查（含K8s/K9s）、设计模式课程及离线资料 | [学习功能](docs/firmware/learning_files_morse.md) |
+| AI对话 | 小智AI在线手动语音、官方绑定、识别文本与回答、小屏界面 | [小智AI](docs/firmware/xiaozhi_ai.md) |
 | 系统 | 多主题、统一四向旋转、USB读卡器、USB投屏、休眠与时钟补偿 | [系统架构](docs/firmware/firmware_architecture.md) |
 
 ## 硬件与运行范围
@@ -122,13 +123,14 @@ flowchart LR
 
 ## 当前版本与边界
 
-代码来自2026-10-22已烧录基线，包含MP3播放器、IINE C/H模式控制、8条蓝牙配对及FC居中点对点显示。
+代码更新至2026-11-02已烧录基线，包含小智AI、蓝牙鼠标异步发送与日志减负、16条蓝牙绑定、九点图形密码、公网HTTPS同步、Wi-Fi连接优化及LCD静置保护。完整状态见[当前版本](docs/current-state.md)。
 
 - FC输出240×240，原图左右各裁8列；25/30fps为显示调度上限，不是所有游戏实测帧率。
 - MP3通过本机扬声器输出；Type-C耳机与USB有线键盘功能不在当前版本中，USB读卡器和投屏保留。
 - IINE C模式用于FC游戏，H模式用于设备导航；最新H返回/翻页及全部游戏效果仍需实机测试。
 - 图片16MiB为输入上限，解码同时受到像素、内存和处理预算约束。
-- 固件采用factory分区，当前没有OTA更新入口。
+- 小智AI手动语音及蓝牙鼠标长期体验仍待实机验收；宿主回放和短时启动不等同于云端对话、音质或无线性能测试。
+- 固件采用factory分区，当前没有OTA更新入口；[便携升级脚本](docs/firmware/portable_flash.md)默认仅更新系统分区，源码仓库不附带预制固件或运行时。
 
 来源验证、宿主回放与独立构建的区别见[验证说明](docs/validation.md)。
 

@@ -21,8 +21,14 @@ class ClockHidBleContracts(unittest.TestCase):
                       's_disconnectPending.load()', 'clearPairRequest()'):
             self.assertIn(token,s)
         old=read('../tooling/firmware/fixtures/contracts/keyboard-battery-ui-20260917-1306/main/core/ble_hid.cpp')
-        for start,end in (('esp_err_t BleHid::sendMouse','// ---- bond management'),):
+        # Mouse submission is now async and covered by production replay; the
+        # unrelated media-report format and press/release timing remain intact.
+        for start,end in (('esp_err_t BleHid::sendConsumer','// ---- bond management'),):
             self.assertEqual(between(old,start,end),between(s,start,end))
+        submit=between(s,'esp_err_t BleHid::sendMouse','esp_err_t BleHid::clickMouse')
+        self.assertIn('s.queue.push(dx,dy,wheel,buttons)',submit)
+        self.assertIn('expectedLink!=link',submit)
+        self.assertNotRegex(submit,r'sendReport|esp_hidd_dev_input_set|vTaskDelay')
     def test_external_stack_requires_cache_safe_xip_configuration(self):
         s=read('main/core/ble_hid.cpp');cfg=read('sdkconfig')
         self.assertIn('#if CONFIG_SPIRAM_XIP_FROM_PSRAM && CONFIG_FREERTOS_TASK_CREATE_ALLOW_EXT_MEM',s)

@@ -1,0 +1,65 @@
+{
+  "repo": "espressif/esp-protocols",
+  "commit": "70bf122fc8bc74622dcf7e15233b5b2af9088df5",
+  "tag": "websocket-v1.8.0",
+  "method": "official raw GitHub files with Git blob SHA1 and local SHA256 verification",
+  "scope": "Complete production sources, public/private headers, CMake/Kconfig/manifest, license, README/changelog; repository CI/examples/tests omitted.",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "b91c02b86cfff86920a5ab14d2fe5776446effe6d18272c58bdcd9b872f293c9",
+      "git_blob_sha1": "4a7e0bb64e7bcc6e833e80ce53784882fe870f3c",
+      "bytes": 27871,
+      "url": "https://raw.githubusercontent.com/espressif/esp-protocols/70bf122fc8bc74622dcf7e15233b5b2af9088df5/components/esp_websocket_client/CHANGELOG.md"
+    },
+    {
+      "path": "CMakeLists.txt",
+      "sha256": "2d26aec8d9f48972e451b7d74c4f2295cd8acd8494e4a33219af6325daf81399",
+      "git_blob_sha1": "d19a10d433f493aae76c3d25f49a3baa635f9d99",
+      "bytes": 938,
+      "url": "https://raw.githubusercontent.com/espressif/esp-protocols/70bf122fc8bc74622dcf7e15233b5b2af9088df5/components/esp_websocket_client/CMakeLists.txt"
+    },
+    {
+      "path": "Kconfig",
+      "sha256": "b56c434dfbc1958090e26ca86a11f6909894cf77d33a28b26a6d5eb8787e5651",
+      "git_blob_sha1": "289c1725d8adb747425bf3ac8c3188eea551b24b",
+      "bytes": 954,
+      "url": "https://raw.githubusercontent.com/espressif/esp-protocols/70bf122fc8bc74622dcf7e15233b5b2af9088df5/components/esp_websocket_client/Kconfig"
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "git_blob_sha1": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+      "bytes": 11358,
+      "url": "https://raw.githubusercontent.com/espressif/esp-protocols/70bf122fc8bc74622dcf7e15233b5b2af9088df5/components/esp_websocket_client/LICENSE"
+    },
+    {
+      "path": "README.md",
+      "sha256": "88edfb76a9debd66989c7b57fb2ad878cd45103d6e8c3074e26d80f26a60e35f",
+      "git_blob_sha1": "bffb1aa6638d529b7740376ef36711eb6c7ff5ce",
+      "bytes": 705,
+      "url": "https://raw.githubusercontent.com/espressif/esp-protocols/70bf122fc8bc74622dcf7e15233b5b2af9088df5/components/esp_websocket_client/README.md"
+    },
+    {
+      "path": "esp_websocket_client.c",
+      "sha256": "18041ec37d3456bc1ecb3275a78c3ae64679f57f049b5b05af169ef6b1857c77",
+      "git_blob_sha1": "6a6bfcbc0efedf3cff1e846b652e55a076fb95a2",
+      "bytes": 71402,
+      "url": "https://raw.githubusercontent.com/espressif/esp-protocols/70bf122fc8bc74622dcf7e15233b5b2af9088df5/components/esp_websocket_client/esp_websocket_client.c"
+    },
+    {
+      "path": "idf_component.yml",
+      "sha256": "0d557ddf7854668dbce7e349de51bc17c31465dd8f40d6269e0cecfc5ccef48e",
+      "git_blob_sha1": "a8167bc80ba1950d0c5362cbe19214ef320e5cfe",
+      "bytes": 202,
+      "url": "https://raw.githubusercontent.com/espressif/esp-protocols/70bf122fc8bc74622dcf7e15233b5b2af9088df5/components/esp_websocket_client/idf_component.yml"
+    },
+    {
+      "path": "include/esp_websocket_client.h",
+      "sha256": "382fdce725ff80c15172e2850dcb41702a655857bed76fff7ac4e9c811311cfa",
+      "git_blob_sha1": "9ff8cf58b37d4121103473f471f75c6b4e1b2b8c",
+      "bytes": 25416,
+      "url": "https://raw.githubusercontent.com/espressif/esp-protocols/70bf122fc8bc74622dcf7e15233b5b2af9088df5/components/esp_websocket_client/include/esp_websocket_client.h"
+    }
+  ]
+}

@@ -3,6 +3,7 @@
 namespace sys {
 class BlePeerStore {
 public:
+    static constexpr unsigned Capacity=16;
     static void load(); // worker before host starts
     static void flush(); // worker only, callbacks merely mark dirty
     static BleBond enrich(BleBond value);

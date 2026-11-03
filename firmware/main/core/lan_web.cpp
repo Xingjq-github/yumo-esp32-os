@@ -259,8 +259,8 @@ esp_err_t upload(httpd_req_t *req) {
 }
 esp_err_t login(httpd_req_t *req) {
   std::string pin;
-  if (!receive(req, pin, 12) || !vault::validPin(pin.data(), pin.size())) {
-    vault::clear(pin); return message(req, "400 Bad Request", "请输入设备密码本4到12位数字管理密码");
+  if (!receive(req, pin, vault::pattern::Maximum) || !vault::pattern::valid(pin.data(), pin.size())) {
+    vault::clear(pin); return message(req, "400 Bad Request", "请绘制设备图形密码，至少连接4个点");
   }
   auto job = std::make_shared<vault::Job>(vault::Operation::WebUnlock);
   job->master = pin;
@@ -287,7 +287,7 @@ esp_err_t passwords(httpd_req_t *req) {
   std::lock_guard<std::mutex> guard(authMutex);
   const auto *session = authenticated(req);
   if (!session) {
-    return message(req, "401 Unauthorized", "请先输入设备管理密码，或重新登录");
+    return message(req, "401 Unauthorized", "请先绘制设备图形密码，或重新登录");
   }
   auto out = cJSON_CreateArray();
   for (const auto &entry : session->unlocked->entries) {

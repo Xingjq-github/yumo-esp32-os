@@ -17,8 +17,8 @@ class KnowledgePackage(unittest.TestCase):
     def setUpClass(cls):
         cls.cards=kb.sources();cls.blob=kb.build(cls.cards);cls.decoded=kb.inspect(cls.blob)
     def test_all_categories_and_gof_families(self):
-        self.assertEqual(len(self.cards),419)
-        self.assertEqual([sum(c['category']==name for c in self.cards) for name in kb.CATEGORIES],[151,44,28,75,30,91])
+        self.assertEqual(len(self.cards),449)
+        self.assertEqual([sum(c['category']==name for c in self.cards) for name in kb.CATEGORIES],[151,44,28,75,30,121])
         patterns=[c for c in self.cards if c['id'].startswith('java.pattern.')]
         self.assertEqual(len(patterns),23)
         self.assertEqual([sum(c['group'].endswith(n) for c in patterns) for n in ('创建型','结构型','行为型')],[5,7,11])

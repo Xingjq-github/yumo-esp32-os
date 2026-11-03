@@ -90,6 +90,7 @@ void Timer::onCreate(lv_obj_t *parent) {
     fractionText=text(clockGroup,".00",172,19,50,&lv_font_montserrat_24);
     for(auto obj:{timeText,fractionText})lv_obj_set_style_text_align(obj,LV_TEXT_ALIGN_RIGHT,0);
     statusText=text(clock,"",4,27,224);
+    lv_obj_set_style_text_color(statusText,theme::danger(),0);
     lv_obj_set_style_text_align(statusText,LV_TEXT_ALIGN_CENTER,0);
     auto laps=compact::panel(parent,232,104);lv_obj_set_pos(laps,4,132);
     lv_obj_set_clickable(laps,false);lv_obj_set_style_radius(laps,6,0);
@@ -192,7 +193,6 @@ void Timer::refresh(int64_t now) {
     compact::setText(keyText,model.running()?"记录":elapsed?"继续":"开始");
     compact::disabled(powerButton,!model.running() && !elapsed && !model.size());
     compact::setText(statusText,inputOverflow?"按键过快，请重试":"");
-    lv_obj_set_style_text_color(statusText,theme::danger(),0);
     lv_obj_set_hidden(statusText,!inputOverflow);lv_obj_set_hidden(clockGroup,inputOverflow);
 }
 void Timer::appendLap() {

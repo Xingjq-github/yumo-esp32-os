@@ -4,7 +4,7 @@
 
 ## 1. 准备 SD 卡
 
-把工程 `resources/sdcard/` 内的 `config`、`recordings`、`nes` 三个目录复制到 SD 卡根目录。其他应用的目录见 [SD 卡说明](../../resources/sdcard/README.md)。该模板不含密码、密钥、游戏或录音。
+把工程 `resources/sdcard/` 内的 `config`、`recordings`、`nes` 三个目录复制到 SD 卡根目录。其他应用的目录见 [SD 卡说明](../../resources/sdcard/README.md)；需要ZIP时按[资源说明](../../resources/README.md)重新生成。该模板不含密码、密钥、游戏或录音。
 
 ```text
 SD 卡根目录

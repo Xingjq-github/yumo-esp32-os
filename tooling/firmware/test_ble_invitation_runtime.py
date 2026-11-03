@@ -10,12 +10,13 @@ def section(s,start,end):return s[s.index(start):s.index(end,s.index(start)+len(
 def main():
     ap=argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--run-dir',type=Path,required=True)
+    ap.add_argument('--case',choices=('invitation','sdk-retry-on','sdk-retry-off','pairing','flow'))
     args=ap.parse_args();run=args.run_dir.resolve()
     assert run.is_relative_to((ROOT.parent/'artifacts/validation').resolve())
     run.mkdir(parents=True,exist_ok=False)
     capacity=re.search(r'^CONFIG_BT_NIMBLE_MAX_BONDS=(\d+)$',(ROOT/'sdkconfig').read_text(encoding='utf-8'),re.M).group(1)
     (run/'bond_capacity.inc').write_text('constexpr int kMaxBondSlots='+capacity+';\n',encoding='utf-8')
-    cc=Path(__import__('shutil').which('g++') or 'g++').resolve()
+    cc=ROOT/'../dependencies/host/w64devkit/bin/g++.exe'
     source=(ROOT/'main/core/ble_hid.cpp').read_text(encoding='utf-8')
     snippets=[section(source,'void cancelDiscoverableTimeout(void)','// One report map'),
               section(source,'esp_err_t BleHid::reconnectBond(', 'esp_err_t BleHid::startScan('),
@@ -56,6 +57,7 @@ def main():
                             ('sdk-retry-off','ble_sdk_disconnect_replay.cpp',['-fpermissive','-DRETRY_ENABLED=0']),
                             ('pairing','ble_pairing_replay.cpp',[]),
                             ('flow','ble_flow_replay.cpp',[])]:
+        if args.case and args.case!=name:continue
         exe=run/(name+'.exe')
         execute(name+'-compile',[str(cc),'-std=c++17','-O1','-g','-static-libgcc','-static-libstdc++',
                                 '-I'+str(run),'-I'+str(ROOT/'main'),*flags,str(ROOT/'../tooling/firmware/native'/file),'-o',str(exe)])
@@ -65,7 +67,7 @@ def main():
         '../tooling/firmware/test_ble_invitation_runtime.py','../tooling/firmware/native/ble_invitation_replay.cpp',
         '../tooling/firmware/native/ble_sdk_disconnect_replay.cpp','../tooling/firmware/native/ble_pairing_replay.cpp',
         'main/core/ble_connection_flow.hpp','../tooling/firmware/native/ble_flow_replay.cpp')}
-    result=dict(passed=True,outputs=outputs,inputs=inputs,sdk_source=str(sdk_path),
+    result=dict(passed=True,selected_case=args.case or 'all',outputs=outputs,inputs=inputs,sdk_source=str(sdk_path),
                 sdk_sha256=hashlib.sha256(sdk_path.read_bytes()).hexdigest(),
                 sdk_sources=sdk_sources,synthetic_hci=True,device_accessed=False,
                 limits='Actual invitation and SDK event functions; fake controller/IRK, not an iPhone or RF test')

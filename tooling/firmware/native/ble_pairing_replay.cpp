@@ -9,18 +9,19 @@ constexpr int BLE_HS_EAGAIN=1;
 constexpr int BLE_GAP_EVENT_CONNECT=1,BLE_GAP_EVENT_DISCONNECT=2,BLE_GAP_EVENT_ENC_CHANGE=3;
 constexpr int BLE_GAP_EVENT_NOTIFY_RX=4,BLE_GAP_EVENT_PASSKEY_ACTION=5;
 constexpr int BLE_GAP_EVENT_ADV_COMPLETE=6,BLE_GAP_EVENT_REPEAT_PAIRING=7;
+constexpr int BLE_GAP_EVENT_CONN_UPDATE=8;
 constexpr int BLE_SM_IOACT_NUMCMP=4,BLE_SM_IOACT_DISP=3;
 constexpr int BLE_GAP_REPEAT_PAIRING_IGNORE=0,BLE_GAP_REPEAT_PAIRING_RETRY=1;
 constexpr int BLE_GAP_ROLE_MASTER=0;
 #define BLE_HS_HCI_ERR(x) (0x200+(x))
 struct ble_gap_conn_desc {
-    uint16_t conn_handle=1;uint8_t role=1;
+    uint16_t conn_handle=1,conn_itvl=12,conn_latency=0,supervision_timeout=600;uint8_t role=1;
     struct {uint8_t encrypted=0,authenticated=0,bonded=0,key_size=0;}sec_state;
     struct {uint8_t type=0,val[6]{};}peer_id_addr;
 };
 struct ble_gap_event {
     int type=0;
-    struct {int status=0;uint16_t conn_handle=1;}connect,enc_change;
+    struct {int status=0;uint16_t conn_handle=1;}connect,enc_change,conn_update;
     struct {ble_gap_conn_desc conn{};int reason=0;}disconnect;
     struct {uint16_t conn_handle=1,attr_handle=0;void *om=nullptr;}notify_rx;
     struct {uint16_t conn_handle=1;struct {uint8_t action=0;uint32_t numcmp=0;}params;}passkey;
@@ -69,8 +70,11 @@ void BlePeerStore::remember(const BleBond&){++fake::remembered;}
 void BlePeerStore::setTarget(const BleBond& b){fake::lastTarget=b;++fake::targetWrites;}
 void BleHid::setConnectionHandle(uint16_t h){s_connHandle=h;if(h==kInvalidHandle&&fake::onHandleReleased)fake::onHandleReleased();}
 void BleHid::setStateFromCallback(BleHidState s){s_state=s;}
+void resetMouseOutput(){}
+void reportMouseSession(){}
 #include "pairing.inc"
 void BleHid::cancelKeys(){}
+void BleHid::cancelMouse(){}
 void BleHid::cancelPrivateInput(){}
 #include "connection_lifecycle.inc"
 }

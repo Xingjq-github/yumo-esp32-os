@@ -4,17 +4,17 @@
 
 适用于绿联云 Docker 的容器创建界面。UGOS 更新后标签名称可能略有变化，以下按配置项含义填写；未远程操作你的 NAS，不假定某个具体 UGOS 版本或磁盘路径。
 
-## 本工程的介质位置
+## 本工程的介质生成方式
 
-部署模板在 `packaging/nas`，交付ZIP与展开目录在 `artifacts/releases/nas`。请选择该目录中经过验证的ZIP，具体JAR哈希和验证范围见包内 `verification.json`、`SHA256SUMS` 与ZIP旁的 `.sha256` 文件。
+此文档对应本仓库提供的独立密码服务。
 
-本副本将Java源码、构建产物和运行数据分开；本机JAR为 `artifacts/server/joyvault.jar`，运行数据为 `runtime/server/data`。源码库不附带现成交付包，需先按构建文档测试打包。
+部署模板保留在 `packaging/nas`。`artifacts/releases/nas/` 是打包输出位置，源码仓库不附带预制部署包。需要部署这套独立服务时，按[构建说明](../build.md)重新构建JAR、执行隔离HTTP验证，再用 `tooling/server/package_nas.py --verification <验证结果JSON>` 打包。
 
-包内包含JAR、固定身份、部署说明与Compose模板，不含镜像、数据库或测试数据。已有NAS容器升级时先停止，更新JAR并保留原密钥和数据目录，再启动。
+新包的JAR哈希和验证范围由包内 `verification.json`、`SHA256SUMS` 与ZIP旁 `.sha256` 核验。本机生成JAR位于 `artifacts/server/joyvault.jar`，该独立服务的运行数据位于 `runtime/server/data`。包内包含JAR、配套身份、说明和Compose模板，不含Docker镜像、数据库或测试数据；升级保留原身份与数据目录。
 
 ## 1. 在文件管理中准备目录
 
-把 `joyvault-nas-java8-YYYYMMDD.zip` 上传到NAS，解压到新建的 `Docker/joyvault-app`；再创建同级 `Docker/joyvault-data`。两个目录名称只是示例，以NAS实际位置为准。压缩包根目录直接放置JAR，挂载时选择能直接看到JAR的那一层。
+把重新构建并校验通过的 `joyvault-nas-java8-YYYYMMDD.zip` 上传到NAS，解压到新建的 `Docker/joyvault-app`；再创建同级 `Docker/joyvault-data`。两个目录名称只是示例，以NAS实际位置为准。压缩包根目录直接放置JAR，挂载时选择能直接看到JAR的那一层。
 
 ```text
 Docker/

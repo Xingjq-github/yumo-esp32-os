@@ -1,7 +1,7 @@
 /*
  * Window / navigation manager.
  *
- * Owns one foreground App, created on demand above a persistent HomeScreen.
+ * Owns one foreground App on its own screen, alongside a persistent HomeScreen.
  * Handles navigation driven either by gestures/buttons (via EventBus
  * Back/HomeRequested) or by direct openApp() calls from the home grid.
  *
@@ -51,12 +51,13 @@ public:
     lv_obj_t *inputRoot() const;
     bool directionalKey(lv_dir_t direction);
     bool allowsQuickPanel() const;
+    bool allowsScreenProtection() const;
     bool locksScreenOrientation() const {return m_active && m_active->locksScreenOrientation();}
     uint32_t powerHints() const;
     void powerSaving(bool enabled) {if(m_active)m_active->onPowerSaving(enabled);}
 
-    // The root screen object (home + windows are children-managed here).
-    lv_obj_t *screen(void) const { return m_screen; }
+    // Current scene; the persistent home screen is detached while an App is open.
+    lv_obj_t *screen(void) const { return m_appScreen ? m_appScreen : m_screen; }
 
 private:
     WindowManager(void) = default;
@@ -65,7 +66,8 @@ private:
     void closeActive();
     void createWindow(std::unique_ptr<App> app);
 
-    lv_obj_t                         *m_screen    = nullptr; // active lv screen
+    lv_obj_t                         *m_screen    = nullptr; // persistent home screen
+    lv_obj_t                         *m_appScreen = nullptr; // owned foreground scene
     lv_obj_t    *m_home      = nullptr; // home container
     lv_obj_t                         *m_statusBar = nullptr; // persistent top bar
     std::vector<AppEntry>            m_apps;

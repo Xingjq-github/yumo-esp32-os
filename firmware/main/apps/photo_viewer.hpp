@@ -43,8 +43,9 @@ private:
     void switchGif(int direction);
     void openGif(size_t index);
     void releaseGif();
+    void failGif(const char *error);
     std::shared_ptr<core::gif::Job> m_gifJob;
-    bool m_gifMode=false,m_gifPending=false;
+    bool m_gifMode=false,m_gifPending=false,m_gifFailed=false;
     size_t m_gifIndex=0;
     uint32_t m_gifWait=0;
     std::shared_ptr<core::photo::Job> m_imageJob;

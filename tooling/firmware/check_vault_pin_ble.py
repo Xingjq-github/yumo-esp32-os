@@ -14,29 +14,32 @@ def section(s,start,end):return s[s.index(start):s.index(end,s.index(start)+len(
 class PinBleContracts(unittest.TestCase):
     def test_pin_has_one_label_no_separate_hint_or_field(self):
         body=section(read('main/apps/password_vault.cpp'),'void PasswordVault::drawPin(', 'void PasswordVault::timer(')
-        self.assertEqual(body.count('c::label('),1)
-        self.assertIn('lv_obj_set_height(m_pinLabel, L::LineHeight)',body)
+        self.assertEqual(body.count('m_pattern.create('),1)
         self.assertNotIn('c::field(',body)
-        self.assertNotIn('HintHeight',body)
-        self.assertNotIn('MaskHeight',body)
+        view=read('main/ui/vault_pattern.cpp')
+        self.assertEqual(view.count('compact::label('),1)
+        self.assertIn('lv_obj_center(toast)',view)
+        self.assertIn('LV_OPA_80',view)
     def test_message_and_mask_share_one_row_with_no_plaintext_pin(self):
-        body=compact(section(read('main/apps/password_vault.cpp'),'void PasswordVault::updatePinLine()', 'void PasswordVault::drawPin('))
-        for token in ('pinLine(m_pin.size(),!m_message.empty())','c::setText(m_pinLabel,m_message.c_str())',"std::string(m_pin.size(),'*')",'c::setText(m_pinLabel,prompt)', '"请输入密码"'):
-            self.assertIn(token,body)
-        self.assertNotIn('m_pin.c_str()',body)
+        body=section(read('main/apps/password_vault.cpp'),'const char *PasswordVault::patternPrompt()', 'void PasswordVault::patternSubmitted(')
         self.assertIn('m_firstPin.empty()',body)
-        self.assertIn('Page::VerifyReveal',body)
+        self.assertIn('绘制图形密码',body)
+        self.assertNotIn('m_pin.c_str()',body)
+        view=read('main/ui/vault_pattern.cpp')
+        self.assertIn('lv_tick_elaps(hintAt) >= 1800',view)
+        self.assertIn('lv_obj_set_hidden(toast, true)',view)
     def test_both_edits_clear_feedback_without_rebuilding_keypad(self):
-        s=compact(read('main/apps/password_vault.cpp'))
-        for start,end in (('caseAction::Digit:','caseAction::DeleteDigit:'),('caseAction::DeleteDigit:','caseAction::Unlock:')):
-            body=section(s,start,end)
-            self.assertIn('m_page!=Page::Locked&&m_page!=Page::VerifyReveal',body)
-            self.assertIn('m_message.clear();updatePinLine()',body)
-            self.assertNotIn('m_redraw=true',body)
-        self.assertIn('if(m_pin.size()<12)',s)
+        view=section(read('main/ui/vault_pattern.cpp'),'void VaultPattern::event(', 'void VaultPattern::paint(')
+        self.assertIn('LV_EVENT_PRESSING',view)
+        self.assertIn('self->stroke.move(x, y)',view)
+        self.assertIn('lv_obj_set_hidden(self->toast, true)',view)
+        self.assertNotIn('lv_obj_create',view)
+        self.assertNotIn('lv_obj_clean',view)
+        self.assertIn('LV_EVENT_PRESS_LOST',view)
+        self.assertIn('LV_EVENT_INDEV_RESET',view)
     def test_reveal_and_setup_keep_existing_pin_validation(self):
         s=compact(read('main/apps/password_vault.cpp'))
-        for token in ('m_pin.size()<4||m_pin.size()>12','m_firstPin=m_pin','m_firstPin!=m_pin','vault::Operation::VerifyPin','vault::clear(m_pin)'):
+        for token in ('vault::pattern::valid(m_pin.data(),m_pin.size())','m_firstPin=m_pin','m_firstPin!=m_pin','vault::Operation::VerifyPin','vault::clear(m_pin)'):
             self.assertIn(token,s)
     def test_no_boot_time_nvs_erasure_or_new_identity(self):
         main=read('main/main.cpp');ble=read('main/core/ble_hid.cpp')
@@ -65,13 +68,13 @@ class PinBleContracts(unittest.TestCase):
         baseline=json.loads((RUN/'before.json').read_text(encoding='utf-8'))['files']
         for name in ('sdkconfig','sdkconfig.defaults'):
             data=(ROOT/name).read_bytes()
-            self.assertIn(b'CONFIG_BT_NIMBLE_MAX_CCCDS=64',data)
-            self.assertIn(b'CONFIG_BT_NIMBLE_MAX_BONDS=8',data)
+            self.assertIn(b'CONFIG_BT_NIMBLE_MAX_CCCDS=128',data)
+            self.assertIn(b'CONFIG_BT_NIMBLE_MAX_BONDS=16',data)
             self.assertIn(b'CONFIG_BT_NIMBLE_NVS_PERSIST=y',data)
-            restored=historical_sdkconfig_bytes(data).replace(b'CONFIG_BT_NIMBLE_MAX_CCCDS=64',b'CONFIG_BT_NIMBLE_MAX_CCCDS=16').replace(b'CONFIG_NIMBLE_MAX_CCCDS=64',b'CONFIG_NIMBLE_MAX_CCCDS=16')
+            restored=historical_sdkconfig_bytes(data).replace(b'CONFIG_BT_NIMBLE_MAX_CCCDS=128',b'CONFIG_BT_NIMBLE_MAX_CCCDS=16').replace(b'CONFIG_NIMBLE_MAX_CCCDS=128',b'CONFIG_NIMBLE_MAX_CCCDS=16')
             from check_auto_power import assert_config
             assert_config(self,name)
-        self.assertGreaterEqual(64,8*(3+2+1)) # 3 report inputs + 2 boot + GATT changed
+        self.assertGreaterEqual(128,16*(3+2+1)) # 3 report inputs + 2 boot + GATT changed
         from prepare_vault_flash import partition_layout
         layout=partition_layout((ROOT/'../artifacts/firmware/partition_table/partition-table.bin').read_bytes())
         self.assertEqual(layout[0],('nvs',1,2,0x9000,0x4000))
@@ -97,9 +100,10 @@ class PinBleContracts(unittest.TestCase):
     def test_hid_map_transport_mac_and_security_negotiation_unchanged(self):
         data=json.loads((RUN/'preserved_ble_sections.json').read_text(encoding='utf-8'))
         from ble_identity_contract import before_identity_fix
+        from ble_mouse_contract import before_mouse_fix
         # Normalize whole reviewed hunks before slicing: security completion is
         # now shared by CONNECT and ENC_CHANGE outside the old GAP-only range.
-        s=before_identity_fix(read('main/core/ble_hid.cpp'))
+        s=before_identity_fix(before_mouse_fix(read('main/core/ble_hid.cpp')))
         # Authorized eight-device capacity; freeze the remaining HID/security block.
         limit='constexpr int kMaxBondSlots = 8;'
         guard='static_assert(kMaxBondSlots<=8,"BLE peer metadata and UI support eight saved devices");\n'
@@ -113,6 +117,9 @@ class PinBleContracts(unittest.TestCase):
         for name in ('main/apps/hid_keyboard_model.hpp','main/core/hid_key_sequence.hpp','main/core/vault_builtin.hpp','main/core/ble_peer_store.cpp'):
             raw=(ROOT/name).read_bytes()
             if name=='main/core/ble_peer_store.cpp':
+                delta=json.loads((ROOT/'../tooling/firmware/fixtures/contracts/ble-peer-capacity-delta.json').read_text(encoding='utf-8'))
+                self.assertEqual(hashlib.sha256(raw).hexdigest(),delta['after_sha256'])
+                raw=bytes.fromhex(delta['before_hex'])
                 # GAP must not replace a selected input-device mode name. Only
                 # this callback hunk changes; v1 layout/load/write stay identical.
                 mode_name=(

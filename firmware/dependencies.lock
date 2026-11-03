@@ -25,6 +25,14 @@ dependencies:
       path: ../dependencies/managed_components/espressif__cmake_utilities
       type: local
     version: 0.5.3
+  espressif/esp_audio_codec:
+    dependencies:
+    - name: idf
+      version: '>=4.4'
+    source:
+      path: ../dependencies/managed_components/espressif__esp_audio_codec
+      type: local
+    version: 2.5.0
   espressif/esp_audio_effects:
     dependencies: []
     source:
@@ -199,6 +207,14 @@ dependencies:
     - esp32p4
     - esp32h4
     version: 2.0.1~1
+  espressif/esp_websocket_client:
+    dependencies:
+    - name: idf
+      version: '>=5.0'
+    source:
+      path: ../dependencies/managed_components/espressif__esp_websocket_client
+      type: local
+    version: 1.8.0
   espressif/freetype:
     dependencies:
     - name: idf
@@ -227,6 +243,14 @@ dependencies:
       path: ../dependencies/managed_components/espressif__libpng
       type: local
     version: 1.6.58~1
+  espressif/mqtt:
+    dependencies:
+    - name: idf
+      version: '>=5.3'
+    source:
+      path: ../dependencies/managed_components/espressif__mqtt
+      type: local
+    version: 1.1.0
   espressif/tinyusb:
     dependencies:
     - name: idf
@@ -291,6 +315,7 @@ direct_dependencies:
 - espressif/button
 - espressif/cjson
 - espressif/cmake_utilities
+- espressif/esp_audio_codec
 - espressif/esp_audio_effects
 - espressif/esp_codec_dev
 - espressif/esp_io_expander
@@ -304,14 +329,16 @@ direct_dependencies:
 - espressif/esp_mmap_assets
 - espressif/esp_new_jpeg
 - espressif/esp_tinyusb
+- espressif/esp_websocket_client
 - espressif/freetype
 - espressif/knob
 - espressif/libpng
+- espressif/mqtt
 - espressif/tinyusb
 - espressif/zlib
 - idf
 - lvgl/lvgl
 - waveshare/pcf85063a
-manifest_hash: 9c91ae961ef4b1cbd129b949e55731c6b75e470eabcde33f1d6ff6cb31ffa3ab
+manifest_hash: f2d225bccc28384a1ddeb73359e691b38db73211f80f2aed3d1956b8a91f8834
 target: esp32s3
 version: 3.0.0

@@ -8,7 +8,7 @@ static unsigned checks=0;
 #define CHECK(x) do{++checks;if(!(x)){std::fprintf(stderr,"%d: %s\n",__LINE__,#x);std::exit(1);}}while(0)
 namespace fixture {
 sys::power::Config config;
-bool lit=true,pending=false,busy=false,radioBusy=false,connected=false,supply=false;
+bool lit=true,pending=false,busy=false,mouseBusy=false,radioBusy=false,connected=false,supply=false;
 bool automaticDark=false;
 bool economy=false,light=false;unsigned deep=0,radioOff=0;int64_t now=0;
 }
@@ -16,6 +16,9 @@ int64_t esp_timer_get_time(){return fixture::now*1000;}
 void bsp_power_wake(){}
 void bsp_power_set_quiet(bool,bool){}
 namespace core {
+namespace xiaozhi {bool idle(){return !fixture::busy;}}
+namespace mp3 {bool idle(){return !fixture::busy;}}
+namespace speed {bool idle(){return !fixture::busy;}}
 namespace chip {bool busy(){return fixture::busy;}}
 namespace game_audio {bool busy(){return fixture::busy;}}
 namespace photo {bool idle(){return !fixture::busy;}}
@@ -42,7 +45,7 @@ struct Connectivity {
  static int setWifiEnabled(bool on){CHECK(!on);++fixture::radioOff;return 0;}
 };
 struct BleHid {
- static bool keysIdle(){return !fixture::busy;}static bool privateInputIdle(){return !fixture::busy;}
+ static bool keysIdle(){return !fixture::busy;}static bool mouseIdle(){return !fixture::mouseBusy;}static bool privateInputIdle(){return !fixture::busy;}
  static bool connected(){return fixture::connected;}static bool enabled(){return true;}
  static int setEnabled(bool on){CHECK(!on);++fixture::radioOff;return 0;}
 };
@@ -66,12 +69,13 @@ esp_err_t Power::deepSleep(bool automatic){CHECK(automatic&&!fixture::lit);++fix
 }
 #include "power_runtime.inc"
 void reset(){
- fixture::config={};fixture::lit=true;fixture::pending=fixture::busy=fixture::radioBusy=fixture::connected=fixture::supply=false;
+ fixture::config={};fixture::lit=true;fixture::pending=fixture::busy=fixture::mouseBusy=fixture::radioBusy=fixture::connected=fixture::supply=false;
  fixture::economy=fixture::light=false;fixture::deep=fixture::radioOff=0;fixture::now=0;
  fixture::automaticDark=false;
  sys::policy.reset();sys::activitySerial=1;sys::idleSerial=0;sys::quiet=sys::slow=sys::stopRadios=false;
 }
 int main(){using namespace sys;
+ reset();CHECK(!jobsBusy());fixture::mouseBusy=true;CHECK(jobsBusy());fixture::mouseBusy=false;CHECK(!jobsBusy());
  for(unsigned mask=0;mask<64;++mask){
   reset();fixture::lit=false;fixture::config.sleepOnPower=1;
   fixture::supply=mask&1;fixture::connected=mask&2;fixture::busy=mask&4;fixture::radioBusy=mask&8;

@@ -45,7 +45,7 @@ class MenuLayoutContracts(unittest.TestCase):
         self.assertEqual(len(keys),len(registrations()))
         self.assertEqual(len(set(keys)),len(keys))
         self.assertEqual(keys[-1],'settings')
-        self.assertEqual(keys,'vault clock timer text hid photos recorder random calendar programming patterns bt_music mp3 chiptune flashlight morse files garden lan speedtest fc dino maze settings'.split())
+        self.assertEqual(keys,'vault clock timer text hid photos recorder random calendar programming patterns bt_music mp3 chiptune flashlight morse files garden lan speedtest fc dino maze xiaozhi settings'.split())
         self.assertIn('order.ids[from]==Settings||order.ids[to]==Settings',read('main/core/app_order_model.hpp'))
     def test_grid_and_touch_targets_preserved(self):
         s=read('main/ui/home_screen.cpp')
@@ -65,7 +65,7 @@ class MenuLayoutContracts(unittest.TestCase):
         self.assertNotIn('lv_font_montserrat_18',read('main/ui/home_screen.cpp'))
     def test_all_real_registered_icon_glyphs_fit_inset_slot(self):
         metrics=app_metrics(24);icons=registrations()
-        self.assertEqual(len(icons),24)
+        self.assertEqual(len(icons),25)
         for name,expr,_ in icons:
             glyphs=[metrics[ord(c)] for c in icon_text(expr)]
             advance=sum((g['adv_w']+8)//16 for g in glyphs)
@@ -92,10 +92,10 @@ class MenuLayoutContracts(unittest.TestCase):
     def test_custom_artwork_is_unique_static_and_fits_focus_badge(self):
         from generate_app_icons import artwork,packed,source
         shapes=[packed(p) for p in artwork()]
-        self.assertEqual(len(set(shapes)),8)
+        self.assertEqual(len(set(shapes)),9)
         self.assertTrue(all(any(p) and not all(b==255 for b in p) for p in shapes))
         self.assertEqual(read('main/ui/lv_font_app_icons.c'),source())
-        self.assertEqual(sum(len(p) for p in shapes)*5,2880)
+        self.assertEqual(sum(len(p) for p in shapes)*5,3240)
         for name,expr,_ in registrations():
             glyphs=[app_metrics(48)[ord(c)] for c in icon_text(expr)]
             self.assertLessEqual(sum((g['adv_w']+8)//16 for g in glyphs),70,name)

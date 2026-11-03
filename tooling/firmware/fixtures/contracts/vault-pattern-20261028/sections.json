@@ -1,0 +1,22 @@
+{
+  "void PasswordVault::lock()": {
+    "end": "vault::StartResult PasswordVault::launch(",
+    "sha256": "8905944b9b849ad5555a146cefe5d3e959e89a41366151cd735adea40ac98834"
+  },
+  "bool PasswordVault::patternPage(": {
+    "end": "void PasswordVault::timer(",
+    "sha256": "7258de7715630a77a1bb6903c59fc5193e61f3ca19b322ea7662e89d26ae3b88"
+  },
+  "case Action::Unlock:": {
+    "end": "case Action::Category:",
+    "sha256": "9fa04131bb249dcd4a1807e326fffe442992da00feac8e330a1680c2fc8fb4fa"
+  },
+  "void PasswordVault::draw()": {
+    "end": "} // namespace apps",
+    "sha256": "b834423f9e0df77f3400e70648d0a49e6ff53de38ff845b78947c3d0becaacb3"
+  },
+  "std::string hex(": {
+    "end": "void run(",
+    "sha256": "bd0523e9f559f07dd651062b468eaaa96b273f736bafa753cd6e3fd91f7f73e4"
+  }
+}

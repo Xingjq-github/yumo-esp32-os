@@ -257,11 +257,11 @@ class RefactorContracts(unittest.TestCase):
                 self.assertEqual(hashlib.sha256((ROOT/'../tooling/firmware/fixtures/contracts/ble-standby-20260916'/name).read_bytes()).hexdigest(),checksum)
                 after=read(name).split('\n# BEGIN BLE-preserving standby power policy',1)[0]
                 after=after.replace('CONFIG_BT_NIMBLE_ROLE_CENTRAL=y','CONFIG_BT_NIMBLE_ROLE_CENTRAL=n')
-                # Eight separately paired devices; keep the original configuration otherwise.
-                self.assertIn('CONFIG_BT_NIMBLE_MAX_CCCDS=64',after)
-                after=after.replace('CONFIG_BT_NIMBLE_MAX_CCCDS=64','CONFIG_BT_NIMBLE_MAX_CCCDS=16')
-                self.assertIn('CONFIG_BT_NIMBLE_MAX_BONDS=8',after)
-                after=after.replace('CONFIG_BT_NIMBLE_MAX_BONDS=8','CONFIG_BT_NIMBLE_MAX_BONDS=3')
+                # Sixteen separately paired devices; keep the original configuration otherwise.
+                self.assertIn('CONFIG_BT_NIMBLE_MAX_CCCDS=128',after)
+                after=after.replace('CONFIG_BT_NIMBLE_MAX_CCCDS=128','CONFIG_BT_NIMBLE_MAX_CCCDS=16')
+                self.assertIn('CONFIG_BT_NIMBLE_MAX_BONDS=16',after)
+                after=after.replace('CONFIG_BT_NIMBLE_MAX_BONDS=16','CONFIG_BT_NIMBLE_MAX_BONDS=3')
                 after=after.replace('CONFIG_ESP_CONSOLE_UART_BAUDRATE=1000000','CONFIG_ESP_CONSOLE_UART_BAUDRATE=2000000')
                 self.assertEqual(before,after)
             elif name.startswith('components/') or name in ('main/idf_component.yml','main/ui/lv_font_cjk_16.c'):
@@ -276,8 +276,8 @@ class RefactorContracts(unittest.TestCase):
         allowed={
             'CONFIG_BT_NIMBLE_ROLE_CENTRAL':'y','CONFIG_NIMBLE_ROLE_CENTRAL':'y','CONFIG_BT_NIMBLE_GATT_CLIENT':'y',
             'CONFIG_BT_NIMBLE_HOST_TASK_STACK_SIZE': '6144',
-            'CONFIG_BT_NIMBLE_MAX_CCCDS': '64', 'CONFIG_NIMBLE_MAX_CCCDS': '64',
-            'CONFIG_BT_NIMBLE_MAX_BONDS': '8', 'CONFIG_NIMBLE_MAX_BONDS': '8',
+            'CONFIG_BT_NIMBLE_MAX_CCCDS': '128', 'CONFIG_NIMBLE_MAX_CCCDS': '128',
+            'CONFIG_BT_NIMBLE_MAX_BONDS': '16', 'CONFIG_NIMBLE_MAX_BONDS': '16',
             # Kconfig synchronizes these deprecated aliases to the host stack.
             'CONFIG_NIMBLE_TASK_STACK_SIZE': '6144',
             'CONFIG_BT_NIMBLE_TASK_STACK_SIZE': '6144',

@@ -100,9 +100,18 @@ public:
     static void cancelKeys(); // cancel queued presses; finish all-up on the same link
     static bool keysIdle();
     static esp_err_t takeKeyError();
-    static esp_err_t sendMouse(int8_t dx, int8_t dy, int8_t wheel = 0,
-                               uint8_t buttons = 0);
-    static esp_err_t clickMouse(uint8_t button);
+    // Nonblocking mouse output; adjacent motion is coalesced and paced on the
+    // NimBLE host queue. ESP_OK means accepted, not host execution. A bounded
+    // overload may saturate motion; press/release transitions stay ordered.
+    // expectedLink binds a complete gesture to its starting peer; zero uses
+    // the current link for callers with no multi-event gesture.
+    static uintptr_t mouseLinkGeneration();
+    static esp_err_t sendMouse(int32_t dx, int32_t dy, int32_t wheel = 0,
+                               uint8_t buttons = 0, uintptr_t expectedLink = 0);
+    static esp_err_t clickMouse(uint8_t button, uintptr_t expectedLink = 0);
+    static void cancelMouse(); // discard pending motion, finish same-link all-up
+    static bool mouseIdle();
+    static esp_err_t takeMouseError();
     // Worker-only: preserves the host-required 40ms press/release interval.
     static esp_err_t sendConsumer(ConsumerKey key);
 

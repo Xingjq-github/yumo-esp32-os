@@ -141,14 +141,14 @@ static void programming(unsigned theme,bool pictures){
     drag(120,160,0,-100);CHECK(lv_obj_get_scroll_y(a.m_body)==0&&a.m_page==P::Page::Home);
     if(pictures)capture("reference-home-"+std::to_string(theme)+".ppm");
     a.m_mode=P::Mode::Search;a.m_query="";a.filter();a.m_page=P::Page::List;a.m_offset=0;a.draw();advance();
-    CHECK(a.count()==a.m_library->count&&a.count()==419);
+    CHECK(a.count()==a.m_library->count&&a.count()==449);
     CHECK(lv_obj_get_child_count(a.m_body)==8); // spacer + seven recycled touch rows
     CHECK(lv_obj_is_hidden(a.m_footer));
     drag(120,165,0,-105);CHECK(a.m_offset>40);
     auto oldY=lv_obj_get_scroll_y(a.m_body);drag(190,110,-130,0);CHECK(lv_obj_get_scroll_y(a.m_body)==oldY);
     lv_obj_scroll_to_y(a.m_body,100000,LV_ANIM_OFF);advance();
     bool last=false;for(auto button:a.m_pool)if(!lv_obj_is_hidden(button)){
-        auto text=std::string(lv_label_get_text(lv_obj_get_child(button,0)));if(text.rfind("419. ",0)==0)last=true;
+        auto text=std::string(lv_label_get_text(lv_obj_get_child(button,0)));if(text.rfind("449. ",0)==0)last=true;
     }CHECK(last);CHECK(lv_obj_get_child_count(a.m_body)==8);
     if(pictures)capture("reference-list-"+std::to_string(theme)+".ppm");
     // Every article must render both modes and retain all original sections.
@@ -255,5 +255,5 @@ int main(){
         if(cycle>=10)CHECK(memory()>=baseline[index]);baseline[index]=memory();
     }
     lv_indev_delete(pointer);lv_display_delete(display);lv_deinit();
-    std::printf("%u checks passed: original six-tile home, single-line UTF-8 header, 419-article vertical reference, seven recycled rows, five-point favorite, descriptions/code toggle, no-code articles, original lines, horizontal code touch, vertical scroll, full-screen tap, independent positions, wrap, legacy bookmarks, 26 lessons x 5 themes, 30 App lifecycles and resource cleanup. Synthetic hardware only.\n",checks);
+    std::printf("%u checks passed: original six-tile home, single-line UTF-8 header, 449-article vertical reference, seven recycled rows, five-point favorite, descriptions/code toggle, no-code articles, original lines, horizontal code touch, vertical scroll, full-screen tap, independent positions, wrap, legacy bookmarks, 26 lessons x 5 themes, 30 App lifecycles and resource cleanup. Synthetic hardware only.\n",checks);
 }

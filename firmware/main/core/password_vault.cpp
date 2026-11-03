@@ -130,6 +130,10 @@ bool unhex(const std::string &s, uint8_t *p, size_t n) {
   return true;
 }
 bool verifyPin(Job &job, const Session &session) {
+  if (!session.patternAuth) {
+    job.error = "请先在设备上设置图形密码";
+    return false;
+  }
   uint8_t salt[16];
   Key expected, verifier;
   if (!unhex(session.pinSalt, salt, 16) ||
@@ -142,7 +146,7 @@ bool verifyPin(Job &job, const Session &session) {
   if (!equal(verifier.bytes.data(), expected.bytes.data(), 32)) {
     failures = std::min(failures + 1, 5u);
     nextUnlock = esp_timer_get_time() + (1LL << failures) * 1000000;
-    job.error = "数字密码错误，请稍后再试";
+    job.error = "图形不正确，请稍后再试";
     return false;
   }
   failures = 0;
@@ -155,6 +159,7 @@ void copyConfig(const Session &from, Session &to) {
   to.token = from.token;
   to.pinSalt = from.pinSalt;
   to.pinHash = from.pinHash;
+  to.patternAuth = from.patternAuth;
 }
 void run(Job &job) {
   if (stopped(job)) {
@@ -179,8 +184,8 @@ void run(Job &job) {
       job.error = "请稍后再试";
       return;
     }
-    if (!validPin(job.master.data(), job.master.size())) {
-      job.error = "请输入4到12位数字";
+    if (!pattern::valid(job.master.data(), job.master.size())) {
+      job.error = "请连接至少4个不同的点";
       return;
     }
   }
@@ -205,8 +210,8 @@ void run(Job &job) {
     return;
   }
   if (job.operation == Operation::ChangePin &&
-      !validPin(job.replacement.data(), job.replacement.size())) {
-    job.error = "新密码必须为4到12位数字";
+      !pattern::valid(job.replacement.data(), job.replacement.size())) {
+    job.error = "新图形至少连接4个点";
     return;
   }
   Disk disk;
@@ -215,6 +220,20 @@ void run(Job &job) {
   job.exists = disk.slot >= 0;
   job.blank = disk.blank;
   if (job.operation == Operation::Load) {
+    job.needsPatternSetup = job.blank && !job.exists;
+    if (job.exists) {
+      // Inspect only the authenticated local config. Do not expose entries or
+      // write the vault until the owner draws and confirms a new pattern.
+      Session configSession;
+      std::memcpy(configSession.key.bytes.data(), builtin::Key, 32);
+      std::memcpy(configSession.id.data(), disk.bundle.data() + 24, 16);
+      std::memcpy(configSession.salt.data(), disk.bundle.data() + 40, 16);
+      if (!configDecode(disk.config, configSession)) {
+        job.error = "密码区校验失败，原数据已保留";
+        return;
+      }
+      job.needsPatternSetup = !configSession.patternAuth;
+    }
     job.ok = true;
     return;
   }
@@ -224,17 +243,29 @@ void run(Job &job) {
   Bytes bundle, config;
   std::shared_ptr<Session> result;
   if (job.operation == Operation::Setup) {
-    if (job.exists || !job.blank) {
-      job.error = "密码区已有数据，请使用原数字密码";
-      return;
+    if (job.exists) {
+      // One-time, explicitly authorized legacy PIN -> pattern transition.
+      // Preserve the encrypted bundle/revision/URL/identity byte for byte.
+      bundle = disk.bundle;
+      result = decode(job, bundle, key);
+      if (!result || !configDecode(disk.config, *result)) {
+        job.error = "本机配置读取失败，原数据已保留";
+        return;
+      }
+      if (result->patternAuth) {
+        job.error = "图形已设置，请重新解锁";
+        return;
+      }
+    } else {
+      if (!job.blank) { job.error = "密码区校验失败，原数据已保留"; return; }
+      if (!encryptEmpty(key, builtin::Id, builtin::Salt, bundle)) {
+        job.error = "初始化加密失败";
+        return;
+      }
+      result = decode(job, bundle, key);
+      if (!result) return;
+      result->url = builtin::Url;
     }
-    if (!encryptEmpty(key, builtin::Id, builtin::Salt, bundle)) {
-      job.error = "初始化加密失败";
-      return;
-    }
-    result = decode(job, bundle, key);
-    if (!result)
-      return;
     uint8_t salt[16];
     esp_fill_random(salt, sizeof(salt));
     Key verifier;
@@ -245,10 +276,10 @@ void run(Job &job) {
     }
     result->pinSalt = hex(salt, sizeof(salt));
     result->pinHash = hex(verifier.bytes.data(), 32);
-    result->url = builtin::Url;
+    result->patternAuth = true;
   } else if (job.operation == Operation::Unlock || job.operation == Operation::WebUnlock) {
     if (!job.exists) {
-      job.error = "请先设置数字密码";
+      job.error = "请先在设备上设置图形密码";
       return;
     }
     result = decode(job, disk.bundle, key);
@@ -296,8 +327,9 @@ void run(Job &job) {
     }
     const auto &current = *job.input;
     if (job.operation == Operation::SaveConfig) {
-      if (!validOrigin(job.url) || job.url.rfind("http://", 0) != 0) {
-        job.error = "请输入http://地址:端口";
+      std::string origin;
+      if (!normalizeOrigin(job.url, origin)) {
+        job.error = "请输入HTTP或HTTPS服务地址，不含页面路径";
         return;
       }
       bundle = disk.bundle;
@@ -305,7 +337,7 @@ void run(Job &job) {
       if (!result)
         return;
       copyConfig(current, *result);
-      result->url = job.url;
+      result->url = origin;
     } else {
       // Validate the entire encrypted bundle before either endpoint can be committed.
       auto attempt = [&](const ConnectionConfig &connection) {

@@ -360,7 +360,10 @@ void Randomizer::buildPk()
 void Randomizer::paintPk()
 {
     for(unsigned side=0;side<2;++side) {
-        if(m_pkScore[side]) lv_label_set_text_fmt(m_pkScore[side],"%s %u",side?"红":"蓝",m_match.score[side]);
+        if(m_pkScore[side]) {
+            char score[32];std::snprintf(score,sizeof(score),"%s %u",side?"红":"蓝",m_match.score[side]);
+            c::setText(m_pkScore[side],score);
+        }
         for(unsigned hand=0;hand<3;++hand) {
             auto cell=m_pkCells[side][hand];if(!cell) continue;
             const bool selected=m_pkCursor[side]==int(hand);
@@ -397,13 +400,17 @@ void Randomizer::startPk(unsigned sides)
 void Randomizer::tickPk()
 {
     const uint32_t now=lv_tick_get();
+    bool changed=false;
     for(unsigned side=0;side<2;++side) {
         if(m_match.state[side]!=rps::Match::State::Running || int32_t(now-m_pkDue[side])<0) continue;
+        changed=true;
         m_pkCursor[side]=int(m_pkStep[side]++%3);
         const unsigned remaining=m_pkTotal[side]-m_pkStep[side];
         if(!remaining) m_match.complete(side,unsigned(m_pkCursor[side]));
         else m_pkDue[side]=now+(remaining<7?65+(7-remaining)*22:45);
     }
+    // Poll at 20ms for independent players; redraw only when a reel advances.
+    if(!changed)return;
     paintPk();
     if(!m_match.running()) {
         finish();c::setText(lv_obj_get_child(m_start,0),m_match.result>=0?"再来一次":"开始");

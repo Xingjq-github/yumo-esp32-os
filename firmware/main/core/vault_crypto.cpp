@@ -6,16 +6,40 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "power_mgr.hpp"
-#include "psa/crypto.h"
 #include <algorithm>
 #include <cstring>
 namespace vault {
 namespace {
-struct PsaKey {
-  mbedtls_svc_key_id_t id = 0;
-  ~PsaKey() {
-    if (id)
-      psa_destroy_key(id);
+// HMAC's keyed prefix states belong to this derive call only. Reusing the
+// two completed pad blocks preserves PBKDF2 exactly without repeated PSA
+// key-slot locking, heap allocations or shared SHA accelerator ownership.
+struct HmacSha256 {
+  vault_sha256_state inner{}, outer{}, work{};
+  uint8_t pad[64]{}, digest[32]{};
+  ~HmacSha256() { wipe(this, sizeof(*this)); }
+  bool init(const char *password, size_t length) {
+    // derive accepts only the existing 4..12 digit credentials (< block size).
+    std::memset(pad, 0x36, sizeof(pad));
+    for (size_t i = 0; i < length; ++i)
+      pad[i] ^= static_cast<uint8_t>(password[i]);
+    vault_sha256_init(&inner);
+    if (vault_sha256_process(&inner, pad, sizeof(pad)) != 0)
+      return false;
+    for (auto &byte : pad)
+      byte ^= 0x36 ^ 0x5c;
+    vault_sha256_init(&outer);
+    const bool ok = vault_sha256_process(&outer, pad, sizeof(pad)) == 0;
+    wipe(pad, sizeof(pad));
+    return ok;
+  }
+  bool compute(const uint8_t *input, size_t size, uint8_t output[32]) {
+    work = inner;
+    if (vault_sha256_process(&work, input, size) != 0 ||
+        vault_sha256_done(&work, digest) != 0)
+      return false;
+    work = outer;
+    return vault_sha256_process(&work, digest, sizeof(digest)) == 0 &&
+           vault_sha256_done(&work, output) == 0;
   }
 };
 } // namespace
@@ -40,17 +64,9 @@ bool hash(const void *data, size_t size, uint8_t output[32]) {
 }
 bool derive(const char *password, size_t length, const uint8_t salt[16],
             Key &output, const std::atomic<bool> &cancel) {
-  if (!validPin(password, length) || psa_crypto_init() != PSA_SUCCESS)
-    return false;
-  psa_key_attributes_t attr = PSA_KEY_ATTRIBUTES_INIT;
-  psa_set_key_type(&attr, PSA_KEY_TYPE_HMAC);
-  psa_set_key_usage_flags(&attr, PSA_KEY_USAGE_SIGN_MESSAGE);
-  psa_set_key_algorithm(&attr, PSA_ALG_HMAC(PSA_ALG_SHA_256));
-  PsaKey key;
-  auto rc = psa_import_key(&attr, reinterpret_cast<const uint8_t *>(password),
-                           length, &key.id);
-  psa_reset_key_attributes(&attr);
-  if (rc != PSA_SUCCESS)
+  wipe(output.bytes.data(), output.bytes.size());
+  if (!validPin(password, length) || !salt || cancel.load() ||
+      !sys::Power::isScreenOn() || sys::Power::sleepPending())
     return false;
   // PBKDF2 block 1 (dkLen=32). Explicit HMAC iteration permits cancellation
   // and idle/Wi-Fi scheduling; opaque long-running KDF calls would starve idle.
@@ -58,26 +74,26 @@ bool derive(const char *password, size_t length, const uint8_t salt[16],
   std::memcpy(first, salt, 16);
   first[19] = 1;
   Key u, next;
-  size_t got = 0;
-  rc = psa_mac_compute(key.id, PSA_ALG_HMAC(PSA_ALG_SHA_256), first,
-                       sizeof(first), u.bytes.data(), 32, &got);
+  HmacSha256 hmac;
+  bool ok = hmac.init(password, length) &&
+            hmac.compute(first, sizeof(first), u.bytes.data());
   output.bytes = u.bytes;
-  for (uint32_t i = 1; rc == PSA_SUCCESS && got == 32 && i < PinRounds; ++i) {
+  for (uint32_t i = 1; ok && i < PinRounds; ++i) {
     if ((i & 255) == 0 && (cancel.load() || !sys::Power::isScreenOn() ||
                            sys::Power::sleepPending())) {
-      rc = PSA_ERROR_BAD_STATE;
+      ok = false;
       break;
     }
     if ((i & 1023) == 0)
       vTaskDelay(1);
-    rc = psa_mac_compute(key.id, PSA_ALG_HMAC(PSA_ALG_SHA_256), u.bytes.data(),
-                         32, next.bytes.data(), 32, &got);
+    ok = hmac.compute(u.bytes.data(), u.bytes.size(), next.bytes.data());
     u.bytes = next.bytes;
     for (size_t j = 0; j < 32; ++j)
       output.bytes[j] ^= u.bytes[j];
   }
   wipe(first, sizeof(first));
-  if (rc != PSA_SUCCESS || got != 32 || cancel.load()) {
+  if (!ok || cancel.load() || !sys::Power::isScreenOn() ||
+      sys::Power::sleepPending()) {
     wipe(output.bytes.data(), 32);
     return false;
   }

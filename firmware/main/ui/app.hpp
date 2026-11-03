@@ -37,6 +37,8 @@ public:
     virtual bool locksScreenOrientation() const {return false;}
     virtual uint32_t powerHints() const {return sys::power::None;}
     virtual void onPowerSaving(bool) {}
+    // Explicit opt-in: media, reading and always-lit tools keep their own UI.
+    virtual bool allowsScreenProtection() const {return false;}
 
     // Build the UI into the given full-screen parent. Called once.
     virtual void onCreate(lv_obj_t *parent) = 0;

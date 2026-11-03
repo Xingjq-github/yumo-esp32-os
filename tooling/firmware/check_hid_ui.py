@@ -77,15 +77,25 @@ class HidUiContracts(unittest.TestCase):
     def test_mouse_acceleration_reports_preserved(self):
         before=(BACKUP/'source-before/main/apps/bt_mouse.cpp').read_text(encoding='utf-8')
         after=read('main/apps/bt_keyboard_mouse.cpp')
-        for name in ('kMoveGainBase','kClickThreshold','kAccelFactor','kAccelCap','kReportMax','kWheelStep','kTapMaxMs','kDragWindowMs','kDragMoveStart'):
+        for name in ('kMoveGainBase','kClickThreshold','kAccelFactor','kAccelCap','kWheelStep','kTapMaxMs','kDragWindowMs','kDragMoveStart'):
             pattern=rf'constexpr \w+ {name} = ([^;]+);'
             self.assertEqual(re.search(pattern,before).group(1),re.search(pattern,after).group(1))
-        a=part(before,'void BtMouse::emitMove','void BtMouse::touchpadCb')
-        b=part(after,'void BtKeyboardMouse::emitMove','void BtKeyboardMouse::touchpadCb')
-        self.assertEqual(a,b)
+        # Mouse performance update keeps gain/fractions but submits one complete
+        # delta. The NimBLE worker, not a GUI loop, now splits HID int8 reports.
+        b=part(after,'bool BtKeyboardMouse::emitMove','void BtKeyboardMouse::touchpadCb')
+        for token in ('m_accX +=','m_accY +=','m_accX -=','m_accY -=','sendMouse(moveX, moveY, 0, buttons, m_pointerLink)'):
+            self.assertIn(token,b)
+        self.assertNotIn('while (',b)
+        queue=read('main/core/hid_mouse_queue.hpp')
+        self.assertIn('std::max(-127,std::min(127,value))',queue)
+        replay=read('../tooling/firmware/native/ble_mouse_ui_replay.cpp')
+        self.assertIn('sum(0)==896 && sum(1)==672',replay)
+        self.assertIn('lv_indev_read(touch)',replay)
     def test_drag_release_and_autoclick_lifetimes(self):
         s=read('main/apps/bt_keyboard_mouse.cpp')
-        self.assertIn('if(m_dragging) sys::BleHid::sendMouse(0,0,0,0)',s)
+        release=part(s,'void BtKeyboardMouse::releasePointer','void BtKeyboardMouse::cancelPending')
+        self.assertIn('sys::BleHid::cancelMouse()',release)
+        self.assertIn('m_pointerLink=m_clickLink=0',release)
         self.assertIn('LV_EVENT_PRESS_LOST',s)
         hidden=part(s,'void BtKeyboardMouse::onHide','void BtKeyboardMouse::onDestroy')
         self.assertLess(hidden.index('m_visible=false'),hidden.index('releasePointer()'))

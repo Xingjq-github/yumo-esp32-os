@@ -39,7 +39,8 @@ def sources():
     from pattern_cards import cards as patterns
     from basic_cards import cards as basics
     from windows_cards import cards as windows
-    cards=java()+patterns()+jvm()+algorithms()+mysql()+components()+tools()+basics()+windows()
+    from kubernetes_cards import cards as kubernetes
+    cards=java()+patterns()+jvm()+algorithms()+mysql()+components()+tools()+basics()+windows()+kubernetes()
     # Surface practical starting points before advanced topics, retaining IDs
     # so existing SD favorites and reading marks survive content updates.
     first={'基础操作','启动与诊断','入门与命令'}
@@ -120,7 +121,7 @@ def body(c):
         records+=struct.pack('<IIIIIBBH',section_id(s['id']),toc+len(payload),len(data),crc(data),title,kind,lang,s.get('first_line',1))
         payload+=data
     return struct.pack('<4sHHII',b'YKE1',len(sections),len(related),toc,0)+records+b''.join(struct.pack('<Q',sid(x)) for x in related)+names+payload
-def build(cards,revision=20260928):
+def build(cards,revision=20261030):
     validate(cards);assert 0<len(cards)<=1024
     index=bytearray(len(cards)*ENTRY);strings=bytearray();offsets={};data=bytearray()
     def string(s):

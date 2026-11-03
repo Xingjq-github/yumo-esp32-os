@@ -41,6 +41,7 @@
 #include "ui/bluetooth_pairing.hpp"
 #include "ui/boot_animation.hpp"
 #include "ui/sysinfo_overlay.hpp"
+#include "ui/screen_protection.hpp"
 #include "apps/flashlight.hpp"
 #include "apps/settings.hpp"
 #include "apps/calendar.hpp"
@@ -65,6 +66,7 @@
 #include "apps/lan.hpp"
 #include "apps/speed_test.hpp"
 #include "apps/randomizer.hpp"
+#include "apps/xiaozhi.hpp"
 #include <memory>
 
 #define TAG "main"
@@ -119,6 +121,7 @@ static void ui_pump_cb(lv_timer_t *timer)
     ui::BluetoothPairing::poll();
     ui::QuickPanel::poll();
     if(Power::sleepPending()) {
+        ui::ScreenProtection::reset();
         // A fresh acknowledgement per request, even for rapid sleep/wake/sleep.
         if(!Power::sleepUiReady()) {
             clear_screenshot_notice();
@@ -134,6 +137,10 @@ static void ui_pump_cb(lv_timer_t *timer)
     WindowManager::instance().processNavigation();
     const bool wasSaving=Power::saving();
     Power::pollAutomatic(WindowManager::instance().powerHints());
+    ui::ScreenProtection::poll(WindowManager::instance().allowsScreenProtection() &&
+        !ui::QuickPanel::visible() && !ui::TextInput::visible() && !ui::BluetoothPairing::root() &&
+        !ui::SysInfoOverlay::visible() && sys::Screenshot::idle() &&
+        !sys::DisplayCast::enabled() && sys::DisplayCast::idle());
     if(wasSaving!=Power::saving())WindowManager::instance().powerSaving(Power::saving());
     sys::ScreenOrientation::poll(WindowManager::instance().locksScreenOrientation());
     lv_timer_set_period(timer,Power::slowIdle()?1000:20);
@@ -196,6 +203,8 @@ static void register_apps(void)
         [] { return std::make_unique<apps::Dino>(); },"dino");
     WindowManager::instance().registerApp("重力迷宫", ui::icons::Maze,
         [] { return std::make_unique<apps::GravityMaze>(); },"maze");
+    WindowManager::instance().registerApp("小智AI", ui::icons::Xiaozhi,
+        [] { return std::make_unique<apps::Xiaozhi>(); },"xiaozhi");
     WindowManager::instance().registerApp(
         "设置", LV_SYMBOL_SETTINGS,
         [] { return std::make_unique<apps::Settings>(); },"settings");
@@ -266,6 +275,7 @@ extern "C" void app_main(void)
     register_apps();
     WindowManager::instance().init();
     ui::TextInput::init(indev);
+    ui::ScreenProtection::init(indev);
     ui::QuickPanel::init(indev);
     ui::ExternalKeyboard::init();
     sys::DisplayCast::init(disp);

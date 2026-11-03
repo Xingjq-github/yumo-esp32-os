@@ -310,9 +310,12 @@ class BatteryPowerContracts(unittest.TestCase):
         s=read('main/core/power_mgr.cpp'); transition=body(s,'void setScreenLocked(')
         self.assertLess(transition.index('holdPerformance(true)'),transition.index('screen.store(on)'))
         self.assertIn('if(!on) holdPerformance(false)',transition)
-        # Both keyboard revocations are atomic counters, not radio mutations.
+        # Revocations clear queues/permits; mouse release runs on the host task.
         transition=transition.replace('if(!on) BleHid::cancelPrivateInput();','')
         transition=transition.replace('if(!on) BleHid::cancelKeys();','')
+        transition=transition.replace('if(!on) BleHid::cancelMouse();','')
+        mouse=body(read('main/core/ble_hid.cpp'),'void BleHid::cancelMouse(')
+        self.assertNotRegex(mouse,r'sendReport|ble_gap_terminate|esp_hidd_dev_input_set|vTaskDelay')
         self.assertNotRegex(transition,r'BleHid|Connectivity|esp_wifi|Settings::set')
         self.assertIn('lock(pmMutex)',body(s,'void holdPerformance(bool hold)'))
         for method in ('Power::WorkGuard::WorkGuard()','Power::WorkGuard::~WorkGuard()'):

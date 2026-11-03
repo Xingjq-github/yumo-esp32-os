@@ -33,6 +33,7 @@ static button_handle_t s_key  = nullptr;
 static button_handle_t s_pwr  = nullptr;
 
 static std::atomic<uint32_t> s_pageSession{0};
+static uint32_t s_pressedPageBoot=0,s_pressedPageKey=0; // Button task only, until PRESS_END.
 static std::atomic<uint32_t> s_viewSession{0},s_viewExit{0};
 static uint32_t s_pressedView=0; // Only touched by the button task.
 static std::atomic<uint32_t> s_bootBackSession{0},s_bootBackPending{0};
@@ -124,11 +125,23 @@ void Buttons::releasePageKeys(uint32_t session)
     if(session) s_pageSession.compare_exchange_strong(session,0,std::memory_order_acq_rel);
 }
 
+static void capturePageKey(button_event_t event,uint32_t &pressed)
+{
+    if(event==BUTTON_PRESS_DOWN) {
+        const bool interactive=!s_systemPanel.load(std::memory_order_acquire) && Power::isScreenOn() && !Power::sleepPending();
+        pressed=interactive?s_pageSession.load(std::memory_order_acquire):0;
+    } else if(event==BUTTON_PRESS_END) pressed=0;
+}
+
 static bool routePageKey(EventType type)
 {
     const auto session=s_pageSession.load(std::memory_order_acquire);
+    const auto pressed=type==EventType::PreviousPage?s_pressedPageBoot:s_pressedPageKey;
+    // Consume an old page's delayed click, including after returning home.
+    if(pressed && pressed!=session) return true;
     if(!session) return false;
-    EventBus::publish({type,static_cast<int32_t>(session)});
+    if(pressed==session && Power::isScreenOn() && !Power::sleepPending())
+        EventBus::publish({type,static_cast<int32_t>(session)});
     return true; // Still consume a click if the GUI event queue is full.
 }
 
@@ -204,6 +217,7 @@ static bool routePanelKey(button_event_t event,bool &began,int delta) {
 static void bootCb(void *arg, void *)
 {
     button_event_t ev = iot_button_get_event((button_handle_t)arg);
+    capturePageKey(ev,s_pressedPageBoot);
     if(ev==BUTTON_PRESS_DOWN || ev==BUTTON_PRESS_UP)Power::activity();
     const bool game=routeGameKey(ev,GameKeyState::Boot); // always drain held-key releases
     const bool timer=routeTimerKey(ev,TimerKeyState::Boot);
@@ -224,6 +238,7 @@ static void bootCb(void *arg, void *)
 static void keyCb(void *arg, void *)
 {
     button_event_t ev = iot_button_get_event((button_handle_t)arg);
+    capturePageKey(ev,s_pressedPageKey);
     if(ev==BUTTON_PRESS_DOWN || ev==BUTTON_PRESS_UP)Power::activity();
     const bool game=routeGameKey(ev,GameKeyState::Key);
     const bool timer=routeTimerKey(ev,TimerKeyState::Start);

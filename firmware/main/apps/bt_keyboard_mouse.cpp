@@ -22,9 +22,6 @@ constexpr int32_t kClickThreshold = 12;
 constexpr float kAccelFactor = 0.06f; // 速度对增益的放大系数
 constexpr float kAccelCap = 3.5f;     // 有效增益相对基准的最大倍数(防止过冲)
 
-// HID 鼠标单份报告的位移范围为 int8(-127..127);超出部分需拆分为多份报告发送。
-constexpr int32_t kReportMax = 127;
-
 // 滚轮触摸条:每移动这么多像素发送 1 格滚轮
 constexpr int32_t kWheelStep = 14;
 
@@ -40,14 +37,6 @@ constexpr int32_t kDragMoveStart = 4;
 // 连击频率下拉选项(每秒点击次数)
 constexpr int32_t kRateOptions[] = {1, 2, 5, 10};
 
-int8_t clampInt8(int32_t v)
-{
-    if (v > kReportMax) return static_cast<int8_t>(kReportMax);
-    if (v < -kReportMax) return static_cast<int8_t>(-kReportMax);
-    return static_cast<int8_t>(v);
-}
-
-
 } // namespace
 void BtKeyboardMouse::onCreate(lv_obj_t *parent) {
     namespace c=ui::compact; namespace h=ui::hid;
@@ -57,7 +46,8 @@ void BtKeyboardMouse::onCreate(lv_obj_t *parent) {
     // Shared shell remains present in mouse, Win, Mac and multi-tap modes.
     m_switch=h::button(parent,LV_SYMBOL_KEYBOARD,switchCb,this,3,0,65,44);
     m_mouseBar=c::panel(parent,171,44);lv_obj_set_pos(m_mouseBar,69,0);
-    h::button(m_mouseBar,"R",clickRightCb,this,0,0,38,44);
+    auto right=h::button(m_mouseBar,"R",nullptr,nullptr,0,0,38,44);
+    lv_obj_add_event_cb(right,clickRightCb,LV_EVENT_ALL,this);
     m_speedLabel=h::caption(h::button(m_mouseBar,"x1",speedCb,this,39,0,38,44));
     m_autoLabel=h::caption(h::button(m_mouseBar,"C",autoClickCb,this,78,0,48,44));
     auto dd=c::dropdown(m_mouseBar,"1/s\n2/s\n5/s\n10/s",44);
@@ -113,7 +103,7 @@ void BtKeyboardMouse::onCreate(lv_obj_t *parent) {
     });
     m_statusTimer=lv_timer_create(statusTimerCb,50,this);
 }
-void BtKeyboardMouse::onShow() { m_visible=true;if(m_statusTimer) lv_timer_resume(m_statusTimer);refreshStatus(); }
+void BtKeyboardMouse::onShow() { m_visible=true;m_nextStatusMs=0;if(m_statusTimer) lv_timer_resume(m_statusTimer);refreshStatus(); }
 void BtKeyboardMouse::onHide() {
     m_visible=false;sys::BleHid::cancelKeys();cancelPending();releasePointer();m_autoClick=false;
     if(m_autoTimer) { lv_timer_delete(m_autoTimer);m_autoTimer=nullptr; }
@@ -126,8 +116,11 @@ void BtKeyboardMouse::onDestroy() {
 }
 bool BtKeyboardMouse::onBack() { if(m_keyboard) { showKeyboard(false);return true; } return false; }
 void BtKeyboardMouse::releasePointer() {
-    if(m_dragging) sys::BleHid::sendMouse(0,0,0,0);
+    // Cancellation drops unsent movement and clicks, while the transport
+    // retains a mandatory all-up for the same live connection when needed.
+    sys::BleHid::cancelMouse();
     m_dragging=m_dragArmed=m_touching=m_wheeling=false;m_accX=m_accY=0;
+    m_pointerLink=m_clickLink=0;
     m_lastReleaseMs=lv_tick_get()-kDragWindowMs-1;
 }
 void BtKeyboardMouse::cancelPending() { if(m_compose.pending) { m_compose.clear();refreshPreview(); } }
@@ -214,7 +207,16 @@ void BtKeyboardMouse::updateKeyLabels() {
     }
     lv_label_set_text(m_modeLabel,"aA#");refreshPreview();
 }
-void BtKeyboardMouse::clickRightCb(lv_event_t *) { if(sys::Power::isScreenOn()) sys::BleHid::clickMouse(0x02); }
+void BtKeyboardMouse::clickRightCb(lv_event_t *e) {
+    auto self=static_cast<BtKeyboardMouse *>(lv_event_get_user_data(e));
+    const auto code=lv_event_get_code(e);
+    if(code==LV_EVENT_PRESS_LOST) { self->m_clickLink=0;return; }
+    if(code!=LV_EVENT_PRESSED && code!=LV_EVENT_CLICKED) return;
+    if(!self->m_visible || self->m_keyboard || !sys::Power::isScreenOn()) { self->m_clickLink=0;return; }
+    if(code==LV_EVENT_PRESSED) { self->m_clickLink=sys::BleHid::mouseLinkGeneration();return; }
+    const auto link=self->m_clickLink;self->m_clickLink=0;
+    if(link && sys::BleHid::clickMouse(0x02,link)!=ESP_OK) self->m_errorUntil=lv_tick_get()+800;
+}
 void BtKeyboardMouse::speedCb(lv_event_t *e) {
     auto self=static_cast<BtKeyboardMouse *>(lv_event_get_user_data(e));self->m_speedX2=!self->m_speedX2;self->updateSpeedLabel();
 }
@@ -239,16 +241,26 @@ void BtKeyboardMouse::autoClickTimerCb(lv_timer_t *t) {
     auto self=static_cast<BtKeyboardMouse *>(lv_timer_get_user_data(t));
     // Preserve intentional mouse autoclick through ordinary screen-off, but
     // never click behind the keyboard or after leaving the app.
-    if(self->m_visible && !self->m_keyboard && self->m_autoClick && sys::BleHid::remoteConnected()) sys::BleHid::clickMouse(0x01);
+    if(self->m_visible && !self->m_keyboard && self->m_autoClick && sys::BleHid::remoteConnected() &&
+       sys::BleHid::clickMouse(0x01)!=ESP_OK) self->m_errorUntil=lv_tick_get()+800;
 }
 void BtKeyboardMouse::statusTimerCb(lv_timer_t *t) { static_cast<BtKeyboardMouse *>(lv_timer_get_user_data(t))->refreshStatus(); }
 void BtKeyboardMouse::refreshStatus() {
     if(sys::BleHid::takeKeyError()!=ESP_OK)m_errorUntil=lv_tick_get()+800;
+    if(sys::BleHid::takeMouseError()!=ESP_OK) { m_errorUntil=lv_tick_get()+800;releasePointer(); }
     if(!m_visible || !sys::Power::isScreenOn()) return;
     const bool connected=sys::BleHid::remoteConnected();
+    const bool linkChanged=connected!=m_wasConnected;
     if(!connected) { cancelPending();if(m_wasConnected) releasePointer(); }
+    else if((m_pointerLink && m_pointerLink!=sys::BleHid::mouseLinkGeneration()) ||
+            (m_clickLink && m_clickLink!=sys::BleHid::mouseLinkGeneration())) releasePointer();
     m_wasConnected=connected;
     if(m_keyboard && m_tab==2 && m_compose.due(lv_tick_get())) commitPending();
+    // Composition and gesture cleanup retain the 50ms cadence. The status
+    // rail needs only 4Hz and should not copy the whole bond list at 20Hz.
+    const auto now=lv_tick_get();
+    if(m_nextStatusMs && static_cast<int32_t>(now-m_nextStatusMs)<0 && !linkChanged) return;
+    m_nextStatusMs=now+250;
     const auto state=sys::SystemService::bluetooth();
     if(m_errorUntil && static_cast<int32_t>(lv_tick_get()-m_errorUntil)>=0) m_errorUntil=0;
     const bool error=state.hasError() || (m_errorUntil && static_cast<int32_t>(m_errorUntil-lv_tick_get())>0);
@@ -261,7 +273,7 @@ void BtKeyboardMouse::refreshStatus() {
             pending?ui::theme::warning():ui::theme::muted(),0);
     }
 }
-void BtKeyboardMouse::emitMove(int32_t dx, int32_t dy, uint8_t buttons)
+bool BtKeyboardMouse::emitMove(int32_t dx, int32_t dy, uint8_t buttons)
 {
     // 1) 指针加速:按本次事件的瞬时速度(曼哈顿位移)非线性放大增益。
     //    慢速时接近基准增益(高精度);快速时增益增大(快速跨屏),并限制上限。
@@ -280,26 +292,26 @@ void BtKeyboardMouse::emitMove(int32_t dx, int32_t dy, uint8_t buttons)
     m_accX -= static_cast<float>(moveX);
     m_accY -= static_cast<float>(moveY);
 
-    if (moveX == 0 && moveY == 0) return;
+    if (moveX == 0 && moveY == 0) return true;
 
-    // 3) 大位移拆分:单份 HID 报告位移范围为 int8(-127..127),
-    //    超出时拆成多份逐一发送,防止快速滑动被饱和截断而"追不上手指"。
-    while (moveX != 0 || moveY != 0) {
-        const int8_t stepX = clampInt8(moveX);
-        const int8_t stepY = clampInt8(moveY);
-
-        sys::BleHid::sendMouse(stepX, stepY, 0, buttons);
-        moveX -= stepX;
-        moveY -= stepY;
+    // Submit once per sample. The paced host worker keeps the complete delta
+    // and splits it into HID reports without blocking the LVGL input callback.
+    if(sys::BleHid::sendMouse(moveX, moveY, 0, buttons, m_pointerLink)!=ESP_OK) {
+        m_errorUntil=lv_tick_get()+800;releasePointer();return false;
     }
+    return true;
 }
 
 void BtKeyboardMouse::touchpadCb(lv_event_t *e)
 {
     auto *self = static_cast<BtKeyboardMouse *>(lv_event_get_user_data(e));
     lv_event_code_t code = lv_event_get_code(e);
+    if(code!=LV_EVENT_PRESSED && code!=LV_EVENT_PRESSING &&
+       code!=LV_EVENT_RELEASED && code!=LV_EVENT_PRESS_LOST) return;
     if(code==LV_EVENT_PRESS_LOST) { self->releasePointer(); return; }
-    if(!self->m_visible || !sys::Power::isScreenOn() || !sys::BleHid::remoteConnected()) { self->releasePointer(); return; }
+    const auto link=sys::BleHid::mouseLinkGeneration();
+    if(!self->m_visible || self->m_keyboard || !sys::Power::isScreenOn() || !link ||
+       (code!=LV_EVENT_PRESSED && link!=self->m_pointerLink)) { self->releasePointer(); return; }
     lv_indev_t *indev = lv_indev_active();
     if (!indev) return;
     lv_point_t p;
@@ -308,6 +320,7 @@ void BtKeyboardMouse::touchpadCb(lv_event_t *e)
     const uint32_t now = lv_tick_get();
 
     if (code == LV_EVENT_PRESSED) {
+        self->m_pointerLink=link;
         self->m_lastPoint = p;
         self->m_totalMove = 0;
         self->m_touching = true;
@@ -327,7 +340,7 @@ void BtKeyboardMouse::touchpadCb(lv_event_t *e)
             self->m_dragArmed = false;
             self->m_dragging = false;
         }
-    } else if (code == LV_EVENT_PRESSING && self->m_touching) {
+    } else if ((code == LV_EVENT_PRESSING || code == LV_EVENT_RELEASED) && self->m_touching) {
         int32_t dx = p.x - self->m_lastPoint.x;
         int32_t dy = p.y - self->m_lastPoint.y;
         self->m_lastPoint = p;
@@ -343,16 +356,20 @@ void BtKeyboardMouse::touchpadCb(lv_event_t *e)
             // 拖拽中带上左键按下位(0x01),否则普通移动(button=0);
             // 加速/小数累积/大位移拆分由 emitMove 统一处理。
             uint8_t buttons = self->m_dragging ? 0x01 : 0x00;
-            self->emitMove(dx, dy, buttons);
+            if(!self->emitMove(dx, dy, buttons)) return;
         }
-    } else if (code == LV_EVENT_RELEASED && self->m_touching) {
+    }
+    if (code == LV_EVENT_RELEASED && self->m_touching) {
         self->m_touching = false;
+        self->m_pointerLink=0;
         const bool wasDragging = self->m_dragging;
         const uint32_t heldMs = now - self->m_pressMs;
 
         if (wasDragging) {
             // 拖拽结束:释放左键
-            sys::BleHid::sendMouse(0, 0, 0, 0x00);
+            if(sys::BleHid::sendMouse(0, 0, 0, 0x00, link)!=ESP_OK) {
+                self->m_errorUntil=now+800;self->releasePointer();return;
+            }
             self->m_dragging = false;
             self->m_dragArmed = false;
         } else if (self->m_totalMove < kClickThreshold && heldMs <= kTapMaxMs) {
@@ -361,11 +378,15 @@ void BtKeyboardMouse::touchpadCb(lv_event_t *e)
                 (now - self->m_lastReleaseMs) <= kDragWindowMs) {
                 // 处于待命窗口内的第二次轻点却没有拖动 -> 视为双击,执行一次单击,
                 // 并退出待命(不进入拖拽)
-                sys::BleHid::clickMouse(0x01);
+                if(sys::BleHid::clickMouse(0x01,link)!=ESP_OK) {
+                    self->m_errorUntil=now+800;self->releasePointer();return;
+                }
                 self->m_dragArmed = false;
             } else {
                 // 首次轻点:发送单击,并进入拖拽待命窗口
-                sys::BleHid::clickMouse(0x01);
+                if(sys::BleHid::clickMouse(0x01,link)!=ESP_OK) {
+                    self->m_errorUntil=now+800;self->releasePointer();return;
+                }
                 self->m_dragArmed = true;
             }
         } else {
@@ -380,30 +401,35 @@ void BtKeyboardMouse::wheelCb(lv_event_t *e)
 {
     auto *self = static_cast<BtKeyboardMouse *>(lv_event_get_user_data(e));
     lv_event_code_t code = lv_event_get_code(e);
+    if(code!=LV_EVENT_PRESSED && code!=LV_EVENT_PRESSING &&
+       code!=LV_EVENT_RELEASED && code!=LV_EVENT_PRESS_LOST) return;
     if(code==LV_EVENT_PRESS_LOST) { self->releasePointer(); return; }
-    if(!self->m_visible || !sys::Power::isScreenOn() || !sys::BleHid::remoteConnected()) { self->releasePointer(); return; }
+    const auto link=sys::BleHid::mouseLinkGeneration();
+    if(!self->m_visible || self->m_keyboard || !sys::Power::isScreenOn() || !link ||
+       (code!=LV_EVENT_PRESSED && link!=self->m_pointerLink)) { self->releasePointer(); return; }
     lv_indev_t *indev = lv_indev_active();
     if (!indev) return;
     lv_point_t p;
     lv_indev_get_point(indev, &p);
 
     if (code == LV_EVENT_PRESSED) {
+        self->m_pointerLink=link;
         self->m_wheelLastY = p.y;
         self->m_wheeling = true;
-    } else if (code == LV_EVENT_PRESSING && self->m_wheeling) {
-        int32_t dy = p.y - self->m_wheelLastY;
-        while (dy >= kWheelStep) {
-            sys::BleHid::sendMouse(0, 0, -1); // 手指下滑 -> 向下滚
-            self->m_wheelLastY += kWheelStep;
-            dy -= kWheelStep;
+    } else if ((code == LV_EVENT_PRESSING || code == LV_EVENT_RELEASED) && self->m_wheeling) {
+        // C++ signed division preserves the sub-step remainder for the next
+        // sample and combines a fast swipe into one nonblocking submission.
+        const int32_t steps=(p.y-self->m_wheelLastY)/kWheelStep;
+        if(steps) {
+            if(sys::BleHid::sendMouse(0,0,-steps,0,self->m_pointerLink)!=ESP_OK) {
+                self->m_errorUntil=lv_tick_get()+800;self->releasePointer();return;
+            }
+            self->m_wheelLastY+=steps*kWheelStep;
         }
-        while (dy <= -kWheelStep) {
-            sys::BleHid::sendMouse(0, 0, 1); // 手指上滑 -> 向上滚
-            self->m_wheelLastY -= kWheelStep;
-            dy += kWheelStep;
-        }
-    } else if (code == LV_EVENT_RELEASED) {
+    }
+    if (code == LV_EVENT_RELEASED) {
         self->m_wheeling = false;
+        self->m_pointerLink=0;
     }
 }
 
